@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { updatePage, notionPageToBlogPost } from "@/lib/notionClient";
+import { updatePage, notionPageToProduct } from "@/lib/notionClient";
 
 /**
- * POST /api/admin/posts/[id]/approve
- * Approves a pending blog post (admin only).
+ * POST /api/admin/products/[id]/approve
+ * Approves a pending marketplace product (admin only).
  * In production, this should be protected by admin authentication.
  * Called by Mission Control's Approvals tab.
  */
@@ -11,7 +11,6 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  // Optionally check for Mission Control webhook secret
   const secret = request.headers.get("x-mission-control-secret");
   const expectedSecret = process.env.MISSION_CONTROL_WEBHOOK_SECRET;
   if (expectedSecret && secret !== expectedSecret) {
@@ -21,7 +20,6 @@ export async function POST(
   const { id } = await params;
 
   try {
-    // Update the Notion page: set Status = 'approved'
     const properties = {
       Status: { select: { name: "approved" } },
     };
@@ -29,13 +27,13 @@ export async function POST(
     await updatePage(id, properties);
 
     return NextResponse.json({
-      message: "Post approved successfully",
+      message: "Product approved successfully",
       id,
     });
   } catch (error: any) {
-    console.error("Error approving post:", error);
+    console.error("Error approving product:", error);
     return NextResponse.json(
-      { error: "Failed to approve post", details: error.message },
+      { error: "Failed to approve product", details: error.message },
       { status: 500 }
     );
   }

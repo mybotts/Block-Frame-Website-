@@ -1,13 +1,75 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { marketplaceProducts } from "@/lib/data";
+
+interface Product {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  price: string;
+  image: string;
+  gradient: string;
+}
 
 export default function Marketplace() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const res = await fetch("/api/products");
+        if (res.ok) {
+          const data = await res.json();
+          setProducts(data.products);
+        }
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <section id="marketplace">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="glass-card overflow-hidden">
+              <div className="h-44 bg-white/5 animate-pulse" />
+              <div className="p-6">
+                <div className="shimmer h-5 w-24 rounded-full mb-3" />
+                <div className="shimmer h-6 w-full rounded mb-2" />
+                <div className="shimmer h-4 w-full rounded mb-4" />
+                <div className="shimmer h-10 w-full rounded" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (products.length === 0) {
+    return (
+      <section id="marketplace">
+        <div className="glass-card p-12 text-center">
+          <div className="text-4xl mb-4">🛒</div>
+          <h3 className="text-lg font-semibold text-text-primary mb-2">Marketplace coming soon</h3>
+          <p className="text-text-secondary">We are preparing our first product modules. Check back soon!</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="marketplace">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {marketplaceProducts.map((product, index) => (
+        {products.map((product, index) => (
           <div
             key={product.id}
             className={`glass-card group overflow-hidden fade-in-up fade-in-up-delay-${index + 1}`}
