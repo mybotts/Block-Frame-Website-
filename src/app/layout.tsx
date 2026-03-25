@@ -41,8 +41,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "BlockFrame Labs",
+    url: "https://www.blockframe.cloud",
+    logo: "https://www.blockframe.cloud/images/logo.png",
+    sameAs: [
+      "https://x.com/blockframelabs"
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "hello@blockframe.cloud",
+      contactType: "customer service"
+    }
+  };
+
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.variable} antialiased text-white bg-[#050507]`}>
         {children}
       </body>
