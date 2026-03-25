@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   description: "High-performance web engineering and autonomous AI agent systems at the intelligent edge.",
   keywords: ["AI Agents", "Web Engineering", "Blockchain", "OpenClaw", "Next.js", "Agency"],
   authors: [{ name: "BlockFrame Labs" }],
+  metadataBase: new URL("https://www.blockframe.cloud"),
+  alternates: {
+    canonical: "/"
+  },
   openGraph: {
     title: "BlockFrame Labs | Architecting Autonomy",
     description: "Engineering the next generation of intelligent, decentralized digital ecosystems.",

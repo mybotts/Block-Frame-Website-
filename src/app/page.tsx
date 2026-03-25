@@ -294,8 +294,96 @@ export default function Home() {
                     Ready to experience the difference? <a href="#contact" className="text-accent hover:underline">Get in touch</a> and let’s architect your next breakthrough together.
                   </p>
                 </div>
+
+                {/* FAQ SECTION for AI/O */}
+                <div className="mt-32 max-w-3xl mx-auto">
+                  <h3 className="text-2xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h3>
+                  <div className="space-y-6">
+                    {[
+                      {
+                        q: "What types of AI agents do you build?",
+                        a: "We build autonomous agents for customer support, data aggregation, trading, DevOps, and more. Each agent is tailored to your operational context and integrates with your existing toolchain."
+                      },
+                      {
+                        q: "How does the approval workflow work?",
+                        a: "Content for our blog and marketplace is drafted in Notion. Our team reviews each submission manually. Once approved, it automatically appears on the site within about a minute."
+                      },
+                      {
+                        q: "Do you host on Vercel?",
+                        a: "Yes, our own site runs on Vercel for global speed and reliability. We can deploy your project on Vercel, Netlify, or your infrastructure of choice."
+                      },
+                      {
+                        q: "What is Mission Control?",
+                        a: "Mission Control is our AI-native orchestration layer. It provides real-time monitoring, approval queues, role-based access, and audit logs for autonomous agent fleets."
+                      },
+                      {
+                        q: "How do we start a project?",
+                        a: "Use the contact form below or book a call via Calendly. We'll discuss your goals and propose a phased engagement plan."
+                      }
+                    ].map((faq, idx) => (
+                      <div key={idx} className="glass-card p-6">
+                        <h4 className="text-lg font-bold text-white mb-2">{faq.q}</h4>
+                        <p className="text-text-secondary leading-relaxed">{faq.a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
               </div>
             </section>
+
+            {/* JSON-LD FAQPage for AI Search Optimization */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: [
+                    {
+                      "@type": "Question",
+                      name: "What types of AI agents do you build?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "We build autonomous agents for customer support, data aggregation, trading, DevOps, and more. Each agent is tailored to your operational context and integrates with your existing toolchain."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      name: "How does the approval workflow work?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Content for our blog and marketplace is drafted in Notion. Our team reviews each submission manually. Once approved, it automatically appears on the site within about a minute."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      name: "Do you host on Vercel?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes, our own site runs on Vercel for global speed and reliability. We can deploy your project on Vercel, Netlify, or your infrastructure of choice."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      name: "What is Mission Control?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Mission Control is our AI-native orchestration layer. It provides real-time monitoring, approval queues, role-based access, and audit logs for autonomous agent fleets."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      name: "How do we start a project?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Use the contact form below or book a call via Calendly. We'll discuss your goals and propose a phased engagement plan."
+                      }
+                    }
+                  ]
+                })
+              }}
+            />
 
             <TechMarquee />
 
