@@ -65,6 +65,10 @@
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
   }
 
+  .category-pill {
+    @apply inline-block px-3 py-1 text-xs font-medium rounded-full;
+  }
+
   /* Core UI Elements */
   .button-primary {
     background-color: #ffffff;
