@@ -205,13 +205,10 @@ export default function Home() {
                       At Blockframe Labs, we bridge the gap between cutting‑edge AI research and production‑grade engineering. Our team specializes in building scalable agent platforms, decentralized infrastructure, and developer experiences that stand the test of time.
                     </p>
                     <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                      Founded in 2024, we’ve helped startups and enterprises deploy autonomous agents, blockchain networks, and high‑throughput APIs. Our work spans the stack: from low‑level performance optimization to gradient‑first user interfaces that delight.
+                      We've helped startups and enterprises deploy autonomous agents, blockchain networks, and high‑throughput APIs. Our work spans the stack: from low‑level performance optimization to gradient‑first user interfaces that delight.
                     </p>
                     <p className="text-lg text-text-secondary leading-relaxed mb-6">
                       We believe in the power of open standards, reproducible builds, and clear documentation. Every line we write is an investment in the ecosystem — and in your long‑term success.
-                    </p>
-                    <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                      Our flagship product, <strong>Mission Control</strong>, is an AI‑native orchestration layer that lets businesses monitor, approve, and steer autonomous workers in real time. It’s the backbone of many of our client engagements, providing audit trails, role‑based permissions, and seamless integration with third‑party tools.
                     </p>
                     <p className="text-lg text-text-secondary leading-relaxed mb-6">
                       Whether you need a full‑stack AI application, a blockchain integration, or a polished marketing site, our approach is the same: understand your goals deeply, then build the smallest, fastest, most reliable system that achieves them.
@@ -248,9 +245,9 @@ export default function Home() {
                         </div>
                         <div>
                           <p className="font-bold text-white">Daniel</p>
-                          <p className="text-sm text-text-secondary">Web Engineer, Blockframe Labs</p>
+                          <p className="text-sm text-text-secondary">Autonomous Agent, Blockframe Labs</p>
                           <p className="text-sm text-text-secondary mt-1">
-                            Daniel builds gradient‑first interfaces and pairs them with robust APIs. He maintains Mission Control and ensures every piece of the stack is performant and delightful.
+                            Daniel is an autonomous AI agent that builds gradient‑first interfaces and pairs them with robust APIs. Daniel ensures every piece of the stack is performant and delightful.
                           </p>
                         </div>
                       </div>
@@ -263,8 +260,10 @@ export default function Home() {
                       <h3 className="text-xl font-bold text-white mb-4">Core Technologies</h3>
                       <div className="flex flex-wrap gap-2">
                         {[
-                          "TypeScript", "React", "Next.js", "Node.js", "OpenClaw", 
-                          "Notion", "Vercel", "PostgreSQL", "Tailwind CSS", "Framer Motion"
+                          "TypeScript", "React", "Next.js", "Node.js", "OpenClaw",
+                          "Notion", "Vercel", "PostgreSQL", "Tailwind CSS", "Framer Motion",
+                          "Python", "FastAPI", "Docker", "Kubernetes", "AWS", "GCP", "Azure",
+                          "GraphQL", "Redis", "WebSockets", "LangChain", "LlamaIndex"
                         ].map((tech) => (
                           <span key={tech} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-text-secondary">
                             {tech}
@@ -291,99 +290,15 @@ export default function Home() {
                     Our commitment to E‑E‑A‑T (Experience, Expertise, Authoritativeness, Trustworthiness) means that every piece of content we produce meets the highest editorial standards. We cite sources, include author credentials, and keep information up to date. This focus has earned us recognition from industry analysts and top‑tier clients.
                   </p>
                   <p className="text-lg text-text-secondary leading-relaxed">
-                    Ready to experience the difference? <a href="#contact" className="text-accent hover:underline">Get in touch</a> and let’s architect your next breakthrough together.
+                    Ready to experience the difference? <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Book a call</a> or <a href="#contact" className="text-accent hover:underline">fill out the form</a> and let’s architect your next breakthrough together.
                   </p>
                 </div>
 
-                {/* FAQ SECTION for AI/O */}
-                <div className="mt-32 max-w-3xl mx-auto">
-                  <h3 className="text-2xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h3>
-                  <div className="space-y-6">
-                    {[
-                      {
-                        q: "What types of AI agents do you build?",
-                        a: "We build autonomous agents for customer support, data aggregation, trading, DevOps, and more. Each agent is tailored to your operational context and integrates with your existing toolchain."
-                      },
-                      {
-                        q: "How does the approval workflow work?",
-                        a: "Content for our blog and marketplace is drafted in Notion. Our team reviews each submission manually. Once approved, it automatically appears on the site within about a minute."
-                      },
-                      {
-                        q: "Do you host on Vercel?",
-                        a: "Yes, our own site runs on Vercel for global speed and reliability. We can deploy your project on Vercel, Netlify, or your infrastructure of choice."
-                      },
-                      {
-                        q: "What is Mission Control?",
-                        a: "Mission Control is our AI-native orchestration layer. It provides real-time monitoring, approval queues, role-based access, and audit logs for autonomous agent fleets."
-                      },
-                      {
-                        q: "How do we start a project?",
-                        a: "Use the contact form below or book a call via Calendly. We'll discuss your goals and propose a phased engagement plan."
-                      }
-                    ].map((faq, idx) => (
-                      <div key={idx} className="glass-card p-6">
-                        <h4 className="text-lg font-bold text-white mb-2">{faq.q}</h4>
-                        <p className="text-text-secondary leading-relaxed">{faq.a}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
 
               </div>
             </section>
 
-            {/* JSON-LD FAQPage for AI Search Optimization */}
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "FAQPage",
-                  mainEntity: [
-                    {
-                      "@type": "Question",
-                      name: "What types of AI agents do you build?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "We build autonomous agents for customer support, data aggregation, trading, DevOps, and more. Each agent is tailored to your operational context and integrates with your existing toolchain."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      name: "How does the approval workflow work?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Content for our blog and marketplace is drafted in Notion. Our team reviews each submission manually. Once approved, it automatically appears on the site within about a minute."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      name: "Do you host on Vercel?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Yes, our own site runs on Vercel for global speed and reliability. We can deploy your project on Vercel, Netlify, or your infrastructure of choice."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      name: "What is Mission Control?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Mission Control is our AI-native orchestration layer. It provides real-time monitoring, approval queues, role-based access, and audit logs for autonomous agent fleets."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      name: "How do we start a project?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Use the contact form below or book a call via Calendly. We'll discuss your goals and propose a phased engagement plan."
-                      }
-                    }
-                  ]
-                })
-              }}
-            />
+
 
             <TechMarquee />
 
@@ -527,6 +442,80 @@ export default function Home() {
               </div>
             </section>
 
+            {/* FAQ SECTION */}
+            <div className="mt-32 max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h3>
+              <div className="space-y-6">
+                {[
+                  {
+                    q: "What types of AI solutions do you build?",
+                    a: "We build AI agencies, specialized autonomous agents, and full-stack services. Our focus is long-term partnership: we provide maintenance, monitoring, and continuous improvement to keep your systems at the cutting edge."
+                  },
+                  {
+                    q: "How does the approval workflow work?",
+                    a: "Content for our blog and marketplace is drafted in Notion. Our team reviews each submission manually. Once approved, it automatically appears on the site within about a minute."
+                  },
+                  {
+                    q: "Do you host on Vercel?",
+                    a: "Yes, our own site runs on Vercel for global speed and reliability. We can deploy your project on Vercel, Netlify, or your infrastructure of choice."
+                  },
+                  {
+                    q: "How do we start a project?",
+                    a: "Use the contact form above or book a call via Calendly. We'll discuss your goals and propose a phased engagement plan."
+                  }
+                ].map((faq, idx) => (
+                  <div key={idx} className="glass-card p-6">
+                    <h4 className="text-lg font-bold text-white mb-2">{faq.q}</h4>
+                    <p className="text-text-secondary leading-relaxed">{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* JSON-LD FAQPage for AI Search Optimization */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: [
+                    {
+                      "@type": "Question",
+                      name: "What types of AI solutions do you build?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "We build AI agencies, specialized autonomous agents, and full-stack services. Our focus is long-term partnership: we provide maintenance, monitoring, and continuous improvement to keep your systems at the cutting edge."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      name: "How does the approval workflow work?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Content for our blog and marketplace is drafted in Notion. Our team reviews each submission manually. Once approved, it automatically appears on the site within about a minute."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      name: "Do you host on Vercel?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes, our own site runs on Vercel for global speed and reliability. We can deploy your project on Vercel, Netlify, or your infrastructure of choice."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      name: "How do we start a project?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Use the contact form above or book a call via Calendly. We'll discuss your goals and propose a phased engagement plan."
+                      }
+                    }
+                  ]
+                })
+              }}
+            />
             <footer className="bg-background pt-24 pb-12 px-6 md:px-12 border-t border-white/5">
               <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-10">
                 <div className="flex flex-col gap-6 max-w-sm">
