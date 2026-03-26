@@ -27,7 +27,7 @@ export async function validateDatabase(databaseId: string) {
 }
 
 // Query posts
-export async function queryPosts(filter: any, sorts: any[] = [{ property: 'Date', direction: 'desc' as const }]) {
+export async function queryPosts(filter: any, sorts: any[] = [{ property: 'Date', direction: 'descending' as const }]) {
   const dbId = getPostsDatabaseId()
   const response = await notion.databases.query({
     database_id: dbId,
@@ -38,7 +38,7 @@ export async function queryPosts(filter: any, sorts: any[] = [{ property: 'Date'
 }
 
 // Query products
-export async function queryProducts(filter: any, sorts: any[] = [{ property: 'Title', direction: 'desc' as const }]) {
+export async function queryProducts(filter: any, sorts: any[] = [{ property: 'Title', direction: 'descending' as const }]) {
   const dbId = getProductsDatabaseId()
   const response = await notion.databases.query({
     database_id: dbId,
