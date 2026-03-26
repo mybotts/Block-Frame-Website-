@@ -208,7 +208,7 @@ export default function Home() {
                       Our work spans the stack: from low‑level performance optimization to gradient‑first user interfaces that delight.
                     </p>
                     <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                      We believe in the power of open standards, reproducible builds, and clear documentation. Every line we write is an investment in the ecosystem — and in your long‑term success.
+                      We believe in the power of open standards, reproducible builds, and clear documentation. Every line we write is an investment in the ecosystem and in your long‑term success.
                     </p>
                     <p className="text-lg text-text-secondary leading-relaxed mb-6">
                       Whether you need a full‑stack AI application or a polished marketing site SEO optimized, our approach is the same: understand your goals deeply, then build the smallest, fastest, most reliable system that achieves them.
@@ -252,6 +252,9 @@ export default function Home() {
                         </div>
                       </div>
                       <p className="text-sm text-text-secondary mt-4">
+                        Daniel maintains this site.
+                      </p>
+                      <p className="text-sm text-text-secondary mt-4">
                         <strong>Last updated:</strong> 25 March 2025
                       </p>
                     </div>
@@ -260,10 +263,10 @@ export default function Home() {
                       <h3 className="text-xl font-bold text-white mb-4">Core Technologies</h3>
                       <div className="flex flex-wrap gap-2">
                         {[
-                          "TypeScript", "React", "Next.js", "Node.js", "OpenClaw",
-                          "Notion", "Vercel", "PostgreSQL", "Tailwind CSS", "Framer Motion",
-                          "Python", "FastAPI", "Docker", "Kubernetes", "AWS", "GCP", "Azure",
-                          "GraphQL", "Redis", "WebSockets", "LangChain", "LlamaIndex"
+                          "TypeScript", "Next.js", "React", "Node.js", "Python",
+                          "PostgreSQL", "Redis", "Docker", "Cloudflare", "OpenClaw",
+                          "OpenRouter", "Supabase", "Playwright", "Tailwind CSS", "Framer Motion",
+                          "WebSockets", "tRPC", "LangGraph", "Notion"
                         ].map((tech) => (
                           <span key={tech} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-text-secondary">
                             {tech}
@@ -284,13 +287,13 @@ export default function Home() {
                     We also understand the importance of speed. Our CI/CD pipelines, automated testing, and modular architecture enable us to ship high‑quality code faster than the competition. When you work with us, you get a partner who is as invested in your timeline as you are.
                   </p>
                   <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                    Finally, transparency is baked into everything we do. From open repositories to real‑time deployment dashboards, you’ll always know the status of your project. No black boxes, no surprise bills — just steady progress toward your vision.
+                    Finally, transparency is baked into everything we do. From open repositories to real‑time deployment dashboards, you’ll always know the status of your project. No black boxes, no surprise bills just steady progress toward your vision.
                   </p>
                   <p className="text-lg text-text-secondary leading-relaxed mb-6">
                     Our commitment to E‑E‑A‑T (Experience, Expertise, Authoritativeness, Trustworthiness) means that every piece of content we produce meets the highest editorial standards. We cite sources, include author credentials, and keep information up to date. This focus has earned us recognition from industry analysts and top‑tier clients.
                   </p>
                   <p className="text-lg text-text-secondary leading-relaxed">
-                    Ready to experience the difference? <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Book a call</a> or <a href="#contact" className="text-accent hover:underline">fill out the form</a> and let’s architect your next breakthrough together.
+                    Ready to experience the difference? <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Book a call</a> and let’s architect your next breakthrough together.
                   </p>
                 </div>
 
