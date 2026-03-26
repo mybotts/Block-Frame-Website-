@@ -23,36 +23,36 @@ export default function Navigation() {
         </a>
 
         {/* Right Nav */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6 overflow-x-auto max-w-[70vw] sm:max-w-[60vw] no-scrollbar">
           <a
             href="/"
-            className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+            className="whitespace-nowrap text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300 min-w-fit"
           >
             Services
           </a>
           <a
             href="/ai-news"
-            className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+            className="whitespace-nowrap text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300 min-w-fit"
           >
             AI News
           </a>
           <a
             href="/guides"
-            className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+            className="whitespace-nowrap text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300 min-w-fit"
           >
             Guides
           </a>
           <a
             href="/marketplace/products"
-            className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+            className="whitespace-nowrap text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300 min-w-fit"
           >
-            Marketplace/Products
+            Marketplace
           </a>
           <a
             href="https://x.com/blockframelabs"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-text-secondary hover:border-accent/50 hover:text-white hover:bg-accent/10 transition-all duration-300"
+            className="hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-text-secondary hover:border-accent/50 hover:text-white hover:bg-accent/10 transition-all duration-300 min-w-fit"
           >
             X
           </a>
