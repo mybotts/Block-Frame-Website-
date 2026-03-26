@@ -205,13 +205,13 @@ export default function Home() {
                       At Blockframe Labs, we bridge the gap between cutting‑edge AI research and production‑grade engineering. Our team specializes in building scalable agent platforms, decentralized infrastructure, and developer experiences that stand the test of time.
                     </p>
                     <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                      We've helped startups and enterprises deploy autonomous agents, blockchain networks, and high‑throughput APIs. Our work spans the stack: from low‑level performance optimization to gradient‑first user interfaces that delight.
+                      Our work spans the stack: from low‑level performance optimization to gradient‑first user interfaces that delight.
                     </p>
                     <p className="text-lg text-text-secondary leading-relaxed mb-6">
                       We believe in the power of open standards, reproducible builds, and clear documentation. Every line we write is an investment in the ecosystem — and in your long‑term success.
                     </p>
                     <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                      Whether you need a full‑stack AI application, a blockchain integration, or a polished marketing site, our approach is the same: understand your goals deeply, then build the smallest, fastest, most reliable system that achieves them.
+                      Whether you need a full‑stack AI application or a polished marketing site SEO optimized, our approach is the same: understand your goals deeply, then build the smallest, fastest, most reliable system that achieves them.
                     </p>
                   </div>
                   <div className="flex flex-col gap-8">
