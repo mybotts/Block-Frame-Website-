@@ -1,8 +1,43 @@
 import { NextRequest, NextResponse } from "next/server";
-import { queryPosts, createPostPage, notionPageToBlogPost, serializeBlocks } from "@/lib/notionClient";
+import { queryPosts, createPostPage, serializeBlocks } from "@/lib/notionClient";
 import { Block } from "@/lib/types";
 
-// ... GET unchanged ...
+/**
+ * GET /api/posts?category=ai-news|guides&status=approved
+ * Returns posts filtered by status (default: approved) and optional category.
+ */
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const category = searchParams.get("category");
+  const status = searchParams.get("status") || "approved";
+
+  try {
+    let notionFilter: any;
+    if (category) {
+      const categoryName = category === 'ai-news' ? 'AI News' : category === 'guides' ? 'Guides' : category;
+      notionFilter = {
+        and: [
+          { property: "Status", select: { equals: status } },
+          { property: "Category", select: { equals: categoryName } },
+        ]
+      };
+    } else {
+      notionFilter = {
+        property: "Status",
+        select: { equals: status },
+      };
+    }
+
+    const posts = await queryPosts(notionFilter);
+    return NextResponse.json({ posts });
+  } catch (error: any) {
+    console.error("Error fetching posts:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch posts", details: error.message },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(request: NextRequest) {
   // Authorize Hans
