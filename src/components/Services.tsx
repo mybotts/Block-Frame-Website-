@@ -132,7 +132,7 @@ export default function Services() {
             </h3>
           </div>
           <p className="text-text-secondary text-lg max-w-sm leading-relaxed pb-2">
-            From high-performance web engineering to entirely autonomous AI agent integrations.
+            From local and cloud-based AI agents to fully autonomous systems, managed agent services, and performance-driven social ad campaigns.
           </p>
         </div>
 

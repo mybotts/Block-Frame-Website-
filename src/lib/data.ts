@@ -21,12 +21,44 @@ export const services: Service[] = [
     gradient: "from-violet-600/20 to-indigo-900/20",
   },
   {
+    id: "ai-agents-local",
+    title: "Local AI Agent Setup",
+    description:
+      "Deploy autonomous AI agents on your own infrastructure. Full installation, configuration, and training for local, offline, or edge deployments. Complete control, data sovereignty, and zero external API dependencies.",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1600",
+    gradient: "from-violet-600/20 to-indigo-900/20",
+  },
+  {
+    id: "ai-agents-cloud",
+    title: "Cloud-Based AI Agents",
+    description:
+      "Scalable, managed AI agent services in the cloud. 24/7 operation, auto-scaling, global distribution, and enterprise-grade SLAs. Focus on outcomes; we handle infrastructure, updates, and reliability.",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1600",
+    gradient: "from-blue-600/20 to-sky-900/20",
+  },
+  {
+    id: "autonomous-systems",
+    title: "Fully Autonomous Agents",
+    description:
+      "End-to-end autonomous systems that perceive, decide, and act with minimal human oversight. From monitoring and incident response to data aggregation and trading — self-directing, self-correcting AI.",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600",
+    gradient: "from-teal-600/20 to-cyan-900/20",
+  },
+  {
+    id: "managed-agent-services",
+    title: "Managed Agent Services",
+    description:
+      "We operate AI agents as a service. No setup, no maintenance. Subscribe to ready-to-use agents for customer support, compliance monitoring, content generation, and more. Pay per use or monthly.",
+    image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&q=80&w=1600",
+    gradient: "from-orange-600/20 to-amber-900/20",
+  },
+  {
     id: "web-apps",
     title: "App & Web Engineering",
     description:
       "End-to-end development, deployment, and management of high-performance mobile apps and web platforms. Built for scale, security, and exceptional user experiences.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1600",
-    gradient: "from-blue-600/20 to-sky-900/20",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600",
+    gradient: "from-emerald-600/20 to-green-900/20",
   },
   {
     id: "motion-graphics",
@@ -59,6 +91,14 @@ export const services: Service[] = [
       "Complete social media development and management. We engineer organic growth strategies, community building, and viral content pipelines customized for your niche.",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-emerald-600/20 to-green-900/20",
+  },
+  {
+    id: "social-ads-campaigns",
+    title: "Social Media Ad Campaigns",
+    description:
+      "AI-optimized ad campaigns across TikTok, Instagram, YouTube, and X. Creative production, targeting, budget optimization, and performance reporting. Drive acquisition and revenue with data-backed campaigns.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600",
+    gradient: "from-pink-600/20 to-rose-900/20",
   },
 ];
 
