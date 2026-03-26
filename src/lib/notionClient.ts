@@ -1,4 +1,5 @@
 import { Client } from '@notionhq/client'
+import type { Block, BlogPost, MarketplaceProduct } from './types'
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -24,6 +25,40 @@ export async function validateDatabase(databaseId: string) {
     console.error('Failed to retrieve Notion database:', error)
     throw error
   }
+}
+
+// Helper to generate a simple block id if missing
+const generateBlockId = (): string => `block-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+
+// Parse raw content (from Notion) into blocks array
+export function parseBlocks(raw: string): Block[] {
+  let blocks: Block[] = []
+  try {
+    const parsed = JSON.parse(raw)
+    if (Array.isArray(parsed)) {
+      blocks = parsed.map((b: any, idx: number) => ({
+        id: b.id || generateBlockId(),
+        type: b.type || 'text',
+        content: b.content || '',
+        order: b.order ?? idx,
+      }))
+      return blocks
+    }
+  } catch (e) {
+    // Not JSON; fallback
+  }
+  // Fallback: single text block
+  return [{
+    id: generateBlockId(),
+    type: 'text',
+    content: raw,
+    order: 0,
+  }]
+}
+
+// Serialize blocks array to JSON string for storage in Notion Content property
+export function serializeBlocks(blocks: Block[]): string {
+  return JSON.stringify(blocks)
 }
 
 // Query posts
@@ -57,6 +92,19 @@ export async function createPostPage(properties: any) {
   })
 }
 
+// Update a post page
+export async function updatePostPage(pageId: string, properties: any) {
+  return notion.pages.update({
+    page_id: pageId,
+    properties,
+  })
+}
+
+// Retrieve a single post page by ID
+export async function retrievePostPage(pageId: string): Promise<any> {
+  return await notion.pages.retrieve({ page_id: pageId })
+}
+
 // Create a product page
 export async function createProductPage(properties: any) {
   const dbId = getProductsDatabaseId()
@@ -75,7 +123,7 @@ export async function updatePage(pageId: string, properties: any) {
 }
 
 // Helper to convert Notion page to BlogPost type
-export function notionPageToBlogPost(page: any): any {
+export function notionPageToBlogPost(page: any): BlogPost {
   const props = page.properties
   const getText = (prop: any) => {
     if (!prop) return ''
@@ -88,25 +136,34 @@ export function notionPageToBlogPost(page: any): any {
   }
 
   const title = getText(props.Title)
-  // Derive categorySlug from Category
   const category = getText(props.Category)
   const categorySlug = category.toLowerCase().replace(/\s+/g, '-')
+  const rawContent = getText(props.Content) || ''
+
+  const blocks: Block[] = parseBlocks(rawContent)
+
+  // Backward compatible content string: concatenate text and markdown blocks
+  const contentString = blocks
+    .filter(b => b.type === 'text' || b.type === 'markdown')
+    .map(b => b.content)
+    .join('\n\n')
 
   return {
     id: page.id,
     title,
-    excerpt: getText(props.Excerpt),
-    category,
+    excerpt: getText(props.Excerpt) || '',
+    category: category as "AI News" | "Guides",
     categorySlug,
     date: getText(props.Date) || new Date().toISOString().split('T')[0],
     status: getText(props.Status).toLowerCase() as 'pending' | 'approved' | 'rejected',
     author: getText(props.Author) || 'BlockFrameLabs',
-    content: getText(props.Content) || '',
+    blocks,
+    content: contentString,
   }
 }
 
 // Helper to convert Notion page to MarketplaceProduct
-export function notionPageToProduct(page: any): any {
+export function notionPageToProduct(page: any): MarketplaceProduct {
   const props = page.properties
   const getText = (prop: any) => {
     if (!prop) return ''

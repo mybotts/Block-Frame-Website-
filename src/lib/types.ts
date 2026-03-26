@@ -10,6 +10,13 @@ export interface Service {
   gradient: string;
 }
 
+export interface Block {
+  id?: string;
+  type: "text" | "image" | "video" | "html" | "markdown";
+  content: string;
+  order: number;
+}
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -19,6 +26,8 @@ export interface BlogPost {
   date: string;
   status: "pending" | "approved" | "rejected";
   author: string;
+  blocks: Block[];
+  /** Backward compatibility: concatenated text of all text blocks (or plain text fallback) */
   content?: string;
 }
 

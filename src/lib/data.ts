@@ -114,6 +114,8 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-20",
     status: "approved",
     author: "BlockFrameLabs",
+    blocks: [{ id: "sample-1", type: "text", content: 
+      "Exploring how the next generation of language models will reshape autonomous agent architectures and enable truly self-directed AI systems.", order: 0 }],
   },
   {
     id: "2",
@@ -125,6 +127,8 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-18",
     status: "approved",
     author: "BlockFrameLabs",
+    blocks: [{ id: "sample-2", type: "text", content: 
+      "DeepSeek's latest model challenges proprietary giants with state-of-the-art reasoning capabilities available to everyone.", order: 0 }],
   },
   {
     id: "3",
@@ -136,6 +140,8 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-15",
     status: "approved",
     author: "BlockFrameLabs",
+    blocks: [{ id: "sample-3", type: "text", content: 
+      "How AI-first coding assistants are transforming software development workflows and what it means for engineering teams.", order: 0 }],
   },
   {
     id: "4",
@@ -147,6 +153,8 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-19",
     status: "approved",
     author: "BlockFrameLabs",
+    blocks: [{ id: "sample-4", type: "text", content: 
+      "A step-by-step guide to creating an autonomous AI agent using LangChain, complete with tool usage, memory, and multi-step reasoning.", order: 0 }],
   },
   {
     id: "5",
@@ -158,6 +166,8 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-16",
     status: "approved",
     author: "BlockFrameLabs",
+    blocks: [{ id: "sample-5", type: "text", content: 
+      "Essential security patterns and common vulnerabilities every Solidity developer must know before deploying to mainnet.", order: 0 }],
   },
   {
     id: "6",
@@ -169,6 +179,8 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-12",
     status: "approved",
     author: "BlockFrameLabs",
+    blocks: [{ id: "sample-6", type: "text", content: 
+      "Learn how to leverage edge computing and serverless functions to deploy Next.js apps that handle millions of requests.", order: 0 }],
   },
   {
     id: "7",
@@ -180,6 +192,8 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-10",
     status: "pending",
     author: "BlockFrameLabs",
+    blocks: [{ id: "sample-7", type: "text", content: 
+      "The convergence of vision and language models is creating new possibilities for AI applications across industries.", order: 0 }],
   },
 ];
 
