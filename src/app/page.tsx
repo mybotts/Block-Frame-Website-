@@ -255,7 +255,7 @@ export default function Home() {
                         Daniel maintains this site.
                       </p>
                       <p className="text-sm text-text-secondary mt-4">
-                        <strong>Last updated:</strong> 25 March 2025
+                        <strong>Last updated:</strong> 26 March 2026
                       </p>
                     </div>
 
