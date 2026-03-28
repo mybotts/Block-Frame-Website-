@@ -538,7 +538,7 @@ export default function Home() {
                 
                 <div className="flex items-center gap-8 flex-wrap pointer-events-auto">
                   <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-accent hover:text-white transition-colors duration-300">Book a Call</a>
-                  <a href="https://x.com/blockframelabs" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-secondary hover:text-white transition-colors">X</a>
+                  <a href="https://x.com/blockframelabs" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-secondary hover:text-white transition-colors">Twitter(X)</a>
                   <a href="#" className="text-sm font-medium text-text-secondary hover:text-white transition-colors">Discord</a>
                 </div>
               </div>
