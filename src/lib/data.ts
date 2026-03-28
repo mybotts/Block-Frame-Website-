@@ -100,6 +100,14 @@ export const services: Service[] = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-pink-600/20 to-rose-900/20",
   },
+  {
+    id: "specialized-agent-dev",
+    title: "Specialized Agent Development and Management",
+    description:
+      "Custom AI agent development tailored to your unique business processes. We design, build, and operate specialized agents with deep workflow integration, continuous improvement, and full lifecycle management.",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1600",
+    gradient: "from-indigo-600/20 to-purple-900/20",
+  },
 ];
 
 // Sample blog posts (in a real app, these come from the API)
