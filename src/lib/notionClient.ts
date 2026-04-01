@@ -138,7 +138,10 @@ export function notionPageToBlogPost(page: any): BlogPost {
   const title = getText(props.Title)
   const category = getText(props.Category)
   const categorySlug = category.toLowerCase().replace(/\s+/g, '-')
-  const rawContent = getText(props.Content) || ''
+  // For Content property, concatenate all rich_text parts to handle multi-paragraph storage
+  const rawContent = props.Content && props.Content.rich_text && Array.isArray(props.Content.rich_text)
+    ? props.Content.rich_text.map((t: any) => t.plain_text).join('')
+    : (getText(props.Content) || '')
 
   const blocks: Block[] = parseBlocks(rawContent)
 

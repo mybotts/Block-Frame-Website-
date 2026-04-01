@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { BlogPost } from "@/lib/types";
 
 export default function Guides() {
@@ -32,6 +33,15 @@ export default function Guides() {
       "bg-red-500/20 text-red-400",
     ];
     return { label: badges[index % 3], color: colors[index % 3] };
+  };
+
+  // Generate a preview text: use excerpt if available, else first 150 chars of content
+  const getPreview = (guide: BlogPost) => {
+    if (guide.excerpt && guide.excerpt.trim().length > 0) return guide.excerpt;
+    if (guide.content && guide.content.trim().length > 0) {
+      return guide.content.trim().substring(0, 150) + (guide.content.length > 150 ? '...' : '');
+    }
+    return 'No preview available.';
   };
 
   if (loading) {
@@ -94,18 +104,21 @@ export default function Guides() {
                   {guide.title}
                 </h3>
 
-                {/* Description */}
+                {/* Description/Preview */}
                 <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-3">
-                  {guide.excerpt}
+                  {getPreview(guide)}
                 </p>
 
                 {/* Read More Link */}
-                <div className="flex items-center gap-1 text-sm font-medium text-primary-light group-hover:text-accent transition-colors duration-300">
+                <Link
+                  href={`/post/${guide.id}`}
+                  className="inline-flex items-center gap-1 text-sm font-medium text-primary-light group-hover:text-accent transition-colors duration-300"
+                >
                   Read Guide
                   <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                </div>
+                </Link>
               </div>
             </article>
           );
