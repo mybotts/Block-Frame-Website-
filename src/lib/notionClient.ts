@@ -122,7 +122,131 @@ export async function updatePage(pageId: string, properties: any) {
   })
 }
 
-// Helper to convert Notion page to BlogPost type
+// Fetch a post and ensure blocks are populated, optionally fetching children if Content empty
+export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost> {
+  const page = await retrievePostPage(pageId)
+  const props = page.properties
+
+  // Compute rawContent from Content property (concatenate all rich_text parts)
+  const rawContent = props.Content && props.Content.rich_text && Array.isArray(props.Content.rich_text)
+    ? props.Content.rich_text.map((t: any) => t.plain_text).join('')
+    : ''
+
+  let blocks: Block[] = []
+  if (rawContent) {
+    blocks = parseBlocks(rawContent)
+  }
+
+  // If Content empty, fetch child blocks from Notion
+  if (blocks.length === 0) {
+    // console.log(`[INFO] Content empty for ${pageId}, fetching child blocks...`)
+    try {
+      const childrenRes = await notion.blocks.children.list({
+        block_id: pageId,
+        page_size: 100,
+      })
+      blocks = childrenRes.results.map((block: any, idx: number) => {
+        let type: Block['type'] = 'text'
+        let content = ''
+
+        switch (block.type) {
+          case 'paragraph':
+            type = 'text'
+            content = block.paragraph.rich_text.map((t: any) => t.plain_text).join('')
+            break
+          case 'heading_1':
+          case 'heading_2':
+          case 'heading_3':
+            // Preserve heading level with markdown prefix
+            type = 'text'
+            const level = block.type === 'heading_1' ? '# ' : block.type === 'heading_2' ? '## ' : '### '
+            content = level + block[block.type].rich_text.map((t: any) => t.plain_text).join('')
+            break
+          case 'bulleted_list_item':
+          case 'numbered_list_item':
+            type = 'text'
+            content = '- ' + block[block.type].rich_text.map((t: any) => t.plain_text).join('')
+            break
+          case 'image':
+            type = 'image'
+            const img = block.image
+            content = img.type === 'external' ? img.external.url : img.file.url
+            break
+          case 'video':
+            type = 'video'
+            const vid = block.video
+            content = vid.type === 'external' ? vid.external.url : vid.file.url
+            break
+          case 'code':
+            type = 'text'
+            content = block.code.rich_text.map((t: any) => t.plain_text).join('')
+            break
+          case 'divider':
+            content = '---'
+            break
+          case 'bookmark':
+          case 'embed':
+          case 'link_preview':
+            type = 'html'
+            content = `<!-- ${block.type} block -->`
+            break
+          default:
+            // Unsupported block types become HTML placeholder
+            type = 'html'
+            content = `<!-- Unsupported block type: ${block.type} -->`
+        }
+
+        return {
+          id: block.id,
+          type,
+          content,
+          order: idx,
+        }
+      }).filter(b => b.content && b.content.length > 0)
+    } catch (err) {
+      console.warn('Failed to fetch child blocks for', pageId, err)
+    }
+  }
+
+  // Build BlogPost
+  const getText = (prop: any) => {
+    if (!prop) return ''
+    if (prop.title) return prop.title[0]?.plain_text || ''
+    if (prop.rich_text) return prop.rich_text[0]?.plain_text || ''
+    if (prop.number) return prop.number.toString()
+    if (prop.select) return prop.select.name
+    if (prop.date) return prop.date.start
+    return ''
+  }
+
+  const title = getText(props.Title)
+  const category = getText(props.Category)
+  const categorySlug = category.toLowerCase().replace(/\s+/g, '-')
+  const excerpt = getText(props.Excerpt) || ''
+  const date = getText(props.Date) || new Date().toISOString().split('T')[0]
+  const status = getText(props.Status).toLowerCase() as 'pending' | 'approved' | 'rejected'
+  const author = getText(props.Author) || 'BlockFrameLabs'
+
+  const contentString = blocks
+    .filter(b => b.type === 'text' || b.type === 'markdown')
+    .map(b => b.content)
+    .join('\n\n')
+
+  return {
+    id: page.id,
+    title,
+    excerpt,
+    category: category as 'AI News' | 'Guides',
+    categorySlug,
+    date,
+    status,
+    author,
+    blocks,
+    content: contentString,
+  }
+}
+
+// Helper to convert Notion page to BlogPost type (legacy; uses Content property only)
 export function notionPageToBlogPost(page: any): BlogPost {
   const props = page.properties
   const getText = (prop: any) => {
@@ -155,7 +279,7 @@ export function notionPageToBlogPost(page: any): BlogPost {
     id: page.id,
     title,
     excerpt: getText(props.Excerpt) || '',
-    category: category as "AI News" | "Guides",
+    category: category as 'AI News' | 'Guides',
     categorySlug,
     date: getText(props.Date) || new Date().toISOString().split('T')[0],
     status: getText(props.Status).toLowerCase() as 'pending' | 'approved' | 'rejected',

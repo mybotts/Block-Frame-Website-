@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { retrievePostPage, notionPageToBlogPost, updatePostPage } from "@/lib/notionClient";
+import { fetchBlogPostWithBlocks, updatePostPage } from "@/lib/notionClient";
 
 /**
  * GET /api/posts/[id]
  * Returns a single post by Notion page ID.
+ * Uses child blocks fallback if Content property is empty.
  */
 export async function GET(
   request: NextRequest,
@@ -11,8 +12,7 @@ export async function GET(
 ) {
   const { id } = await context.params;
   try {
-    const page = await retrievePostPage(id);
-    const post = notionPageToBlogPost(page);
+    const post = await fetchBlogPostWithBlocks(id);
     return NextResponse.json({ post });
   } catch (error: any) {
     console.error("Error fetching post by ID:", error);
@@ -46,8 +46,13 @@ export async function PATCH(
     const { title, excerpt, category, status, date, author, blocks } = body;
 
     // Fetch the current page to preserve unchanged properties
-    const currentPage = await retrievePostPage(id);
-    const currentProps = currentPage.properties;
+    const currentPage = await fetchBlogPostWithBlocks(id); // reuse to get page
+    const currentProps = currentPage.id ? { ...currentPage } : {}; // not used; we'll retrieve page again for update
+    // Actually we need the raw Notion page for update. Retrieve it separately.
+    const { retrievePostPage } = await import("@/lib/notionClient");
+    const rawPage = await retrievePostPage(id);
+    const props = rawPage.properties;
+
     const getText = (prop: any) => {
       if (!prop) return ''
       if (prop.title) return prop.title[0]?.plain_text || ''
@@ -58,7 +63,7 @@ export async function PATCH(
     }
 
     // Build updated properties
-    const newProperties: any = { ...currentProps };
+    const newProperties: any = { ...props };
 
     if (title !== undefined) {
       newProperties.Title = { title: [{ text: { content: title } }] };
