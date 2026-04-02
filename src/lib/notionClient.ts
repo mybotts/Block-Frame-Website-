@@ -142,17 +142,17 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
   if (blocks.length === 0) {
     // console.log(`[INFO] Content empty for ${pageId}, fetching child blocks...`)
     try {
-      let cursor: string | undefined = undefined
+      let cursor: string | null = null
       const allChildren: any[] = []
       do {
         const res = await notion.blocks.children.list({
           block_id: pageId,
           page_size: 100,
-          start_cursor: cursor,
+          start_cursor: cursor || undefined,
         })
         allChildren.push(...res.results)
         cursor = res.next_cursor
-      } while (cursor)
+      } while (cursor != null)
 
       blocks = allChildren.map((block: any, idx: number) => {
         let type: Block['type'] = 'text'
