@@ -46,7 +46,7 @@ export default function PostPage() {
         <main className="relative z-10 w-full min-h-screen flex flex-col items-center pt-40 pb-24 px-6 md:px-12 pointer-events-none">
           <div className="hero-radial-glow opacity-40 z-[-1]" />
 
-          <div className="w-full max-w-4xl mx-auto pointer-events-auto">
+          <div className="w-full max-w-6xl mx-auto pointer-events-auto px-4 md:px-0">
             <ErrorBoundary>
             {loading && (
               <div className="text-center text-text-secondary">Loading post…</div>
