@@ -7,9 +7,21 @@ export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const toggle = () => setVisible(window.scrollY > 500);
-    window.addEventListener("scroll", toggle);
-    return () => window.removeEventListener("scroll", toggle);
+    const update = () => {
+      const article = document.querySelector('article');
+      if (article) {
+        const rect = article.getBoundingClientRect();
+        const scrolled = -rect.top;
+        setVisible(scrolled > 500);
+      }
+    };
+    window.addEventListener("scroll", update);
+    window.addEventListener("resize", update);
+    update();
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   const scrollToTop = () => {

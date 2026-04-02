@@ -93,8 +93,9 @@ export default function PostPage() {
               </article>
             )}
             </ErrorBoundary>
-            <ScrollToTop />
-          </div>
+          </main>
+          <ScrollToTop />
+        </SmoothScroller>
         </main>
       </SmoothScroller>
     </>

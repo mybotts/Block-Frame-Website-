@@ -5,6 +5,15 @@ import CodeBlock from "./CodeBlock";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 interface BlockRendererProps {
   block: Block;
 }
@@ -60,7 +69,6 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
                   const match = /language-\w+/.exec(className || "");
                   const codeLang = match ? match[0].replace("language-", "") : undefined;
                   const codeString = String(children).replace(/\n$/, "");
-                  // Inline code vs block code
                   const isInline = !match;
                   if (isInline) {
                     return (
@@ -71,10 +79,38 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
                   }
                   return <CodeBlock code={codeString} language={codeLang} />;
                 },
-                h1: ({ children }) => <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 mt-10 leading-tight">{children}</h1>,
-                h2: ({ children }) => <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 mt-8 leading-tight">{children}</h2>,
-                h3: ({ children }) => <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 mt-6 leading-tight">{children}</h3>,
-                h4: ({ children }) => <h4 className="text-xl md:text-2xl font-bold text-white mb-3 mt-5 leading-tight">{children}</h4>,
+                h1: ({ children }) => {
+                  const id = slugify(String(children));
+                  return (
+                    <h1 id={id} className="text-4xl md:text-5xl font-bold text-white mb-6 mt-10 leading-tight">
+                      {children}
+                    </h1>
+                  );
+                },
+                h2: ({ children }) => {
+                  const id = slugify(String(children));
+                  return (
+                    <h2 id={id} className="text-3xl md:text-4xl font-bold text-white mb-5 mt-8 leading-tight">
+                      {children}
+                    </h2>
+                  );
+                },
+                h3: ({ children }) => {
+                  const id = slugify(String(children));
+                  return (
+                    <h3 id={id} className="text-2xl md:text-3xl font-bold text-white mb-4 mt-6 leading-tight">
+                      {children}
+                    </h3>
+                  );
+                },
+                h4: ({ children }) => {
+                  const id = slugify(String(children));
+                  return (
+                    <h4 id={id} className="text-xl md:text-2xl font-bold text-white mb-3 mt-5 leading-tight">
+                      {children}
+                    </h4>
+                  );
+                },
                 p: ({ children }) => <p className="mb-6 leading-relaxed text-text-secondary">{children}</p>,
                 ul: ({ children }) => <ul className="mb-6 pl-6 list-disc text-text-secondary">{children}</ul>,
                 ol: ({ children }) => <ol className="mb-6 pl-6 list-decimal text-text-secondary">{children}</ol>,
@@ -84,11 +120,20 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
                     {children}
                   </blockquote>
                 ),
-                a: ({ href, children }) => (
-                  <a href={href} className="text-accent hover:text-primary-light underline" target="_blank" rel="noopener noreferrer">
-                    {children}
-                  </a>
-                ),
+                a: ({ href, children }) => {
+                  // If it's an anchor link (starts with #), use normal anchor to scroll within page
+                  const isAnchor = href && href.startsWith('#');
+                  return (
+                    <a
+                      href={href}
+                      className="text-accent hover:text-primary-light underline"
+                      target={isAnchor ? undefined : "_blank"}
+                      rel={isAnchor ? undefined : "noopener noreferrer"}
+                    >
+                      {children}
+                    </a>
+                  );
+                },
               }
             }
           >
