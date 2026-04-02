@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { queryPosts, notionPageToBlogPost, createPostPage, serializeBlocks } from "@/lib/notionClient";
+import { queryPosts, fetchBlogPostWithBlocks, createPostPage, serializeBlocks } from "@/lib/notionClient";
 import { Block } from "@/lib/types";
 
 /**
@@ -29,7 +29,8 @@ export async function GET(request: NextRequest) {
     }
 
     const rawPages = await queryPosts(notionFilter);
-    const posts = rawPages.map(notionPageToBlogPost);
+    // Fetch full BlogPost for each page (includes children if Content empty)
+    const posts = await Promise.all(rawPages.map(p => fetchBlogPostWithBlocks(p.id)));
     const response = NextResponse.json({ posts });
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     response.headers.set('Pragma', 'no-cache');
