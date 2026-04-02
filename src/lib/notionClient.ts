@@ -142,11 +142,19 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
   if (blocks.length === 0) {
     // console.log(`[INFO] Content empty for ${pageId}, fetching child blocks...`)
     try {
-      const childrenRes = await notion.blocks.children.list({
-        block_id: pageId,
-        page_size: 100,
-      })
-      blocks = childrenRes.results.map((block: any, idx: number) => {
+      let cursor: string | undefined = undefined
+      const allChildren: any[] = []
+      do {
+        const res = await notion.blocks.children.list({
+          block_id: pageId,
+          page_size: 100,
+          start_cursor: cursor,
+        })
+        allChildren.push(...res.results)
+        cursor = res.next_cursor
+      } while (cursor)
+
+      blocks = allChildren.map((block: any, idx: number) => {
         let type: Block['type'] = 'text'
         let content = ''
         let language: string | undefined = undefined
@@ -159,7 +167,6 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
           case 'heading_1':
           case 'heading_2':
           case 'heading_3':
-            // Preserve heading level with markdown prefix
             type = 'text'
             const level = block.type === 'heading_1' ? '# ' : block.type === 'heading_2' ? '## ' : '### '
             content = level + block[block.type].rich_text.map((t: any) => t.plain_text).join('')
@@ -194,7 +201,6 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
             content = `<!-- ${block.type} block -->`
             break
           default:
-            // Unsupported block types become HTML placeholder
             type = 'html'
             content = `<!-- Unsupported block type: ${block.type} -->`
         }
