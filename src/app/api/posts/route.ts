@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { queryPosts, createPostPage, serializeBlocks } from "@/lib/notionClient";
-import { Block } from "@/lib/types";
+import { queryPosts, notionPageToBlogPost } from "@/lib/notionClient";
 
 /**
  * GET /api/posts?category=ai-news|guides&status=approved
@@ -28,7 +27,8 @@ export async function GET(request: NextRequest) {
       };
     }
 
-    const posts = await queryPosts(notionFilter);
+    const rawPages = await queryPosts(notionFilter);
+    const posts = rawPages.map(notionPageToBlogPost);
     const response = NextResponse.json({ posts });
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     response.headers.set('Pragma', 'no-cache');
