@@ -9,6 +9,8 @@ import CustomCursor from "@/components/CustomCursor";
 import BlockRenderer from "@/components/BlockRenderer";
 import { BlogPost } from "@/lib/types";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import ScrollToTop from "@/components/ScrollToTop";
+import ReadingProgress from "@/components/ReadingProgress";
 
 export default function PostPage() {
   const { id } = useParams<{ id: string }>();
@@ -43,6 +45,7 @@ export default function PostPage() {
       <PremiumBackground />
 
       <SmoothScroller>
+        <ReadingProgress />
         <main className="relative z-10 w-full min-h-screen flex flex-col items-center pt-40 pb-24 px-6 md:px-12 pointer-events-none">
           <div className="hero-radial-glow opacity-40 z-[-1]" />
 
@@ -90,6 +93,7 @@ export default function PostPage() {
               </article>
             )}
             </ErrorBoundary>
+            <ScrollToTop />
           </div>
         </main>
       </SmoothScroller>
