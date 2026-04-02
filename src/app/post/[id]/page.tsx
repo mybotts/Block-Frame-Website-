@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Navigation from "@/components/Navigation";
-import ParticleBackground from "@/components/ParticleBackground";
+import PremiumBackground from "@/components/PremiumBackground";
 import SmoothScroller from "@/components/SmoothScroller";
 import CustomCursor from "@/components/CustomCursor";
 import BlockRenderer from "@/components/BlockRenderer";
@@ -39,7 +39,7 @@ export default function PostPage() {
     <>
       <CustomCursor />
       <Navigation />
-      <ParticleBackground />
+      <PremiumBackground />
 
       <SmoothScroller>
         <main className="relative z-10 w-full min-h-screen flex flex-col items-center pt-40 pb-24 px-6 md:px-12 pointer-events-none">

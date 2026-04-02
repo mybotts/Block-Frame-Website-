@@ -41,6 +41,7 @@ export function parseBlocks(raw: string): Block[] {
         type: b.type || 'text',
         content: b.content || '',
         order: b.order ?? idx,
+        language: b.language,
       }))
       return blocks
     }
@@ -148,6 +149,7 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
       blocks = childrenRes.results.map((block: any, idx: number) => {
         let type: Block['type'] = 'text'
         let content = ''
+        let language: string | undefined = undefined
 
         switch (block.type) {
           case 'paragraph':
@@ -178,8 +180,9 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
             content = vid.type === 'external' ? vid.external.url : vid.file.url
             break
           case 'code':
-            type = 'text'
+            type = 'code'
             content = block.code.rich_text.map((t: any) => t.plain_text).join('')
+            language = block.code.language || undefined
             break
           case 'divider':
             content = '---'
@@ -196,12 +199,14 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
             content = `<!-- Unsupported block type: ${block.type} -->`
         }
 
-        return {
+        const blockObj: any = {
           id: block.id,
           type,
           content,
           order: idx,
         }
+        if (language) blockObj.language = language
+        return blockObj
       }).filter(b => b.content && b.content.length > 0)
     } catch (err) {
       console.warn('Failed to fetch child blocks for', pageId, err)

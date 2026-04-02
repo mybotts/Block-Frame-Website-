@@ -1,6 +1,7 @@
 "use client";
 
 import { Block } from "@/lib/types";
+import CodeBlock from "./CodeBlock";
 
 interface BlockRendererProps {
   block: Block;
@@ -50,6 +51,9 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
           dangerouslySetInnerHTML={{ __html: content }}
         />
       );
+
+    case "code":
+      return <CodeBlock code={content} language={block.language} />;
 
     default:
       return (
