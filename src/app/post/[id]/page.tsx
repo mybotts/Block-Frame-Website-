@@ -8,6 +8,7 @@ import SmoothScroller from "@/components/SmoothScroller";
 import CustomCursor from "@/components/CustomCursor";
 import BlockRenderer from "@/components/BlockRenderer";
 import { BlogPost } from "@/lib/types";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default function PostPage() {
   const { id } = useParams<{ id: string }>();
@@ -46,6 +47,7 @@ export default function PostPage() {
           <div className="hero-radial-glow opacity-40 z-[-1]" />
 
           <div className="w-full max-w-4xl mx-auto pointer-events-auto">
+            <ErrorBoundary>
             {loading && (
               <div className="text-center text-text-secondary">Loading post…</div>
             )}
@@ -87,6 +89,7 @@ export default function PostPage() {
                 </div>
               </article>
             )}
+            </ErrorBoundary>
           </div>
         </main>
       </SmoothScroller>
