@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { queryPosts, notionPageToBlogPost } from "@/lib/notionClient";
+import { queryPosts, notionPageToBlogPost, createPostPage, serializeBlocks } from "@/lib/notionClient";
+import { Block } from "@/lib/types";
 
 /**
  * GET /api/posts?category=ai-news|guides&status=approved
