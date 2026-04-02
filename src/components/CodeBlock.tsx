@@ -1,13 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 interface CodeBlockProps {
   code: string;
   language?: string;
 }
 
-// Simple HTML escape
 function escapeHtml(text: string): string {
   const map: Record<string, string> = {
     "&": "&amp;",
@@ -21,7 +20,6 @@ function escapeHtml(text: string): string {
 
 export default function CodeBlock({ code, language }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
-  const preRef = useRef<HTMLPreElement>(null);
   const escapedCode = escapeHtml(code);
 
   const handleCopy = useCallback(async () => {
@@ -34,62 +32,8 @@ export default function CodeBlock({ code, language }: CodeBlockProps) {
     }
   }, [code]);
 
-  // Optional: attempt basic syntax highlighting via Prism if available globally
-  useEffect(() => {
-    // Dynamically load Prism if not present
-    if (typeof window !== "undefined") {
-      const highlight = () => {
-        if ((window as any).Prism) {
-          const el = preRef.current;
-          if (el) {
-            const codeEl = el.querySelector("code");
-            if (codeEl) {
-              ;(window as any).Prism.highlightElement(codeEl);
-            }
-          }
-        }
-      };
-      if (!document.getElementById("prism-css")) {
-        const link = document.createElement("link");
-        link.id = "prism-css";
-        link.rel = "stylesheet";
-        link.href = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css";
-        document.head.appendChild(link);
-      }
-      if (!document.getElementById("prism-js")) {
-        const script = document.createElement("script");
-        script.id = "prism-js";
-        script.src = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js";
-        script.async = true;
-        script.onload = () => {
-          // Load language if specified and not core
-          if (language && !(window as any).Prism.languages[language]) {
-            const langScript = document.createElement("script");
-            langScript.src = `https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-${language}.min.js`;
-            document.head.appendChild(langScript);
-            langScript.onload = highlight;
-          } else {
-            highlight();
-          }
-        };
-        document.head.appendChild(script);
-      } else {
-        // Prism already loaded
-        if (language && !(window as any).Prism.languages[language]) {
-          const langScript = document.createElement("script");
-          langScript.src = `https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-${language}.min.js`;
-          document.head.appendChild(langScript);
-          langScript.onload = highlight;
-        } else {
-          highlight();
-        }
-      }
-    }
-  }, [language, code]);
-
   return (
     <div className="relative group rounded-xl overflow-hidden bg-[#0d0d12] border border-white/10 my-6">
-      {/* Language badge and Copy button */}
       <div className="absolute top-2 right-2 flex items-center gap-2">
         {language && (
           <span className="px-2 py-0.5 text-xs font-semibold rounded bg-white/5 text-text-muted border border-white/10">
@@ -114,10 +58,7 @@ export default function CodeBlock({ code, language }: CodeBlockProps) {
         </button>
       </div>
 
-      <pre
-        ref={preRef}
-        className="p-4 overflow-x-auto text-sm leading-relaxed pt-12"
-      >
+      <pre className="p-4 overflow-x-auto text-sm leading-relaxed pt-12">
         <code className={`language-${language || "text"}`}>
           {escapedCode}
         </code>
