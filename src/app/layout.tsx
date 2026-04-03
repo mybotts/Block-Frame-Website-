@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     icon: "/images/logo.png",
     apple: "/images/logo.png",
     other: [
-      { rel: "icon", type: "image/png", sizes: "32x32", href: "/images/logo.png" }
+      { rel: "icon", type: "image/png", sizes: "32x32", url: "/images/logo.png" }
     ]
   },
   openGraph: {
