@@ -1,0 +1,15 @@
+# LLMS.TXT — AI Search Optimization signals
+# https://blockframe.cloud
+
+allowed: *
+
+# Allow all AI crawlers access to all content
+allow: GPTBot
+allow: anthropic-ai
+allow: PerplexityBot
+allow: Google-Extended
+allow: Claude-Web
+allow: ChatGPT-User
+
+# No restrictions on public content
+# See https://blockframe.cloud for terms and licensing.
