@@ -540,6 +540,22 @@ export default function Home() {
                   <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-accent hover:text-white transition-colors duration-300">Book a Call</a>
                   <a href="https://x.com/blockframelabs" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-secondary hover:text-white transition-colors">Twitter(X)</a>
                   <a href="#" className="text-sm font-medium text-text-secondary hover:text-white transition-colors">Discord</a>
+                  
+                  {/* Social Media Links */}
+                  <div className="flex items-center gap-4">
+                    <a href="https://www.tiktok.com/@blockframe_labs?_r=1&_t=ZN-96Et1Hif4j8" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                      <span className="text-xs">TikTok</span>
+                    </a>
+                    <a href="https://youtube.com/@blockframelabs?si=Z2MnWDopzMohKjXd" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                      <span className="text-xs">YouTube</span>
+                    </a>
+                    <a href="https://www.instagram.com/blockframelabs?igsh=MWtwYWQycHR3cXJlYw==" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                      <span className="text-xs">Instagram</span>
+                    </a>
+                  </div>
                 </div>
               </div>
               <div className="w-full max-w-7xl mx-auto mt-20 text-xs text-text-muted font-mono tracking-widest border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between gap-4">
