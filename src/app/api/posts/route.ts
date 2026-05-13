@@ -14,7 +14,16 @@ export async function GET(request: NextRequest) {
   try {
     let notionFilter: any;
     if (category) {
-      const categoryName = category === 'ai-news' ? 'AI News' : category === 'guides' ? 'Guides' : category;
+      let categoryName: string;
+      if (category === 'ai-news') {
+        categoryName = 'AI News';
+      } else if (category === 'guides') {
+        categoryName = 'Guides';
+      } else if (category === 'videos') {
+        categoryName = 'Videos';
+      } else {
+        categoryName = category;
+      }
       notionFilter = {
         and: [
           { property: "Status", select: { equals: status } },
