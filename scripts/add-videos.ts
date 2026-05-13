@@ -46,7 +46,7 @@ async function createVideoPost(url: string, index: number) {
         select: { name: "Videos" },
       },
       Status: {
-        select: { name: "approved" },
+        select: { name: "pending" },
       },
       Excerpt: {
         rich_text: [{ text: { content: "YouTube Shorts video" } }],

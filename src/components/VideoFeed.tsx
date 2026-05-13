@@ -65,7 +65,7 @@ export default function VideoFeed() {
 
   return (
     <section id="videos">
-      <div className="max-w-2xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-12">
 
         {/* Videos Grid */}
         {videos.length === 0 ? error ? (
@@ -75,7 +75,7 @@ export default function VideoFeed() {
             No videos shared yet. Check back soon!
           </p>
         ) : (
-          <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {videos.map((video) => (
               <div key={video.id} className="glass-card overflow-hidden rounded-xl border border-white/10 shadow-lg transition-all hover:border-white/20 hover:shadow-xl">
                 {/* Video embed */}
@@ -90,7 +90,7 @@ export default function VideoFeed() {
                   />
                 </div>
                 {/* Card body with title & subtitle */}
-                <div className="p-4">
+                <div className="p-3">
                   <p className="text-text-primary font-semibold text-sm mb-1 line-clamp-2">
                     {video.title}
                   </p>
