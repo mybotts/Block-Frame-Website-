@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 
 export default function VideoFeed() {
-  const [videoUrl, setVideoUrl] = useState("");
   const [videos, setVideos] = useState<Array<{ id: string; url: string; platform: string }>>([]);
   const [error, setError] = useState("");
 
@@ -33,41 +32,12 @@ export default function VideoFeed() {
       setVideos(cmsVideos);
     } catch (err) {
       console.error("Failed to fetch CMS videos:", err);
+      setError("Failed to load videos. Please try again later.");
     }
     };
     fetchVideos();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!videoUrl.trim()) {
-      setError("Please enter a video URL");
-      return;
-    }
-    // Simple validation and platform detection
-    let platform = "unknown";
-    const url = videoUrl.trim();
-    if (url.includes("youtube.com") || url.includes("youtu.be")) {
-      platform = "youtube";
-    } else if (url.includes("tiktok.com")) {
-      platform = "tiktok";
-    } else if (url.includes("instagram.com")) {
-      platform = "instagram";
-    } else {
-      setError("Unsupported platform. Only YouTube, TikTok, Instagram URLs are allowed.");
-      return;
-    }
-    const newVideo = {
-      id: Date.now().toString(),
-      url,
-      platform,
-    };
-    setVideos(prev => [newVideo, ...prev]);
-    setVideoUrl("");
-    setError("");
-  };
-
-  // Function to get embed URL or iframe src based on platform
   const getEmbedSrc = (url: string, platform: string) => {
     if (platform === "youtube") {
       // Convert youtube.com/watch?v=ID or youtu.be/ID to embed URL
@@ -94,31 +64,15 @@ export default function VideoFeed() {
           Share & Watch Videos
         </h2>
         <p className="text-text-secondary mb-8 text-center">
-          Paste a YouTube, TikTok, or Instagram video link to share it here.
+          Our latest video content from YouTube, TikTok, and Instagram.
         </p>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="mb-8 flex flex-col gap-4">
-          <input
-            type="text"
-            value={videoUrl}
-            onChange={(e) => setVideoUrl(e.target.value)}
-            placeholder="Paste video URL..."
-            className="px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-accent/50 placeholder:text-text-muted"
-          />
-          <button
-            type="submit"
-            className="button-primary w-fit px-6 py-3 text-sm font-medium transition-all"
-          >
-            Share Video
-          </button>
-          {error && <p className="text-sm text-accent">{error}</p>}
-        </form>
-
         {/* Videos Grid */}
-        {videos.length === 0 ? (
+        {videos.length === 0 ? error ? (
+          <p className="text-text-accent text-center">{error}</p>
+        ) : (
           <p className="text-text-secondary text-center">
-            No videos shared yet. Be the first to share a video above!
+            No videos shared yet. Check back soon!
           </p>
         ) : (
           <div className="grid gap-6">
