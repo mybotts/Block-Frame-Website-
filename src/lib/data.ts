@@ -8,6 +8,7 @@ export const tabs: Tab[] = [
   { id: "services", label: "Services" },
   { id: "ai-news", label: "AI News" },
   { id: "guides", label: "Guides" },
+  { id: "videos", label: "Videos" },
   { id: "marketplace", label: "Marketplace/Products" },
 ];
 

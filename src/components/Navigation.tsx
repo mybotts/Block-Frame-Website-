@@ -27,33 +27,39 @@ export default function Navigation() {
             </span>
           </a>
 
-          {/* Desktop Right Nav */}
-          <div className="hidden md:flex items-center gap-6">
-            <a
-              href="/"
-              className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-            >
-              Services
-            </a>
-            <a
-              href="/ai-news"
-              className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-            >
-              AI News
-            </a>
-            <a
-              href="/guides"
-              className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-            >
-              Guides
-            </a>
-            <a
-              href="/marketplace/products"
-              className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-            >
-              Marketplace
-            </a>
-          </div>
+            {/* Desktop Right Nav */}
+            <div className="hidden md:flex items-center gap-6">
+              <a
+                href="/"
+                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+              >
+                Services
+              </a>
+              <a
+                href="/ai-news"
+                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+              >
+                AI News
+              </a>
+              <a
+                href="/guides"
+                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+              >
+                Guides
+              </a>
+              <a
+                href="/videos"
+                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+              >
+                Videos
+              </a>
+              <a
+                href="/marketplace/products"
+                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+              >
+                Marketplace
+              </a>
+            </div>
 
           {/* Mobile Hamburger Button */}
           <button
@@ -110,6 +116,13 @@ export default function Navigation() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Guides
+              </a>
+              <a
+                href="/videos"
+                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Videos
               </a>
               <a
                 href="/marketplace/products"
