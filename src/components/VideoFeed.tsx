@@ -1,11 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function VideoFeed() {
   const [videoUrl, setVideoUrl] = useState("");
   const [videos, setVideos] = useState<Array<{ id: string; url: string; platform: string }>>([]);
   const [error, setError] = useState("");
+
+  const getPlatformFromUrl = (url: string): string => {
+    if (url.includes("youtube.com") || url.includes("youtu.be")) return "youtube";
+    if (url.includes("tiktok.com")) return "tiktok";
+    if (url.includes("instagram.com")) return "instagram";
+    return "unknown";
+  };
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const res = await fetch(`/api/posts?category=videos&status=approved`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const cmsVideos: Array<{ id: string; url: string; platform: string }> = data.posts
+          .flatMap((post: any) =>
+            post.blocks
+              .filter((b: any) => b.type === "video")
+              .map((b: any) => ({
+                id: b.id || `${post.id}-${b.order}`,
+                url: b.content,
+                platform: getPlatformFromUrl(b.content)
+              }))
+          );
+      setVideos(cmsVideos);
+    } catch (err) {
+      console.error("Failed to fetch CMS videos:", err);
+    }
+    };
+    fetchVideos();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
