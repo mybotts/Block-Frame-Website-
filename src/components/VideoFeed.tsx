@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 export default function VideoFeed() {
-  const [videos, setVideos] = useState<Array<{ id: string; url: string; platform: string }>>([]);
+  const [videos, setVideos] = useState<Array<{ id: string; url: string; platform: string; title: string }>>([]);
   const [error, setError] = useState("");
 
   const getPlatformFromUrl = (url: string): string => {
@@ -19,14 +19,15 @@ export default function VideoFeed() {
         const res = await fetch(`/api/posts?category=videos&status=approved`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        const cmsVideos: Array<{ id: string; url: string; platform: string }> = data.posts
+        const cmsVideos: Array<{ id: string; url: string; platform: string; title: string }> = data.posts
           .flatMap((post: any) =>
             post.blocks
               .filter((b: any) => b.type === "video")
               .map((b: any) => ({
                 id: b.id || `${post.id}-${b.order}`,
                 url: b.content,
-                platform: getPlatformFromUrl(b.content)
+                platform: getPlatformFromUrl(b.content),
+                title: post.title
               }))
           );
       setVideos(cmsVideos);
@@ -60,12 +61,6 @@ export default function VideoFeed() {
   return (
     <section id="videos">
       <div className="max-w-2xl mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-text-primary mb-6 text-center">
-          Share & Watch Videos
-        </h2>
-        <p className="text-text-secondary mb-8 text-center">
-          Our latest video content from YouTube, TikTok, and Instagram.
-        </p>
 
         {/* Videos Grid */}
         {videos.length === 0 ? error ? (
@@ -91,7 +86,7 @@ export default function VideoFeed() {
                     </div>
                     <div className="p-4">
                       <p className="text-text-secondary text-xs truncate">
-                        {new URL(video.url).hostname.replace("www.", "")}
+                        {video.title}
                       </p>
                     </div>
                   </div>
@@ -114,7 +109,7 @@ export default function VideoFeed() {
                     </div>
                     <div className="p-4">
                       <p className="text-text-secondary text-xs truncate">
-                        {new URL(video.url).hostname.replace("www.", "")}
+                        {video.title}
                       </p>
                     </div>
                   </div>
