@@ -36,16 +36,10 @@ export default function Navigation() {
                 Services
               </a>
               <a
-                href="/ai-news"
+                href="/blogs"
                 className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
               >
-                AI News
-              </a>
-              <a
-                href="/guides"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-              >
-                Guides
+                Blogs
               </a>
               <a
                 href="/videos"
@@ -104,18 +98,11 @@ export default function Navigation() {
                 Services
               </a>
               <a
-                href="/ai-news"
+                href="/blogs"
                 className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                AI News
-              </a>
-              <a
-                href="/guides"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Guides
+                Blogs
               </a>
               <a
                 href="/videos"
