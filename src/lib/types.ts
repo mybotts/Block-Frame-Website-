@@ -22,8 +22,8 @@ export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
-  category: "AI News" | "Guides" | "Videos";
-  categorySlug: "ai-news" | "guides" | "videos";
+  category: string;
+  categorySlug: string;
   date: string;
   status: "pending" | "approved" | "rejected";
   author: string;
@@ -42,7 +42,7 @@ export interface MarketplaceProduct {
   gradient: string;
 }
 
-export type TabId = "services" | "ai-news" | "guides" | "marketplace" | "videos";
+export type TabId = "services" | "blogs" | "marketplace" | "videos";
 
 export interface Tab {
   id: TabId;

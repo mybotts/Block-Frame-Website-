@@ -17,16 +17,16 @@ export default function BlogsFeed() {
         const allRes = await fetch("/api/posts");
         if (allRes.ok) {
           const allData = await allRes.json();
-          const allPosts = allData.posts;
+          const allPosts: BlogPost[] = allData.posts;
           
           // Extract unique categories
-          const uniqueCategories = [...new Set(allPosts.map(p => p.categorySlug))];
+          const uniqueCategories = [...new Set(allPosts.map((p) => p.categorySlug))];
           setCategories(uniqueCategories);
           
           // Apply filter
           let filteredPosts = allPosts;
           if (filter) {
-            filteredPosts = allPosts.filter(p => p.categorySlug === filter);
+            filteredPosts = allPosts.filter((p) => p.categorySlug === filter);
           }
           
           setPosts(filteredPosts);
