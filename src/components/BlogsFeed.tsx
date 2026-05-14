@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { BlogPost } from "@/lib/types";
+import { BlogPost, Block } from "@/lib/types";
 
 export default function BlogsFeed() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -13,13 +13,16 @@ export default function BlogsFeed() {
   useEffect(() => {
     async function fetchData() {
       try {
-        // Fetch all posts first to get categories
+        // Fetch all posts first to get categories and thumbnails
         const allRes = await fetch("/api/posts");
         if (allRes.ok) {
           const allData = await allRes.json();
-          const allPosts: BlogPost[] = allData.posts;
+          let allPosts: BlogPost[] = allData.posts;
           
-          // Extract unique categories
+          // Exclude videos from the blogs feed
+          allPosts = allPosts.filter(post => post.categorySlug !== "videos");
+          
+          // Extract unique categories (excluding videos)
           const uniqueCategories = [...new Set(allPosts.map((p) => p.categorySlug))];
           setCategories(uniqueCategories);
           
@@ -40,6 +43,20 @@ export default function BlogsFeed() {
     
     fetchData();
   }, [filter]);
+
+  // Helper to get thumbnail URL from post blocks
+  const getPostThumbnail = (post: BlogPost): string | undefined => {
+    if (!post.blocks || post.blocks.length === 0) return undefined;
+    
+    // Look for first image block
+    for (const block of post.blocks) {
+      if (block.type === "image") {
+        // Assuming block.content contains the image URL
+        return block.content as string;
+      }
+    }
+    return undefined;
+  };
 
   const getPreview = (post: BlogPost) => {
     if (post.excerpt && post.excerpt.trim().length > 0) return post.excerpt;
@@ -121,52 +138,64 @@ export default function BlogsFeed() {
 
       {/* Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((post, index) => (
-          <article
-            key={post.id}
-            className={`glass-card group overflow-hidden p-6 fade-in-up fade-in-up-delay-${index + 1}`}
-          >
-            {/* Category Pill */}
-            <span className="category-pill bg-accent/15 text-accent-light mb-4">
-              {post.category}
-            </span>
+        {posts.map((post, index) => {
+          const thumbnail = getPostThumbnail(post);
+          return (
+            <article
+              key={post.id}
+              className={`glass-card group overflow-hidden p-6 fade-in-up fade-in-up-delay-${index + 1}`}
+            >
+              {/* Thumbnail if available */}
+              {thumbnail && (
+                <div className="w-full h-48 bg-cover bg-center mb-4 rounded-lg" 
+                     style={{ backgroundImage: `url(${thumbnail})` }}>
+                  {/* Optional: add a gradient overlay for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
+                </div>
+              )}
+              
+              {/* Category Pill */}
+              <span className="category-pill bg-accent/15 text-accent-light mb-4">
+                {post.category}
+              </span>
 
-            {/* Title */}
-            <h3 className="text-lg font-semibold text-text-primary mb-3 group-hover:text-primary-light transition-colors duration-300 line-clamp-2">
-              {post.title}
-            </h3>
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-text-primary mb-3 group-hover:text-primary-light transition-colors duration-300 line-clamp-2">
+                {post.title}
+              </h3>
 
-            {/* Excerpt/Preview */}
-            <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-3">
-              {getPreview(post)}
-            </p>
+              {/* Excerpt/Preview */}
+              <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-3">
+                {getPreview(post)}
+              </p>
 
-            {/* Date + Read Link */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs text-text-muted">
-                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <time dateTime={post.date}>
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </time>
+              {/* Date + Read Link */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xs text-text-muted">
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v12a2 2 0 002 2z" />
+                  </svg>
+                  <time dateTime={post.date}>
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </time>
+                </div>
+                <Link
+                  href={`/post/${post.id}`}
+                  className="inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:text-primary-light transition-colors duration-300"
+                >
+                  Read Article
+                  <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </Link>
               </div>
-              <Link
-                href={`/post/${post.id}`}
-                className="inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:text-primary-light transition-colors duration-300"
-              >
-                Read Article
-                <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </Link>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </section>
   );
