@@ -6,8 +6,7 @@ import { Service, BlogPost, MarketplaceProduct, Tab } from "./types";
 
 export const tabs: Tab[] = [
   { id: "services", label: "Services" },
-  { id: "ai-news", label: "AI News" },
-  { id: "guides", label: "Guides" },
+  { id: "blogs", label: "Blogs" },
   { id: "videos", label: "Videos" },
   { id: "marketplace", label: "Marketplace/Products" },
 ];
