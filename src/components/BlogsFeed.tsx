@@ -115,8 +115,8 @@ export default function BlogsFeed() {
           const categoryNames: Record<string, string> = {
             'ai-news': 'AI News',
             'guides': 'Guides',
-            'explanatory': 'Explanatory',
-            'tips': 'Tips & Tricks',
+            'explanatory': 'Explanations',
+            'tips': 'Tips/Tricks',
             'updates': 'Updates',
             'news': 'News'
           };
