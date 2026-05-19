@@ -96,7 +96,7 @@ export default function Home() {
             <main id="home" className="relative z-10 w-full flex flex-col pt-32 pb-24 min-h-[90vh] overflow-hidden pointer-events-none">
               <div className="hero-radial-glow opacity-60" />
 
-              <section className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-center gap-10 lg:gap-14 mt-16 md:mt-24">
+              <section className="w-full max-w-7xl mx-auto px-0 md:px-0 flex flex-col justify-center gap-10 lg:gap-14 mt-16 md:mt-24">
                 <div className="flex flex-col gap-6 w-full">
                   {/* Status Pulse */}
                   <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 w-fit backdrop-blur-md">
@@ -109,8 +109,8 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <h1 className="text-[clamp(3.5rem,10vw,10rem)] font-bold tracking-tight text-white leading-[1.05] md:leading-[1.05]">
-                    <span className="overflow-hidden block py-1">
+                  <h1 className="text-[clamp(4rem,12vw,12rem)] font-bold tracking-tight text-white leading-[1.0]">
+                    <span className="overflow-hidden block">
                       <motion.span 
                         initial={{ y: "110%" }} 
                         animate={{ y: 0 }} 
@@ -120,7 +120,7 @@ export default function Home() {
                         Architecting
                       </motion.span>
                     </span>
-                    <span className="overflow-hidden block py-1">
+                    <span className="overflow-hidden block">
                       <motion.span 
                         initial={{ y: "110%" }} 
                         animate={{ y: 0 }} 
@@ -130,12 +130,12 @@ export default function Home() {
                         Autonomy
                       </motion.span>
                     </span>
-                    <span className="overflow-hidden block py-1">
+                    <span className="overflow-hidden block">
                       <motion.span 
                         initial={{ y: "110%" }} 
                         animate={{ y: 0 }} 
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }} 
-                        className="block text-gradient pb-4"
+                        className="block text-gradient"
                       >
                         at the Intelligent Edge.
                       </motion.span>
