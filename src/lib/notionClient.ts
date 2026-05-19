@@ -195,11 +195,14 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
             content = '---'
             break
           case 'bookmark':
+            type = 'bookmark';
+            content = JSON.stringify({ url: block.bookmark.url, caption: block.bookmark.caption?.map((c: any) => c.plain_text).join('') || '' });
+            break;
           case 'embed':
           case 'link_preview':
-            type = 'html'
-            content = `<!-- ${block.type} block -->`
-            break
+            type = 'html';
+            content = `<!-- ${block.type} block -->`;
+            break;
           default:
             type = 'html'
             content = `<!-- Unsupported block type: ${block.type} -->`

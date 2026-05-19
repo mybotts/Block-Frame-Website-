@@ -12,7 +12,7 @@ export interface Service {
 
 export interface Block {
   id?: string;
-  type: "text" | "image" | "video" | "html" | "markdown" | "code";
+  type: "text" | "image" | "video" | "html" | "markdown" | "code" | "bookmark";
   content: string;
   order: number;
   language?: string; // for code blocks

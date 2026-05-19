@@ -26,6 +26,8 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
       return <CodeBlock code={content} language={language} />;
 
     case "image":
+      // Skip placeholder/invalid URLs (ASCII art, empty, or non-HTTP)
+      if (!content || !content.startsWith("http")) return null;
       return (
         <div className="my-6">
           <img
@@ -48,13 +50,24 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
         </div>
       );
 
-    case "html":
+    case "bookmark": {
+      const data = JSON.parse(content);
       return (
-        <div
-          className="my-6"
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+        <div className="my-6">
+          <a
+            href={data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-accent hover:bg-white/10 hover:border-accent/30 transition-all duration-300"
+          >
+            <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            <span className="text-sm font-medium">{data.caption || data.url}</span>
+          </a>
+        </div>
       );
+    }
 
     case "text":
     case "markdown":
