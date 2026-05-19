@@ -24,6 +24,10 @@ export default function BlogsFeed() {
           
           // Extract unique categories (excluding videos)
           const uniqueCategories = [...new Set(allPosts.map((p) => p.categorySlug))];
+          // Always include educational category
+          if (!uniqueCategories.includes("educational")) {
+            uniqueCategories.push("educational");
+          }
           setCategories(uniqueCategories);
           
           // Apply filter
