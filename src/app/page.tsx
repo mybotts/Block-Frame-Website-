@@ -109,13 +109,13 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <h1 className="text-[clamp(2.8rem,11vw,14rem)] font-bold tracking-tight text-white leading-[1.05] text-center">
+                  <h1 className="text-[clamp(1.5rem,8vw,14rem)] font-bold tracking-tight text-white leading-[1.1] text-center">
                     <span className="overflow-hidden block">
                       <motion.span 
                         initial={{ y: "110%" }} 
                         animate={{ y: 0 }} 
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} 
-                        className="block whitespace-nowrap"
+                        className="block"
                       >
                         Architecting Autonomy
                       </motion.span>
@@ -125,7 +125,7 @@ export default function Home() {
                         initial={{ y: "110%" }} 
                         animate={{ y: 0 }} 
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }} 
-                        className="block whitespace-nowrap"
+                        className="block"
                       >
                         At
                       </motion.span>
@@ -135,7 +135,7 @@ export default function Home() {
                         initial={{ y: "110%" }} 
                         animate={{ y: 0 }} 
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }} 
-                        className="block text-gradient whitespace-nowrap"
+                        className="block text-gradient"
                       >
                         the Intelligent Edge.
                       </motion.span>
