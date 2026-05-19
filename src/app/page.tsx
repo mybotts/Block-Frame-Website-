@@ -97,7 +97,7 @@ export default function Home() {
               <div className="hero-radial-glow opacity-60" />
 
               <section className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-center gap-10 lg:gap-14 mt-16 md:mt-24">
-                <div className="flex flex-col gap-6 max-w-4xl">
+                <div className="flex flex-col gap-6 w-full">
                   {/* Status Pulse */}
                   <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 w-fit backdrop-blur-md">
                     <span className="relative flex h-2 w-2">
@@ -109,7 +109,7 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <h1 className="text-6xl md:text-8xl xl:text-9xl font-bold tracking-tight text-white leading-[1.1] md:leading-[1.1]">
+                  <h1 className="text-[clamp(3.5rem,10vw,10rem)] font-bold tracking-tight text-white leading-[1.05] md:leading-[1.05]">
                     <span className="overflow-hidden block py-1">
                       <motion.span 
                         initial={{ y: "110%" }} 
