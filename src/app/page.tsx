@@ -109,8 +109,8 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <h1 className="text-[clamp(1.5rem,8vw,14rem)] font-bold tracking-tight text-white leading-[1.1] text-center">
-                    <span className="overflow-hidden block">
+                  <h1 className="text-[clamp(1.5rem,8vw,14rem)] font-bold tracking-tight text-white leading-[1.25] text-center pb-2">
+                    <span className="overflow-hidden block pb-1">
                       <motion.span 
                         initial={{ y: "110%" }} 
                         animate={{ y: 0 }} 
@@ -120,7 +120,7 @@ export default function Home() {
                         Architecting Autonomy
                       </motion.span>
                     </span>
-                    <span className="overflow-hidden block">
+                    <span className="overflow-hidden block pb-1">
                       <motion.span 
                         initial={{ y: "110%" }} 
                         animate={{ y: 0 }} 
@@ -130,7 +130,7 @@ export default function Home() {
                         At
                       </motion.span>
                     </span>
-                    <span className="overflow-hidden block">
+                    <span className="overflow-hidden block pb-1">
                       <motion.span 
                         initial={{ y: "110%" }} 
                         animate={{ y: 0 }} 
@@ -147,7 +147,7 @@ export default function Home() {
                       initial={{ y: "100%", opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-                      className="text-xl md:text-2xl text-text-secondary font-light max-w-2xl leading-relaxed mt-4"
+                      className="text-xl md:text-2xl text-text-secondary font-light italic max-w-2xl leading-relaxed mt-4 text-center mx-auto"
                     >
                       Welcome to Blockframe Labs, the point of convergence where high-performance engineering meets autonomous creativity. Build tools, deploy AI swarms, and scale with machine-level velocity.
                     </motion.p>
