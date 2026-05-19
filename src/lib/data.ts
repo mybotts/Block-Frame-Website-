@@ -203,6 +203,19 @@ export const samplePosts: BlogPost[] = [
     blocks: [{ id: "sample-7", type: "text", content: 
       "The convergence of vision and language models is creating new possibilities for AI applications across industries.", order: 0 }],
   },
+  {
+    id: "8",
+    title: "Understanding Neural Networks: A Visual Introduction",
+    excerpt:
+      "Break through the jargon and build an intuitive understanding of how neural networks learn, from perceptrons to deep architectures.",
+    category: "Educational",
+    categorySlug: "educational",
+    date: "2026-03-22",
+    status: "approved",
+    author: "BlockFrameLabs",
+    blocks: [{ id: "sample-8", type: "text", content: 
+      "Break through the jargon and build an intuitive understanding of how neural networks learn, from perceptrons to deep architectures.", order: 0 }],
+  },
 ];
 
 export const marketplaceProducts: MarketplaceProduct[] = [

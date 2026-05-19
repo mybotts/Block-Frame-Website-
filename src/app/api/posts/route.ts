@@ -21,6 +21,8 @@ export async function GET(request: NextRequest) {
         categoryName = 'Guides';
       } else if (category === 'videos') {
         categoryName = 'Videos';
+      } else if (category === 'educational') {
+        categoryName = 'Educational';
       } else {
         categoryName = category;
       }
