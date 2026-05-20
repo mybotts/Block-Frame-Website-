@@ -216,6 +216,19 @@ export const samplePosts: BlogPost[] = [
     blocks: [{ id: "sample-8", type: "text", content: 
       "Break through the jargon and build an intuitive understanding of how neural networks learn, from perceptrons to deep architectures.", order: 0 }],
   },
+  {
+    id: "9",
+    title: "Edge AI: Running Models on Resource-Constrained Devices",
+    excerpt:
+      "How quantization, pruning, and knowledge distillation enable powerful AI inference on edge devices — from microcontrollers to smartphones.",
+    category: "Tech",
+    categorySlug: "tech",
+    date: "2026-03-24",
+    status: "approved",
+    author: "BlockFrameLabs",
+    blocks: [{ id: "sample-9", type: "text", content: 
+      "How quantization, pruning, and knowledge distillation enable powerful AI inference on edge devices — from microcontrollers to smartphones.", order: 0 }],
+  },
 ];
 
 export const marketplaceProducts: MarketplaceProduct[] = [

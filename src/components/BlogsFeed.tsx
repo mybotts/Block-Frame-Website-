@@ -24,9 +24,12 @@ export default function BlogsFeed() {
           
           // Extract unique categories (excluding videos)
           const uniqueCategories = [...new Set(allPosts.map((p) => p.categorySlug))];
-          // Always include educational category
+          // Always include educational and tech categories
           if (!uniqueCategories.includes("educational")) {
             uniqueCategories.push("educational");
+          }
+          if (!uniqueCategories.includes("tech")) {
+            uniqueCategories.push("tech");
           }
           setCategories(uniqueCategories);
           
@@ -120,6 +123,7 @@ export default function BlogsFeed() {
             'ai-news': 'AI News',
             'guides': 'Guides',
             'educational': 'Educational',
+            'tech': 'Tech',
             'explanatory': 'Explanations',
             'tips': 'Tips/Tricks',
             'updates': 'Updates',

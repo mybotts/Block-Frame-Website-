@@ -23,6 +23,8 @@ export async function GET(request: NextRequest) {
         categoryName = 'Videos';
       } else if (category === 'educational') {
         categoryName = 'Educational';
+      } else if (category === 'tech') {
+        categoryName = 'Tech';
       } else {
         categoryName = category;
       }
