@@ -8,6 +8,7 @@ export interface Service {
   description: string;
   image: string;
   gradient: string;
+  team: string;
 }
 
 export interface Block {

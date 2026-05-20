@@ -117,6 +117,29 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
 }
 
 export default function Services() {
+  // Group services by team
+  const teams = services.reduce<Record<string, typeof services>>((acc, service) => {
+    if (!acc[service.team]) acc[service.team] = [];
+    acc[service.team].push(service);
+    return acc;
+  }, {});
+
+  const teamOrder = ["AI & Automation", "Engineering", "Content & Creative", "Growth & Marketing"];
+
+  const teamIcons: Record<string, string> = {
+    "AI & Automation": "🤖",
+    "Engineering": "💻",
+    "Content & Creative": "🎬",
+    "Growth & Marketing": "📣",
+  };
+
+  const teamDescriptions: Record<string, string> = {
+    "AI & Automation": "Autonomous agents, from local deployments to fully managed cloud systems.",
+    "Engineering": "High-performance web and mobile applications built for scale.",
+    "Content & Creative": "Motion graphics, video production, and visual storytelling.",
+    "Growth & Marketing": "Data-driven campaigns, social strategy, and go-to-market execution.",
+  };
+
   return (
     <section id="services" className="relative w-full py-32 border-t border-white/5 bg-background/50">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col">
@@ -125,23 +148,41 @@ export default function Services() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-xl pr-4">
             <h2 className="text-sm font-semibold tracking-widest text-accent uppercase mb-4">
-              Core Competencies
+              Our Teams
             </h2>
             <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-2">
-              Deep-tech infrastructure for the decentralized web.
+              Specialized teams. Dedicated expertise.
             </h3>
           </div>
           <p className="text-text-secondary text-lg max-w-sm leading-relaxed pb-2">
-            From local and cloud-based AI agents to fully autonomous systems, managed agent services, specialized agent development, and performance-driven social ad campaigns.
+            Every service is handled by a focused team — not a generalist trying to do it all.
           </p>
         </div>
 
-        {/* High-End Bento Grid Array leveraging the Custom 3D Component */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ perspective: "1000px" }}>
-          {services.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} />
-          ))}
-        </div>
+        {/* Team Sections */}
+        {teamOrder.map((teamName) => {
+          const teamServices = teams[teamName];
+          if (!teamServices) return null;
+          return (
+            <div key={teamName} className="mb-16 last:mb-0">
+              {/* Team Header */}
+              <div className="flex items-center gap-4 mb-8">
+                <span className="text-3xl">{teamIcons[teamName]}</span>
+                <div>
+                  <h4 className="text-xl font-bold text-white tracking-tight">{teamName}</h4>
+                  <p className="text-text-secondary text-sm mt-1">{teamDescriptions[teamName]}</p>
+                </div>
+              </div>
+
+              {/* Team Services Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ perspective: "1000px" }}>
+                {teamServices.map((service, index) => (
+                  <ServiceCard key={service.id} service={service} index={index} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
