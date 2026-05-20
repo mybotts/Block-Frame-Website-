@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "BlockFrame Labs | Architecting Autonomy",
     description: "High-performance systems at the intelligent edge.",
     images: ["/images/og-preview.png"],
-  },
+  }
 };
 
 export default function RootLayout({
@@ -52,28 +52,66 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
+  const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "BlockFrame Labs",
     url: "https://www.blockframe.cloud",
     logo: "https://www.blockframe.cloud/images/logo.png",
     sameAs: [
-      "https://x.com/blockframelabs"
+      "https://x.com/blockframelabs",
+      "https://linkedin.com/company/blockframelabs",
+      "https://github.com/blockframelabs"
     ],
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@blockframe.cloud",
       contactType: "customer service"
+    },
+    foundingDate: "2023",
+    founder: {
+      "@type": "Person",
+      name: "Sergeo"
+    },
+    employeeCount: "2-10",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Blockframe Labs Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "AI Agents Deployment"
+          }
+        }
+      ]
+    }
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    url: "https://www.blockframe.cloud",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://www.blockframe.cloud/search?s={search_term_string}",
+      "query-input": "required name=search_term_string"
     }
   };
 
   return (
     <html lang="en" className="dark">
       <head>
+        {/* Organization Schema */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        {/* WebSite Schema for Sitelinks Search Box */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body className={`${inter.variable} antialiased text-white bg-[#050507]`}>

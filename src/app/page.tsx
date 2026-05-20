@@ -177,7 +177,35 @@ export default function Home() {
                     >
                       Reach Out
                     </a>
-                  </motion.div>
+                  
+                  
+                  {/* Direct service links for SEO */}
+                  <div className="flex flex-wrap gap-4 mt-6">
+                    <a 
+                      href="/services/ai-systems"
+                      className="btn-service-link hover:underline"
+                    >
+                      AI Agents Deployment
+                    </a>
+                    <a 
+                      href="/services/ai-agents-local"
+                      className="btn-service-link hover:underline"
+                    >
+                      Local AI Agent Setup
+                    </a>
+                    <a 
+                      href="/services/ai-agents-cloud"
+                      className="btn-service-link hover:underline"
+                    >
+                      Cloud-Based AI Agents
+                    </a>
+                    <a 
+                      href="/services/web-apps"
+                      className="btn-service-link hover:underline"
+                    >
+                      App & Web Engineering
+                    </a>
+                  </div></motion.div>
                 </div>
               </section>
 
