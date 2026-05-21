@@ -166,16 +166,16 @@ export const samplePosts: BlogPost[] = [
   },
   {
     id: "5",
-    title: "Smart Contract Security: The Complete Audit Checklist",
+    title: "AI Agent Reliability: The Complete Production Checklist",
     excerpt:
-      "Essential security patterns and common vulnerabilities every Solidity developer must know before deploying to mainnet.",
+      "Essential observability, guardrails, evaluation, and fallback patterns every team needs before deploying AI agents into production workflows.",
     category: "Guides",
     categorySlug: "guides",
     date: "2026-03-16",
     status: "approved",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-5", type: "text", content: 
-      "Essential security patterns and common vulnerabilities every Solidity developer must know before deploying to mainnet.", order: 0 }],
+      "Essential observability, guardrails, evaluation, and fallback patterns every team needs before deploying AI agents into production workflows.", order: 0 }],
   },
   {
     id: "6",
@@ -231,12 +231,12 @@ export const marketplaceProducts: MarketplaceProduct[] = [
   },
   {
     id: "mp-2",
-    title: "DeFi Protocol Framework",
+    title: "LLM Prompt Engineering Kit",
     description:
-      "Complete smart contract framework for launching DeFi protocols. Includes staking, lending, and liquidity pool contracts — fully audited.",
-    category: "Web3",
-    price: "$299",
-    image: "/images/web3-blockchain.png",
+      "Reusable prompt templates, evaluation rubrics, and workflow patterns for building reliable AI assistants, agents, and internal copilots.",
+    category: "AI Templates",
+    price: "$99",
+    image: "/images/ai-agent-development.png",
     gradient: "from-teal-500/30 to-emerald-900/30",
   },
   {
@@ -261,22 +261,52 @@ export const marketplaceProducts: MarketplaceProduct[] = [
   },
   {
     id: "mp-5",
-    title: "NFT Marketplace Starter",
+    title: "AI Agent Training Dashboard",
     description:
-      "Full-stack NFT marketplace with minting, auctions, and royalty management. Supports Ethereum and Solana. Deploy in under an hour.",
-    category: "Web3",
-    price: "$249",
-    image: "/images/web3-blockchain.png",
+      "Dashboard template for tracking agent runs, feedback, evaluations, prompts, and improvement loops across production AI workflows.",
+    category: "AI Templates",
+    price: "$199",
+    image: "/images/ai-agent-development.png",
     gradient: "from-cyan-500/30 to-blue-900/30",
   },
   {
     id: "mp-6",
     title: "DevOps Monitoring Stack",
     description:
-      "Pre-configured monitoring stack with Grafana dashboards, alerting rules, and incident response automation. Works with AWS, GCP, and Azure.",
-    category: "DevOps",
+      "Pre-configured monitoring stack with Grafana dashboards, alerting rules, and AI-powered incident response automation. Works with AWS, GCP, and Azure.",
+    category: "Automation",
     price: "$129",
     image: "/images/ai-agent-development.png",
     gradient: "from-emerald-500/30 to-green-900/30",
+  },
+  {
+    id: "mp-7",
+    title: "AI Model Fine-Tuning Service",
+    description:
+      "Dataset preparation, supervised fine-tuning, evaluation, and deployment support for domain-specific LLMs and AI workflows.",
+    category: "AI Services",
+    price: "Custom",
+    image: "/images/ai-agent-development.png",
+    gradient: "from-purple-500/30 to-indigo-900/30",
+  },
+  {
+    id: "mp-8",
+    title: "Computer Vision API Integration",
+    description:
+      "Production-ready vision model integrations for image analysis, OCR, moderation, object detection, and multimodal AI applications.",
+    category: "AI Services",
+    price: "$249",
+    image: "/images/ai-agent-development.png",
+    gradient: "from-sky-500/30 to-blue-900/30",
+  },
+  {
+    id: "mp-9",
+    title: "NLP Processing Pipeline",
+    description:
+      "Configurable text-processing pipeline for summarization, classification, entity extraction, semantic search, and automated reporting.",
+    category: "AI Templates",
+    price: "$179",
+    image: "/images/ai-agent-development.png",
+    gradient: "from-fuchsia-500/30 to-pink-900/30",
   },
 ];

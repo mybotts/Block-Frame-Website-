@@ -10,7 +10,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "BlockFrame Labs | Architecting Autonomy",
   description: "High-performance web engineering and autonomous AI agent systems at the intelligent edge.",
-  keywords: ["AI Agents","Web Engineering","Blockchain","OpenClaw","Next.js","Agency"],
+  keywords: ["AI Agents","AI Automation","OpenClaw","LLM Systems","Next.js","Agency"],
   authors: [{ name: "BlockFrame Labs" }],
   metadataBase: new URL("https://www.blockframe.cloud"),
   alternates: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "BlockFrame Labs | Architecting Autonomy",
-    description: "Engineering the next generation of intelligent, decentralized digital ecosystems.",
+    description: "Engineering the next generation of intelligent AI agents and automation systems.",
     url: "https://blockframe.cloud",
     siteName: "BlockFrame Labs",
     images: [

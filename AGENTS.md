@@ -1,6 +1,6 @@
 # 🧠 BlockFrame Cloud | Operational Protocol
 
-**Project Signature**: [v2.4.1] - High-Performance AI & Web3 Engineering Site
+**Project Signature**: [v2.4.1] - High-Performance AI Engineering Site
 
 ---
 
