@@ -67,7 +67,15 @@ export const services: Service[] = [
     gradient: "from-indigo-600/20 to-purple-900/20",
     team: "AI & Automation",
   },
-  // ── Engineering ──────────────────────────────────────────────
+  {
+    id: "community-moderator-agents",
+    title: "Community Moderator & Support Agents",
+    description: "Deploy AI agents as 24/7 community moderators and support staff across Discord, Telegram, and other platforms. Handle inquiries, moderate discussions, provide instant support, and maintain healthy community environments around the clock.",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1600",
+    gradient: "from-emerald-600/20 to-green-900/20",
+    team: "AI & Automation",
+  },
+    // ── Engineering ──────────────────────────────────────────────
   {
     id: "web-apps",
     title: "App & Web Engineering",
