@@ -348,7 +348,7 @@ export default function Home() {
                       </div>
                       <div>
                         <h3 className="font-bold text-white">Michael Scott</h3>
-                        <p className="text-text-secondary">Operations Director, NovaTech Solutions</p>
+                        <p className="text-text-secondary">Operations Director</p>
                       </div>
                     </div>
                   </div>
@@ -363,7 +363,7 @@ export default function Home() {
                       </div>
                       <div>
                         <h3 className="font-bold text-white">Kelly Clarkson</h3>
-                        <p className="text-text-secondary">Marketing Lead, CreativePulse Agency</p>
+                        <p className="text-text-secondary">Marketing Lead</p>
                       </div>
                     </div>
                   </div>
