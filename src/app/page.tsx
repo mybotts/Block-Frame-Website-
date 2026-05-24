@@ -331,6 +331,48 @@ export default function Home() {
 
 
 
+            <section id="testimonials" className="relative z-10 w-full py-24 md:py-32 px-6 md:px-12">
+              <div className="max-w-7xl mx-auto">
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">
+                  What Our Partners Say
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Testimonial 1: AI Agents Setup */}
+                  <div className="glass-card p-8">
+                    <p className="text-text-secondary italic">
+                      "Blockframe Labs set up our autonomous AI agent system with incredible precision. The agents handle complex workflows autonomously, freeing up our team to focus on strategy. Their engineering expertise is evident in every interaction."
+                    </p>
+                    <div className="flex items-center gap-4 mt-6">
+                      <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
+                        <span className="text-accent">MS</span>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-white">Michael Scott</h3>
+                        <p className="text-text-secondary">Operations Director, NovaTech Solutions</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Testimonial 2: Social Management */}
+                  <div className="glass-card p-8">
+                    <p className="text-text-secondary italic">
+                      "Their social media management transformed our online presence. Blockframe Labs' agents maintain consistent engagement across platforms, growing our audience while maintaining our brand voice. The results speak for themselves."
+                    </p>
+                    <div className="flex items-center gap-4 mt-6">
+                      <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
+                        <span className="text-accent">KC</span>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-white">Kelly Clarkson</h3>
+                        <p className="text-text-secondary">Marketing Lead, CreativePulse Agency</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+
             <TechMarquee />
 
             <section id="services" className="relative z-10 w-full py-24 md:py-32">
