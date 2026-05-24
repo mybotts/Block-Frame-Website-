@@ -340,7 +340,7 @@ export default function Home() {
                   {/* Testimonial 1: AI Agents Setup */}
                   <div className="glass-card p-8">
                     <p className="text-text-secondary italic">
-                      "Blockframe Labs set up our autonomous AI agent system with incredible precision. The agents handle complex workflows autonomously, freeing up our team to focus on strategy. Their engineering expertise is evident in every interaction."
+                      "Blockframe Labs expertly set up our AI agent system from scratch. Their team handled everything from initial configuration to deployment, creating autonomous agents that now manage our customer support and data processing workflows. The setup was seamless and exceeded our expectations."
                     </p>
                     <div className="flex items-center gap-4 mt-6">
                       <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
@@ -355,7 +355,7 @@ export default function Home() {
                   {/* Testimonial 2: Social Management */}
                   <div className="glass-card p-8">
                     <p className="text-text-secondary italic">
-                      "Their social media management transformed our online presence. Blockframe Labs' agents maintain consistent engagement across platforms, growing our audience while maintaining our brand voice. The results speak for themselves."
+                      "Their social media management service has transformed our online presence. Blockframe Labs' agents handle content creation, scheduling, and engagement across all our platforms, maintaining our brand voice while growing our audience organically. We've seen a 300% increase in engagement since they took over."
                     </p>
                     <div className="flex items-center gap-4 mt-6">
                       <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
