@@ -58,7 +58,6 @@ export default function Marketplace() {
     return (
       <section id="marketplace">
         <div className="glass-card p-12 text-center">
-          <div className="text-4xl mb-4">🛒</div>
           <h3 className="text-lg font-semibold text-text-primary mb-2">Marketplace coming soon</h3>
           <p className="text-text-secondary">We are preparing our first product modules. Check back soon!</p>
         </div>

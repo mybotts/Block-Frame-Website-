@@ -5,6 +5,7 @@ import PremiumBackground from "@/components/PremiumBackground";
 import SmoothScroller from "@/components/SmoothScroller";
 import CustomCursor from "@/components/CustomCursor";
 import VideoFeed from "@/components/VideoFeed";
+import Footer from "@/components/Footer";
 
 export default function VideosPage() {
   return (
@@ -32,6 +33,7 @@ export default function VideosPage() {
             <VideoFeed />
           </div>
         </main>
+        <Footer />
       </SmoothScroller>
     </>
   );

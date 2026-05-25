@@ -2,124 +2,110 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
+const navItems = [
+  { label: "Services", href: "/#services" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Videos", href: "/videos" },
+  { label: "Marketplace", href: "/marketplace/products" },
+];
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <>
-      {/* Top Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
-        <div className="w-full flex items-center justify-between px-6 md:px-12 py-4">
-          {/* Logo */}
-          <a href="/" className="group flex items-center gap-3">
-            <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-white logo-hover transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-              <Image
-                src="/images/logo.png"
-                alt="BlockFrameLabs Logo"
-                fill
-                className="object-contain p-1"
-                priority
-              />
+      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-[#06070a]/88 backdrop-blur-xl">
+        <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-6 md:px-12">
+          <Link href="/" className="group flex items-center gap-3">
+            <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-white p-1 shadow-[0_0_18px_rgba(255,255,255,0.10)]">
+              <Image src="/images/logo.png" alt="BlockFrame Labs Logo" fill className="object-contain p-1" priority />
             </div>
-            <span className="text-lg font-bold tracking-tight text-text-primary group-hover:text-gradient transition-all duration-300">
-              BlockFrameLabs
+            <span className="text-base font-semibold tracking-tight text-white transition-colors group-hover:text-primary-light">
+              BlockFrame Labs
             </span>
-          </a>
+          </Link>
 
-            {/* Desktop Right Nav */}
-            <div className="hidden md:flex items-center gap-6">
-              <a
-                href="/"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-              >
-                Services
-              </a>
-              <a
-                href="/blogs"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-              >
-                Blogs
-              </a>
-              <a
-                href="/videos"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-              >
-                Videos
-              </a>
-              <a
-                href="/marketplace/products"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-              >
-                Marketplace
-              </a>
-            </div>
+          <div className="hidden items-center gap-7 md:flex">
+            {navItems.map((item) => (
+              <Link key={item.label} href={item.href} className="nav-link">
+                {item.label}
+              </Link>
+            ))}
+          </div>
 
-          {/* Mobile Hamburger Button */}
+          <div className="hidden items-center gap-3 md:flex">
+            <Link href="/#contact" className="nav-link">
+              Contact
+            </Link>
+            <a
+              href="https://calendly.com/blockframemedia/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light"
+            >
+              Book a Call
+            </a>
+          </div>
+
           <button
-            className="md:hidden text-text-secondary hover:text-white focus:outline-none"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-text-secondary transition hover:text-white md:hidden"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open menu"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7h16M4 12h16M4 17h16" />
             </svg>
           </button>
         </div>
       </nav>
 
-      {/* Mobile Side Drawer */}
       {mobileMenuOpen && (
         <>
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/60 z-40 md:hidden"
+          <button
+            className="fixed inset-0 z-40 bg-black/70 md:hidden"
             onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu backdrop"
           />
-          {/* Drawer */}
-          <div className="fixed inset-y-0 right-0 w-64 bg-black/95 backdrop-blur-xl border-l border-white/10 z-50 md:hidden flex flex-col">
-            <div className="flex items-center justify-end p-4">
+          <aside className="fixed inset-y-0 right-0 z-50 flex w-80 max-w-[85vw] flex-col border-l border-white/10 bg-[#06070a] p-6 shadow-2xl md:hidden">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-text-muted">Menu</span>
               <button
-                className="text-text-secondary hover:text-white focus:outline-none"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-text-secondary"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
               >
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
-            <nav className="flex-1 flex flex-col gap-4 px-6 py-4">
+
+            <div className="mt-10 flex flex-col gap-5">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-lg font-medium text-white"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Link href="/#contact" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>
+                Contact
+              </Link>
               <a
-                href="/"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-                onClick={() => setMobileMenuOpen(false)}
+                href="https://calendly.com/blockframemedia/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-black"
               >
-                Services
+                Book a Call
               </a>
-              <a
-                href="/blogs"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Blogs
-              </a>
-              <a
-                href="/videos"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Videos
-              </a>
-              <a
-                href="/marketplace/products"
-                className="text-sm font-semibold tracking-widest uppercase text-text-secondary hover:text-white transition-colors duration-300"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Marketplace
-              </a>
-            </nav>
-          </div>
+            </div>
+          </aside>
         </>
       )}
     </>

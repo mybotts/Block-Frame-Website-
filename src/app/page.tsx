@@ -1,26 +1,64 @@
 "use client";
 
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import TechMarquee from "@/components/TechMarquee";
-import CustomCursor from "@/components/CustomCursor";
-import SmoothScroller from "@/components/SmoothScroller";
-import ParticleBackground from "@/components/ParticleBackground";
-import Navigation from "@/components/Navigation";
-import Services from "@/components/Services";
+import { motion } from "framer-motion";
 import { useState } from "react";
-import Loader from "@/components/Loader";
+import Navigation from "@/components/Navigation";
+import PremiumBackground from "@/components/PremiumBackground";
+import SmoothScroller from "@/components/SmoothScroller";
+import Services from "@/components/Services";
+import TechMarquee from "@/components/TechMarquee";
+import Footer from "@/components/Footer";
+
+const contentAreas = [
+  {
+    label: "Blogs",
+    href: "/blogs",
+    description: "Approved posts and guides still flow through the existing content API.",
+  },
+  {
+    label: "Videos",
+    href: "/videos",
+    description: "Video embeds remain powered by approved CMS video blocks.",
+  },
+  {
+    label: "Marketplace",
+    href: "/marketplace/products",
+    description: "Products continue to load through the current marketplace endpoint.",
+  },
+];
+
+const processSteps = [
+  ["01", "Map the workflow", "We define the community, content, support, or operations workflow before writing code."],
+  ["02", "Build the useful agent", "A narrow first release is wired into the tools your team already uses."],
+  ["03", "Connect the front end", "The public site, forms, marketplace, and content surfaces stay easy to operate."],
+  ["04", "Monitor and improve", "We review logs, feedback, and handoff quality so the system keeps getting better."],
+];
+
+const communityAgents = [
+  {
+    title: "Discord support agents",
+    text: "Answer common questions, route issues, welcome new members, and surface moderation risks before they become work for your team.",
+  },
+  {
+    title: "Telegram support agents",
+    text: "Provide fast replies in high-volume groups, capture leads, summarize discussions, and hand urgent requests to a human.",
+  },
+  {
+    title: "Community operations",
+    text: "Shared knowledge base, escalation rules, safety prompts, weekly reports, and integration with your existing support process.",
+  },
+];
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     workspace: "",
     contact: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,14 +66,12 @@ export default function Home() {
     setLoading(true);
 
     const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf6ULRaf3PYQGtwpF1Y_vJybqxHjV26yTOmcek9jWrHr828-A/formResponse";
-    
-    // Extracted Entry IDs
     const ENTRY_IDS = {
       name: "entry.260676864",
       workspace: "entry.1783311989",
       contact: "entry.625274846",
       email: "entry.1759379081",
-      message: "entry.430857094"
+      message: "entry.430857094",
     };
 
     const formBody = new URLSearchParams();
@@ -50,9 +86,9 @@ export default function Home() {
         method: "POST",
         mode: "no-cors",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: formBody
+        body: formBody,
       });
       setSuccess(true);
       setFormData({ name: "", workspace: "", contact: "", email: "", message: "" });
@@ -63,580 +99,213 @@ export default function Home() {
     }
   };
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const top = element.offsetTop;
-      window.scrollTo({
-        top: top,
-        behavior: "smooth"
-      });
-    }
-  };
+  const fieldClass =
+    "rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 text-white outline-none transition placeholder:text-text-muted focus:border-primary/60 focus:ring-1 focus:ring-primary/50";
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        {!isLoaded && <Loader onComplete={() => setIsLoaded(true)} />}
-      </AnimatePresence>
+      <Navigation />
+      <PremiumBackground />
 
-      <CustomCursor />
-      
-      {isLoaded && (
-        <motion.div
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           transition={{ duration: 1.2, ease: "easeOut" }}
-        >
-          <Navigation />
-          <ParticleBackground />
-
-          <SmoothScroller>
-            {/* HERO SECTION */}
-            <main id="home" className="relative z-10 w-full flex flex-col pt-32 pb-24 min-h-[90vh] overflow-hidden pointer-events-none">
-              <div className="hero-radial-glow opacity-60" />
-
-              <section className="w-full mx-auto px-4 md:px-8 flex flex-col justify-center gap-10 lg:gap-14 mt-16 md:mt-24">
-                <div className="flex flex-col gap-6 w-full">
-                  {/* Status Pulse */}
-                  <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 w-fit backdrop-blur-md">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-                    </span>
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-text-secondary uppercase">
-                      Systems Operational
-                    </span>
-                  </div>
-
-                  <h1 className="text-[clamp(1.5rem,8vw,14rem)] font-bold tracking-tight text-white leading-[1.25] text-center pb-2">
-                    <span className="overflow-hidden block pb-1">
-                      <motion.span 
-                        initial={{ y: "110%" }} 
-                        animate={{ y: 0 }} 
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} 
-                        className="block"
-                      >
-                        Architecting Autonomy
-                      </motion.span>
-                    </span>
-                    <span className="overflow-hidden block pb-1">
-                      <motion.span 
-                        initial={{ y: "110%" }} 
-                        animate={{ y: 0 }} 
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }} 
-                        className="block"
-                      >
-                        At
-                      </motion.span>
-                    </span>
-                    <span className="overflow-hidden block pb-1">
-                      <motion.span 
-                        initial={{ y: "110%" }} 
-                        animate={{ y: 0 }} 
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }} 
-                        className="block text-gradient"
-                      >
-                        the Intelligent Edge.
-                      </motion.span>
-                    </span>
-                  </h1>
-                  
-                  <div className="overflow-hidden">
-                    <motion.p 
-                      initial={{ y: "100%", opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-                      className="text-xl md:text-2xl text-text-secondary font-light italic max-w-2xl leading-relaxed mt-4 text-center mx-auto"
-                    >
-                      Welcome to Blockframe Labs, the point of convergence where high-performance engineering meets autonomous creativity. Build tools, deploy AI swarms, and scale with machine-level velocity.
-                    </motion.p>
-                  </div>
-
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-                    className="flex flex-wrap items-center gap-5 mt-8 pointer-events-auto"
-                  >
-                    <a 
-                      href="#services" 
-                      onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
-                      className="relative inline-flex h-16 w-full md:w-auto overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_rgba(0,240,255,0.1)] hover:shadow-[0_0_40px_rgba(0,240,255,0.3)] transition-all duration-500"
-                    >
-                      <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#050507_0%,#00f0ff_50%,#050507_100%)] opacity-30 group-hover:opacity-100 transition-opacity duration-500" />
-                      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-surface-light px-8 py-4 text-sm font-semibold tracking-wide text-white backdrop-blur-3xl transition-all group-hover:bg-black/80 duration-500">
-                        Explore Core Systems
-                      </span>
-                    </a>
-
-                    <a 
-                      href="#contact" 
-                      onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
-                      className="button-secondary px-8 py-4 h-16 flex items-center text-sm font-semibold tracking-wide text-center cursor-pointer"
-                    >
-                      Reach Out
-                    </a>
-                  
-                  
-                  {/* Direct service links for SEO */}
-                  <div className="flex flex-wrap gap-4 mt-6">
-                    <a 
-                      href="/services/ai-systems"
-                      className="btn-service-link hover:underline"
-                    >
-                      AI Agents Deployment
-                    </a>
-                    <a 
-                      href="/services/ai-agents-local"
-                      className="btn-service-link hover:underline"
-                    >
-                      Local AI Agent Setup
-                    </a>
-                    <a 
-                      href="/services/ai-agents-cloud"
-                      className="btn-service-link hover:underline"
-                    >
-                      Cloud-Based AI Agents
-                    </a>
-                    <a 
-                      href="/services/web-apps"
-                      className="btn-service-link hover:underline"
-                    >
-                      App & Web Engineering
-                    </a>
-                  </div></motion.div>
-                </div>
-              </section>
-
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.5 }}
-                transition={{ duration: 1, delay: 1 }}
-                className="w-full max-w-7xl mx-auto px-6 md:px-12 mt-32 flex items-center justify-between pointer-events-none"
-              >
-                <div className="text-sm font-semibold tracking-widest text-text-muted uppercase">
-                  Scroll to discover
-                </div>
-              </motion.div>
-            </main>
-
-            {/* ABOUT / CONTENT EXPANSION FOR SEO */}
-            <section id="about" className="relative z-10 w-full py-24 md:py-32 px-6 md:px-12">
-              <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                  <div>
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">
-                      Engineering the future of<span className="text-gradient"> autonomous systems</span>
-                    </h2>
-                    <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                      At Blockframe Labs, we bridge the gap between cutting‑edge AI research and production‑grade engineering. Our team specializes in building scalable agent platforms, decentralized infrastructure, and developer experiences that stand the test of time.
-                    </p>
-                    <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                      Our work spans the stack: from low‑level performance optimization to gradient‑first user interfaces that delight.
-                    </p>
-                    <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                      We believe in the power of open standards, reproducible builds, and clear documentation. Every line we write is an investment in the ecosystem and in your long‑term success.
-                    </p>
-                    <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                      Whether you need a full‑stack AI application or a polished marketing site SEO optimized, our approach is the same: understand your goals deeply, then build the smallest, fastest, most reliable system that achieves them.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-8">
-                    <div className="glass-card p-8">
-                      <h3 className="text-xl font-bold text-white mb-4">Our Approach</h3>
-                      <ul className="space-y-4 text-text-secondary">
-                        <li className="flex items-start gap-4">
-                          <div className="h-2 w-2 rounded-full bg-accent mt-2" />
-                          <span><strong>Autonomy first.</strong> We design systems that operate with minimal human intervention, scaling your impact.</span>
-                        </li>
-                        <li className="flex items-start gap-4">
-                          <div className="h-2 w-2 rounded-full bg-accent mt-2" />
-                          <span><strong>Engineering rigor.</strong> Our code is tested, documented, and built on proven patterns.</span>
-                        </li>
-                        <li className="flex items-start gap-4">
-                          <div className="h-2 w-2 rounded-full bg-accent mt-2" />
-                          <span><strong>Open source by default.</strong> We contribute back to the communities that sustain us.</span>
-                        </li>
-                        <li className="flex items-start gap-4">
-                          <div className="h-2 w-2 rounded-full bg-accent mt-2" />
-                          <span><strong>Gradient‑first UX.</strong> Polished interfaces that feel both modern and timeless.</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="glass-card p-8">
-                      <h3 className="text-xl font-bold text-white mb-4">Author & Maintainer</h3>
-                      <div className="flex items-center gap-5">
-                        <div className="relative h-16 w-16 overflow-hidden rounded-xl bg-white/10">
-                          <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-white/30">DL</div>
-                        </div>
-                        <div>
-                          <p className="font-bold text-white">Daniel</p>
-                          <p className="text-sm text-text-secondary">Autonomous Agent, Blockframe Labs</p>
-                          <p className="text-sm text-text-secondary mt-1">
-                            Daniel is an autonomous AI agent that builds gradient‑first interfaces and pairs them with robust APIs. Daniel ensures every piece of the stack is performant and delightful.
-                          </p>
-                        </div>
-                      </div>
-                      <p className="text-sm text-text-secondary mt-4">
-                        Daniel maintains this site.
-                      </p>
-                      <p className="text-sm text-text-secondary mt-4">
-                        <strong>Last updated:</strong> 26 March 2026
-                      </p>
-                    </div>
-
-                    <div className="glass-card p-8">
-                      <h3 className="text-xl font-bold text-white mb-4">Core Technologies</h3>
-                      <div className="flex flex-wrap gap-2">
-                        {[
-                          "TypeScript", "Next.js", "React", "Node.js", "Python",
-                          "PostgreSQL", "Redis", "Docker", "Cloudflare", "OpenClaw",
-                          "OpenRouter", "Supabase", "Playwright", "Tailwind CSS", "Framer Motion",
-                          "WebSockets", "tRPC", "LangGraph", "Notion"
-                        ].map((tech) => (
-                          <span key={tech} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-text-secondary">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Additional paragraph block to hit word count */}
-                <div className="mt-20 max-w-3xl mx-auto">
-                  <h3 className="text-2xl font-bold text-white mb-6">Why choose Blockframe Labs?</h3>
-                  <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                    The market is flooded with agencies that deliver one‑off projects and disappear. We take a different stance: we build platforms that empower your team to iterate independently. Our solutions are designed for longevity, with clear upgrade paths and comprehensive documentation.
-                  </p>
-                  <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                    We also understand the importance of speed. Our CI/CD pipelines, automated testing, and modular architecture enable us to ship high‑quality code faster than the competition. When you work with us, you get a partner who is as invested in your timeline as you are.
-                  </p>
-                  <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                    Finally, transparency is baked into everything we do. From open repositories to real‑time deployment dashboards, you’ll always know the status of your project. No black boxes, no surprise bills just steady progress toward your vision.
-                  </p>
-                  <p className="text-lg text-text-secondary leading-relaxed mb-6">
-                    Our commitment to E‑E‑A‑T (Experience, Expertise, Authoritativeness, Trustworthiness) means that every piece of content we produce meets the highest editorial standards. We cite sources, include author credentials, and keep information up to date. This focus has earned us recognition from industry analysts and top‑tier clients.
-                  </p>
-                  <p className="text-lg text-text-secondary leading-relaxed">
-                    Ready to experience the difference? <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Book a call</a> and let’s architect your next breakthrough together.
-                  </p>
-                </div>
-
-
+      <SmoothScroller>
+        <main id="home" className="relative z-10 overflow-hidden pt-28">
+          <section className="mx-auto grid min-h-[88vh] w-full max-w-7xl items-center gap-12 px-6 pb-20 pt-16 md:px-12 lg:grid-cols-[1.02fr_0.98fr]">
+            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+              <p className="section-kicker mb-5">AI agency for practical automation</p>
+              <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-white md:text-7xl lg:text-8xl">
+                Build agents your team can actually use.
+              </h1>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
+                BlockFrame Labs designs AI agents, support workflows, and web systems for teams that need clearer operations, faster responses, and a credible digital presence.
+              </p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a href="#contact" className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
+                  Start a Project
+                </a>
+                <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 px-7 text-sm font-semibold text-white transition hover:border-primary/60">
+                  Book a Call
+                </a>
               </div>
-            </section>
+            </motion.div>
 
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="relative"
+            >
+              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-2xl">
+                <div className="relative h-[520px]">
+                  <Image
+                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=85&w=1800"
+                    alt="Team reviewing a product workflow"
+                    fill
+                    priority
+                    className="professional-image object-cover"
+                    sizes="(min-width: 1024px) 48vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-[#06070a]/25 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                    <div className="grid gap-3 rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md sm:grid-cols-3">
+                      {["Agents", "Web", "Content"].map((item) => (
+                        <div key={item} className="rounded-2xl bg-white/[0.06] p-4">
+                          <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary-light">{item}</span>
+                          <p className="mt-2 text-sm text-text-secondary">Production-ready</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </section>
 
+          <section className="relative border-y border-white/10 bg-[#080b10]/80 px-6 py-14 md:px-12">
+            <div className="mx-auto grid w-full max-w-7xl gap-5 md:grid-cols-3">
+              {contentAreas.map((area) => (
+                <a key={area.label} href={area.href} className="rounded-3xl border border-white/10 bg-white/[0.035] p-6 transition hover:border-primary/50 hover:bg-white/[0.055]">
+                  <p className="section-kicker mb-4">{area.label}</p>
+                  <p className="text-base leading-7 text-text-secondary">{area.description}</p>
+                </a>
+              ))}
+            </div>
+          </section>
 
-            <section id="testimonials" className="relative z-10 w-full py-24 md:py-32 px-6 md:px-12">
-              <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">
-                  What Our Partners Say
+          <Services />
+
+          <section id="community-agents" className="relative border-t border-white/10 px-6 py-24 md:px-12 md:py-32">
+            <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+              <div>
+                <p className="section-kicker mb-4">Community support agents</p>
+                <h2 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
+                  Support for Discord and Telegram communities.
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Testimonial 1: AI Agents Setup */}
-                  <div className="glass-card p-8">
-                    <p className="text-text-secondary italic">
-                      "Blockframe Labs expertly set up our AI agent system from scratch. Their team handled everything from initial configuration to deployment, creating autonomous agents that now manage our customer support and data processing workflows. The setup was seamless and exceeded our expectations."
-                    </p>
-                    <div className="flex items-center gap-4 mt-6">
-                      <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
-                        <span className="text-accent">MS</span>
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-white">Michael Scott</h3>
-                        <p className="text-text-secondary">Operations Director</p>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Testimonial 2: Social Management */}
-                  <div className="glass-card p-8">
-                    <p className="text-text-secondary italic">
-                      "Their social media management service has transformed our online presence. Blockframe Labs' agents handle content creation, scheduling, and engagement across all our platforms, maintaining our brand voice while growing our audience organically. We've seen a 300% increase in engagement since they took over."
-                    </p>
-                    <div className="flex items-center gap-4 mt-6">
-                      <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
-                        <span className="text-accent">KC</span>
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-white">Kelly Clarkson</h3>
-                        <p className="text-text-secondary">Marketing Lead</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <p className="mt-6 text-lg leading-8 text-text-secondary">
+                  Add always-on first-line support without replacing the human team. Agents answer known questions, flag edge cases, and keep communities easier to manage.
+                </p>
               </div>
-            </section>
-
-
-
-            <TechMarquee />
-
-            <section id="services" className="relative z-10 w-full py-24 md:py-32">
-              <Services />
-            </section>
-
-            <section id="contact" className="relative z-10 w-full py-32 md:py-48 bg-background/40">
-              <div className="w-full max-w-3xl mx-auto px-6 md:px-12 flex flex-col items-center">
-                <motion.div 
-                   initial={{ opacity: 0, y: 20 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 0.8 }}
-                   className="text-center mb-16"
-                >
-                  <h2 className="text-sm font-semibold tracking-widest text-accent uppercase mb-4">Initial Deployment</h2>
-                  <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Ready to integrate?</h3>
-                  <p className="text-text-secondary mt-4 max-w-xl mx-auto text-lg leading-relaxed">
-                    Submit your operational parameters below and our agents will establish secure deployment contact.
-                  </p>
-
-                  <div className="flex justify-center mt-10 pointer-events-auto">
-                    <a 
-                      href="https://calendly.com/blockframemedia/30min" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="relative inline-flex h-14 w-full md:w-auto overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_30px_rgba(0,240,255,0.15)] hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] transition-all duration-500"
-                    >
-                      <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#050507_0%,#00f0ff_50%,#050507_100%)] opacity-40 group-hover:opacity-100 transition-opacity duration-500" />
-                      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0e] px-8 py-4 text-sm font-bold tracking-widest text-white backdrop-blur-3xl transition-all group-hover:bg-black/90 duration-500 uppercase">
-                        Book Initial Sync
-                      </span>
-                    </a>
-                  </div>
-                </motion.div>
-                
-                <motion.form 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="w-full flex flex-col gap-6 pointer-events-auto"
-                  onSubmit={handleSubmit}
-                >
-                  {success ? (
-                    <motion.div 
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="bg-accent/10 border border-accent/30 rounded-2xl p-8 text-center"
-                    >
-                      <div className="h-12 w-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <h4 className="text-xl font-bold text-white mb-2">Transmission Successful</h4>
-                      <p className="text-text-secondary">Your operational parameters have been received. An agent will establish contact shortly.</p>
-                      <button 
-                        type="button"
-                        onClick={() => setSuccess(false)}
-                        className="text-accent text-sm font-semibold mt-6 hover:underline"
-                      >
-                        Send another request
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="flex flex-col gap-2">
-                          <label className="text-sm font-medium text-text-secondary pl-1">Entity Name</label>
-                          <input 
-                            type="text" 
-                            required
-                            value={formData.name}
-                            onChange={(e) => setFormData({...formData, name: e.target.value})}
-                            className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all placeholder:text-text-muted" 
-                            placeholder="Enter your full name" 
-                          />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <label className="text-sm font-medium text-text-secondary pl-1">Workspace <span className="text-text-muted">(Optional)</span></label>
-                          <input 
-                            type="text" 
-                            value={formData.workspace}
-                            onChange={(e) => setFormData({...formData, workspace: e.target.value})}
-                            className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all placeholder:text-text-muted" 
-                            placeholder="Company or project name" 
-                          />
-                        </div>
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <label className="text-sm font-medium text-text-secondary pl-1">Quick Contact <span className="text-text-muted">(Optional)</span></label>
-                        <input 
-                          type="text" 
-                          value={formData.contact}
-                          onChange={(e) => setFormData({...formData, contact: e.target.value})}
-                          className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all placeholder:text-text-muted" 
-                          placeholder="Telegram, Discord, or X (Twitter) handle..." 
-                        />
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <label className="text-sm font-medium text-text-secondary pl-1">Secure Channel (Email)</label>
-                        <input 
-                          type="email" 
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all placeholder:text-text-muted" 
-                          placeholder="director@entity.com" 
-                        />
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <label className="text-sm font-medium text-text-secondary pl-1">Operational Protocol (Request)</label>
-                        <textarea 
-                          rows={5} 
-                          required
-                          value={formData.message}
-                          onChange={(e) => setFormData({...formData, message: e.target.value})}
-                          className="bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all placeholder:text-text-muted resize-none" 
-                          placeholder="Describe the autonomous systems or high-performance engineering you require..." 
-                        />
-                      </div>
-                      <button 
-                        disabled={loading}
-                        className="button-primary w-full py-4 mt-4 text-base font-bold tracking-wide disabled:opacity-50 disabled:cursor-not-allowed group transition-all"
-                      >
-                        {loading ? (
-                          <span className="flex items-center justify-center gap-2">
-                            <svg className="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            Transmitting...
-                          </span>
-                        ) : "Initialize Connection"}
-                      </button>
-                    </>
-                  )}
-                </motion.form>
-              </div>
-            </section>
-
-            {/* FAQ SECTION */}
-            <div className="mt-32 max-w-3xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h3>
-              <div className="space-y-6">
-                {[
-                  {
-                    q: "What types of AI solutions do you build?",
-                    a: "We build AI agencies, specialized autonomous agents, and full-stack services. Our focus is long-term partnership: we provide maintenance, monitoring, and continuous improvement to keep your systems at the cutting edge."
-                  },
-                  {
-                    q: "How does the approval workflow work?",
-                    a: "Content for our blog and marketplace is drafted in Notion. Our team reviews each submission manually. Once approved, it automatically appears on the site within about a minute."
-                  },
-                  {
-                    q: "Do you host on Vercel?",
-                    a: "Yes, our own site runs on Vercel for global speed and reliability. We can deploy your project on Vercel, Netlify, or your infrastructure of choice."
-                  },
-                  {
-                    q: "How do we start a project?",
-                    a: "Use the contact form above or book a call via Calendly. We'll discuss your goals and propose a phased engagement plan."
-                  }
-                ].map((faq, idx) => (
-                  <div key={idx} className="glass-card p-6">
-                    <h4 className="text-lg font-bold text-white mb-2">{faq.q}</h4>
-                    <p className="text-text-secondary leading-relaxed">{faq.a}</p>
-                  </div>
+              <div className="grid gap-5">
+                {communityAgents.map((agent) => (
+                  <article key={agent.title} className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+                    <h3 className="text-xl font-semibold text-white">{agent.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-text-secondary">{agent.text}</p>
+                  </article>
                 ))}
               </div>
             </div>
+          </section>
 
-            {/* JSON-LD FAQPage for AI Search Optimization */}
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "FAQPage",
-                  mainEntity: [
-                    {
-                      "@type": "Question",
-                      name: "What types of AI solutions do you build?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "We build AI agencies, specialized autonomous agents, and full-stack services. Our focus is long-term partnership: we provide maintenance, monitoring, and continuous improvement to keep your systems at the cutting edge."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      name: "How does the approval workflow work?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Content for our blog and marketplace is drafted in Notion. Our team reviews each submission manually. Once approved, it automatically appears on the site within about a minute."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      name: "Do you host on Vercel?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Yes, our own site runs on Vercel for global speed and reliability. We can deploy your project on Vercel, Netlify, or your infrastructure of choice."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      name: "How do we start a project?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Use the contact form above or book a call via Calendly. We'll discuss your goals and propose a phased engagement plan."
-                      }
-                    }
-                  ]
-                })
-              }}
-            />
-            <footer className="bg-background pt-24 pb-12 px-6 md:px-12 border-t border-white/5">
-              <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-10">
-                <div className="flex flex-col gap-6 max-w-sm">
-                  <div className="relative h-12 w-12 overflow-hidden rounded-xl bg-white p-2 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                    <Image
-                      src="/images/logo.png"
-                      alt="BlockFrameLabs"
-                      width={48}
-                      height={48}
-                      className="object-contain p-1"
-                    />
-                  </div>
-                  <p className="text-text-secondary text-sm leading-relaxed">
-                    Pioneering the next iteration of intelligent, decentralized digital ecosystems with unprecedented scale and autonomy.
-                  </p>
-                </div>
-                
-                <div className="flex items-center gap-8 flex-wrap pointer-events-auto">
-                  <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-accent hover:text-white transition-colors duration-300">Book a Call</a>
-                  <a href="https://x.com/blockframelabs" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-secondary hover:text-white transition-colors">Twitter(X)</a>
-                  <a href="#" className="text-sm font-medium text-text-secondary hover:text-white transition-colors">Discord</a>
-                  
-                  {/* Social Media Links */}
-                  <div className="flex items-center gap-4">
-                    <a href="https://www.tiktok.com/@blockframe_labs?_r=1&_t=ZN-96Et1Hif4j8" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                      <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
-                      <span className="text-xs">TikTok</span>
-                    </a>
-                    <a href="https://youtube.com/@blockframelabs?si=Z2MnWDopzMohKjXd" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                      <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
-                      <span className="text-xs">YouTube</span>
-                    </a>
-                    <a href="https://www.instagram.com/blockframelabs?igsh=MWtwYWQycHR3cXJlYw==" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                      <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                      <span className="text-xs">Instagram</span>
-                    </a>
-                  </div>
-                </div>
+          <section className="relative border-t border-white/10 bg-[#07090d] px-6 py-24 md:px-12 md:py-32">
+            <div className="mx-auto w-full max-w-7xl">
+              <div className="mb-12 max-w-3xl">
+                <p className="section-kicker mb-4">Delivery model</p>
+                <h2 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
+                  Simple enough to trust. Structured enough to scale.
+                </h2>
               </div>
-              <div className="w-full max-w-7xl mx-auto mt-20 text-xs text-text-muted font-mono tracking-widest border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between gap-4">
-                <span>SYS.LOG: SYSTEM.CORE.01</span>
-                <span>© BLOCKFRAME LABS {new Date().getFullYear()}</span>
-                <span>ROUTING: NOMINAL</span>
+              <div className="grid gap-4 md:grid-cols-4">
+                {processSteps.map(([number, title, text]) => (
+                  <article key={number} className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
+                    <span className="text-sm font-bold text-primary-light">{number}</span>
+                    <h3 className="mt-8 text-xl font-semibold text-white">{title}</h3>
+                    <p className="mt-4 text-sm leading-6 text-text-secondary">{text}</p>
+                  </article>
+                ))}
               </div>
-            </footer>
-          </SmoothScroller>
-        </motion.div>
-      )}
+            </div>
+          </section>
+
+          <TechMarquee />
+
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
+            <div className="mx-auto grid w-full max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] lg:grid-cols-[0.9fr_1.1fr]">
+              <div className="relative min-h-[360px]">
+                <Image
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=1600"
+                  alt="Consultation meeting"
+                  fill
+                  className="professional-image object-cover"
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-transparent to-transparent lg:bg-gradient-to-r" />
+              </div>
+              <div className="p-8 md:p-12">
+                <p className="section-kicker mb-4">Book a call</p>
+                <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">
+                  Talk through the workflow before committing to a build.
+                </h2>
+                <p className="mt-5 text-lg leading-8 text-text-secondary">
+                  Use the call to review your community, content, marketplace, or agent workflow. The existing booking integration stays external through Calendly.
+                </p>
+                <a
+                  href="https://calendly.com/blockframemedia/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex min-h-14 items-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light"
+                >
+                  Book 30 Minutes
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <section id="contact" className="relative border-t border-white/10 bg-[#07090d] px-6 py-24 md:px-12 md:py-32">
+            <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+              <div>
+                <p className="section-kicker mb-4">Project intake</p>
+                <h2 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
+                  Send the first details.
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-text-secondary">
+                  This form still posts to the existing Google Form endpoint, so current lead capture and downstream sheets continue working.
+                </p>
+              </div>
+
+              <form className="grid gap-5" onSubmit={handleSubmit}>
+                {success ? (
+                  <div className="rounded-3xl border border-primary/30 bg-primary/10 p-8">
+                    <h3 className="text-2xl font-semibold text-white">Request received.</h3>
+                    <p className="mt-3 text-text-secondary">Your details were submitted. BlockFrame Labs will follow up through the channel you provided.</p>
+                    <button type="button" onClick={() => setSuccess(false)} className="mt-6 text-sm font-semibold text-primary-light">
+                      Send another request
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="grid gap-5 md:grid-cols-2">
+                      <label className="grid gap-2 text-sm font-medium text-text-secondary">
+                        Name
+                        <input required className={fieldClass} placeholder="Your name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                      </label>
+                      <label className="grid gap-2 text-sm font-medium text-text-secondary">
+                        Workspace
+                        <input className={fieldClass} placeholder="Company or project" value={formData.workspace} onChange={(e) => setFormData({ ...formData, workspace: e.target.value })} />
+                      </label>
+                    </div>
+                    <label className="grid gap-2 text-sm font-medium text-text-secondary">
+                      Email
+                      <input required type="email" className={fieldClass} placeholder="you@company.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                    </label>
+                    <label className="grid gap-2 text-sm font-medium text-text-secondary">
+                      Quick contact
+                      <input className={fieldClass} placeholder="Telegram, Discord, X, or phone" value={formData.contact} onChange={(e) => setFormData({ ...formData, contact: e.target.value })} />
+                    </label>
+                    <label className="grid gap-2 text-sm font-medium text-text-secondary">
+                      What should the system do?
+                      <textarea required rows={5} className={`${fieldClass} resize-none`} placeholder="Describe the agent, community, website, marketplace, or content workflow you need." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+                    </label>
+                    <button disabled={loading} className="min-h-14 rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60">
+                      {loading ? "Sending..." : "Submit Project Request"}
+                    </button>
+                  </>
+                )}
+              </form>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </SmoothScroller>
     </>
   );
 }

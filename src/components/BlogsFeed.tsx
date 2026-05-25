@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { BlogPost, Block } from "@/lib/types";
+import { BlogPost } from "@/lib/types";
 
 export default function BlogsFeed() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -97,7 +97,6 @@ export default function BlogsFeed() {
     return (
       <section id="blogs">
         <div className="glass-card p-12 text-center">
-          <div className="text-4xl mb-4">📝</div>
           <h3 className="text-lg font-semibold text-text-primary mb-2">No blog posts yet</h3>
           <p className="text-text-secondary">New blog posts are being reviewed and will appear here once approved.</p>
         </div>
@@ -111,13 +110,13 @@ export default function BlogsFeed() {
       <div className="mb-8 flex flex-wrap gap-4">
         <button 
           onClick={() => setFilter(null)}
-          className={`px-4 py-2 bg-${filter === null ? 'primary/20' : 'bg-transparent'} 
-                   text-${filter === null ? 'primary-light' : 'text-text-secondary'} 
-                   rounded-full transition-all duration-300 hover:bg-primary/10`}
+          className={`rounded-full px-4 py-2 transition-all duration-300 hover:bg-primary/10 ${
+            filter === null ? "bg-primary/20 text-primary-light" : "bg-transparent text-text-secondary"
+          }`}
         >
           All Blogs
         </button>
-        {categories.map((catSlug, index) => {
+        {categories.map((catSlug) => {
           // Map slug to display name
           const categoryNames: Record<string, string> = {
             'ai-news': 'AI News',
@@ -129,15 +128,15 @@ export default function BlogsFeed() {
             'updates': 'Updates',
             'news': 'News'
           };
-          const displayName = categoryNames[catSlug] || catSlug.replace(/-/g, ' ').replace(/\w/g, c => c.toUpperCase());
+          const displayName = categoryNames[catSlug] || catSlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
           
           return (
             <button 
               key={catSlug}
               onClick={() => setFilter(catSlug)}
-              className={`px-4 py-2 bg-${filter === catSlug ? 'primary/20' : 'bg-transparent'} 
-                       text-${filter === catSlug ? 'primary-light' : 'text-text-secondary'} 
-                       rounded-full transition-all duration-300 hover:bg-primary/10`}
+              className={`rounded-full px-4 py-2 transition-all duration-300 hover:bg-primary/10 ${
+                filter === catSlug ? "bg-primary/20 text-primary-light" : "bg-transparent text-text-secondary"
+              }`}
             >
               {displayName}
             </button>

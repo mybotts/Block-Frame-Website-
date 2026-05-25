@@ -4,7 +4,8 @@ import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
 import SmoothScroller from "@/components/SmoothScroller";
 import CustomCursor from "@/components/CustomCursor";
-import BlogsFeed from "@/components/BlogsFeed"; // We'll create this
+import BlogsFeed from "@/components/BlogsFeed";
+import Footer from "@/components/Footer";
 
 export default function BlogsPage() {
   return (
@@ -32,6 +33,7 @@ export default function BlogsPage() {
             <BlogsFeed />
           </div>
         </main>
+        <Footer />
       </SmoothScroller>
     </>
   );

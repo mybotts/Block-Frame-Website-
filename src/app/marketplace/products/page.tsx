@@ -5,6 +5,7 @@ import PremiumBackground from "@/components/PremiumBackground";
 import SmoothScroller from "@/components/SmoothScroller";
 import CustomCursor from "@/components/CustomCursor";
 import Marketplace from "@/components/Marketplace";
+import Footer from "@/components/Footer";
 
 export default function MarketplaceProductsPage() {
   return (
@@ -32,6 +33,7 @@ export default function MarketplaceProductsPage() {
             <Marketplace />
           </div>
         </main>
+        <Footer />
       </SmoothScroller>
     </>
   );
