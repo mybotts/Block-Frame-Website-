@@ -35,21 +35,6 @@ const processSteps = [
   ["04", "Monitor and improve", "We review logs, feedback, and handoff quality so the system keeps getting better."],
 ];
 
-const communityAgents = [
-  {
-    title: "Discord support agents",
-    text: "Answer common questions, route issues, welcome new members, and surface moderation risks before they become work for your team.",
-  },
-  {
-    title: "Telegram support agents",
-    text: "Provide fast replies in high-volume groups, capture leads, summarize discussions, and hand urgent requests to a human.",
-  },
-  {
-    title: "Community operations",
-    text: "Shared knowledge base, escalation rules, safety prompts, weekly reports, and integration with your existing support process.",
-  },
-];
-
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -172,28 +157,6 @@ export default function Home() {
           </section>
 
           <Services />
-
-          <section id="community-agents" className="relative border-t border-white/10 px-6 py-24 md:px-12 md:py-32">
-            <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-              <div>
-                <p className="section-kicker mb-4">Community support agents</p>
-                <h2 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
-                  Support for Discord and Telegram communities.
-                </h2>
-                <p className="mt-6 text-lg leading-8 text-text-secondary">
-                  Add always-on first-line support without replacing the human team. Agents answer known questions, flag edge cases, and keep communities easier to manage.
-                </p>
-              </div>
-              <div className="grid gap-5">
-                {communityAgents.map((agent) => (
-                  <article key={agent.title} className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
-                    <h3 className="text-xl font-semibold text-white">{agent.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-text-secondary">{agent.text}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
 
           <section className="relative border-t border-white/10 bg-[#07090d] px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto w-full max-w-7xl">

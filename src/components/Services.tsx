@@ -22,6 +22,15 @@ const serviceNotes: Record<string, string> = {
   "marketing-advisory": "Positioning, launch planning, and offer architecture.",
 };
 
+const serviceImages: Record<string, string> = {
+  "ai-systems": "/images/ai-agent-development.png",
+  "community-moderator-agents": "/images/cms-content-pipelines.png",
+  "web-apps": "/images/uiux-design.png",
+  "managed-agent-services": "/images/ai-agent-development.png",
+  "social-media": "/images/cms-content-pipelines.png",
+  "marketing-advisory": "/images/web3-blockchain.png",
+};
+
 export default function Services() {
   const visibleServices = priorityServices
     .map((id) => services.find((service) => service.id === id))
@@ -38,7 +47,7 @@ export default function Services() {
             </h2>
           </div>
           <p className="max-w-xl text-lg leading-8 text-text-secondary md:justify-self-end">
-            The site still keeps Blogs, Videos, and Marketplace as live product areas. The services are reframed as clear offers a buyer can understand in one scan.
+            Choose the outcome first, then we map the workflow, build the useful front end, and connect the right agent layer behind it.
           </p>
         </div>
 
@@ -54,13 +63,13 @@ export default function Services() {
             >
               <div className="relative h-52 overflow-hidden bg-surface">
                 <Image
-                  src={service.image}
+                  src={serviceImages[service.id] || service.image}
                   alt={service.title}
                   fill
-                  className="professional-image object-cover opacity-75 transition duration-700 group-hover:scale-105 group-hover:opacity-90"
+                  className="professional-image object-cover opacity-85 transition duration-700 group-hover:scale-105 group-hover:opacity-95"
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07090d] via-[#07090d]/35 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07090d] via-[#07090d]/20 to-transparent" />
               </div>
               <div className="p-6">
                 <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-primary-light">

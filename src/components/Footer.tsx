@@ -5,8 +5,7 @@ import Link from "next/link";
 
 const serviceLinks = [
   { label: "AI Agents", href: "/#services" },
-  { label: "Discord Support Agents", href: "/#community-agents" },
-  { label: "Telegram Support Agents", href: "/#community-agents" },
+  { label: "Community Support Agents", href: "/#services" },
   { label: "Web Engineering", href: "/#services" },
   { label: "Book a Call", href: "https://calendly.com/blockframemedia/30min", external: true },
 ];
