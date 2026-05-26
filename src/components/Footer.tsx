@@ -7,7 +7,7 @@ const serviceLinks = [
   { label: "AI Agents", href: "/#services" },
   { label: "Community Support Agents", href: "/#services" },
   { label: "Web Engineering", href: "/#services" },
-  { label: "Book a Call", href: "https://calendly.com/blockframemedia/30min", external: true },
+  { label: "Book a Call", href: "mailto:contact@blockframe.cloud?subject=Book%20a%20call%20with%20BlockFrame%20Labs", external: true },
 ];
 
 const contentLinks = [
@@ -28,6 +28,14 @@ const socialLinks = [
 ];
 
 function FooterLink({ item }: { item: { label: string; href: string; external?: boolean } }) {
+  if (item.href.startsWith("mailto:")) {
+    return (
+      <a href={item.href} className="footer-link">
+        {item.label}
+      </a>
+    );
+  }
+
   if (item.external || item.href.startsWith("http")) {
     return (
       <a href={item.href} target="_blank" rel="noopener noreferrer" className="footer-link">
@@ -58,9 +66,7 @@ export default function Footer() {
             Practical AI agents, automation, and web systems for teams that need working infrastructure, not theatrics.
           </p>
           <a
-            href="https://calendly.com/blockframemedia/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:contact@blockframe.cloud?subject=Book%20a%20call%20with%20BlockFrame%20Labs"
             className="mt-7 inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light"
           >
             Book a Call

@@ -11,6 +11,8 @@ const navItems = [
   { label: "Marketplace", href: "/marketplace/products" },
 ];
 
+const businessMailHref = "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs";
+
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -36,13 +38,11 @@ export default function Navigation() {
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
-            <Link href="/#contact" className="nav-link">
+            <a href={businessMailHref} className="nav-link">
               Contact
-            </Link>
+            </a>
             <a
-              href="https://calendly.com/blockframemedia/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:contact@blockframe.cloud?subject=Book%20a%20call%20with%20BlockFrame%20Labs"
               className="inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light"
             >
               Book a Call
@@ -93,13 +93,11 @@ export default function Navigation() {
                   {item.label}
                 </Link>
               ))}
-              <Link href="/#contact" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>
+              <a href={businessMailHref} className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>
                 Contact
-              </Link>
+              </a>
               <a
-                href="https://calendly.com/blockframemedia/30min"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:contact@blockframe.cloud?subject=Book%20a%20call%20with%20BlockFrame%20Labs"
                 className="mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-black"
               >
                 Book a Call

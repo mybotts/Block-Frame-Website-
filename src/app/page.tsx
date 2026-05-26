@@ -35,6 +35,9 @@ const processSteps = [
   ["04", "Monitor and improve", "We review logs, feedback, and handoff quality so the system keeps getting better."],
 ];
 
+const projectMailHref = "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs";
+const callMailHref = "mailto:contact@blockframe.cloud?subject=Book%20a%20call%20with%20BlockFrame%20Labs";
+
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -104,10 +107,10 @@ export default function Home() {
                 BlockFrame Labs designs AI agents, support workflows, and web systems for teams that need clearer operations, faster responses, and a credible digital presence.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a href="#contact" className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
+                <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
                   Start a Project
                 </a>
-                <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 px-7 text-sm font-semibold text-white transition hover:border-primary/60">
+                <a href={callMailHref} className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 px-7 text-sm font-semibold text-white transition hover:border-primary/60">
                   Book a Call
                 </a>
               </div>
@@ -198,15 +201,13 @@ export default function Home() {
                   Talk through the workflow before committing to a build.
                 </h2>
                 <p className="mt-5 text-lg leading-8 text-text-secondary">
-                  Use the call to review your community, content, marketplace, or agent workflow. The existing booking integration stays external through Calendly.
+                  Use the call to review your community, content, marketplace, or agent workflow. The request now opens a direct email to the BlockFrame Labs business address.
                 </p>
                 <a
-                  href="https://calendly.com/blockframemedia/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={callMailHref}
                   className="mt-8 inline-flex min-h-14 items-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light"
                 >
-                  Book 30 Minutes
+                  Email to Book a Call
                 </a>
               </div>
             </div>
