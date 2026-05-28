@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { queryProducts, createProductPage, notionPageToProduct } from "@/lib/notionClient";
+import { createProductPage } from "@/lib/notionClient";
 import { marketplaceProducts } from "@/lib/data";
 
 type ProductRequestBody = {
@@ -18,45 +18,17 @@ function getErrorMessage(error: unknown): string {
 
 /**
  * GET /api/products
- * Returns all approved marketplace products.
+ * Returns the current approved marketplace offer.
  */
 export async function GET() {
-  try {
-    // Filter: Status = 'approved'
-    const filter: Parameters<typeof queryProducts>[0] = {
-      property: "Status",
-      select: { equals: "approved" },
-    };
-
-    const results = await queryProducts(filter);
-
-    const notionProducts = results.map(page => notionPageToProduct(page));
-    const notionProductIds = new Set(notionProducts.map(product => product.id));
-    const products = [
-      ...marketplaceProducts.filter(product => !notionProductIds.has(product.id)),
-      ...notionProducts,
-    ];
-
-    const response = NextResponse.json({
-      products,
-      total: products.length,
-    });
-    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    response.headers.set('Pragma', 'no-cache');
-    response.headers.set('Surrogate-Control', 'no-store');
-    return response;
-  } catch (error: unknown) {
-    console.error("Error fetching products:", error);
-    const response = NextResponse.json({
-      products: marketplaceProducts,
-      total: marketplaceProducts.length,
-      source: "static-fallback",
-    });
-    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    response.headers.set('Pragma', 'no-cache');
-    response.headers.set('Surrogate-Control', 'no-store');
-    return response;
-  }
+  const response = NextResponse.json({
+    products: marketplaceProducts,
+    total: marketplaceProducts.length,
+  });
+  response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  response.headers.set('Pragma', 'no-cache');
+  response.headers.set('Surrogate-Control', 'no-store');
+  return response;
 }
 
 /**

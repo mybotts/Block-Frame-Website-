@@ -22,9 +22,9 @@ const contentAreas = [
     description: "Video embeds remain powered by approved CMS video blocks.",
   },
   {
-    label: "Marketplace",
+    label: "Marketplace/Products",
     href: "/marketplace/products",
-    description: "Products continue to load through the current marketplace endpoint.",
+    description: "Our current productized workflow and implementation offer.",
   },
 ];
 

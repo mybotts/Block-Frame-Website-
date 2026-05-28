@@ -22,10 +22,10 @@ export default function MarketplaceProductsPage() {
             {/* Header */}
             <div className="mb-12 text-center">
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight mb-4">
-                <span className="text-gradient">Marketplace</span>
+                <span className="text-gradient">Marketplace/Products</span>
               </h1>
               <p className="text-xl text-text-secondary font-light max-w-2xl mx-auto">
-                Explore our curated collection of templates, kits, and services.
+                One productized growth workflow, customized to the tools and mailbox your business already uses.
               </p>
             </div>
 

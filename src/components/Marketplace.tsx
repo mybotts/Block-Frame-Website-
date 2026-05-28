@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Product {
   id: string;
@@ -149,9 +150,12 @@ export default function Marketplace() {
               ) : null}
 
               {/* CTA Button */}
-              <button className="w-full rounded-xl bg-gradient-to-r from-primary to-primary-dark py-3 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:from-primary-light hover:to-primary active:scale-[0.98] cursor-pointer">
+              <Link
+                href={`/marketplace/products/${product.id}`}
+                className="block w-full rounded-xl bg-gradient-to-r from-primary to-primary-dark py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:from-primary-light hover:to-primary active:scale-[0.98] cursor-pointer"
+              >
                 {product.cta ?? "Get Access"}
-              </button>
+              </Link>
             </div>
           </div>
         ))}

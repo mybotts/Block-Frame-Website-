@@ -13,7 +13,7 @@ const serviceLinks = [
 const contentLinks = [
   { label: "Blogs", href: "/blogs" },
   { label: "Videos", href: "/videos" },
-  { label: "Marketplace", href: "/marketplace/products" },
+  { label: "Marketplace/Products", href: "/marketplace/products" },
   { label: "Guides", href: "/guides" },
   { label: "AI News", href: "/ai-news" },
 ];
