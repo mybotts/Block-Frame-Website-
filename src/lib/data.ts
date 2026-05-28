@@ -262,7 +262,7 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     description:
       "A custom implementation that researches qualified prospects, creates personalized sample assets, publishes private proposal pages, and prepares controlled outreach through your existing CRM and mailbox.",
     category: "Growth Automation",
-    price: "From $1,250",
+    price: "Starting at $1,250",
     image: "/images/agentic-outreach-engine.png",
     gradient: "from-teal-500/30 via-slate-900/40 to-amber-700/30",
     badge: "Custom build",
@@ -275,17 +275,17 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     tiers: [
       {
         name: "Workflow Blueprint",
-        price: "$350",
+        price: "Starting at $350",
         description: "DIY operating map, templates, data model, prompts, and setup checklist.",
       },
       {
         name: "Build Sprint",
-        price: "From $1,250",
+        price: "Starting at $1,250",
         description: "We configure the prospecting, proposal, email queue, and safety workflow in your stack.",
       },
       {
         name: "Managed System",
-        price: "From $750/mo",
+        price: "Starting at $750/mo",
         description: "Monthly operation, iteration, reporting, and campaign improvements after launch.",
       },
     ],

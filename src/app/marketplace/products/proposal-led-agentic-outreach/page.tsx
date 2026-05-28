@@ -103,6 +103,9 @@ export default function ProposalLedAgenticOutreachPage() {
                 <p className="mt-4 text-sm text-text-secondary">
                   Send us your current stack and goal. We respond as soon as possible with the best next step.
                 </p>
+                <p className="mt-3 text-sm text-text-secondary">
+                  Pricing starts at the listed tier and scales with lead sources, integrations, approvals, and sending requirements.
+                </p>
               </div>
 
               <div className="glass-card overflow-hidden">
