@@ -46,14 +46,64 @@ const implementationSteps = [
 ];
 
 export const metadata: Metadata = {
-  title: "Marketplace/Products | Proposal-Led Agentic Outreach System",
+  title: "Proposal-Led Agentic Outreach System | BlockFrame Labs",
   description:
     "A custom BlockFrame Labs implementation for proposal-led prospecting, personalized sample assets, private preview pages, and controlled outreach workflows.",
+  alternates: {
+    canonical: "/marketplace/products/proposal-led-agentic-outreach",
+  },
+  openGraph: {
+    title: "Proposal-Led Agentic Outreach System",
+    description:
+      "A custom growth workflow that researches prospects, creates personalized sample assets, publishes private proposal pages, and prepares controlled outreach.",
+    url: "https://www.blockframe.cloud/marketplace/products/proposal-led-agentic-outreach",
+    siteName: "BlockFrame Labs",
+    type: "website",
+    images: [
+      {
+        url: "/images/proposal-led-agentic-outreach-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Proposal-Led Agentic Outreach System by BlockFrame Labs",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proposal-Led Agentic Outreach System",
+    description:
+      "Custom prospecting, proposal pages, email queues, and safety controls for proof-led outreach.",
+    images: ["/images/proposal-led-agentic-outreach-og.png"],
+  },
+};
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: product.title,
+  image: "https://www.blockframe.cloud/images/proposal-led-agentic-outreach-og.png",
+  description:
+    "Custom implementation for prospect research, personalized sample assets, private proposal pages, controlled outreach queues, and safety checks.",
+  brand: {
+    "@type": "Brand",
+    name: "BlockFrame Labs",
+  },
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "USD",
+    price: "1250",
+    availability: "https://schema.org/InStock",
+    url: "https://www.blockframe.cloud/marketplace/products/proposal-led-agentic-outreach",
+  },
 };
 
 export default function ProposalLedAgenticOutreachPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <CustomCursor />
       <Navigation />
       <PremiumBackground />
