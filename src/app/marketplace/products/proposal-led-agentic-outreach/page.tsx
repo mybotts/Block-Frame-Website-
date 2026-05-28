@@ -13,8 +13,7 @@ const product = marketplaceProducts.find((item) => item.id === "proposal-led-age
 const emailHref =
   "mailto:contact@blockframe.cloud?subject=Proposal-Led%20Agentic%20Outreach%20System&body=Hi%20BlockFrame%20Labs%2C%0A%0AI%27m%20interested%20in%20the%20Proposal-Led%20Agentic%20Outreach%20System.%20Please%20send%20me%20the%20next%20steps.%0A%0ACompany%3A%0AWebsite%3A%0ACurrent%20CRM%2Fmailbox%3A%0ABest%20way%20to%20reach%20me%3A%0A";
 
-const callHref =
-  "mailto:contact@blockframe.cloud?subject=Book%20a%20call%20-%20Agentic%20Outreach%20System";
+const callHref = "https://calendly.com/blockframemedia/30min";
 
 const docs = [
   {
@@ -93,6 +92,8 @@ export default function ProposalLedAgenticOutreachPage() {
                   </a>
                   <a
                     href={callHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light"
                   >
                     Book a Call

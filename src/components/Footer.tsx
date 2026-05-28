@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const calendlyHref = "https://calendly.com/blockframemedia/30min";
+
 const serviceLinks = [
   { label: "AI Agents", href: "/#services" },
   { label: "Community Support Agents", href: "/#services" },
   { label: "Web Engineering", href: "/#services" },
-  { label: "Book a Call", href: "mailto:contact@blockframe.cloud?subject=Book%20a%20call%20with%20BlockFrame%20Labs", external: true },
+  { label: "Book a Call", href: calendlyHref, external: true },
 ];
 
 const contentLinks = [
@@ -66,7 +68,9 @@ export default function Footer() {
             Practical AI agents, automation, and web systems for teams that need working infrastructure, not theatrics.
           </p>
           <a
-            href="mailto:contact@blockframe.cloud?subject=Book%20a%20call%20with%20BlockFrame%20Labs"
+            href={calendlyHref}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-7 inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light"
           >
             Book a Call

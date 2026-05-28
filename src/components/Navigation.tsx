@@ -12,6 +12,7 @@ const navItems = [
 ];
 
 const businessMailHref = "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs";
+const calendlyHref = "https://calendly.com/blockframemedia/30min";
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,7 +43,9 @@ export default function Navigation() {
               Contact
             </a>
             <a
-              href="mailto:contact@blockframe.cloud?subject=Book%20a%20call%20with%20BlockFrame%20Labs"
+              href={calendlyHref}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light"
             >
               Book a Call
@@ -97,7 +100,9 @@ export default function Navigation() {
                 Contact
               </a>
               <a
-                href="mailto:contact@blockframe.cloud?subject=Book%20a%20call%20with%20BlockFrame%20Labs"
+                href={calendlyHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-black"
               >
                 Book a Call
