@@ -1,21 +1,41 @@
 import { NextRequest, NextResponse } from "next/server";
 import { queryProducts, createProductPage, notionPageToProduct } from "@/lib/notionClient";
+import { marketplaceProducts } from "@/lib/data";
+
+type ProductRequestBody = {
+  title?: string;
+  description?: string;
+  category?: string;
+  price?: string;
+  image?: string;
+  gradient?: string;
+  status?: string;
+};
+
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : "Unknown error";
+}
 
 /**
  * GET /api/products
  * Returns all approved marketplace products.
  */
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Filter: Status = 'approved'
-    const filter: any = {
+    const filter: Parameters<typeof queryProducts>[0] = {
       property: "Status",
       select: { equals: "approved" },
     };
 
     const results = await queryProducts(filter);
 
-    const products = results.map(page => notionPageToProduct(page));
+    const notionProducts = results.map(page => notionPageToProduct(page));
+    const notionProductIds = new Set(notionProducts.map(product => product.id));
+    const products = [
+      ...marketplaceProducts.filter(product => !notionProductIds.has(product.id)),
+      ...notionProducts,
+    ];
 
     const response = NextResponse.json({
       products,
@@ -25,12 +45,17 @@ export async function GET(request: NextRequest) {
     response.headers.set('Pragma', 'no-cache');
     response.headers.set('Surrogate-Control', 'no-store');
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error fetching products:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch products", details: error.message },
-      { status: 500 }
-    );
+    const response = NextResponse.json({
+      products: marketplaceProducts,
+      total: marketplaceProducts.length,
+      source: "static-fallback",
+    });
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Surrogate-Control', 'no-store');
+    return response;
   }
 }
 
@@ -47,7 +72,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const body = await request.json();
+    const body = (await request.json()) as ProductRequestBody;
     const { title, description, category, price, image, gradient, status = 'pending' } = body;
 
     if (!title || !price) {
@@ -59,7 +84,7 @@ export async function POST(request: NextRequest) {
 
     const notionStatus = status === 'approved' ? 'approved' : 'pending';
 
-    const properties: any = {
+    const properties: Record<string, unknown> = {
       Title: { title: [{ text: { content: title } }] },
       Status: { select: { name: notionStatus } },
     };
@@ -83,8 +108,8 @@ export async function POST(request: NextRequest) {
     const page = await createProductPage(properties);
 
     return NextResponse.json({ id: page.id, status: notionStatus }, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error creating product:", error);
-    return NextResponse.json({ error: "Failed to create product", details: error.message }, { status: 500 });
+    return NextResponse.json({ error: "Failed to create product", details: getErrorMessage(error) }, { status: 500 });
   }
 }

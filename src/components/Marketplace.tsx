@@ -11,6 +11,14 @@ interface Product {
   price: string;
   image: string;
   gradient: string;
+  badge?: string;
+  cta?: string;
+  highlights?: string[];
+  tiers?: {
+    name: string;
+    price: string;
+    description: string;
+  }[];
 }
 
 export default function Marketplace() {
@@ -71,7 +79,7 @@ export default function Marketplace() {
         {products.map((product, index) => (
           <div
             key={product.id}
-            className={`glass-card group overflow-hidden fade-in-up fade-in-up-delay-${index + 1}`}
+            className={`glass-card group overflow-hidden fade-in-up fade-in-up-delay-${index + 1} ${product.tiers ? "lg:col-span-2" : ""}`}
           >
             {/* Product Image */}
             <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${product.gradient}`}>
@@ -94,9 +102,16 @@ export default function Marketplace() {
             {/* Content */}
             <div className="p-6">
               {/* Category */}
-              <span className="category-pill bg-primary/15 text-primary-light mb-3">
-                {product.category}
-              </span>
+              <div className="mb-3 flex flex-wrap gap-2">
+                <span className="category-pill bg-primary/15 text-primary-light">
+                  {product.category}
+                </span>
+                {product.badge ? (
+                  <span className="category-pill border border-amber-300/30 bg-amber-300/10 text-amber-100">
+                    {product.badge}
+                  </span>
+                ) : null}
+              </div>
 
               {/* Title */}
               <h3 className="text-lg font-semibold text-text-primary mb-2 group-hover:text-primary-light transition-colors duration-300">
@@ -104,13 +119,38 @@ export default function Marketplace() {
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-text-secondary leading-relaxed mb-5 line-clamp-3">
+              <p className={`text-sm text-text-secondary leading-relaxed ${product.tiers ? "mb-4" : "mb-5 line-clamp-3"}`}>
                 {product.description}
               </p>
 
+              {product.highlights ? (
+                <ul className="mb-5 space-y-2">
+                  {product.highlights.map((highlight) => (
+                    <li key={highlight} className="flex gap-2 text-xs leading-relaxed text-text-secondary">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-light" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+
+              {product.tiers ? (
+                <div className="mb-5 grid gap-3 sm:grid-cols-3">
+                  {product.tiers.map((tier) => (
+                    <div key={tier.name} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
+                      <div className="text-xs font-semibold uppercase tracking-[0.08em] text-text-secondary">
+                        {tier.name}
+                      </div>
+                      <div className="mt-1 text-base font-semibold text-text-primary">{tier.price}</div>
+                      <p className="mt-2 text-xs leading-relaxed text-text-secondary">{tier.description}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+
               {/* CTA Button */}
               <button className="w-full rounded-xl bg-gradient-to-r from-primary to-primary-dark py-3 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:from-primary-light hover:to-primary active:scale-[0.98] cursor-pointer">
-                Get Access
+                {product.cta ?? "Get Access"}
               </button>
             </div>
           </div>

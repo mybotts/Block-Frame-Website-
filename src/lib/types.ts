@@ -41,6 +41,14 @@ export interface MarketplaceProduct {
   price: string;
   image: string;
   gradient: string;
+  badge?: string;
+  cta?: string;
+  highlights?: string[];
+  tiers?: {
+    name: string;
+    price: string;
+    description: string;
+  }[];
 }
 
 export type TabId = "services" | "blogs" | "marketplace" | "videos";

@@ -257,6 +257,40 @@ export const samplePosts: BlogPost[] = [
 
 export const marketplaceProducts: MarketplaceProduct[] = [
   {
+    id: "proposal-led-agentic-outreach",
+    title: "Proposal-Led Agentic Outreach System",
+    description:
+      "A custom implementation that researches qualified prospects, creates personalized sample assets, publishes private proposal pages, and prepares controlled outreach through your existing CRM and mailbox.",
+    category: "Growth Automation",
+    price: "From $1,250",
+    image: "/images/agentic-outreach-engine.png",
+    gradient: "from-teal-500/30 via-slate-900/40 to-amber-700/30",
+    badge: "Custom build",
+    cta: "Book implementation call",
+    highlights: [
+      "Built around your current mailbox, CRM, lead sources, and approval process.",
+      "Includes send caps, dedupe, suppression lists, preview checks, and opt-out handling.",
+      "Creates proof-led outreach with private proposal pages instead of generic cold pitches.",
+    ],
+    tiers: [
+      {
+        name: "Workflow Blueprint",
+        price: "$350",
+        description: "DIY operating map, templates, data model, prompts, and setup checklist.",
+      },
+      {
+        name: "Build Sprint",
+        price: "From $1,250",
+        description: "We configure the prospecting, proposal, email queue, and safety workflow in your stack.",
+      },
+      {
+        name: "Managed System",
+        price: "From $750/mo",
+        description: "Monthly operation, iteration, reporting, and campaign improvements after launch.",
+      },
+    ],
+  },
+  {
     id: "mp-1",
     title: "AI Agent Starter Kit",
     description:
