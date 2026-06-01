@@ -290,4 +290,38 @@ export const marketplaceProducts: MarketplaceProduct[] = [
       },
     ],
   },
+  {
+    id: "blog-os-automated-notion-cms",
+    title: "Blog OS — Automated Notion-CMS Blog Publishing System",
+    description:
+      "A managed, Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
+    category: "Content Systems",
+    price: "Starting at $1,950",
+    image: "/images/blog-os-system.png",
+    gradient: "from-indigo-500/30 via-slate-900/40 to-emerald-600/30",
+    badge: "Managed system",
+    cta: "Request implementation",
+    highlights: [
+      "Uses Notion as the editorial source of truth with clear stage statuses.",
+      "Covers research, drafting, review, scheduling, publishing, SEO metadata, and error recovery.",
+      "Built for clients who want consistent publishing without manual copy-paste or scattered toolchains.",
+    ],
+    tiers: [
+      {
+        name: "DIY Blueprint",
+        price: "Starting at $450",
+        description: "Schema, prompts, runbooks, and setup guide for clients to run the pipeline themselves.",
+      },
+      {
+        name: "Managed System",
+        price: "Starting at $1,950",
+        description: "We operate research, drafting, approvals, scheduling, publishing, and basic distribution.",
+      },
+      {
+        name: "Enterprise OS",
+        price: "Custom",
+        description: "Multi-site, multi-author, advanced governance, analytics, distribution, automation, and dedicated ops.",
+      },
+    ],
+  },
 ];
