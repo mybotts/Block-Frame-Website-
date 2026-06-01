@@ -16,7 +16,12 @@ export default function VideoFeed() {
   const resolveYouTubeTitle = async (url: string, platform: string): Promise<string> => {
     if (platform !== "youtube") return "";
     try {
-      const res = await fetch(`/api/youtube-title?url=${encodeURIComponent(url)}`);
+      const watchMatch = url.match(/[?&]v=([^&]+)/);
+      const shortsMatch = url.match(/youtube\.com\/shorts\/([^?&]+)/);
+      const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+      const videoId = watchMatch?.[1] || shortsMatch?.[1] || shortMatch?.[1];
+      if (!videoId) return "";
+      const res = await fetch(`/api/youtube-title?videoId=${encodeURIComponent(videoId)}`);
       if (!res.ok) return "";
       const data = await res.json();
       return typeof data?.title === "string" && data.title.trim() ? data.title.trim() : "";
