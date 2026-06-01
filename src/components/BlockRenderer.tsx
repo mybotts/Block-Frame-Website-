@@ -4,6 +4,7 @@ import { Block } from "@/lib/types";
 import CodeBlock from "./CodeBlock";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import ThumbnailPlayer from "./ThumbnailPlayer";
 import { useMemo } from "react";
 
 function slugify(text: string): string {
@@ -39,35 +40,28 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
         </div>
       );
 
-    case "video":
-      const embedSrc = useMemo(() => {
+    case "video": {
+      // Default to thumbnail presentation on post pages
+      const thumbnailSrc = useMemo(() => {
         if (!content) return null;
         try {
-          if (content.includes('youtube.com') || content.includes('youtu.be')) {
-            const videoIdMatch = content.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([^?&\s/]+)/);
-            const videoId = videoIdMatch?.[1];
-            if (videoId) {
-              return `https://www.youtube-nocookie.com/embed/${videoId}?widget_referrer=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : '')}`;
-            }
-          }
-        } catch (error) {
-          return content;
+          const m = content.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([^?&\s/]+)/);
+          const videoId = m?.[1];
+          if (!videoId) return null;
+          return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        } catch {
+          return null;
         }
-        return content;
       }, [content]);
 
-      if (!embedSrc) return null;
+      if (!thumbnailSrc) return null;
 
       return (
-        <div className="my-6 aspect-video w-full">
-          <iframe
-            src={embedSrc}
-            className="w-full h-full rounded-xl border-0"
-            allowFullScreen
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe>
+        <div className="my-6 w-full">
+          <ThumbnailPlayer src={thumbnailSrc} embedSrc={`https://www.youtube-nocookie.com/embed/${content.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([^?&\s/]+)/)?.[1] || ''}`} />
         </div>
       );
+    }
 
     case "bookmark": {
       const data = JSON.parse(content);
