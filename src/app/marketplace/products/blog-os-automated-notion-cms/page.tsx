@@ -8,7 +8,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 import { marketplaceProducts } from "@/lib/data";
 
-const product = marketplaceProducts.find((item) => item.id === "blog-os-automated-notion-cms");
+const product = marketplaceProducts.find((item) => item.id === "blog-os-automated-notion-cms")!;
 
 const emailHref =
   "mailto:contact@blockframe.cloud?subject=Blog%20OS%20-%20Automated%20Notion%20CMS%20Publishing&body=Hi%20BlockFrame%20Labs%2C%0A%0AI%27m%20interested%20in%20the%20Blog%20OS%20automated%20publishing%20system.%20Please%20send%20me%20the%20next%20steps.%0A%0ACompany%3A%0AWebsite%3A%0ACurrent%20CMS%2Fstack%3A%0ABest%20way%20to%20reach%20me%3A%0A";
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/blog-os-system.png",
+        url: "/images/cms-content-pipelines.png",
         width: 1200,
         height: 630,
         alt: "Blog OS — Automated Notion-CMS Blog Publishing System by BlockFrame Labs",
@@ -71,15 +71,15 @@ export const metadata: Metadata = {
     title: "Blog OS — Automated Notion-CMS Blog Publishing System",
     description:
       "Managed blog OS: research, drafting, approval workflow, and automated publishing through Notion CMS.",
-    images: ["/images/blog-os-system.png"],
+    images: ["/images/cms-content-pipelines.png"],
   },
 };
 
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  name: product?.title ?? "Blog OS — Automated Notion-CMS Blog Publishing System",
-  image: "https://www.blockframe.cloud/images/blog-os-system.png",
+  name: product.title,
+  image: "https://www.blockframe.cloud/images/cms-content-pipelines.png",
   description:
     "A managed Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
   brand: {
@@ -96,17 +96,6 @@ const productSchema = {
 };
 
 export default function BlogOsProductPage() {
-  if (!product) {
-    return (
-      <div className="mx-auto max-w-6xl px-6 py-24 text-center">
-        <p className="text-text-secondary">Product not found.</p>
-        <Link href="/marketplace/products" className="nav-link mt-4 inline-flex">
-          Back to Marketplace/Products
-        </Link>
-      </div>
-    );
-  }
-
   return (
     <>
       <script
@@ -130,11 +119,9 @@ export default function BlogOsProductPage() {
               <div>
                 <div className="mb-4 flex flex-wrap gap-2">
                   <span className="category-pill bg-primary/15 text-primary-light">{product.category}</span>
-                  {product.badge ? (
-                    <span className="category-pill border border-amber-300/30 bg-amber-300/10 text-amber-100">
-                      {product.badge}
-                    </span>
-                  ) : null}
+                  <span className="category-pill border border-amber-300/30 bg-amber-300/10 text-amber-100">
+                    {product.badge}
+                  </span>
                 </div>
 
                 <h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">
@@ -169,7 +156,7 @@ export default function BlogOsProductPage() {
 
               <div className="glass-card overflow-hidden">
                 <div className={`relative aspect-[16/10] bg-gradient-to-br ${product.gradient}`}>
-                  <Image src={product.image} alt={product.title} fill className="object-cover opacity-90" />
+                  <Image src={product.image} alt={product.title} fill className="object-cover opacity-90" priority />
                   <div className="absolute inset-0 bg-gradient-to-t from-surface/70 via-transparent to-transparent" />
                   <div className="absolute right-5 top-5 rounded-full bg-surface/90 px-4 py-2 text-sm font-bold text-primary-light">
                     {product.price}

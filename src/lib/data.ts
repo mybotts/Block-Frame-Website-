@@ -296,10 +296,10 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     description:
       "A managed, Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
     category: "Content Systems",
-    price: "Starting at $1,950",
-    image: "/images/blog-os-system.png",
+    price: "Starting at $5,000",
+    image: "/images/cms-content-pipelines.png",
     gradient: "from-indigo-500/30 via-slate-900/40 to-emerald-600/30",
-    badge: "Managed system",
+    badge: "Build + Handoff",
     cta: "Request implementation",
     highlights: [
       "Uses Notion as the editorial source of truth with clear stage statuses.",
@@ -308,19 +308,22 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     ],
     tiers: [
       {
+        name: "One-Time Setup",
+        price: "$5,000",
+        description:
+          "Builds the Notion schema, research pipeline, drafting workflow, approval stages, SEO rules, and publish hook to your site.",
+      },
+      {
+        name: "Monthly Care",
+        price: "$1,000/mo",
+        description:
+          "Covers ongoing editing, scheduling, publishing, light distribution, and system tuning after launch.",
+      },
+      {
         name: "DIY Blueprint",
         price: "Starting at $450",
-        description: "Schema, prompts, runbooks, and setup guide for clients to run the pipeline themselves.",
-      },
-      {
-        name: "Managed System",
-        price: "Starting at $1,950",
-        description: "We operate research, drafting, approvals, scheduling, publishing, and basic distribution.",
-      },
-      {
-        name: "Enterprise OS",
-        price: "Custom",
-        description: "Multi-site, multi-author, advanced governance, analytics, distribution, automation, and dedicated ops.",
+        description:
+          "Schema, prompts, runbooks, and setup guide for clients to run the pipeline themselves.",
       },
     ],
   },
