@@ -4,6 +4,7 @@ import { Block } from "@/lib/types";
 import CodeBlock from "./CodeBlock";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useMemo } from "react";
 
 function slugify(text: string): string {
   return text
@@ -39,10 +40,28 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
       );
 
     case "video":
+      const embedSrc = useMemo(() => {
+        if (!content) return null;
+        try {
+          if (content.includes('youtube.com') || content.includes('youtu.be')) {
+            const videoIdMatch = content.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([^?&\s/]+)/);
+            const videoId = videoIdMatch?.[1];
+            if (videoId) {
+              return `https://www.youtube-nocookie.com/embed/${videoId}?widget_referrer=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : '')}`;
+            }
+          }
+        } catch (error) {
+          return content;
+        }
+        return content;
+      }, [content]);
+
+      if (!embedSrc) return null;
+
       return (
         <div className="my-6 aspect-video w-full">
           <iframe
-            src={content}
+            src={embedSrc}
             className="w-full h-full rounded-xl border-0"
             allowFullScreen
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
