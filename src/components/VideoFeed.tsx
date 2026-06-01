@@ -13,13 +13,26 @@ export default function VideoFeed() {
     return "unknown";
   };
 
+  const resolveYouTubeTitle = async (url: string, platform: string): Promise<string> => {
+    if (platform !== "youtube") return "";
+    try {
+      const res = await fetch(`/api/youtube-title?url=${encodeURIComponent(url)}`);
+      if (!res.ok) return "";
+      const data = await res.json();
+      return typeof data?.title === "string" && data.title.trim() ? data.title.trim() : "";
+    } catch {
+      return "";
+    }
+  };
+
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         const res = await fetch(`/api/posts?category=videos&status=approved`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        const cmsVideos: Array<{ id: string; url: string; platform: string; title: string; excerpt: string }> = data.posts
+
+        const raw: Array<{ id: string; url: string; platform: string; cmsTitle: string; excerpt: string }> = data.posts
           .flatMap((post: any) =>
             post.blocks
               .filter((b: any) => b.type === "video")
@@ -27,15 +40,28 @@ export default function VideoFeed() {
                 id: b.id || `${post.id}-${b.order}`,
                 url: b.content,
                 platform: getPlatformFromUrl(b.content),
-                title: post.title,
-                excerpt: post.excerpt || ""
+                cmsTitle: post.title,
+                excerpt: post.excerpt || "",
               }))
           );
-      setVideos(cmsVideos);
-    } catch (err) {
-      console.error("Failed to fetch CMS videos:", err);
-      setError("Failed to load videos. Please try again later.");
-    }
+
+        // Resolve YouTube titles client-side
+        const enriched: Array<{ id: string; url: string; platform: string; title: string; excerpt: string }> = await Promise.all(
+          raw.map(async (item) => ({
+            id: item.id,
+            url: item.url,
+            platform: item.platform,
+            excerpt: item.excerpt,
+            title: item.platform === "youtube" ? await resolveYouTubeTitle(item.url, item.platform) : item.cmsTitle,
+          }))
+        );
+
+        const cmsVideos = enriched;
+        setVideos(cmsVideos);
+      } catch (err) {
+        console.error("Failed to fetch CMS videos:", err);
+        setError("Failed to load videos. Please try again later.");
+      }
     };
     fetchVideos();
   }, []);
