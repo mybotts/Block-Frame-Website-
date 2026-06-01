@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createProductPage } from "@/lib/notionClient";
+import { createProductPage, queryProducts, notionPageToProduct } from "@/lib/notionClient";
 import { marketplaceProducts } from "@/lib/data";
 
 type ProductRequestBody = {
@@ -18,27 +18,45 @@ function getErrorMessage(error: unknown): string {
 
 /**
  * GET /api/products
- * Returns the current approved marketplace offer.
+ * Returns approved products from Notion with local fallback.
  */
 export async function GET() {
+  let products = marketplaceProducts.slice();
+
+  try {
+    const notionPages = await queryProducts({ property: "Status", select: { does_not_equal: "archived" } });
+
+    const mapped = notionPages
+      .map((page) => notionPageToProduct(page))
+      .filter((product): product is NonNullable<typeof product> => Boolean(product));
+
+    if (mapped.length > 0) {
+      products = mapped;
+    }
+  } catch (error) {
+    console.error("Notion product fetch failed:", error);
+  }
+
   const response = NextResponse.json({
-    products: marketplaceProducts,
-    total: marketplaceProducts.length,
+    products,
+    total: products.length,
   });
-  response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-  response.headers.set('Pragma', 'no-cache');
-  response.headers.set('Surrogate-Control', 'no-store');
+
+  response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  response.headers.set("Pragma", "no-cache");
+  response.headers.set("Surrogate-Control", "no-store");
+
   return response;
 }
 
 /**
  * POST /api/products
  * Create a new marketplace product (draft or directly approved).
- * Requires Authorization: Bearer <HANS_API_KEY>
+ * Requires Authorization: Bearer ***
  */
 export async function POST(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
-  const expectedKey = process.env.HANS_API_KEY;
+  const expectedKey = process.env.PRODUCTS_WRITE_KEY || process.env.HANS_API_KEY;
   if (!expectedKey || !authHeader || !authHeader.startsWith("Bearer ") || authHeader.slice(7) !== expectedKey) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

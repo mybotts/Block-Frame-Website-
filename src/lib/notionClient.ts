@@ -342,6 +342,7 @@ export function notionPageToProduct(page: any): MarketplaceProduct {
   }
 
   const title = getText(props.Title)
+
   return {
     id: page.id,
     title,

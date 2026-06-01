@@ -7,6 +7,8 @@ import CustomCursor from "@/components/CustomCursor";
 import Marketplace from "@/components/Marketplace";
 import Footer from "@/components/Footer";
 
+export const dynamic = "force-dynamic";
+
 export default function MarketplaceProductsPage() {
   return (
     <>
@@ -17,9 +19,8 @@ export default function MarketplaceProductsPage() {
       <SmoothScroller>
         <main className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center pt-40 pb-24 px-6 md:px-12 pointer-events-none">
           <div className="hero-radial-glow opacity-40 z-[-1]" />
-          
+
           <div className="w-full max-w-6xl mx-auto pointer-events-auto">
-            {/* Header */}
             <div className="mb-12 text-center">
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight mb-4">
                 <span className="text-gradient">Marketplace/Products</span>
@@ -29,7 +30,6 @@ export default function MarketplaceProductsPage() {
               </p>
             </div>
 
-            {/* Product grid */}
             <Marketplace />
           </div>
         </main>
