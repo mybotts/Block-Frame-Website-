@@ -28,10 +28,27 @@ export async function GET() {
 
     const mapped = notionPages
       .map((page) => notionPageToProduct(page))
-      .filter((product): product is NonNullable<typeof product> => Boolean(product));
+      .filter((product): product is NonNullable<typeof product> => Boolean(product.id));
 
     if (mapped.length > 0) {
-      products = mapped;
+      const notionByTitle = new Map(mapped.map((product) => [product.title.toLowerCase(), product]));
+
+      products = marketplaceProducts
+        .slice()
+        .map((product) => {
+          const notionProduct = notionByTitle.get(product.title.toLowerCase());
+          if (!notionProduct) return product;
+
+          return {
+            ...product,
+            title: notionProduct.title || product.title,
+            description: notionProduct.description || product.description,
+            category: notionProduct.category || product.category,
+            price: notionProduct.price || product.price,
+            image: notionProduct.image || product.image,
+            gradient: notionProduct.gradient || product.gradient,
+          };
+        });
     }
   } catch (error) {
     console.error("Notion product fetch failed:", error);
