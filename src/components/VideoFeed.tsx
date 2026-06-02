@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import ThumbnailPlayer from "@/components/ThumbnailPlayer";
 
 export default function VideoFeed() {
   const [videos, setVideos] = useState<Array<{ id: string; url: string; platform: string; title: string; excerpt: string }>>([]);
@@ -50,7 +51,6 @@ export default function VideoFeed() {
               }))
           );
 
-        // Resolve YouTube titles client-side
         const enriched: Array<{ id: string; url: string; platform: string; title: string; excerpt: string }> = await Promise.all(
           raw.map(async (item) => ({
             id: item.id,
@@ -61,25 +61,34 @@ export default function VideoFeed() {
           }))
         );
 
-        const cmsVideos = enriched;
-        setVideos(cmsVideos);
+        setVideos(enriched);
       } catch (err) {
         console.error("Failed to fetch CMS videos:", err);
         setError("Failed to load videos. Please try again later.");
       }
     };
+
     fetchVideos();
   }, []);
 
+  const getThumbnailSrc = (url: string, platform: string): string | null => {
+    if (platform === "youtube") {
+      const watchMatch = url.match(/v=([^&]+)/);
+      const shortsMatch = url.match(/youtube\.com\/shorts\/([^?&]+)/);
+      const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+      const videoId = watchMatch?.[1] || shortsMatch?.[1] || shortMatch?.[1];
+      if (!videoId) return null;
+      return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    }
+    return null;
+  };
+
   const getEmbedSrc = (url: string, platform: string) => {
     if (platform === "youtube") {
-      // Handle youtube.com/watch?v=ID
       const watchMatch = url.match(/v=([^&]+)/);
       if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
-      // Handle youtube.com/shorts/ID
       const shortsMatch = url.match(/youtube\.com\/shorts\/([^?&]+)/);
       if (shortsMatch) return `https://www.youtube.com/embed/${shortsMatch[1]}`;
-      // Handle youtu.be/ID
       const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
       if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`;
     }
@@ -91,7 +100,7 @@ export default function VideoFeed() {
       const match = url.match(/instagram\.com\/p\/([^?/]+)/);
       if (match) return `https://www.instagram.com/p/${match[1]}/embed/`;
     }
-    return url; // fallback
+    return url;
   };
 
   return (
@@ -107,32 +116,39 @@ export default function VideoFeed() {
           </p>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {videos.map((video) => (
-              <div key={video.id} className="glass-card overflow-hidden rounded-xl border border-white/10 shadow-lg transition-all hover:border-white/20 hover:shadow-xl">
-                {/* Video embed */}
-                <div className="relative w-full aspect-video bg-black/50">
-                  <iframe
-                    src={getEmbedSrc(video.url, video.platform)}
-                    title={video.title}
-                    className="absolute inset-0 w-full h-full border-0"
-                    allowFullScreen
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    loading="lazy"
-                  />
-                </div>
-                {/* Card body with title & subtitle */}
-                <div className="p-3">
-                  <p className="text-text-primary font-semibold text-sm mb-1 line-clamp-2">
-                    {video.title}
-                  </p>
-                  {video.excerpt && (
-                    <p className="text-text-secondary text-xs leading-relaxed line-clamp-2">
-                      {video.excerpt}
-                    </p>
+            {videos.map((video) => {
+              const thumbnail = getThumbnailSrc(video.url, video.platform);
+              const embedSrc = getEmbedSrc(video.url, video.platform);
+              return (
+                <div key={video.id} className="glass-card overflow-hidden rounded-xl border border-white/10 shadow-lg transition-all hover:border-white/20 hover:shadow-xl">
+                  {thumbnail ? (
+                    <ThumbnailPlayer src={thumbnail} embedSrc={embedSrc} />
+                  ) : (
+                    <div className="relative w-full aspect-video bg-black/50">
+                      <iframe
+                        src={embedSrc}
+                        title={video.title}
+                        className="absolute inset-0 w-full h-full border-0"
+                        allowFullScreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        loading="lazy"
+                      />
+                    </div>
                   )}
+
+                  <div className="p-3">
+                    <p className="text-text-primary font-semibold text-sm mb-1 line-clamp-2">
+                      {video.title}
+                    </p>
+                    {video.excerpt && (
+                      <p className="text-text-secondary text-xs leading-relaxed line-clamp-2">
+                        {video.excerpt}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

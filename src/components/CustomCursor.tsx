@@ -25,14 +25,16 @@ export default function CustomCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      setIsVisible(true); // Set visible after the first mouse move
 
       const target = e.target as HTMLElement;
-      setIsPointer(
+      const pointer =
         window.getComputedStyle(target).cursor === "pointer" ||
-          target.tagName === "BUTTON" ||
-          target.tagName === "A"
-      );
+        target.tagName === "BUTTON" ||
+        target.tagName === "A" ||
+        !!target.closest("a, button, [role='button']");
+
+      setIsPointer(pointer);
+      setIsVisible(pointer);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -52,10 +54,10 @@ export default function CustomCursor() {
       animate={{
         width: isPointer ? 80 : 40,
         height: isPointer ? 80 : 40,
-        backgroundColor: isPointer ? "rgba(255, 255, 255, 0.1)" : "transparent",
-        borderColor: isPointer ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 240, 255, 0.5)",
+        backgroundColor: isPointer ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 240, 255, 0.12)",
+        borderColor: isPointer ? "rgba(255, 255, 255, 0.45)" : "rgba(0, 240, 255, 0.45)",
       }}
-      className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full border-[1.5px] border-accent mix-blend-difference hidden md:block"
+      className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full border-[1.5px] border-accent hidden md:block"
     />
   );
 }
