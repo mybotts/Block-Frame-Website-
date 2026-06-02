@@ -75,7 +75,7 @@ export const services: Service[] = [
     gradient: "from-emerald-600/20 to-green-900/20",
     team: "AI & Automation",
   },
-    // ── Engineering ──────────────────────────────────────────────
+  // ── Engineering ──────────────────────────────────────────────
   {
     id: "web-apps",
     title: "App & Web Engineering",
@@ -109,7 +109,7 @@ export const services: Service[] = [
     id: "marketing-advisory",
     title: "Marketing & Advisory",
     description:
-      "Strategic growth consulting, go-to-market execution, and brand positioning. We don't just build products; we ensure they reach the right audience and scale efficiently.",
+      "Strategic growth consulting, go-to-market execution, and brand positioning. We do not just build products; we ensure they reach the right audience and scale efficiently.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-pink-600/20 to-rose-900/20",
     team: "Growth & Marketing",
@@ -146,7 +146,7 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-20",
     status: "approved",
     author: "BlockFrameLabs",
-    blocks: [{ id: "sample-1", type: "text", content: 
+    blocks: [{ id: "sample-1", type: "text", content:
       "Exploring how the next generation of language models will reshape autonomous agent architectures and enable truly self-directed AI systems.", order: 0 }],
   },
   {
@@ -159,7 +159,7 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-18",
     status: "approved",
     author: "BlockFrameLabs",
-    blocks: [{ id: "sample-2", type: "text", content: 
+    blocks: [{ id: "sample-2", type: "text", content:
       "DeepSeek's latest model challenges proprietary giants with state-of-the-art reasoning capabilities available to everyone.", order: 0 }],
   },
   {
@@ -172,7 +172,7 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-15",
     status: "approved",
     author: "BlockFrameLabs",
-    blocks: [{ id: "sample-3", type: "text", content: 
+    blocks: [{ id: "sample-3", type: "text", content:
       "How AI-first coding assistants are transforming software development workflows and what it means for engineering teams.", order: 0 }],
   },
   {
@@ -185,7 +185,7 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-19",
     status: "approved",
     author: "BlockFrameLabs",
-    blocks: [{ id: "sample-4", type: "text", content: 
+    blocks: [{ id: "sample-4", type: "text", content:
       "A step-by-step guide to creating an autonomous AI agent using LangChain, complete with tool usage, memory, and multi-step reasoning.", order: 0 }],
   },
   {
@@ -198,7 +198,7 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-16",
     status: "approved",
     author: "BlockFrameLabs",
-    blocks: [{ id: "sample-5", type: "text", content: 
+    blocks: [{ id: "sample-5", type: "text", content:
       "Essential observability, guardrails, evaluation, and fallback patterns every team needs before deploying AI agents into production workflows.", order: 0 }],
   },
   {
@@ -211,7 +211,7 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-12",
     status: "approved",
     author: "BlockFrameLabs",
-    blocks: [{ id: "sample-6", type: "text", content: 
+    blocks: [{ id: "sample-6", type: "text", content:
       "Learn how to leverage edge computing and serverless functions to deploy Next.js apps that handle millions of requests.", order: 0 }],
   },
   {
@@ -224,7 +224,7 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-10",
     status: "pending",
     author: "BlockFrameLabs",
-    blocks: [{ id: "sample-7", type: "text", content: 
+    blocks: [{ id: "sample-7", type: "text", content:
       "The convergence of vision and language models is creating new possibilities for AI applications across industries.", order: 0 }],
   },
   {
@@ -237,28 +237,28 @@ export const samplePosts: BlogPost[] = [
     date: "2026-03-22",
     status: "approved",
     author: "BlockFrameLabs",
-    blocks: [{ id: "sample-8", type: "text", content: 
+    blocks: [{ id: "sample-8", type: "text", content:
       "Break through the jargon and build an intuitive understanding of how neural networks learn, from perceptrons to deep architectures.", order: 0 }],
   },
   {
     id: "9",
     title: "Edge AI: Running Models on Resource-Constrained Devices",
     excerpt:
-      "How quantization, pruning, and knowledge distillation enable powerful AI inference on edge devices — from microcontrollers to smartphones.",
+      "How quantization, pruning, and knowledge distillation enable powerful AI inference on edge devices, from microcontrollers to smartphones.",
     category: "Tech",
     categorySlug: "tech",
     date: "2026-03-24",
     status: "approved",
     author: "BlockFrameLabs",
-    blocks: [{ id: "sample-9", type: "text", content: 
-      "How quantization, pruning, and knowledge distillation enable powerful AI inference on edge devices — from microcontrollers to smartphones.", order: 0 }],
+    blocks: [{ id: "sample-9", type: "text", content:
+      "How quantization, pruning, and knowledge distillation enable powerful AI inference on edge devices, from microcontrollers to smartphones.", order: 0 }],
   },
 ];
 
 export const marketplaceProducts: MarketplaceProduct[] = [
   {
     id: "proposal-led-agentic-outreach",
-    title: "Proposal-Led Agentic Outreach System",
+    title: "Proposal Led Agentic Outreach System",
     description:
       "A custom implementation that researches qualified prospects, creates personalized sample assets, publishes private proposal pages, and prepares controlled outreach through your existing CRM and mailbox.",
     category: "Growth Automation",
@@ -292,7 +292,7 @@ export const marketplaceProducts: MarketplaceProduct[] = [
   },
   {
     id: "blog-os-automated-notion-cms",
-    title: "Blog OS — Automated Notion-CMS Blog Publishing System",
+    title: "Blog OS Automated Notion CMS Blog Publishing System",
     description:
       "A managed, Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
     category: "Content Systems",

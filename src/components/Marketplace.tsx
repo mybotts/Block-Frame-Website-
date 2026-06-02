@@ -80,29 +80,28 @@ export default function Marketplace() {
         {products.map((product, index) => (
           <div
             key={product.id}
-            className={`glass-card group overflow-hidden fade-in-up fade-in-up-delay-${index + 1} ${product.tiers ? "lg:col-span-2" : ""}`}
+            className={`glass-card group overflow-hidden fade-in-up fade-in-up-delay-${
+              index + 1
+            } ${product.tiers ? "lg:col-span-2" : ""}`}
           >
-            {/* Product Image */}
             <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${product.gradient}`}>
-              <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-80"
-              />
-              {/* Price Tag */}
-              <div className="absolute top-4 right-4 z-10">
-                <span className="rounded-full bg-surface/90 backdrop-blur-sm border border-primary/30 px-3 py-1.5 text-sm font-bold text-primary-light shadow-lg">
-                  {product.price}
-                </span>
-              </div>
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent" />
+              {product.image && product.image.trim() ? (
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center p-4 text-center text-xs font-medium uppercase tracking-[0.12em] text-white/60">
+                  {product.title}
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/40 to-transparent" />
             </div>
 
-            {/* Content */}
             <div className="p-6">
-              {/* Category */}
               <div className="mb-3 flex flex-wrap gap-2">
                 <span className="category-pill bg-primary/15 text-primary-light">
                   {product.category}
@@ -114,13 +113,15 @@ export default function Marketplace() {
                 ) : null}
               </div>
 
-              {/* Title */}
               <h3 className="text-lg font-semibold text-text-primary mb-2 group-hover:text-primary-light transition-colors duration-300">
                 {product.title}
               </h3>
 
-              {/* Description */}
-              <p className={`text-sm text-text-secondary leading-relaxed ${product.tiers ? "mb-4" : "mb-5 line-clamp-3"}`}>
+              <p
+                className={`text-sm text-text-secondary leading-relaxed ${
+                  product.tiers ? "mb-4" : "mb-5 line-clamp-3"
+                }`}
+              >
                 {product.description}
               </p>
 
@@ -149,10 +150,9 @@ export default function Marketplace() {
                 </div>
               ) : null}
 
-              {/* CTA Button */}
               <Link
                 href={`/marketplace/products/${product.id}`}
-                className="block w-full rounded-xl bg-gradient-to-r from-primary to-primary-dark py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:from-primary-light hover:to-primary active:scale-[0.98] cursor-pointer"
+                className="block w-full rounded-xl bg-gradient-to-r from-primary to-primary-dark py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:from-primary-light hover:to-primary active:scale-[0.98]"
               >
                 {product.cta ?? "Get Access"}
               </Link>

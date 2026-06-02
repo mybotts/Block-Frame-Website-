@@ -43,7 +43,7 @@ const proofProducts = [
   },
   {
     id: "blog-os-automated-notion-cms",
-    title: "Blog OS — Notion-CMS Publishing System",
+    title: "Blog OS Automated Notion CMS Blog Publishing System",
     description: "Notion-backed research, drafting, approvals, scheduling, and publishing.",
     category: "Content Systems",
     price: "Starting at $5,000",
@@ -93,7 +93,7 @@ export default function Services() {
                 <div className="flex-1">
                   <span className="category-pill bg-primary/15 text-primary-light">Growth Automation</span>
                   <h3 className="mt-3 text-lg font-semibold tracking-tight text-white group-hover:text-primary-light transition-colors">
-                    Proposal-Led Agentic Outreach System
+                    Proposal Led Agentic Outreach System
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-text-secondary">
                     Research, personalization, private proposal pages, and controlled outreach tied to your mailbox and CRM.
@@ -113,7 +113,7 @@ export default function Services() {
                 <div className="flex-1">
                   <span className="category-pill bg-primary/15 text-primary-light">Content Systems</span>
                   <h3 className="mt-3 text-lg font-semibold tracking-tight text-white group-hover:text-primary-light transition-colors">
-                    Blog OS — Notion-CMS Publishing System
+                    Blog OS Automated Notion CMS Blog Publishing System
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-text-secondary">
                     Notion-backed research, drafting, approvals, scheduling, and publishing on a reliable cadence.
