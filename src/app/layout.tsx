@@ -8,9 +8,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BlockFrame Labs | Architecting Autonomy",
-  description: "High-performance web engineering and autonomous AI agent systems at the intelligent edge.",
-  keywords: ["AI Agents","AI Automation","OpenClaw","LLM Systems","Next.js","Agency"],
+  title: {
+    default: "BlockFrame Labs | Architecting Autonomy",
+    template: "%s | BlockFrame Labs",
+  },
+  description:
+    "AI agent systems, automation, and web engineering starting at $450. BlockFrame Labs designs practical autonomous agents, web platforms, and content systems for teams that need reliable execution.",
+  keywords: [
+    "AI Agents",
+    "AI Automation",
+    "OpenClaw",
+    "LLM Systems",
+    "Next.js",
+    "Agency",
+    "Autonomous Agents",
+    "Blog OS",
+    "Notion CMS Automation",
+  ],
   authors: [{ name: "BlockFrame Labs" }],
   metadataBase: new URL("https://www.blockframe.cloud"),
   alternates: {
@@ -25,7 +39,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "BlockFrame Labs | Architecting Autonomy",
-    description: "Engineering the next generation of intelligent AI agents and automation systems.",
+    description:
+      "Practical AI agent systems and web engineering starting at $450. We build autonomous agents, support workflows, web platforms, and content systems with reliable pricing.",
     url: "https://blockframe.cloud",
     siteName: "BlockFrame Labs",
     images: [
@@ -42,7 +57,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "BlockFrame Labs | Architecting Autonomy",
-    description: "High-performance systems at the intelligent edge.",
+    description:
+      "Practical AI agent systems, automation, and web engineering starting at $450. Reliable pricing. Real execution.",
     images: ["/images/og-preview.png"],
   }
 };
