@@ -51,6 +51,16 @@ export default function BlogsFeed() {
     fetchData();
   }, [filter]);
 
+  // Helper to extract YouTube ID from a video URL
+  const extractYouTubeId = (url: string): string | null => {
+    const patterns = [/youtube\.com\/(?:watch\?v=|embed\/|shorts\/)([^?&\s]+)/, /youtu\.be\/([^?&\s]+)/];
+    for (const p of patterns) {
+      const m = url.match(p);
+      if (m) return m[1];
+    }
+    return null;
+  };
+
   // Helper to get thumbnail URL from post blocks
   const getPostThumbnail = (post: BlogPost): string | undefined => {
     if (!post.blocks || post.blocks.length === 0) return undefined;
@@ -58,10 +68,20 @@ export default function BlogsFeed() {
     // Look for first image block
     for (const block of post.blocks) {
       if (block.type === "image") {
-        // Assuming block.content contains the image URL
         return block.content as string;
       }
     }
+    
+    // Fallback: check for video blocks — generate YouTube thumbnail
+    for (const block of post.blocks) {
+      if (block.type === "video") {
+        const videoId = extractYouTubeId(block.content);
+        if (videoId) {
+          return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        }
+      }
+    }
+    
     return undefined;
   };
 
