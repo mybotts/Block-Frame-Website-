@@ -120,7 +120,7 @@ export default function Services() {
                   </p>
                 </div>
                 <span className="shrink-0 rounded-full bg-surface/90 backdrop-blur-sm border border-primary/30 px-3 py-1.5 text-sm font-bold text-primary-light">
-                  Starting at $5,000
+                  Starting at $450
                 </span>
               </div>
             </Link>

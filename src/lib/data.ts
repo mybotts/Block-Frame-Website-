@@ -296,7 +296,7 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     description:
       "A managed, Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
     category: "Content Systems",
-    price: "Starting at $5,000",
+    price: "Starting at $450",
     image: "/images/cms-content-pipelines.png",
     gradient: "from-indigo-500/30 via-slate-900/40 to-emerald-600/30",
     badge: "Build + Handoff",

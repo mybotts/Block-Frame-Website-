@@ -89,7 +89,7 @@ const productSchema = {
   offers: {
     "@type": "Offer",
     priceCurrency: "USD",
-    price: "1950",
+    price: "450",
     availability: "https://schema.org/InStock",
     url: "https://www.blockframe.cloud/marketplace/products/blog-os-automated-notion-cms",
   },
