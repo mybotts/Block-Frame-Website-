@@ -96,6 +96,15 @@ export const services: Service[] = [
     gradient: "from-orange-600/20 to-amber-900/20",
     team: "Content & Creative",
   },
+  {
+    id: "ugc-video-production",
+    title: "UGC & Explainer Video Production",
+    description:
+      "Long and short-form UGC and explainer videos that build trust and drive conversions. From scripted product demos to authentic creator-style content — produced for YouTube, TikTok, Instagram, and your sales funnel.",
+    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1600",
+    gradient: "from-violet-600/20 to-fuchsia-900/20",
+    team: "Content & Creative",
+  },
   // ── Growth & Marketing ───────────────────────────────────────
   {
     id: "social-media",

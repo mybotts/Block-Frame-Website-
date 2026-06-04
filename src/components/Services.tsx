@@ -10,6 +10,7 @@ const priorityServices = [
   "web-apps",
   "managed-agent-services",
   "social-media",
+  "ugc-video-production",
 ];
 
 const serviceNotes: Record<string, string> = {
@@ -17,6 +18,7 @@ const serviceNotes: Record<string, string> = {
   "web-apps": "Frontend, dashboards, booking funnels, and production deployment.",
   "managed-agent-services": "Ongoing operation, updates, QA, and usage reporting.",
   "social-media": "Content systems and channel operations for creator-led growth.",
+  "ugc-video-production": "Long and short-form UGC and explainer videos for YouTube, TikTok, and your funnel.",
 };
 
 const serviceImages: Record<string, string> = {
@@ -24,6 +26,7 @@ const serviceImages: Record<string, string> = {
   "web-apps": "/images/uiux-design.png",
   "managed-agent-services": "/images/ai-agent-development.png",
   "social-media": "/images/cms-content-pipelines.png",
+  "ugc-video-production": "/images/ai-agent-development.png",
 };
 
 const proofProducts = [
