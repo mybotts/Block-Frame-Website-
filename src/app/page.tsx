@@ -13,25 +13,25 @@ const contentAreas = [
   {
     label: "Blogs",
     href: "/blogs",
-    description: "Approved posts and guides still flow through the existing content API.",
+    description: "Our own blog runs on the Blog OS we built — daily posts, zero manual effort. Proof that the system works.",
   },
   {
     label: "Videos",
     href: "/videos",
-    description: "Video embeds remain powered by approved CMS video blocks.",
+    description: "Video content produced by our team — from motion graphics to UGC-style explainers.",
   },
   {
     label: "Marketplace/Products",
     href: "/marketplace/products",
-    description: "Our current productized workflow and implementation offer.",
+    description: "Productized systems you can buy and deploy — built on real client work, not theory.",
   },
 ];
 
 const processSteps = [
-  ["01", "Map the workflow", "We define the community, content, support, or operations workflow before writing code."],
-  ["02", "Build the useful agent", "A narrow first release is wired into the tools your team already uses."],
-  ["03", "Connect the front end", "The public site, forms, marketplace, and content surfaces stay easy to operate."],
-  ["04", "Monitor and improve", "We review logs, feedback, and handoff quality so the system keeps getting better."],
+  ["01", "Map the workflow", "We start by understanding your actual process — what breaks, what takes too long, and what should be automated."],
+  ["02", "Build the system", "We construct the agent, tool, or platform around your specific needs. Narrow scope, fast delivery."],
+  ["03", "Connect and test", "We wire it into your existing tools, test with real data, and fix what doesn't work."],
+  ["04", "Hand off and support", "We document everything, train your team, and stay available when you need us."],
 ];
 
 const projectMailHref = "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs";
@@ -108,10 +108,10 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="section-kicker mb-5">AI agency for practical automation</p>
               <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-white md:text-7xl lg:text-8xl">
-                Build agents your team can actually use.
+                AI agents that do real work.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
-                BlockFrame Labs designs AI agents, support workflows, and web systems for teams that need clearer operations, faster responses, and a credible digital presence.
+                We build and deploy AI agents that handle support, content, and operations — so your team can focus on the decisions that actually need a human.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
@@ -142,10 +142,10 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-[#06070a]/25 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                     <div className="grid gap-3 rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md sm:grid-cols-3">
-                      {["Agents", "Web", "Content"].map((item) => (
+                      {["AI Agents", "Web Platforms", "Content Systems"].map((item) => (
                         <div key={item} className="rounded-2xl bg-white/[0.06] p-4">
                           <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary-light">{item}</span>
-                          <p className="mt-2 text-sm text-text-secondary">Production-ready</p>
+                          <p className="mt-2 text-sm text-text-secondary">Built and shipped</p>
                         </div>
                       ))}
                     </div>
@@ -171,9 +171,9 @@ export default function Home() {
           <section className="relative border-t border-white/10 bg-[#07090d] px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto w-full max-w-7xl">
               <div className="mb-12 max-w-3xl">
-                <p className="section-kicker mb-4">Delivery model</p>
+                <p className="section-kicker mb-4">How we work</p>
                 <h2 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
-                  Simple enough to trust. Structured enough to scale.
+                  Understand. Build. Hand off.
                 </h2>
               </div>
               <div className="grid gap-4 md:grid-cols-4">
@@ -205,10 +205,10 @@ export default function Home() {
               <div className="p-8 md:p-12">
                 <p className="section-kicker mb-4">Book a call</p>
                 <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">
-                  Talk through the workflow before committing to a build.
+                  Talk through what you need before committing.
                 </h2>
                 <p className="mt-5 text-lg leading-8 text-text-secondary">
-                  Use the call to review your community, content, marketplace, or agent workflow and decide whether the build is a good fit.
+                  No pitch. Just a conversation about your workflow, what's not working, and whether we can help.
                 </p>
                 <a
                   href={callHref}
@@ -225,20 +225,20 @@ export default function Home() {
           <section id="contact" className="relative border-t border-white/10 bg-[#07090d] px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
               <div>
-                <p className="section-kicker mb-4">Project intake</p>
+                <p className="section-kicker mb-4">Start here</p>
                 <h2 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
-                  Send the first details.
+                  Tell us what you need.
                 </h2>
                 <p className="mt-6 text-lg leading-8 text-text-secondary">
-                  This form still posts to the existing Google Form endpoint, so current lead capture and downstream sheets continue working.
+                  Describe your workflow, what's breaking, and what you'd like to automate. We'll respond with a practical next step.
                 </p>
               </div>
 
               <form className="grid gap-5" onSubmit={handleSubmit}>
                 {success ? (
                   <div className="rounded-3xl border border-primary/30 bg-primary/10 p-8">
-                    <h3 className="text-2xl font-semibold text-white">Request received.</h3>
-                    <p className="mt-3 text-text-secondary">Your details were submitted. BlockFrame Labs will follow up through the channel you provided.</p>
+                    <h3 className="text-2xl font-semibold text-white">Message received.</h3>
+                    <p className="mt-3 text-text-secondary">We'll review your request and get back to you within 24 hours.</p>
                     <button type="button" onClick={() => setSuccess(false)} className="mt-6 text-sm font-semibold text-primary-light">
                       Send another request
                     </button>
@@ -270,8 +270,8 @@ export default function Home() {
                       <input className={fieldClass} placeholder="Telegram, Discord, X, or phone" value={formData.contact} onChange={(e) => setFormData({ ...formData, contact: e.target.value })} />
                     </label>
                     <label className="grid gap-2 text-sm font-medium text-text-secondary">
-                      What should the system do?
-                      <textarea required rows={5} className={`${fieldClass} resize-none`} placeholder="Describe the agent, community, website, marketplace, or content workflow you need." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+                      What are you trying to automate?
+                      <textarea required rows={5} className={`${fieldClass} resize-none`} placeholder="e.g. We spend 10 hours a week on customer support replies. We want an AI agent that handles the common questions and escalates the rest." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
                     </label>
                     <button disabled={loading} className="min-h-14 rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60">
                       {loading ? "Sending..." : "Submit Project Request"}

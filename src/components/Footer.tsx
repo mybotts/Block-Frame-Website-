@@ -50,7 +50,7 @@ export default function Footer() {
             <span className="text-lg font-semibold tracking-tight text-white">BlockFrame Labs</span>
           </Link>
           <p className="mt-5 text-sm leading-6 text-text-secondary">
-            Practical AI agents, automation, and web systems for teams that need working infrastructure, not theatrics.
+            We build AI agents, web platforms, and content systems for teams that need working infrastructure — not slide decks.
           </p>
           <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light">
             Book a Call

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | BlockFrame Labs",
   },
   description:
-    "AI agent systems, automation, and web engineering starting at $450. BlockFrame Labs designs practical autonomous agents, web platforms, and content systems for teams that need reliable execution.",
+    "We build AI agents, web platforms, and content systems. BlockFrame Labs deploys practical automation for teams that need results, not experiments.",
   keywords: [
     "AI Agents",
     "AI Automation",

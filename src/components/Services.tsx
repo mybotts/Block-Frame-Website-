@@ -14,36 +14,36 @@ const priorityServices = [
 ];
 
 const serviceNotes: Record<string, string> = {
-  "ai-systems": "Agent workflows, tool access, monitoring, and deployment.",
-  "web-apps": "Frontend, dashboards, booking funnels, and production deployment.",
-  "managed-agent-services": "Ongoing operation, updates, QA, and usage reporting.",
-  "social-media": "Content systems and channel operations for creator-led growth.",
-  "ugc-video-production": "Long and short-form UGC and explainer videos for YouTube, TikTok, and your funnel.",
+  "ai-systems": "Autonomous agents for support, data, and operations.",
+  "web-apps": "Full-stack web platforms and mobile apps, built to scale.",
+  "managed-agent-services": "We run and maintain your agents — you get the results.",
+  "social-media": "Content systems and posting infrastructure that runs itself.",
+  "ugc-video-production": "UGC, explainers, and video ads — from script to publish.",
 };
 
 const serviceImages: Record<string, string> = {
   "ai-systems": "/images/ai-agent-development.png",
   "web-apps": "/images/uiux-design.png",
   "managed-agent-services": "/images/managed-agent-services.png",
-  "social-media": "/images/social-media.png",
+  "social-media": "/images/social-media.webp",
   "ugc-video-production": "/images/ugc-video-production.png",
 };
 
 const proofProducts = [
   {
     id: "proposal-led-agentic-outreach",
-    title: "Proposal-Led Agentic Outreach System",
-    description: "Research, personalization, private proposal pages, and controlled outreach.",
+    title: "Proposal-Led Agentic Outreach",
+    description: "Researches prospects, creates personalized sample assets, and sends proof-led outreach through your existing CRM.",
     category: "Growth Automation",
     price: "Starting at $1,250",
     href: "/marketplace/products/proposal-led-agentic-outreach",
   },
   {
     id: "blog-os-automated-notion-cms",
-    title: "Blog OS Automated Notion CMS Blog Publishing System",
-    description: "Notion-backed research, drafting, approvals, scheduling, and publishing.",
+    title: "Blog OS — Automated Content Pipeline",
+    description: "Runs our own blog: daily posts, zero manual effort. Notion-backed research, drafting, approvals, and publishing on autopilot.",
     category: "Content Systems",
-    price: "Starting at $5,000",
+    price: "Starting at $450",
     href: "/marketplace/products/blog-os-automated-notion-cms",
   },
 ];
@@ -61,22 +61,22 @@ export default function Services() {
             <div>
               <p className="section-kicker mb-4">Core services</p>
               <h2 className="max-w-2xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
-                Packaged AI delivery, built for business workflows.
+                What we build and ship.
               </h2>
             </div>
             <p className="max-w-xl text-lg leading-8 text-text-secondary md:justify-self-end">
-              Choose the outcome first, then we map the workflow, build the useful front end, and connect the right agent layer behind it.
+              From AI agents to web platforms to video — packaged for teams that need results, not experiments.
             </p>
           </div>
 
           <div className="mb-10">
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="section-kicker mb-2">Proof of Work</p>
-                <h3 className="text-2xl font-semibold tracking-tight text-white md:text-4xl">Selected implementations</h3>
+                <p className="section-kicker mb-2">Case studies</p>
+                <h3 className="text-2xl font-semibold tracking-tight text-white md:text-4xl">Built and deployed</h3>
               </div>
               <p className="max-w-xl text-sm leading-6 text-text-secondary">
-                Production systems we have already delivered. Not concept work.
+                Real systems we operate daily. Not demos, not slide decks.
               </p>
             </div>
           </div>

@@ -15,9 +15,9 @@ export const services: Service[] = [
   // ── AI & Automation ──────────────────────────────────────────
   {
     id: "ai-systems",
-    title: "AI Agents Deployment",
+    title: "AI Agent Deployment",
     description:
-      "Design, deployment, and management of autonomous AI agents and multi-agent systems. Featuring flagship OpenClaw integration, alongside KilowClaw and NemoClaw enterprise architectures.",
+      "We build and deploy autonomous AI agents that handle real tasks — from customer support to data pipelines. You get a working system, not a prototype.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-violet-600/20 to-indigo-900/20",
     team: "AI & Automation",
@@ -26,7 +26,7 @@ export const services: Service[] = [
     id: "ai-agents-local",
     title: "Local AI Agent Setup",
     description:
-      "Deploy autonomous AI agents on your own infrastructure. Full installation, configuration, and training for local, offline, or edge deployments. Complete control, data sovereignty, and zero external API dependencies.",
+      "Run AI agents on your own servers. Full control over your data, no third-party API costs, no rate limits. We handle the installation, configuration, and training.",
     image: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-violet-600/20 to-indigo-900/20",
     team: "AI & Automation",
@@ -35,16 +35,16 @@ export const services: Service[] = [
     id: "ai-agents-cloud",
     title: "Cloud-Based AI Agents",
     description:
-      "Scalable, managed AI agent services in the cloud. 24/7 operation, auto-scaling, global distribution, and enterprise-grade SLAs. Focus on outcomes; we handle infrastructure, updates, and reliability.",
+      "Managed AI agents that run 24/7 on reliable infrastructure. We handle scaling, monitoring, and updates so you can focus on results.",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-blue-600/20 to-sky-900/20",
     team: "AI & Automation",
   },
   {
     id: "autonomous-systems",
-    title: "Fully Autonomous Agents",
+    title: "Autonomous Agent Systems",
     description:
-      "End-to-end autonomous systems that perceive, decide, and act with minimal human oversight. From monitoring and incident response to data aggregation and trading — self-directing, self-correcting AI.",
+      "Multi-agent systems that coordinate, make decisions, and execute workflows with minimal human oversight. Built for operations that need to run themselves.",
     image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-teal-600/20 to-cyan-900/20",
     team: "AI & Automation",
@@ -53,16 +53,16 @@ export const services: Service[] = [
     id: "managed-agent-services",
     title: "Managed Agent Services",
     description:
-      "We operate AI agents as a service. No setup, no maintenance. Subscribe to ready-to-use agents for customer support, compliance monitoring, content generation, and more. Pay per use or monthly.",
+      "We operate your AI agents as a service. No setup, no maintenance. You subscribe to outcomes — we handle the infrastructure, updates, and reliability.",
     image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-orange-600/20 to-amber-900/20",
     team: "AI & Automation",
   },
   {
     id: "specialized-agent-dev",
-    title: "Specialized Agent Development and Management",
+    title: "Custom Agent Development",
     description:
-      "Custom AI agent development tailored to your unique business processes. We design, build, and operate specialized agents with deep workflow integration, continuous improvement, and full lifecycle management.",
+      "Purpose-built AI agents designed around your specific workflows. We build, deploy, and continuously improve agents that fit how your team actually works.",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-indigo-600/20 to-purple-900/20",
     team: "AI & Automation",
@@ -70,9 +70,9 @@ export const services: Service[] = [
   // ── Engineering ──────────────────────────────────────────────
   {
     id: "web-apps",
-    title: "App & Web Engineering",
+    title: "Web & App Engineering",
     description:
-      "End-to-end development, deployment, and management of high-performance mobile apps and web platforms. Built for scale, security, and exceptional user experiences.",
+      "Full-stack development of web platforms and mobile apps. Built for performance, security, and the kind of user experience that keeps people coming back.",
     image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-emerald-600/20 to-green-900/20",
     team: "Engineering",
@@ -80,27 +80,27 @@ export const services: Service[] = [
   // ── Content & Creative ───────────────────────────────────────
   {
     id: "motion-graphics",
-    title: "Motion Graphics VFX",
+    title: "Motion Graphics & VFX",
     description:
-      "Stunning, high-conversion motion graphic videos. We transform complex ideas into visually engaging technical explainers, product announcements, and brand stories.",
+      "Motion graphics that explain complex products in seconds. We turn technical features into visual stories that convert viewers into customers.",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-teal-600/20 to-cyan-900/20",
     team: "Content & Creative",
   },
   {
     id: "ads-video",
-    title: "Video Ads Creation",
+    title: "Video Ad Production",
     description:
-      "High-impact, conversion-focused video advertisements engineered for TikTok, YouTube Shorts, and Instagram. Stop the scroll and scale your user acquisition.",
+      "Short-form video ads engineered for TikTok, YouTube Shorts, and Instagram. Built to stop the scroll and drive measurable acquisition.",
     image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-orange-600/20 to-amber-900/20",
     team: "Content & Creative",
   },
   {
     id: "ugc-video-production",
-    title: "UGC & Explainer Video Production",
+    title: "UGC & Explainer Videos",
     description:
-      "Long and short-form UGC and explainer videos that build trust and drive conversions. From scripted product demos to authentic creator-style content — produced for YouTube, TikTok, Instagram, and your sales funnel.",
+      "Long and short-form video content that builds trust. From scripted product demos to authentic creator-style content — produced for YouTube, TikTok, and your sales funnel.",
     image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-violet-600/20 to-fuchsia-900/20",
     team: "Content & Creative",
@@ -108,18 +108,18 @@ export const services: Service[] = [
   // ── Growth & Marketing ───────────────────────────────────────
   {
     id: "social-media",
-    title: "Social Media Architecture",
+    title: "Social Media Systems",
     description:
-      "Complete social media development and management. We engineer organic growth strategies, community building, and viral content pipelines customized for your niche.",
+      "We build the content systems and posting infrastructure that keep your social channels active and growing — without requiring daily manual effort.",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-emerald-600/20 to-green-900/20",
     team: "Growth & Marketing",
   },
   {
     id: "social-ads-campaigns",
-    title: "Social Media Ad Campaigns",
+    title: "Paid Ad Campaigns",
     description:
-      "AI-optimized ad campaigns across TikTok, Instagram, YouTube, and X. Creative production, targeting, budget optimization, and performance reporting. Drive acquisition and revenue with data-backed campaigns.",
+      "Data-backed ad campaigns across TikTok, Instagram, YouTube, and X. We handle creative production, targeting, budget optimization, and reporting.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-pink-600/20 to-rose-900/20",
     team: "Growth & Marketing",
@@ -255,7 +255,7 @@ export const marketplaceProducts: MarketplaceProduct[] = [
       "A custom implementation that researches qualified prospects, creates personalized sample assets, publishes private proposal pages, and prepares controlled outreach through your existing CRM and mailbox.",
     category: "Growth Automation",
     price: "Starting at $1,250",
-    image: "/images/agentic-outreach-engine.png",
+    image: "/images/agentic-outreach-engine.webp",
     gradient: "from-teal-500/30 via-slate-900/40 to-amber-700/30",
     badge: "Custom build",
     cta: "Book implementation call",
