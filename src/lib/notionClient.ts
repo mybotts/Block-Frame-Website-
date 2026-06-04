@@ -134,13 +134,23 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
     : ''
 
   let blocks: Block[] = []
+  let contentHadBlocks = false
   if (rawContent) {
     blocks = parseBlocks(rawContent)
+    // Check if Content prop had actual block JSON (not just plain text)
+    try {
+      const parsed = JSON.parse(rawContent)
+      contentHadBlocks = Array.isArray(parsed) && parsed.length > 0 && parsed[0].type
+    } catch {
+      // Not JSON — plain text fallback, contentHadBlocks stays false
+    }
   }
 
-  // If Content empty, fetch child blocks from Notion
-  if (blocks.length === 0) {
-    // console.log(`[INFO] Content empty for ${pageId}, fetching child blocks...`)
+  // Fetch child blocks if:
+  // - Content was empty (blocks.length === 0), OR
+  // - Content had plain text but no structured blocks (need images/videos from children)
+  const needsChildBlocks = blocks.length === 0 || !contentHadBlocks
+  if (needsChildBlocks) {
     try {
       let cursor: string | null = null
       const allChildren: any[] = []
@@ -154,7 +164,7 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
         cursor = res.next_cursor
       } while (cursor != null)
 
-      blocks = allChildren.map((block: any, idx: number) => {
+      const childBlocks = allChildren.map((block: any, idx: number) => {
         let type: Block['type'] = 'text'
         let content = ''
         let language: string | undefined = undefined
@@ -217,6 +227,22 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
         if (language) blockObj.language = language
         return blockObj
       }).filter(b => b.content && b.content.length > 0)
+
+      if (contentHadBlocks) {
+        // Content had structured JSON blocks — use them as-is (child blocks already included)
+        // blocks already set from parseBlocks above
+      } else if (blocks.length > 0) {
+        // Content had plain text — merge: text block first, then child blocks (images, videos, etc.)
+        // Re-index child blocks to come after the text block
+        const offset = blocks.length
+        childBlocks.forEach((cb: any, i: number) => {
+          cb.order = offset + i
+        })
+        blocks = [...blocks, ...childBlocks]
+      } else {
+        // No content at all — use child blocks only
+        blocks = childBlocks
+      }
     } catch (err) {
       console.warn('Failed to fetch child blocks for', pageId, err)
     }
@@ -289,7 +315,9 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
   }
 }
 
-// Helper to convert Notion page to BlogPost type (legacy; uses Content property only)
+// Note: This is sync-only and cannot fetch child blocks.
+// For full posts with child blocks (images, videos), use fetchBlogPostWithBlocks instead.
+// The list endpoint uses this; individual post pages use fetchBlogPostWithBlocks.
 export function notionPageToBlogPost(page: any): BlogPost {
   const props = page.properties
   const getText = (prop: any) => {
@@ -297,7 +325,8 @@ export function notionPageToBlogPost(page: any): BlogPost {
     if (prop.title) return prop.title[0]?.plain_text || ''
     if (prop.rich_text) return prop.rich_text[0]?.plain_text || ''
     if (prop.number) return prop.number.toString()
-    if (prop.select) return prop.select.name
+    if (prop.select) return prop.select.name;
+    if (prop.url) return prop.url
     if (prop.date) return prop.date.start
     return ''
   }
@@ -310,7 +339,25 @@ export function notionPageToBlogPost(page: any): BlogPost {
     ? props.Content.rich_text.map((t: any) => t.plain_text).join('')
     : (getText(props.Content) || '')
 
-  const blocks: Block[] = parseBlocks(rawContent)
+  let blocks: Block[] = []
+  let contentHadBlocks = false
+  if (rawContent) {
+    blocks = parseBlocks(rawContent)
+    try {
+      const parsed = JSON.parse(rawContent)
+      contentHadBlocks = Array.isArray(parsed) && parsed.length > 0 && parsed[0].type
+    } catch {
+      // Plain text
+    }
+  }
+
+  // If Content had plain text (no block JSON), try to get YouTube thumbnail from child blocks
+  // This is sync so we can't fetch children here — but we can use the Excerpt to provide a preview
+  // The full post page (fetchBlogPostWithBlocks) handles child block fetching properly
+  if (!contentHadBlocks && blocks.length === 0 && rawContent) {
+    // Has plain text content but no blocks — create a single text block
+    blocks = [{ id: 'content-text', type: 'text' as const, content: rawContent, order: 0 }]
+  }
 
   // Backward compatible content string: concatenate text and markdown blocks
   const contentString = blocks
