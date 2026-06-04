@@ -195,9 +195,7 @@ export default function BlogOsProductPage() {
                 <ol className="mt-5 space-y-4">
                   {implementationSteps.map((step, index) => (
                     <li key={step} className="flex gap-4 text-sm leading-7 text-text-secondary">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-xs font-semibold text-primary-light">
-                        {index + 1}
-                      </span>
+                      <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-primary-light" />
                       <span>{step}</span>
                     </li>
                   ))}
