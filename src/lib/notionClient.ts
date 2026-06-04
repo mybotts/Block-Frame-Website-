@@ -241,10 +241,10 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
   const status = getText(props.Status).toLowerCase() as 'pending' | 'approved' | 'rejected'
   const author = getText(props.Author) || 'BlockFrameLabs'
 
-  // Clean up blocks: remove frontmatter artifacts, duplicates, extra h1
+  // Clean up blocks: remove frontmatter artifacts, duplicates, title-matching h1
   {
     const cleaned: Block[] = []
-    let firstH1Seen = false
+    let titleH1Skipped = false
     for (const block of blocks) {
       if (block.type === 'text' || block.type === 'markdown') {
         const content = block.content
@@ -256,10 +256,13 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
         if (cleaned.length > 0 && cleaned[cleaned.length - 1].type === block.type && cleaned[cleaned.length - 1].content === content) {
           continue
         }
-        // Allow only first h1 heading
-        if (content.startsWith('# ')) {
-          if (firstH1Seen) continue
-          firstH1Seen = true
+        // Skip first h1 that matches the post title (avoids duplicate title rendering)
+        if (content.startsWith('# ') && !titleH1Skipped) {
+          const h1Text = content.replace(/^# /, '').trim()
+          if (h1Text.toLowerCase() === title.toLowerCase()) {
+            titleH1Skipped = true
+            continue
+          }
         }
       }
       cleaned.push(block)
@@ -351,5 +354,54 @@ export function notionPageToProduct(page: any): MarketplaceProduct {
     price: getText(props.Price),
     image: getText(props.Image) || '/images/placeholder.png',
     gradient: getText(props.Gradient) || 'from-primary/30 to-primary-dark/30',
+  }
+}
+
+// Convert a Block to a Notion block object and append as children
+export async function appendBlocksToPage(pageId: string, blocks: Block[]) {
+  const notionBlocks: any[] = blocks.map((block) => {
+    switch (block.type) {
+      case 'text':
+      case 'markdown': {
+        const c = block.content;
+        if (c.startsWith('# ')) {
+          return { type: 'heading_1', heading_1: { rich_text: [{ type: 'text', text: { content: c.replace(/^# /, '') } }] } };
+        }
+        if (c.startsWith('## ')) {
+          return { type: 'heading_2', heading_2: { rich_text: [{ type: 'text', text: { content: c.replace(/^## /, '') } }] } };
+        }
+        if (c.startsWith('### ')) {
+          return { type: 'heading_3', heading_3: { rich_text: [{ type: 'text', text: { content: c.replace(/^### /, '') } }] } };
+        }
+        if (c.startsWith('- ')) {
+          return { type: 'bulleted_list_item', bulleted_list_item: { rich_text: [{ type: 'text', text: { content: c.replace(/^- /, '') } }] } };
+        }
+        return { type: 'paragraph', paragraph: { rich_text: [{ type: 'text', text: { content: c } }] } };
+      }
+      case 'image':
+        return { type: 'image', image: { type: 'external', external: { url: block.content } } };
+      case 'video':
+        return { type: 'video', video: { type: 'external', external: { url: block.content } } };
+      case 'code':
+        return { type: 'code', code: { language: block.language || 'plain text', rich_text: [{ type: 'text', text: { content: block.content } }] } };
+      case 'bookmark':
+        try {
+          const data = JSON.parse(block.content);
+          return { type: 'bookmark', bookmark: { url: data.url, caption: data.caption ? [{ type: 'text', text: { content: data.caption } }] : [] } };
+        } catch {
+          return { type: 'paragraph', paragraph: { rich_text: [{ type: 'text', text: { content: block.content } }] } };
+        }
+      default:
+        return { type: 'paragraph', paragraph: { rich_text: [{ type: 'text', text: { content: block.content } }] } };
+    }
+  });
+
+  // Append in batches of 100 (Notion API limit)
+  for (let i = 0; i < notionBlocks.length; i += 100) {
+    const batch = notionBlocks.slice(i, i + 100);
+    await notion.blocks.children.append({
+      block_id: pageId,
+      children: batch,
+    });
   }
 }

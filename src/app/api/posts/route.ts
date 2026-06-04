@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { queryPosts, fetchBlogPostWithBlocks, createPostPage, serializeBlocks } from "@/lib/notionClient";
+import { queryPosts, fetchBlogPostWithBlocks, createPostPage, appendBlocksToPage } from "@/lib/notionClient";
 import { Block } from "@/lib/types";
 
 /**
@@ -68,7 +68,8 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { title, excerpt, content, category, status = 'pending', date, author, blocks } = body;
+    const { title, excerpt, content, category, status = 'pending', date, author } = body;
+    let { blocks } = body as { blocks?: Block[] };
 
     if (!title || !category) {
       return NextResponse.json(
@@ -89,15 +90,10 @@ export async function POST(request: NextRequest) {
       properties.Excerpt = { rich_text: [{ text: { content: excerpt } }] };
     }
 
-    // Content: store blocks as JSON. If blocks provided, serialize; else if content provided, wrap as single block; else empty array.
-    if (blocks) {
-      properties.Content = { rich_text: [{ text: { content: serializeBlocks(blocks) } }] };
-    } else if (content) {
-      const singleBlock: Block[] = [{ type: 'text', content, order: 0, id: `block-${Date.now()}` }];
-      properties.Content = { rich_text: [{ text: { content: serializeBlocks(singleBlock) } }] };
-    } else {
-      // No content blocks; store empty array
-      properties.Content = { rich_text: [{ text: { content: '[]' } }] };
+    // Content: leave Content property empty, store blocks as child blocks in Notion
+    if (!blocks && content) {
+      // Wrap plain text as a single text block
+      blocks = [{ type: 'text' as const, content, order: 0, id: `block-${Date.now()}` }];
     }
 
     const postDate = date || new Date().toISOString().split('T')[0];
@@ -107,6 +103,11 @@ export async function POST(request: NextRequest) {
     }
 
     const page = await createPostPage(properties);
+
+    // Append blocks as child blocks (not Content property)
+    if (blocks && blocks.length > 0) {
+      await appendBlocksToPage(page.id, blocks);
+    }
 
     return NextResponse.json({ id: page.id, status: notionStatus }, { status: 201 });
   } catch (error: any) {
