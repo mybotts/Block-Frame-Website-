@@ -27,7 +27,7 @@ export const services: Service[] = [
     title: "Local AI Agent Setup",
     description:
       "Deploy autonomous AI agents on your own infrastructure. Full installation, configuration, and training for local, offline, or edge deployments. Complete control, data sovereignty, and zero external API dependencies.",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1600",
+    image: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-violet-600/20 to-indigo-900/20",
     team: "AI & Automation",
   },
@@ -63,7 +63,7 @@ export const services: Service[] = [
     title: "Specialized Agent Development and Management",
     description:
       "Custom AI agent development tailored to your unique business processes. We design, build, and operate specialized agents with deep workflow integration, continuous improvement, and full lifecycle management.",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1600",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-indigo-600/20 to-purple-900/20",
     team: "AI & Automation",
   },
@@ -83,7 +83,7 @@ export const services: Service[] = [
     title: "Motion Graphics VFX",
     description:
       "Stunning, high-conversion motion graphic videos. We transform complex ideas into visually engaging technical explainers, product announcements, and brand stories.",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-teal-600/20 to-cyan-900/20",
     team: "Content & Creative",
   },
