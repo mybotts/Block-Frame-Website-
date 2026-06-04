@@ -233,6 +233,67 @@ export const samplePosts: BlogPost[] = [
       "A visual guide to how neural networks learn, from perceptrons to deep architectures.", order: 0 }],
   },
   {
+    id: "10",
+    title: "What Are AI Agents: A Practical Breakdown",
+    excerpt:
+      "AI agents are not just chatbots. They are systems that perceive, decide, and act on their own. Here is how they work and where they make sense.",
+    category: "Educational",
+    categorySlug: "educational",
+    date: "2026-04-01",
+    status: "approved",
+    author: "BlockFrameLabs",
+    blocks: [
+      {
+        id: "agents-img-1",
+        type: "image",
+        content: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1600",
+        order: 0,
+      },
+      {
+        id: "agents-text-1",
+        type: "text",
+        content: "Most people hear \"AI agent\" and think of a chatbot that answers questions. That is only one narrow slice. A real AI agent can take in information, make decisions, and carry out a sequence of actions toward a specific goal. It is the difference between a tool that waits for instructions and a teammate that works independently.",
+        order: 1,
+      },
+      {
+        id: "agents-h2-1",
+        type: "text",
+        content: "## The three parts of an AI agent",
+        order: 2,
+      },
+      {
+        id: "agents-text-2",
+        type: "text",
+        content: "Every AI agent has three core components:\n\n**Perception.** The agent takes in data. This could be a user message, an API response, a database query, or a sensor reading. The key is that it can interpret what it is receiving.\n\n**Reasoning.** The agent decides what to do next. This is where the language model comes in. It evaluates the current state, considers the goal, and picks the best next step.\n\n**Action.** The agent executes. It sends an email, writes to a database, calls an API, or triggers another agent. The action produces a result, and the cycle continues.",
+        order: 3,
+      },
+      {
+        id: "agents-text-3",
+        type: "text",
+        content: "## Where agents fail",
+        order: 4,
+      },
+      {
+        id: "agents-text-4",
+        type: "text",
+        content: "Agents are not magic. They break down in predictable ways. They hallucinate actions that look correct but are wrong. They get stuck in loops when a step keeps failing. They waste tokens on tasks a simple script could handle faster. And they need guardrails, without them, a small error compounds into a costly mistake.",
+        order: 5,
+      },
+      {
+        id: "agents-text-5",
+        type: "text",
+        content: "## When to use an agent",
+        order: 6,
+      },
+      {
+        id: "agents-text-6",
+        type: "text",
+        content: "You need an agent when the task requires judgment across multiple steps, when the steps depend on previous results, and when the exact sequence cannot be predetermined. For fixed, linear workflows, a script is better. For open-ended tasks where each step informs the next, an agent earns its cost.",
+        order: 7,
+      },
+    ],
+  },
+  {
     id: "9",
     title: "Edge AI: Running Models on Resource-Constrained Devices",
     excerpt:
