@@ -13,22 +13,22 @@ const contentAreas = [
   {
     label: "Blogs",
     href: "/blogs",
-    description: "Our own blog runs on the Blog OS we built — daily posts, zero manual effort. Proof that the system works.",
+    description: "Our own blog runs on the Blog OS we built. Daily posts, zero manual effort. Proof that the system works.",
   },
   {
     label: "Videos",
     href: "/videos",
-    description: "Video content produced by our team — from motion graphics to UGC-style explainers.",
+    description: "Video content produced by our team, from motion graphics to UGC-style explainers.",
   },
   {
     label: "Marketplace/Products",
     href: "/marketplace/products",
-    description: "Productized systems you can buy and deploy — built on real client work, not theory.",
+    description: "Productized systems you can buy and deploy. Built on real client work, not theory.",
   },
 ];
 
 const processSteps = [
-  ["01", "Map the workflow", "We start by understanding your actual process — what breaks, what takes too long, and what should be automated."],
+  ["01", "Map the workflow", "We start by understanding your actual process. What breaks, what takes too long, and what should be automated."],
   ["02", "Build the system", "We construct the agent, tool, or platform around your specific needs. Narrow scope, fast delivery."],
   ["03", "Connect and test", "We wire it into your existing tools, test with real data, and fix what doesn't work."],
   ["04", "Hand off and support", "We document everything, train your team, and stay available when you need us."],
@@ -111,7 +111,7 @@ export default function Home() {
                 AI agents that do real work.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
-                We build and deploy AI agents that handle support, content, and operations — so your team can focus on the decisions that actually need a human.
+                We build and deploy AI agents that handle support, content, and operations, so your team can focus on the decisions that actually need a human.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">

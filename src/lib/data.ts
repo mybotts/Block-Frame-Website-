@@ -17,7 +17,7 @@ export const services: Service[] = [
     id: "ai-systems",
     title: "AI Agent Deployment",
     description:
-      "We build and deploy autonomous AI agents that handle real tasks — from customer support to data pipelines. You get a working system, not a prototype.",
+      "We build and deploy autonomous AI agents that handle real tasks, from customer support to data pipelines. You get a working system, not a prototype.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-violet-600/20 to-indigo-900/20",
     team: "AI & Automation",
@@ -53,7 +53,7 @@ export const services: Service[] = [
     id: "managed-agent-services",
     title: "Managed Agent Services",
     description:
-      "We operate your AI agents as a service. No setup, no maintenance. You subscribe to outcomes — we handle the infrastructure, updates, and reliability.",
+      "We operate your AI agents as a service. No setup, no maintenance. You subscribe to outcomes. We handle the infrastructure, updates, and reliability.",
     image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-orange-600/20 to-amber-900/20",
     team: "AI & Automation",
@@ -100,7 +100,7 @@ export const services: Service[] = [
     id: "ugc-video-production",
     title: "UGC & Explainer Videos",
     description:
-      "Long and short-form video content that builds trust. From scripted product demos to authentic creator-style content — produced for YouTube, TikTok, and your sales funnel.",
+      "Long and short-form video content that builds trust. From scripted product demos to authentic creator-style content, produced for YouTube, TikTok, and your sales funnel.",
     image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-violet-600/20 to-fuchsia-900/20",
     team: "Content & Creative",
@@ -110,7 +110,7 @@ export const services: Service[] = [
     id: "social-media",
     title: "Social Media Systems",
     description:
-      "We build the content systems and posting infrastructure that keep your social channels active and growing — without requiring daily manual effort.",
+      "We build the content systems and posting infrastructure that keep your social channels active and growing, without requiring daily manual effort.",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1600",
     gradient: "from-emerald-600/20 to-green-900/20",
     team: "Growth & Marketing",
@@ -132,118 +132,118 @@ export const samplePosts: BlogPost[] = [
     id: "1",
     title: "GPT-5 and the Future of Autonomous Agents",
     excerpt:
-      "Exploring how the next generation of language models will reshape autonomous agent architectures and enable truly self-directed AI systems.",
+      "What GPT-5 means for autonomous agents: better reasoning, longer memory, and fewer hallucinations.",
     category: "AI News",
     categorySlug: "ai-news",
     date: "2026-03-20",
     status: "approved",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-1", type: "text", content:
-      "Exploring how the next generation of language models will reshape autonomous agent architectures and enable truly self-directed AI systems.", order: 0 }],
+      "What GPT-5 means for autonomous agents: better reasoning, longer memory, and fewer hallucinations.", order: 0 }],
   },
   {
     id: "2",
     title: "DeepSeek V4: Open-Source Breakthrough in Reasoning",
     excerpt:
-      "DeepSeek's latest model challenges proprietary giants with state-of-the-art reasoning capabilities available to everyone.",
+      "DeepSeek's latest model matches proprietary rivals on reasoning benchmarks, and it is open-source.",
     category: "AI News",
     categorySlug: "ai-news",
     date: "2026-03-18",
     status: "approved",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-2", type: "text", content:
-      "DeepSeek's latest model challenges proprietary giants with state-of-the-art reasoning capabilities available to everyone.", order: 0 }],
+      "DeepSeek's latest model matches proprietary rivals on reasoning benchmarks, and it is open-source.", order: 0 }],
   },
   {
     id: "3",
     title: "The Rise of AI-Native Development Tools",
     excerpt:
-      "How AI-first coding assistants are transforming software development workflows and what it means for engineering teams.",
+      "AI-first coding tools are changing how engineering teams write and ship software.",
     category: "AI News",
     categorySlug: "ai-news",
     date: "2026-03-15",
     status: "approved",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-3", type: "text", content:
-      "How AI-first coding assistants are transforming software development workflows and what it means for engineering teams.", order: 0 }],
+      "AI-first coding tools are changing how engineering teams write and ship software.", order: 0 }],
   },
   {
     id: "4",
     title: "Building Your First AI Agent with LangChain",
     excerpt:
-      "A step-by-step guide to creating an autonomous AI agent using LangChain, complete with tool usage, memory, and multi-step reasoning.",
+      "A step-by-step guide to building an AI agent with LangChain, including tools, memory, and multi-step reasoning.",
     category: "Guides",
     categorySlug: "guides",
     date: "2026-03-19",
     status: "approved",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-4", type: "text", content:
-      "A step-by-step guide to creating an autonomous AI agent using LangChain, complete with tool usage, memory, and multi-step reasoning.", order: 0 }],
+      "A step-by-step guide to building an AI agent with LangChain, including tools, memory, and multi-step reasoning.", order: 0 }],
   },
   {
     id: "5",
     title: "AI Agent Reliability: The Complete Production Checklist",
     excerpt:
-      "Essential observability, guardrails, evaluation, and fallback patterns every team needs before deploying AI agents into production workflows.",
+      "The checklist we use before putting any AI agent into production.",
     category: "Guides",
     categorySlug: "guides",
     date: "2026-03-16",
     status: "approved",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-5", type: "text", content:
-      "Essential observability, guardrails, evaluation, and fallback patterns every team needs before deploying AI agents into production workflows.", order: 0 }],
+      "The checklist we use before putting any AI agent into production.", order: 0 }],
   },
   {
     id: "6",
     title: "Deploying Next.js at Scale with Edge Functions",
     excerpt:
-      "Learn how to leverage edge computing and serverless functions to deploy Next.js apps that handle millions of requests.",
+      "How to use edge computing and serverless functions to deploy Next.js apps that handle millions of requests.",
     category: "Guides",
     categorySlug: "guides",
     date: "2026-03-12",
     status: "approved",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-6", type: "text", content:
-      "Learn how to leverage edge computing and serverless functions to deploy Next.js apps that handle millions of requests.", order: 0 }],
+      "How to use edge computing and serverless functions to deploy Next.js apps that handle millions of requests.", order: 0 }],
   },
   {
     id: "7",
     title: "Multi-Modal AI: Combining Vision and Language",
     excerpt:
-      "The convergence of vision and language models is creating new possibilities for AI applications across industries.",
+      "Vision and language models are merging. Here is what that means for AI applications.",
     category: "AI News",
     categorySlug: "ai-news",
     date: "2026-03-10",
     status: "pending",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-7", type: "text", content:
-      "The convergence of vision and language models is creating new possibilities for AI applications across industries.", order: 0 }],
+      "Vision and language models are merging. Here is what that means for AI applications.", order: 0 }],
   },
   {
     id: "8",
     title: "Understanding Neural Networks: A Visual Introduction",
     excerpt:
-      "Break through the jargon and build an intuitive understanding of how neural networks learn, from perceptrons to deep architectures.",
+      "A visual guide to how neural networks learn, from perceptrons to deep architectures.",
     category: "Educational",
     categorySlug: "educational",
     date: "2026-03-22",
     status: "approved",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-8", type: "text", content:
-      "Break through the jargon and build an intuitive understanding of how neural networks learn, from perceptrons to deep architectures.", order: 0 }],
+      "A visual guide to how neural networks learn, from perceptrons to deep architectures.", order: 0 }],
   },
   {
     id: "9",
     title: "Edge AI: Running Models on Resource-Constrained Devices",
     excerpt:
-      "How quantization, pruning, and knowledge distillation enable powerful AI inference on edge devices, from microcontrollers to smartphones.",
+      "How quantization and pruning let AI models run on phones, microcontrollers, and edge devices.",
     category: "Tech",
     categorySlug: "tech",
     date: "2026-03-24",
     status: "approved",
     author: "BlockFrameLabs",
     blocks: [{ id: "sample-9", type: "text", content:
-      "How quantization, pruning, and knowledge distillation enable powerful AI inference on edge devices, from microcontrollers to smartphones.", order: 0 }],
+      "How quantization and pruning let AI models run on phones, microcontrollers, and edge devices.", order: 0 }],
   },
 ];
 
