@@ -7,7 +7,6 @@ import Link from "next/link";
 
 const priorityServices = [
   "ai-systems",
-  "community-moderator-agents",
   "web-apps",
   "managed-agent-services",
   "social-media",
@@ -16,7 +15,6 @@ const priorityServices = [
 
 const serviceNotes: Record<string, string> = {
   "ai-systems": "Agent workflows, tool access, monitoring, and deployment.",
-  "community-moderator-agents": "Discord and Telegram support agents for fast response and safer communities.",
   "web-apps": "Frontend, dashboards, booking funnels, and production deployment.",
   "managed-agent-services": "Ongoing operation, updates, QA, and usage reporting.",
   "social-media": "Content systems and channel operations for creator-led growth.",
@@ -25,7 +23,6 @@ const serviceNotes: Record<string, string> = {
 
 const serviceImages: Record<string, string> = {
   "ai-systems": "/images/ai-agent-development.png",
-  "community-moderator-agents": "/images/cms-content-pipelines.png",
   "web-apps": "/images/uiux-design.png",
   "managed-agent-services": "/images/ai-agent-development.png",
   "social-media": "/images/cms-content-pipelines.png",
