@@ -98,15 +98,6 @@ export const services: Service[] = [
   },
   // ── Growth & Marketing ───────────────────────────────────────
   {
-    id: "marketing-advisory",
-    title: "Marketing & Advisory",
-    description:
-      "Strategic growth consulting, go-to-market execution, and brand positioning. We do not just build products; we ensure they reach the right audience and scale efficiently.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600",
-    gradient: "from-pink-600/20 to-rose-900/20",
-    team: "Growth & Marketing",
-  },
-  {
     id: "social-media",
     title: "Social Media Architecture",
     description:

@@ -10,7 +10,6 @@ const priorityServices = [
   "web-apps",
   "managed-agent-services",
   "social-media",
-  "marketing-advisory",
 ];
 
 const serviceNotes: Record<string, string> = {
@@ -18,7 +17,6 @@ const serviceNotes: Record<string, string> = {
   "web-apps": "Frontend, dashboards, booking funnels, and production deployment.",
   "managed-agent-services": "Ongoing operation, updates, QA, and usage reporting.",
   "social-media": "Content systems and channel operations for creator-led growth.",
-  "marketing-advisory": "Positioning, launch planning, and offer architecture.",
 };
 
 const serviceImages: Record<string, string> = {
@@ -26,7 +24,6 @@ const serviceImages: Record<string, string> = {
   "web-apps": "/images/uiux-design.png",
   "managed-agent-services": "/images/ai-agent-development.png",
   "social-media": "/images/cms-content-pipelines.png",
-  "marketing-advisory": "/images/web3-blockchain.png",
 };
 
 const proofProducts = [
