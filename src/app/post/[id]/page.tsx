@@ -73,21 +73,14 @@ export default function PostPage() {
     return null;
   };
 
-  // Get hero media for the post: first image block, or first video thumbnail, or null
-  const heroMedia = useMemo(() => {
+  // Get hero video thumbnail only (no image hero — images render inline in body)
+  const heroVideo = useMemo(() => {
     if (!post || !post.blocks) return null;
-    // Look for first image block
-    for (const block of post.blocks) {
-      if (block.type === "image" && block.content && block.content.startsWith("http")) {
-        return { type: "image" as const, src: block.content };
-      }
-    }
-    // Fallback: first video block thumbnail
     for (const block of post.blocks) {
       if (block.type === "video") {
         const videoId = extractYouTubeId(block.content);
         if (videoId) {
-          return { type: "video" as const, src: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`, videoId };
+          return { src: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`, videoId };
         }
       }
     }
@@ -115,21 +108,13 @@ export default function PostPage() {
 
           {post && (
             <article>
-              {/* Hero Image / Video Thumbnail */}
-              {heroMedia && (
+              {/* Hero Video Thumbnail (images render inline in body only) */}
+              {heroVideo && (
                 <div className="mb-10 rounded-2xl overflow-hidden border border-white/10">
-                  {heroMedia.type === "image" ? (
-                    <img
-                      src={heroMedia.src}
-                      alt={post.title}
-                      className="w-full h-auto max-h-[480px] object-cover"
-                    />
-                  ) : (
-                    <ThumbnailPlayer
-                      src={heroMedia.src}
-                      embedSrc={`https://www.youtube-nocookie.com/embed/${heroMedia.videoId}`}
-                    />
-                  )}
+                  <ThumbnailPlayer
+                    src={heroVideo.src}
+                    embedSrc={`https://www.youtube-nocookie.com/embed/${heroVideo.videoId}`}
+                  />
                 </div>
               )}
 
@@ -154,20 +139,10 @@ export default function PostPage() {
                 </div>
               </header>
 
-              {/* Blocks — skip hero media block to avoid duplicates */}
+              {/* Blocks */}
               <div className="prose prose-invert max-w-none">
                 {post.blocks
                   .sort((a, b) => a.order - b.order)
-                  .filter((block) => {
-                    // Skip the first image/video block if it's used as hero media
-                    if (heroMedia && block.order === 0) {
-                      if ((heroMedia.type === "image" && block.type === "image") ||
-                          (heroMedia.type === "video" && block.type === "video")) {
-                        return false;
-                      }
-                    }
-                    return true;
-                  })
                   .map((block) => (
                     <BlockRenderer key={block.id || block.order} block={block} />
                   ))}
