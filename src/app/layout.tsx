@@ -119,6 +119,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        <link rel="preconnect" href="https://images.unsplash.com" />
         {/* Organization Schema */}
         <script
           type="application/ld+json"

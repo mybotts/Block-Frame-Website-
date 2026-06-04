@@ -23,7 +23,7 @@ export default function Navigation() {
         <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-6 md:px-12">
           <Link href="/" className="group flex items-center gap-3">
             <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-white p-1 shadow-[0_0_18px_rgba(255,255,255,0.10)]">
-              <Image src="/images/logo.png" alt="BlockFrame Labs Logo" fill className="object-contain p-1" priority />
+              <Image src="/images/logo.png" alt="BlockFrame Labs Logo" fill className="object-contain p-1" priority sizes="40px" />
             </div>
             <span className="text-base font-semibold tracking-tight text-white transition-colors group-hover:text-primary-light">
               BlockFrame Labs

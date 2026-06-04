@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
-import SmoothScroller from "@/components/SmoothScroller";
 import Services from "@/components/Services";
 import TechMarquee from "@/components/TechMarquee";
 import Footer from "@/components/Footer";
@@ -51,6 +50,15 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot check
+    const honeypot = (e.target as HTMLFormElement)._hp;
+    if (honeypot && honeypot.value) {
+      // Bot detected — silently accept but don't process
+      setSuccess(true);
+      return;
+    }
+
     setLoading(true);
 
     const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf6ULRaf3PYQGtwpF1Y_vJybqxHjV26yTOmcek9jWrHr828-A/formResponse";
@@ -95,8 +103,7 @@ export default function Home() {
       <Navigation />
       <PremiumBackground />
 
-      <SmoothScroller>
-        <main id="home" className="relative z-10 overflow-hidden pt-28">
+      <main id="home" className="relative z-10 overflow-hidden pt-28">
           <section className="mx-auto grid min-h-[88vh] w-full max-w-7xl items-center gap-12 px-6 pb-20 pt-16 md:px-12 lg:grid-cols-[1.02fr_0.98fr]">
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="section-kicker mb-5">AI agency for practical automation</p>
@@ -238,6 +245,12 @@ export default function Home() {
                   </div>
                 ) : (
                   <>
+                    {/* Honeypot field — hidden from real users */}
+                    <div className="absolute opacity-0 pointer-events-none h-0 w-0 overflow-hidden" aria-hidden="true">
+                      <label>
+                        <input name="_hp" type="text" tabIndex={-1} autoComplete="off" />
+                      </label>
+                    </div>
                     <div className="grid gap-5 md:grid-cols-2">
                       <label className="grid gap-2 text-sm font-medium text-text-secondary">
                         Name
@@ -271,7 +284,6 @@ export default function Home() {
         </main>
 
         <Footer />
-      </SmoothScroller>
     </>
   );
 }

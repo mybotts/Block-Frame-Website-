@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
-import CustomCursor from "@/components/CustomCursor";
 import BlockRenderer from "@/components/BlockRenderer";
 import { BlogPost } from "@/lib/types";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -65,7 +64,6 @@ export default function PostPage() {
 
   return (
     <>
-      <CustomCursor />
       <Navigation />
       <PremiumBackground />
 

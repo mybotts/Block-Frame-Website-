@@ -3,8 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
-import SmoothScroller from "@/components/SmoothScroller";
-import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 import { marketplaceProducts } from "@/lib/data";
 
@@ -16,23 +14,19 @@ const emailHref =
 const docs = [
   {
     title: "What you are buying",
-    body:
-      "A managed blog operating system that turns research, drafting, approvals, and publishing into a repeatable pipeline running on top of Notion and your existing website stack.",
+    body: "A managed blog operating system that turns research, drafting, approvals, and publishing into a repeatable pipeline running on top of Notion and your existing website stack.",
   },
   {
     title: "Why it matters",
-    body:
-      "Most blogs die from inconsistent publishing, missing editorial structure, and too much manual coordination. This system makes content production systematic instead of heroic.",
+    body: "Most blogs die from inconsistent publishing, missing editorial structure, and too much manual coordination. This system makes content production systematic instead of heroic.",
   },
   {
     title: "How we adapt it",
-    body:
-      "Your Blog OS is configured for your niche, brand voice, website stack, internal approvals, and metrics. Whether you use Next.js, WordPress, or another CMS, we map Notion as the editorial control plane.",
+    body: "Your Blog OS is configured for your niche, brand voice, website stack, internal approvals, and metrics. Whether you use Next.js, WordPress, or another CMS, we map Notion as the editorial control plane.",
   },
   {
     title: "Safety built in",
-    body:
-      "Every post passes through distinct stages: idea, brief, draft, review, approved, scheduled, published. Duplicate-topic checks and scheduling controls prevent accidental overlap.",
+    body: "Every post passes through distinct stages: idea, brief, draft, review, approved, scheduled, published. Duplicate-topic checks and scheduling controls prevent accidental overlap.",
   },
 ];
 
@@ -44,33 +38,21 @@ const implementationSteps = [
 ];
 
 export const metadata: Metadata = {
-  title: "Blog OS — Automated Notion-CMS Blog Publishing System | BlockFrame Labs",
-  description:
-    "A BlockFrame Labs system that researches topics, drafts posts, manages approvals, and publishes finished blog content automatically via Notion CMS.",
-  alternates: {
-    canonical: "/marketplace/products/blog-os-automated-notion-cms",
-  },
+  title: "Blog OS — Automated Notion-CMS Blog Publishing System",
+  description: "A BlockFrame Labs system that researches topics, drafts posts, manages approvals, and publishes finished blog content automatically via Notion CMS.",
+  alternates: { canonical: "/marketplace/products/blog-os-automated-notion-cms" },
   openGraph: {
     title: "Blog OS — Automated Notion-CMS Blog Publishing System",
-    description:
-      "A managed, Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
+    description: "A managed, Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
     url: "https://www.blockframe.cloud/marketplace/products/blog-os-automated-notion-cms",
     siteName: "BlockFrame Labs",
     type: "website",
-    images: [
-      {
-        url: "/images/cms-content-pipelines.png",
-        width: 1200,
-        height: 630,
-        alt: "Blog OS — Automated Notion-CMS Blog Publishing System by BlockFrame Labs",
-      },
-    ],
+    images: [{ url: "/images/cms-content-pipelines.png", width: 1200, height: 630, alt: "Blog OS — Automated Notion-CMS Blog Publishing System by BlockFrame Labs" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Blog OS — Automated Notion-CMS Blog Publishing System",
-    description:
-      "Managed blog OS: research, drafting, approval workflow, and automated publishing through Notion CMS.",
+    description: "Managed blog OS: research, drafting, approval workflow, and automated publishing through Notion CMS.",
     images: ["/images/cms-content-pipelines.png"],
   },
 };
@@ -80,164 +62,116 @@ const productSchema = {
   "@type": "Product",
   name: product.title,
   image: "https://www.blockframe.cloud/images/cms-content-pipelines.png",
-  description:
-    "A managed Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
-  brand: {
-    "@type": "Brand",
-    name: "BlockFrame Labs",
-  },
-  offers: {
-    "@type": "Offer",
-    priceCurrency: "USD",
-    price: "450",
-    availability: "https://schema.org/InStock",
-    url: "https://www.blockframe.cloud/marketplace/products/blog-os-automated-notion-cms",
-  },
+  description: "A managed Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
+  brand: { "@type": "Brand", name: "BlockFrame Labs" },
+  offers: { "@type": "Offer", priceCurrency: "USD", price: "450", availability: "https://schema.org/InStock", url: "https://www.blockframe.cloud/marketplace/products/blog-os-automated-notion-cms" },
 };
 
 export default function BlogOsProductPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />
-      <CustomCursor />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <Navigation />
       <PremiumBackground />
 
-      <SmoothScroller>
-        <main className="relative z-10 min-h-screen px-6 pb-24 pt-36 md:px-12">
-          <div className="hero-radial-glow opacity-40 z-[-1]" />
+      <main className="relative z-10 min-h-screen px-6 pb-24 pt-36 md:px-12">
+        <div className="hero-radial-glow opacity-40 z-[-1]" />
 
-          <div className="mx-auto w-full max-w-7xl">
-            <Link href="/marketplace/products" className="nav-link inline-flex">
-              Back to Marketplace/Products
-            </Link>
+        <div className="mx-auto w-full max-w-7xl">
+          <Link href="/marketplace/products" className="nav-link inline-flex">
+            Back to Marketplace/Products
+          </Link>
 
-            <section className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-              <div>
-                <div className="mb-4 flex flex-wrap gap-2">
-                  <span className="category-pill bg-primary/15 text-primary-light">{product.category}</span>
-                  <span className="category-pill border border-amber-300/30 bg-amber-300/10 text-amber-100">
-                    {product.badge}
-                  </span>
-                </div>
-
-                <h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">
-                  {product.title}
-                </h1>
-                <p className="mt-6 max-w-2xl text-lg leading-8 text-text-secondary">{product.description}</p>
-
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <a
-                    href={emailHref}
-                    className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light"
-                  >
-                    Start by Email
-                  </a>
-                  <a
-                    href="https://calendly.com/blockframemedia/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light"
-                  >
-                    Book a Call
-                  </a>
-                </div>
-
-                <p className="mt-4 text-sm text-text-secondary">
-                  Use this as a sellable system for clients who want consistent publishing without hiring in-house editors.
-                </p>
-                <p className="mt-3 text-sm text-text-secondary">
-                  Pricing starts at the listed tier and scales with sites, authors, languages, and distribution breadth.
-                </p>
+          <section className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <div className="mb-4 flex flex-wrap gap-2">
+                <span className="category-pill bg-primary/15 text-primary-light">{product.category}</span>
+                <span className="category-pill border border-amber-300/30 bg-amber-300/10 text-amber-100">{product.badge}</span>
               </div>
 
-              <div className="glass-card overflow-hidden">
-                <div className={`relative aspect-[16/10] bg-gradient-to-br ${product.gradient}`}>
-                  <Image src={product.image} alt={product.title} fill className="object-cover opacity-90" priority />
-                  <div className="absolute inset-0 bg-gradient-to-t from-surface/70 via-transparent to-transparent" />
-                  <div className="absolute right-5 top-5 rounded-full bg-surface/90 px-4 py-2 text-sm font-bold text-primary-light">
-                    {product.price}
-                  </div>
-                </div>
+              <h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">{product.title}</h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-text-secondary">{product.description}</p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href={emailHref} className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
+                  Start by Email
+                </a>
+                <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+                  Book a Call
+                </a>
               </div>
-            </section>
 
-            <section className="mt-12 grid gap-4 md:grid-cols-2">
-              {docs.map((item) => (
-                <article key={item.title} className="glass-card p-6">
-                  <h2 className="text-xl font-semibold text-text-primary">{item.title}</h2>
-                  <p className="mt-3 text-sm leading-7 text-text-secondary">{item.body}</p>
-                </article>
-              ))}
-            </section>
+              <p className="mt-4 text-sm text-text-secondary">Use this as a sellable system for clients who want consistent publishing without hiring in-house editors.</p>
+              <p className="mt-3 text-sm text-text-secondary">Pricing starts at the listed tier and scales with sites, authors, languages, and distribution breadth.</p>
+            </div>
 
-            <section className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="glass-card p-6">
-                <h2 className="text-2xl font-semibold text-text-primary">Pricing tiers</h2>
-                <div className="mt-5 grid gap-3">
-                  {(product.tiers ?? []).map((tier) => (
-                    <div key={tier.name} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
-                      <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                        <h3 className="font-semibold text-white">{tier.name}</h3>
-                        <span className="text-sm font-semibold text-primary-light">{tier.price}</span>
-                      </div>
-                      <p className="mt-2 text-sm leading-6 text-text-secondary">{tier.description}</p>
+            <div className="glass-card overflow-hidden">
+              <div className={`relative aspect-[16/10] bg-gradient-to-br ${product.gradient}`}>
+                <Image src={product.image} alt={product.title} fill className="object-cover opacity-90" priority sizes="(min-width: 1024px) 50vw, 100vw" />
+                <div className="absolute inset-0 bg-gradient-to-t from-surface/70 via-transparent to-transparent" />
+                <div className="absolute right-5 top-5 rounded-full bg-surface/90 px-4 py-2 text-sm font-bold text-primary-light">{product.price}</div>
+              </div>
+            </div>
+          </section>
+
+          <section className="mt-12 grid gap-4 md:grid-cols-2">
+            {docs.map((item) => (
+              <article key={item.title} className="glass-card p-6">
+                <h2 className="text-xl font-semibold text-text-primary">{item.title}</h2>
+                <p className="mt-3 text-sm leading-7 text-text-secondary">{item.body}</p>
+              </article>
+            ))}
+          </section>
+
+          <section className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="glass-card p-6">
+              <h2 className="text-2xl font-semibold text-text-primary">Pricing tiers</h2>
+              <div className="mt-5 grid gap-3">
+                {(product.tiers ?? []).map((tier) => (
+                  <div key={tier.name} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+                      <h3 className="font-semibold text-white">{tier.name}</h3>
+                      <span className="text-sm font-semibold text-primary-light">{tier.price}</span>
                     </div>
-                  ))}
-                </div>
+                    <p className="mt-2 text-sm leading-6 text-text-secondary">{tier.description}</p>
+                  </div>
+                ))}
               </div>
+            </div>
 
-              <div className="glass-card p-6">
-                <h2 className="text-2xl font-semibold text-text-primary">Implementation outline</h2>
-                <ol className="mt-5 space-y-4">
-                  {implementationSteps.map((step, index) => (
-                    <li key={step} className="flex gap-4 text-sm leading-7 text-text-secondary">
-                      <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-primary-light" />
-                      <span>{step}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </section>
+            <div className="glass-card p-6">
+              <h2 className="text-2xl font-semibold text-text-primary">Implementation outline</h2>
+              <ol className="mt-5 space-y-4">
+                {implementationSteps.map((step) => (
+                  <li key={step} className="flex gap-4 text-sm leading-7 text-text-secondary">
+                    <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-primary-light" />
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
 
-            <section className="mt-12 glass-card p-6 text-center md:p-10">
-              <h2 className="text-2xl font-semibold text-text-primary">Ready to see if it fits your business?</h2>
-              <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-text-secondary">
-                Tell us your website stack, publishing goals, number of authors, whether you want the blueprint, build sprint,
-                or managed operation. We will respond with a concrete recommendation.
-              </p>
-              <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-                <a
-                  href={emailHref}
-                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light"
-                >
-                  Contact BlockFrame Labs
-                </a>
-                <a
-                  href="https://www.instagram.com/blockframemedia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light"
-                >
-                  Message on Instagram
-                </a>
-                <a
-                  href="https://x.com/blockframemedia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light"
-                >
-                  Message on X
-                </a>
-              </div>
-            </section>
-          </div>
-        </main>
-        <Footer />
-      </SmoothScroller>
+          <section className="mt-12 glass-card p-6 text-center md:p-10">
+            <h2 className="text-2xl font-semibold text-text-primary">Ready to see if it fits your business?</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-text-secondary">
+              Tell us your website stack, publishing goals, number of authors, whether you want the blueprint, build sprint, or managed operation. We will respond with a concrete recommendation.
+            </p>
+            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+              <a href={emailHref} className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
+                Contact BlockFrame Labs
+              </a>
+              <a href="https://www.instagram.com/blockframemedia" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+                Message on Instagram
+              </a>
+              <a href="https://x.com/blockframemedia" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+                Message on X
+              </a>
+            </div>
+          </section>
+        </div>
+      </main>
+      <Footer />
     </>
   );
 }
