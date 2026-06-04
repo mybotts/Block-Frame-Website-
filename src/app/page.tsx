@@ -37,6 +37,33 @@ const processSteps = [
 const projectMailHref = "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs";
 const callHref = "https://calendly.com/blockframemedia/30min";
 
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How BlockFrame Labs builds AI automation",
+  description:
+    "Our process for building and deploying AI agents and automation systems for your business.",
+  step: processSteps.map(([number, title, text], idx) => ({
+    "@type": "HowToStep",
+    position: idx + 1,
+    name: title,
+    text: text,
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.blockframe.cloud",
+    },
+  ],
+};
+
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -100,6 +127,14 @@ export default function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navigation />
       <PremiumBackground />
 

@@ -20,7 +20,7 @@ export default function BlogsPage() {
               Blogs
             </h1>
             <p className="text-xl text-text-secondary font-light max-w-2xl mx-auto">
-              Explore our latest insights, guides, and updates from the AI frontier.
+              Practical guides and news on AI agents, automation, and web engineering. Written by the team building these systems daily.
             </p>
           </div>
 
