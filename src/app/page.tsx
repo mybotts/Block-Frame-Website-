@@ -6,7 +6,6 @@ import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
 import Services from "@/components/Services";
-import TechMarquee from "@/components/TechMarquee";
 import Footer from "@/components/Footer";
 
 const contentAreas = [
@@ -70,7 +69,6 @@ export default function Home() {
   const [formData, setFormData] = useState({
     name: "",
     workspace: "",
-    contact: "",
     email: "",
     message: "",
   });
@@ -92,7 +90,6 @@ export default function Home() {
     const ENTRY_IDS = {
       name: "entry.260676864",
       workspace: "entry.1783311989",
-      contact: "entry.625274846",
       email: "entry.1759379081",
       message: "entry.430857094",
     };
@@ -100,7 +97,6 @@ export default function Home() {
     const formBody = new URLSearchParams();
     formBody.append(ENTRY_IDS.name, formData.name);
     formBody.append(ENTRY_IDS.workspace, formData.workspace);
-    formBody.append(ENTRY_IDS.contact, formData.contact);
     formBody.append(ENTRY_IDS.email, formData.email);
     formBody.append(ENTRY_IDS.message, formData.message);
 
@@ -114,7 +110,7 @@ export default function Home() {
         body: formBody,
       });
       setSuccess(true);
-      setFormData({ name: "", workspace: "", contact: "", email: "", message: "" });
+      setFormData({ name: "", workspace: "", email: "", message: "" });
     } catch (error) {
       console.error("Submission error:", error);
     } finally {
@@ -167,8 +163,8 @@ export default function Home() {
               <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-2xl">
                 <div className="relative h-[520px]">
                   <Image
-                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=85&w=1800"
-                    alt="Team reviewing a product workflow"
+                    src="/images/hero-image.jpg"
+                    alt="AI agent workflow dashboard on a dark home office setup"
                     fill
                     priority
                     className="professional-image object-cover"
@@ -179,8 +175,8 @@ export default function Home() {
                     <div className="grid gap-3 rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md sm:grid-cols-3">
                       {["AI Agents", "Web Platforms", "Content Systems"].map((item) => (
                         <div key={item} className="rounded-2xl bg-white/[0.06] p-4">
-                          <span className="text-xs font-bold uppercase tracking-[0.16em] text-primary-light">{item}</span>
-                          <p className="mt-2 text-sm text-text-secondary">Built and shipped</p>
+                          <span className="text-sm font-semibold text-white">{item}</span>
+                          <p className="mt-1 text-xs text-text-secondary">Built and deployed</p>
                         </div>
                       ))}
                     </div>
@@ -223,14 +219,12 @@ export default function Home() {
             </div>
           </section>
 
-          <TechMarquee />
-
           <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto grid w-full max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] lg:grid-cols-[0.9fr_1.1fr]">
               <div className="relative min-h-[360px]">
                 <Image
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=1600"
-                  alt="Consultation meeting"
+                  src="/images/book-a-call.png"
+                  alt="Book a consultation call"
                   fill
                   className="professional-image object-cover"
                   sizes="(min-width: 1024px) 42vw, 100vw"
@@ -299,10 +293,6 @@ export default function Home() {
                     <label className="grid gap-2 text-sm font-medium text-text-secondary">
                       Email
                       <input required type="email" className={fieldClass} placeholder="you@company.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-                    </label>
-                    <label className="grid gap-2 text-sm font-medium text-text-secondary">
-                      Quick contact
-                      <input className={fieldClass} placeholder="Telegram, Discord, X, or phone" value={formData.contact} onChange={(e) => setFormData({ ...formData, contact: e.target.value })} />
                     </label>
                     <label className="grid gap-2 text-sm font-medium text-text-secondary">
                       What are you trying to automate?

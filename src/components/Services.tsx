@@ -25,7 +25,7 @@ const serviceImages: Record<string, string> = {
   "ai-systems": "/images/ai-agent-development.png",
   "web-apps": "/images/uiux-design.png",
   "managed-agent-services": "/images/managed-agent-services.png",
-  "social-media": "/images/social-media.webp",
+  "social-media": "/images/social-media.png",
   "ugc-video-production": "/images/ugc-video-production.png",
 };
 

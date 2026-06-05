@@ -18,7 +18,7 @@ export const services: Service[] = [
     title: "AI Agent Deployment",
     description:
       "We build and deploy autonomous AI agents that handle real tasks, from customer support to data pipelines. You get a working system, not a prototype.",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/ai-agent-development.png",
     gradient: "from-violet-600/20 to-indigo-900/20",
     team: "AI & Automation",
   },
@@ -27,7 +27,7 @@ export const services: Service[] = [
     title: "Local AI Agent Setup",
     description:
       "Run AI agents on your own servers. Full control over your data, no third-party API costs, no rate limits. We handle the installation, configuration, and training.",
-    image: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/placeholder.png",
     gradient: "from-violet-600/20 to-indigo-900/20",
     team: "AI & Automation",
   },
@@ -36,7 +36,7 @@ export const services: Service[] = [
     title: "Cloud-Based AI Agents",
     description:
       "Managed AI agents that run 24/7 on reliable infrastructure. We handle scaling, monitoring, and updates so you can focus on results.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/placeholder.png",
     gradient: "from-blue-600/20 to-sky-900/20",
     team: "AI & Automation",
   },
@@ -45,7 +45,7 @@ export const services: Service[] = [
     title: "Autonomous Agent Systems",
     description:
       "Multi-agent systems that coordinate, make decisions, and execute workflows with minimal human oversight. Built for operations that need to run themselves.",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/placeholder.png",
     gradient: "from-teal-600/20 to-cyan-900/20",
     team: "AI & Automation",
   },
@@ -54,7 +54,7 @@ export const services: Service[] = [
     title: "Managed Agent Services",
     description:
       "We operate your AI agents as a service. No setup, no maintenance. You subscribe to outcomes. We handle the infrastructure, updates, and reliability.",
-    image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/managed-agent-services.png",
     gradient: "from-orange-600/20 to-amber-900/20",
     team: "AI & Automation",
   },
@@ -63,7 +63,7 @@ export const services: Service[] = [
     title: "Custom Agent Development",
     description:
       "Purpose-built AI agents designed around your specific workflows. We build, deploy, and continuously improve agents that fit how your team actually works.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/placeholder.png",
     gradient: "from-indigo-600/20 to-purple-900/20",
     team: "AI & Automation",
   },
@@ -73,7 +73,7 @@ export const services: Service[] = [
     title: "Web & App Engineering",
     description:
       "Full-stack development of web platforms and mobile apps. Built for performance, security, and the kind of user experience that keeps people coming back.",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/uiux-design.png",
     gradient: "from-emerald-600/20 to-green-900/20",
     team: "Engineering",
   },
@@ -83,7 +83,7 @@ export const services: Service[] = [
     title: "Motion Graphics & VFX",
     description:
       "Motion graphics that explain complex products in seconds. We turn technical features into visual stories that convert viewers into customers.",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/placeholder.png",
     gradient: "from-teal-600/20 to-cyan-900/20",
     team: "Content & Creative",
   },
@@ -92,7 +92,7 @@ export const services: Service[] = [
     title: "Video Ad Production",
     description:
       "Short-form video ads engineered for TikTok, YouTube Shorts, and Instagram. Built to stop the scroll and drive measurable acquisition.",
-    image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/placeholder.png",
     gradient: "from-orange-600/20 to-amber-900/20",
     team: "Content & Creative",
   },
@@ -101,7 +101,7 @@ export const services: Service[] = [
     title: "UGC & Explainer Videos",
     description:
       "Long and short-form video content that builds trust. From scripted product demos to authentic creator-style content, produced for YouTube, TikTok, and your sales funnel.",
-    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/ugc-video-production.png",
     gradient: "from-violet-600/20 to-fuchsia-900/20",
     team: "Content & Creative",
   },
@@ -111,7 +111,7 @@ export const services: Service[] = [
     title: "Social Media Systems",
     description:
       "We build the content systems and posting infrastructure that keep your social channels active and growing, without requiring daily manual effort.",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/social-media.png",
     gradient: "from-emerald-600/20 to-green-900/20",
     team: "Growth & Marketing",
   },
@@ -120,7 +120,7 @@ export const services: Service[] = [
     title: "Paid Ad Campaigns",
     description:
       "Data-backed ad campaigns across TikTok, Instagram, YouTube, and X. We handle creative production, targeting, budget optimization, and reporting.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600",
+    image: "/images/placeholder.png",
     gradient: "from-pink-600/20 to-rose-900/20",
     team: "Growth & Marketing",
   },
@@ -246,7 +246,7 @@ export const samplePosts: BlogPost[] = [
       {
         id: "agents-img-1",
         type: "image",
-        content: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1600",
+        content: "/images/ai-agent-development.png",
         order: 0,
       },
       {
@@ -316,7 +316,7 @@ export const marketplaceProducts: MarketplaceProduct[] = [
       "A custom implementation that researches qualified prospects, creates personalized sample assets, publishes private proposal pages, and prepares controlled outreach through your existing CRM and mailbox.",
     category: "Growth Automation",
     price: "Starting at $1,250",
-    image: "/images/agentic-outreach-engine.webp",
+    image: "/images/agentic-outreach-engine.png",
     gradient: "from-teal-500/30 via-slate-900/40 to-amber-700/30",
     badge: "Custom build",
     cta: "Book implementation call",
