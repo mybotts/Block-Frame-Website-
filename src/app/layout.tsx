@@ -13,15 +13,15 @@ export const metadata: Metadata = {
     template: "%s | BlockFrame Labs",
   },
   description:
-    "We build AI agents, web platforms, and content systems. BlockFrame Labs deploys practical automation for teams that need results, not experiments.",
+    "We build AI systems, web platforms, and content services. BlockFrame Labs deploys practical automation for teams that need results, not experiments.",
   keywords: [
-    "AI Agents",
+    "AI Systems",
     "AI Automation",
     "OpenClaw",
     "LLM Systems",
     "Next.js",
     "Agency",
-    "Autonomous Agents",
+    "Automation Services",
     "Blog OS",
     "Notion CMS Automation",
   ],
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BlockFrame Labs | Architecting Autonomy",
     description:
-      "Practical AI agent systems and web engineering starting at $450. We build autonomous agents, support workflows, web platforms, and content systems with reliable pricing.",
+      "Practical AI systems and web engineering starting at $450. We build automation services, support workflows, web platforms, and content systems with reliable pricing.",
     url: "https://blockframe.cloud",
     siteName: "BlockFrame Labs",
     images: [
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BlockFrame Labs | Architecting Autonomy",
     description:
-      "Practical AI agent systems, automation, and web engineering starting at $450. Reliable pricing. Real execution.",
+      "Practical AI systems, automation, and web engineering starting at $450. Reliable pricing. Real execution.",
     images: ["/images/og-preview.png"],
   }
 };
@@ -98,7 +98,7 @@ export default function RootLayout({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "AI Agents Deployment"
+            name: "AI Systems Deployment"
           }
         }
       ]

@@ -15,54 +15,54 @@ export const services: Service[] = [
   // ── AI & Automation ──────────────────────────────────────────
   {
     id: "ai-systems",
-    title: "AI Agent Deployment",
+    title: "AI Systems Deployment",
     description:
-      "We build and deploy autonomous AI agents that handle real tasks, from customer support to data pipelines. You get a working system, not a prototype.",
+      "We build and deploy AI systems that handle real tasks, from customer support to data pipelines. You get a working system, not a prototype.",
     image: "/images/ai-agent-development.png",
     gradient: "from-violet-600/20 to-indigo-900/20",
     team: "AI & Automation",
   },
   {
     id: "ai-agents-local",
-    title: "Local AI Agent Setup",
+    title: "Local AI Systems",
     description:
-      "Run AI agents on your own servers. Full control over your data, no third-party API costs, no rate limits. We handle the installation, configuration, and training.",
+      "Run AI systems on your own servers. Full control over your data, no third-party API costs, no rate limits. We handle the installation, configuration, and training.",
     image: "/images/placeholder.png",
     gradient: "from-violet-600/20 to-indigo-900/20",
     team: "AI & Automation",
   },
   {
     id: "ai-agents-cloud",
-    title: "Cloud-Based AI Agents",
+    title: "Cloud-Based AI Systems",
     description:
-      "Managed AI agents that run 24/7 on reliable infrastructure. We handle scaling, monitoring, and updates so you can focus on results.",
+      "Managed AI systems that run 24/7 on reliable infrastructure. We handle scaling, monitoring, and updates so you can focus on results.",
     image: "/images/placeholder.png",
     gradient: "from-blue-600/20 to-sky-900/20",
     team: "AI & Automation",
   },
   {
     id: "autonomous-systems",
-    title: "Autonomous Agent Systems",
+    title: "Automation Systems",
     description:
-      "Multi-agent systems that coordinate, make decisions, and execute workflows with minimal human oversight. Built for operations that need to run themselves.",
+      "Multi-system workflows that coordinate, make decisions, and execute tasks with minimal human oversight. Built for operations that need to run themselves.",
     image: "/images/placeholder.png",
     gradient: "from-teal-600/20 to-cyan-900/20",
     team: "AI & Automation",
   },
   {
     id: "managed-agent-services",
-    title: "Managed Agent Services",
+    title: "Managed AI Services",
     description:
-      "We operate your AI agents as a service. No setup, no maintenance. You subscribe to outcomes. We handle the infrastructure, updates, and reliability.",
+      "We operate your AI systems as a service. No setup, no maintenance. You subscribe to outcomes. We handle the infrastructure, updates, and reliability.",
     image: "/images/managed-agent-services.png",
     gradient: "from-orange-600/20 to-amber-900/20",
     team: "AI & Automation",
   },
   {
     id: "specialized-agent-dev",
-    title: "Custom Agent Development",
+    title: "Custom AI Development",
     description:
-      "Purpose-built AI agents designed around your specific workflows. We build, deploy, and continuously improve agents that fit how your team actually works.",
+      "Purpose-built AI systems designed around your specific workflows. We build, deploy, and continuously improve systems that fit how your team actually works.",
     image: "/images/placeholder.png",
     gradient: "from-indigo-600/20 to-purple-900/20",
     team: "AI & Automation",

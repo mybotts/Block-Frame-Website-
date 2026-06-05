@@ -27,7 +27,7 @@ const contentAreas = [
 ];
 
 const processSteps = [
-  ["01", "Audit your workflow", "We map the work you are actually doing today. Where it breaks, where it takes too long, and which parts can be handled by an agent without losing quality."],
+  ["01", "Audit your workflow", "We map the work you are actually doing today. Where it breaks, where it takes too long, and which parts can be handled by an automated system without losing quality."],
   ["02", "Productize the solution", "We do not build one-off scripts. Every system is packaged as a repeatable product with clear inputs, outputs, and pricing. You know exactly what you are getting."],
   ["03", "Deploy and validate", "We connect the system to your real tools and data. We test with actual workflows, measure the results, and iterate until it performs reliably."],
   ["04", "Operate or hand off", "You choose: we run the system for you as a managed service, or we document everything and hand it over. Either way, you own the outcome."],
@@ -41,7 +41,7 @@ const howToSchema = {
   "@type": "HowTo",
   name: "How BlockFrame Labs builds AI automation",
   description:
-    "Our process for auditing, productizing, and deploying AI agents and automation systems for your business.",
+    "Our process for auditing, productizing, and deploying AI systems and automation services for your business.",
   step: processSteps.map(([number, title, text], idx) => ({
     "@type": "HowToStep",
     position: idx + 1,
@@ -139,10 +139,10 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="section-kicker mb-5">AI agency for practical automation</p>
               <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-white md:text-7xl lg:text-8xl">
-                AI agents that do real work.
+                AI systems that do real work.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
-                We build and deploy AI agents that handle support, content, and operations, so your team can focus on the decisions that actually need a human.
+                We build and deploy AI systems that handle support, content, and operations, so your team can focus on the decisions that actually need a human.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
@@ -164,7 +164,7 @@ export default function Home() {
                 <div className="relative h-[520px]">
                   <Image
                     src="/images/hero-image.jpg"
-                    alt="AI agent workflow dashboard on a dark home office setup"
+                    alt="AI systems workflow dashboard on a dark home office setup"
                     fill
                     priority
                     className="professional-image object-cover"
@@ -173,7 +173,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-[#06070a]/25 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                     <div className="grid gap-3 rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md sm:grid-cols-3">
-                      {["AI Agents", "Web Platforms", "Content Systems"].map((item) => (
+                      {["AI Systems", "Web Platforms", "Content Systems"].map((item) => (
                         <div key={item} className="rounded-2xl bg-white/[0.06] p-4">
                           <span className="text-sm font-semibold text-white">{item}</span>
                           <p className="mt-1 text-xs text-text-secondary">Built and deployed</p>
@@ -296,7 +296,7 @@ export default function Home() {
                     </label>
                     <label className="grid gap-2 text-sm font-medium text-text-secondary">
                       What are you trying to automate?
-                      <textarea required rows={5} className={`${fieldClass} resize-none`} placeholder="e.g. We spend 10 hours a week on customer support replies. We want an AI agent that handles the common questions and escalates the rest." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+                      <textarea required rows={5} className={`${fieldClass} resize-none`} placeholder="e.g. We spend 10 hours a week on customer support replies. We want an AI system that handles the common questions and escalates the rest." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
                     </label>
                     <button disabled={loading} className="min-h-14 rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60">
                       {loading ? "Sending..." : "Submit Project Request"}
