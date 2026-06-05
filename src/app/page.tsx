@@ -27,10 +27,10 @@ const contentAreas = [
 ];
 
 const processSteps = [
-  ["01", "Map the workflow", "We start by understanding your actual process. What breaks, what takes too long, and what should be automated."],
-  ["02", "Build the system", "We construct the agent, tool, or platform around your specific needs. Narrow scope, fast delivery."],
-  ["03", "Connect and test", "We wire it into your existing tools, test with real data, and fix what doesn't work."],
-  ["04", "Hand off and support", "We document everything, train your team, and stay available when you need us."],
+  ["01", "Audit your workflow", "We map the work you are actually doing today. Where it breaks, where it takes too long, and which parts can be handled by an agent without losing quality."],
+  ["02", "Productize the solution", "We do not build one-off scripts. Every system is packaged as a repeatable product with clear inputs, outputs, and pricing. You know exactly what you are getting."],
+  ["03", "Deploy and validate", "We connect the system to your real tools and data. We test with actual workflows, measure the results, and iterate until it performs reliably."],
+  ["04", "Operate or hand off", "You choose: we run the system for you as a managed service, or we document everything and hand it over. Either way, you own the outcome."],
 ];
 
 const projectMailHref = "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs";
@@ -41,7 +41,7 @@ const howToSchema = {
   "@type": "HowTo",
   name: "How BlockFrame Labs builds AI automation",
   description:
-    "Our process for building and deploying AI agents and automation systems for your business.",
+    "Our process for auditing, productizing, and deploying AI agents and automation systems for your business.",
   step: processSteps.map(([number, title, text], idx) => ({
     "@type": "HowToStep",
     position: idx + 1,
@@ -204,7 +204,7 @@ export default function Home() {
               <div className="mb-12 max-w-3xl">
                 <p className="section-kicker mb-4">How we work</p>
                 <h2 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
-                  Understand. Build. Hand off.
+                  Audit. Productize. Deploy.
                 </h2>
               </div>
               <div className="grid gap-4 md:grid-cols-4">
