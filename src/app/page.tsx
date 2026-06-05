@@ -41,7 +41,7 @@ const howToSchema = {
   "@type": "HowTo",
   name: "How BlockFrame Labs builds AI automation",
   description:
-    "Our process for auditing, productizing, and deploying AI systems and automation services for your business.",
+    "Our process for auditing, productizing, and deploying AI systems and services for your business.",
   step: processSteps.map(([number, title, text], idx) => ({
     "@type": "HowToStep",
     position: idx + 1,
@@ -139,10 +139,10 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="section-kicker mb-5">AI agency for practical automation</p>
               <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-white md:text-7xl lg:text-8xl">
-                AI systems that do real work.
+                AI systems and services that do real work.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
-                We build and deploy AI systems that handle support, content, and operations, so your team can focus on the decisions that actually need a human.
+                We build and deploy AI systems and services that handle support, content, and operations, so your team can focus on the decisions that actually need a human.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
@@ -164,7 +164,7 @@ export default function Home() {
                 <div className="relative h-[520px]">
                   <Image
                     src="/images/hero-image.jpg"
-                    alt="AI systems workflow dashboard on a dark home office setup"
+                    alt="AI systems and services workflow dashboard on a dark home office setup"
                     fill
                     priority
                     className="professional-image object-cover"

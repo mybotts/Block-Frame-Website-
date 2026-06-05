@@ -14,7 +14,7 @@ const priorityServices = [
 ];
 
 const serviceNotes: Record<string, string> = {
-  "ai-systems": "AI systems for support, data, and operations.",
+  "ai-systems": "AI systems and services for support, data, and operations.",
   "web-apps": "Full-stack web platforms and mobile apps, built to scale.",
   "managed-agent-services": "We run and maintain your systems. You get the results.",
   "social-media": "Content systems and posting infrastructure that runs itself.",
@@ -65,7 +65,7 @@ export default function Services() {
               </h2>
             </div>
             <p className="max-w-xl text-lg leading-8 text-text-secondary md:justify-self-end">
-              From AI systems to web platforms to video. Packaged for teams that need results, not experiments.
+              From AI systems and services to web platforms to video. Packaged for teams that need results, not experiments.
             </p>
           </div>
 
