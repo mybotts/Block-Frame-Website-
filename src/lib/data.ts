@@ -380,4 +380,39 @@ export const marketplaceProducts: MarketplaceProduct[] = [
       },
     ],
   },
+  {
+    id: "social-agent-multi-platform",
+    title: "Social Agent — AI Multi-Platform Posting, Engagement & Lead Qualification",
+    description:
+      "An AI agent that posts content across 15 platforms, auto-replies to comments and messages, qualifies inbound leads, and improves over time. Built on the same systems BlockFrame Labs uses internally for its own distribution.",
+    category: "Growth Systems",
+    price: "Starting at $1,250",
+    image: "/images/social-agent.png",
+    gradient: "from-blue-500/30 via-slate-900/40 to-purple-600/30",
+    badge: "Build + Management",
+    cta: "Start Social Agent setup",
+    highlights: [
+      "Auto-posts to 15 platforms including X, LinkedIn, Instagram, TikTok, YouTube, Facebook, Threads, and more.",
+      "Auto-replies to comments and DMs with brand-voiced, context-aware responses.",
+      "Qualifies leads from social interactions, scores them, and routes to your CRM or inbox.",
+      "Safety controls: daily caps, suppression lists, approval queues, and opt-out handling built in.",
+    ],
+    tiers: [
+      {
+        name: "DIY Blueprint",
+        price: "Starting at $450",
+        description: "Platform schemas, prompt templates, repurposing rules, reply workflows, setup guide, and recommended stack list.",
+      },
+      {
+        name: "Build Sprint",
+        price: "Starting at $1,250",
+        description: "We configure the agent's posting, threading, and reply flows for your brand voice, platforms, content types, and lead criteria.",
+      },
+      {
+        name: "Managed System",
+        price: "Starting at $750/mo",
+        description: "Monthly operation, monitoring, continued tuning, lead distribution, and reporting after launch.",
+      },
+    ],
+  },
 ];
