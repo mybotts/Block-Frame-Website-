@@ -35,16 +35,21 @@ const proofProducts = [
     title: "Proposal-Led Agentic Outreach",
     description: "Researches prospects, creates personalized sample assets, and sends proof-led outreach through your existing CRM.",
     category: "Growth Automation",
-    price: "Starting at $1,250",
     href: "/marketplace/products/proposal-led-agentic-outreach",
   },
   {
     id: "blog-os-automated-notion-cms",
-    title: "Blog OS — Automated Content Pipeline",
+    title: "Blog OS: Automated Content Pipeline",
     description: "Runs our own blog: daily posts, zero manual effort. Notion-backed research, drafting, approvals, and publishing on autopilot.",
     category: "Content Systems",
-    price: "Starting at $450",
     href: "/marketplace/products/blog-os-automated-notion-cms",
+  },
+  {
+    id: "social-agent-multi-platform",
+    title: "Social Agent: AI Multi-Platform Posting and Lead Qualification",
+    description: "Posts across 15 platforms, auto-replies to comments and DMs, qualifies inbound leads, and routes them to your CRM.",
+    category: "Growth Systems",
+    href: "/marketplace/products/social-agent-multi-platform",
   },
 ];
 
@@ -81,46 +86,26 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="mb-14 grid grid-cols-1 gap-5 md:grid-cols-2">
-            <Link
-              href="/marketplace/products/proposal-led-agentic-outreach"
-              className="glass-card group overflow-hidden rounded-3xl border border-white/10 p-6 transition hover:border-primary/40"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <span className="category-pill bg-primary/15 text-primary-light">Growth Automation</span>
-                  <h3 className="mt-3 text-lg font-semibold tracking-tight text-white group-hover:text-primary-light transition-colors">
-                    Proposal Led Agentic Outreach System
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-text-secondary">
-                    Research, personalization, private proposal pages, and controlled outreach tied to your mailbox and CRM.
-                  </p>
+          <div className="mb-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {proofProducts.map((product) => (
+              <Link
+                key={product.id}
+                href={product.href}
+                className="glass-card group overflow-hidden rounded-3xl border border-white/10 p-6 transition hover:border-primary/40"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <span className="category-pill bg-primary/15 text-primary-light">{product.category}</span>
+                    <h3 className="mt-3 text-lg font-semibold tracking-tight text-white group-hover:text-primary-light transition-colors">
+                      {product.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-text-secondary">
+                      {product.description}
+                    </p>
+                  </div>
                 </div>
-                <span className="shrink-0 rounded-full bg-surface/90 backdrop-blur-sm border border-primary/30 px-3 py-1.5 text-sm font-bold text-primary-light">
-                  Starting at $1,250
-                </span>
-              </div>
-            </Link>
-
-            <Link
-              href="/marketplace/products/blog-os-automated-notion-cms"
-              className="glass-card group overflow-hidden rounded-3xl border border-white/10 p-6 transition hover:border-primary/40"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <span className="category-pill bg-primary/15 text-primary-light">Content Systems</span>
-                  <h3 className="mt-3 text-lg font-semibold tracking-tight text-white group-hover:text-primary-light transition-colors">
-                    Blog OS Automated Notion CMS Blog Publishing System
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-text-secondary">
-                    Notion-backed research, drafting, approvals, scheduling, and publishing on a reliable cadence.
-                  </p>
-                </div>
-                <span className="shrink-0 rounded-full bg-surface/90 backdrop-blur-sm border border-primary/30 px-3 py-1.5 text-sm font-bold text-primary-light">
-                  Starting at $450
-                </span>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
