@@ -11,6 +11,8 @@ const product = marketplaceProducts.find((item) => item.id === "blog-os-automate
 const emailHref =
   "mailto:contact@blockframe.cloud?subject=Blog%20OS%20-%20Automated%20Notion%20CMS%20Publishing&body=Hi%20BlockFrame%20Labs%2C%0A%0AI%27m%20interested%20in%20the%20Blog%20OS%20automated%20publishing%20system.%20Please%20send%20me%20the%20next%20steps.%0A%0ACompany%3A%0AWebsite%3A%0ACurrent%20CMS%2Fstack%3A%0ABest%20way%20to%20reach%20me%3A%0A";
 
+const callHref = "https://calendly.com/blockframemedia/30min";
+
 const docs = [
   {
     title: "What you are buying",
@@ -64,7 +66,7 @@ const productSchema = {
   image: "https://www.blockframe.cloud/images/cms-content-pipelines.png",
   description: "A managed Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
   brand: { "@type": "Brand", name: "BlockFrame Labs" },
-  offers: { "@type": "Offer", priceCurrency: "USD", price: "450", availability: "https://schema.org/InStock", url: "https://www.blockframe.cloud/marketplace/products/blog-os-automated-notion-cms" },
+  offers: { "@type": "Offer", priceCurrency: "USD", availability: "https://schema.org/InStock", url: "https://www.blockframe.cloud/marketplace/products/blog-os-automated-notion-cms" },
 };
 
 export default function BlogOsProductPage() {
@@ -93,23 +95,21 @@ export default function BlogOsProductPage() {
               <p className="mt-6 max-w-2xl text-lg leading-8 text-text-secondary">{product.description}</p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href={emailHref} className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
-                  Start by Email
-                </a>
-                <a href="https://calendly.com/blockframemedia/30min" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
                   Book a Call
+                </a>
+                <a href={emailHref} className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+                  Start by Email
                 </a>
               </div>
 
-              <p className="mt-4 text-sm text-text-secondary">Use this as a sellable system for clients who want consistent publishing without hiring in-house editors.</p>
-              <p className="mt-3 text-sm text-text-secondary">Pricing starts at the listed tier and scales with sites, authors, languages, and distribution breadth.</p>
+              <p className="mt-4 text-sm text-text-secondary">Use this as a sellable system for clients who want consistent publishing without hiring in-house editors. We will reply with a practical recommendation and pricing tailored to your setup.</p>
             </div>
 
             <div className="glass-card overflow-hidden">
               <div className={`relative aspect-[16/10] bg-gradient-to-br ${product.gradient}`}>
                 <Image src={product.image} alt={product.title} fill className="object-cover opacity-90" priority sizes="(min-width: 1024px) 50vw, 100vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-surface/70 via-transparent to-transparent" />
-                <div className="absolute right-5 top-5 rounded-full bg-surface/90 px-4 py-2 text-sm font-bold text-primary-light">{product.price}</div>
               </div>
             </div>
           </section>
@@ -125,14 +125,12 @@ export default function BlogOsProductPage() {
 
           <section className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="glass-card p-6">
-              <h2 className="text-2xl font-semibold text-text-primary">Pricing tiers</h2>
+              <h2 className="text-2xl font-semibold text-text-primary">Engagement models</h2>
+              <p className="mt-2 text-sm text-text-secondary">Three ways to work with us. Pricing is tailored to your stack, authors, and publishing volume. Book a call to get a precise quote.</p>
               <div className="mt-5 grid gap-3">
                 {(product.tiers ?? []).map((tier) => (
                   <div key={tier.name} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                      <h3 className="font-semibold text-white">{tier.name}</h3>
-                      <span className="text-sm font-semibold text-primary-light">{tier.price}</span>
-                    </div>
+                    <h3 className="font-semibold text-white">{tier.name}</h3>
                     <p className="mt-2 text-sm leading-6 text-text-secondary">{tier.description}</p>
                   </div>
                 ))}
@@ -155,17 +153,14 @@ export default function BlogOsProductPage() {
           <section className="mt-12 glass-card p-6 text-center md:p-10">
             <h2 className="text-2xl font-semibold text-text-primary">Ready to see if it fits your business?</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-text-secondary">
-              Tell us your website stack, publishing goals, number of authors, whether you want the blueprint, build sprint, or managed operation. We will respond with a concrete recommendation.
+              Tell us your website stack, publishing goals, number of authors, whether you want the blueprint, build sprint, or managed operation. We will reply with a concrete recommendation and pricing tailored to your setup.
             </p>
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href={emailHref} className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
-                Contact BlockFrame Labs
+              <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
+                Book a Call
               </a>
-              <a href="https://www.instagram.com/blockframemedia" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
-                Message on Instagram
-              </a>
-              <a href="https://x.com/blockframemedia" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
-                Message on X
+              <a href={emailHref} className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+                Start by Email
               </a>
             </div>
           </section>

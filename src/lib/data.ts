@@ -315,7 +315,7 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     description:
       "A custom implementation that researches qualified prospects, creates personalized sample assets, publishes private proposal pages, and prepares controlled outreach through your existing CRM and mailbox.",
     category: "Growth Automation",
-    price: "Starting at $1,250",
+    price: "Custom pricing",
     image: "/images/agentic-outreach-engine.png",
     gradient: "from-teal-500/30 via-slate-900/40 to-amber-700/30",
     badge: "Custom build",
@@ -328,17 +328,14 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     tiers: [
       {
         name: "Workflow Blueprint",
-        price: "Starting at $350",
         description: "DIY operating map, templates, data model, prompts, and setup checklist.",
       },
       {
         name: "Build Sprint",
-        price: "Starting at $1,250",
         description: "We configure the prospecting, proposal, email queue, and safety workflow in your stack.",
       },
       {
         name: "Managed System",
-        price: "Starting at $750/mo",
         description: "Monthly operation, iteration, reporting, and campaign improvements after launch.",
       },
     ],
@@ -349,7 +346,7 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     description:
       "A managed, Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",
     category: "Content Systems",
-    price: "Starting at $450",
+    price: "Custom pricing",
     image: "/images/cms-content-pipelines.png",
     gradient: "from-indigo-500/30 via-slate-900/40 to-emerald-600/30",
     badge: "Build + Handoff",
@@ -362,19 +359,16 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     tiers: [
       {
         name: "One-Time Setup",
-        price: "$5,000",
         description:
           "Builds the Notion schema, research pipeline, drafting workflow, approval stages, SEO rules, and publish hook to your site.",
       },
       {
         name: "Monthly Care",
-        price: "$1,000/mo",
         description:
           "Covers ongoing editing, scheduling, publishing, light distribution, and system tuning after launch.",
       },
       {
         name: "DIY Blueprint",
-        price: "Starting at $450",
         description:
           "Schema, prompts, runbooks, and setup guide for clients to run the pipeline themselves.",
       },
@@ -386,7 +380,7 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     description:
       "An AI agent that posts content across 15 platforms, auto-replies to comments and messages, qualifies inbound leads, and improves over time. Built on the same systems BlockFrame Labs uses internally for its own distribution.",
     category: "Growth Systems",
-    price: "Starting at $1,250",
+    price: "Custom pricing",
     image: "/images/social-agent.png",
     gradient: "from-blue-500/30 via-slate-900/40 to-purple-600/30",
     badge: "Build + Management",
@@ -400,17 +394,14 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     tiers: [
       {
         name: "DIY Blueprint",
-        price: "Starting at $450",
         description: "Platform schemas, prompt templates, repurposing rules, reply workflows, setup guide, and recommended stack list.",
       },
       {
         name: "Build Sprint",
-        price: "Starting at $1,250",
         description: "We configure the agent's posting, threading, and reply flows for your brand voice, platforms, content types, and lead criteria.",
       },
       {
         name: "Managed System",
-        price: "Starting at $750/mo",
         description: "Monthly operation, monitoring, continued tuning, lead distribution, and reporting after launch.",
       },
     ],

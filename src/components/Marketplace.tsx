@@ -9,7 +9,6 @@ interface Product {
   title: string;
   description: string;
   category: string;
-  price: string;
   image: string;
   gradient: string;
   badge?: string;
@@ -17,7 +16,6 @@ interface Product {
   highlights?: string[];
   tiers?: {
     name: string;
-    price: string;
     description: string;
   }[];
 }
@@ -143,7 +141,6 @@ export default function Marketplace() {
                       <div className="text-xs font-semibold uppercase tracking-[0.08em] text-text-secondary">
                         {tier.name}
                       </div>
-                      <div className="mt-1 text-base font-semibold text-text-primary">{tier.price}</div>
                       <p className="mt-2 text-xs leading-relaxed text-text-secondary">{tier.description}</p>
                     </div>
                   ))}

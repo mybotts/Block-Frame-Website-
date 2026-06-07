@@ -22,7 +22,7 @@ export default function MarketplaceProductsPage() {
               <span className="text-gradient">Marketplace/Products</span>
             </h1>
             <p className="text-xl text-text-secondary font-light max-w-2xl mx-auto">
-              One productized growth workflow, customized to the tools and mailbox your business already uses.
+              Productized growth and content systems, customized to the tools and workflows your business already uses.
             </p>
           </div>
 

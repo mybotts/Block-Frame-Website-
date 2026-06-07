@@ -38,7 +38,7 @@ export interface MarketplaceProduct {
   title: string;
   description: string;
   category: string;
-  price: string;
+  price?: string;
   image: string;
   gradient: string;
   badge?: string;
@@ -46,7 +46,6 @@ export interface MarketplaceProduct {
   highlights?: string[];
   tiers?: {
     name: string;
-    price: string;
     description: string;
   }[];
 }
