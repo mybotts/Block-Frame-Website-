@@ -382,7 +382,7 @@ export const marketplaceProducts: MarketplaceProduct[] = [
   },
   {
     id: "social-agent-multi-platform",
-    title: "Social Agent — AI Multi-Platform Posting, Engagement & Lead Qualification",
+    title: "Social Agent: AI Multi-Platform Posting, Engagement & Lead Qualification",
     description:
       "An AI agent that posts content across 15 platforms, auto-replies to comments and messages, qualifies inbound leads, and improves over time. Built on the same systems BlockFrame Labs uses internally for its own distribution.",
     category: "Growth Systems",

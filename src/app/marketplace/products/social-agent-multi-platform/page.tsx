@@ -20,7 +20,7 @@ const docs = [
   },
   {
     title: "How posting works",
-    body: "You provide the core content strategy. The agent creates platform-native variations, schedules posts at optimal times, threads multi-part content, and adapts format for each platform — shorts for TikTok, carousels for LinkedIn, threads for X, and more.",
+    body: "You provide the core content strategy. The agent creates platform-native variations, schedules posts at optimal times, threads multi-part content, and adapts format for each platform: shorts for TikTok, carousels for LinkedIn, threads for X, and more.",
   },
   {
     title: "Engagement and replies",
@@ -41,11 +41,11 @@ const implementationSteps = [
 ];
 
 export const metadata: Metadata = {
-  title: "Social Agent — AI Multi-Platform Posting, Engagement & Lead Qualification",
+  title: "Social Agent: AI Multi-Platform Posting, Engagement & Lead Qualification",
   description: "An AI agent that posts across 15 platforms, auto-replies to comments and DMs, qualifies inbound leads, and routes them to your CRM. Built by BlockFrame Labs.",
   alternates: { canonical: "/marketplace/products/social-agent-multi-platform" },
   openGraph: {
-    title: "Social Agent — AI Multi-Platform Posting, Engagement & Lead Qualification",
+    title: "Social Agent: AI Multi-Platform Posting, Engagement & Lead Qualification",
     description: "Auto-posting, auto-reply, lead qualification across 15 social platforms. Built on the same systems BlockFrame Labs uses for its own distribution.",
     url: "https://www.blockframe.cloud/marketplace/products/social-agent-multi-platform",
     siteName: "BlockFrame Labs",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Social Agent — AI Multi-Platform Posting & Lead Qualification",
+    title: "Social Agent: AI Multi-Platform Posting & Lead Qualification",
     description: "Posting, engagement, and lead capture across 15 platforms. Safety controls included.",
     images: ["/images/social-agent-og.png"],
   },
