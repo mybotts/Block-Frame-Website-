@@ -46,10 +46,13 @@ When the first real post is published, agents should:
 
 ## 📮 Contact Connectivity
 
-The contact form is **100% Automated**. 
-- **Target**: Google Form Response Endpoint
-- **IDs**: Hard-coded in `src/app/page.tsx` under `ENTRY_IDS`
-- **Agent Action**: The data is sent to your Google Sheet instantly. Agents should monitor the sheet for new connections.
+The contact form is **server-side processed** via a Next.js API route.
+- **Target**: `POST /api/leads` → creates a page in the Notion "Leads" database
+- **DB ID**: `NOTION_LEADS_DB_ID` env var
+- **Fields captured**: Name, Email, Workspace, Project description
+- **Auto-set**: Date (today), Source = "Website", Status = "New"
+- **Spam protection**: Honeypot field (`_hp`) checked server-side + email validation
+- **Agent Action**: Leads appear instantly in the Notion "Leads" database for pipeline management
 
 ---
 

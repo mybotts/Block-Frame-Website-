@@ -76,41 +76,27 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Honeypot check
-    const honeypot = (e.target as HTMLFormElement)._hp;
-    if (honeypot && honeypot.value) {
-      // Bot detected — silently accept but don't process
-      setSuccess(true);
-      return;
-    }
-
     setLoading(true);
 
-    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf6ULRaf3PYQGtwpF1Y_vJybqxHjV26yTOmcek9jWrHr828-A/formResponse";
-    const ENTRY_IDS = {
-      name: "entry.260676864",
-      workspace: "entry.1783311989",
-      email: "entry.1759379081",
-      message: "entry.430857094",
-    };
-
-    const formBody = new URLSearchParams();
-    formBody.append(ENTRY_IDS.name, formData.name);
-    formBody.append(ENTRY_IDS.workspace, formData.workspace);
-    formBody.append(ENTRY_IDS.email, formData.email);
-    formBody.append(ENTRY_IDS.message, formData.message);
-
     try {
-      await fetch(GOOGLE_FORM_URL, {
+      const res = await fetch("/api/leads", {
         method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: formBody,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          workspace: formData.workspace,
+          email: formData.email,
+          message: formData.message,
+          _hp: (e.target as HTMLFormElement)._hp?.value || "",
+        }),
       });
-      setSuccess(true);
-      setFormData({ name: "", workspace: "", email: "", message: "" });
+
+      if (res.ok) {
+        setSuccess(true);
+        setFormData({ name: "", workspace: "", email: "", message: "" });
+      } else {
+        console.error("Submission failed:", res.status);
+      }
     } catch (error) {
       console.error("Submission error:", error);
     } finally {
