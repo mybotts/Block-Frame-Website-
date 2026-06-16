@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BlockFrame Labs | Architecting Autonomy",
     description:
-      "Practical AI systems and services and web engineering starting at $450. We build automation services, support workflows, web platforms, and content systems with reliable pricing.",
+      "Practical AI systems and services and web engineering. We build automation services, support workflows, web platforms, and content systems with reliable pricing.",
     url: "https://blockframe.cloud",
     siteName: "BlockFrame Labs",
     images: [
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BlockFrame Labs | Architecting Autonomy",
     description:
-      "Practical AI systems and services, automation, and web engineering starting at $450. Reliable pricing. Real execution.",
+      "Practical AI systems and services, automation, and web engineering. Reliable pricing. Real execution.",
     images: ["/images/og-preview.png"],
   }
 };
