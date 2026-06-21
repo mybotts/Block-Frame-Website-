@@ -56,15 +56,14 @@
 }
 
 @layer utilities {
-  /* Solid card: no glass, no blur, no thin ghost borders */
+  /* Solid card: no glass, no blur, no borders */
   .glass-card {
     background: #0f1318;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: border-color 0.2s ease, background 0.2s ease;
+    border: none;
+    transition: background 0.2s ease;
   }
   
   .glass-card:hover {
-    border-color: rgba(255, 255, 255, 0.16);
     background: #13181e;
   }
 
@@ -214,6 +213,11 @@
   .prose em {
     font-style: italic;
     color: #c0c0c8;
+  }
+
+  /* Italic descriptive text in cards and sections */
+  article p, .content-area p, .service-description, .process-description {
+    font-style: italic;
   }
   .prose a {
     color: var(--color-accent);
