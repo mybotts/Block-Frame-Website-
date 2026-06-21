@@ -137,7 +137,7 @@ export default function Marketplace() {
               {product.tiers ? (
                 <div className="mb-5 grid gap-3 sm:grid-cols-3">
                   {product.tiers.map((tier) => (
-                    <div key={tier.name} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
+                    <div key={tier.name} className="rounded-lg  bg-white/[0.03] p-3">
                       <div className="text-xs font-semibold uppercase tracking-[0.08em] text-text-secondary">
                         {tier.name}
                       </div>

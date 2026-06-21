@@ -26,7 +26,7 @@ export default function ThumbnailPlayer({ src, embedSrc }: { src: string; embedS
       onClick={() => setPlaying(true)}
       className="my-6 w-full text-left"
     >
-      <div className="relative aspect-video w-full overflow-hidden rounded border border-white/10">
+      <div className="relative aspect-video w-full overflow-hidden rounded ">
         <img
           src={src}
           alt="Play video"

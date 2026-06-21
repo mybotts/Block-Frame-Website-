@@ -30,7 +30,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/#services"
-            className="inline-flex min-h-14 items-center justify-center rounded border border-white/15 px-7 text-sm font-semibold text-white transition hover:border-primary/60"
+            className="inline-flex min-h-14 items-center justify-center rounded  px-7 text-sm font-semibold text-white transition hover:bg-white/[0.04]"
           >
             View Services
           </Link>

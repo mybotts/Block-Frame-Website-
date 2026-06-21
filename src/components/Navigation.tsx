@@ -54,7 +54,7 @@ export default function Navigation() {
           </div>
 
           <button
-            className="inline-flex h-11 w-11 items-center justify-center border border-white/10 text-text-secondary transition hover:text-white md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center  text-text-secondary transition hover:text-white md:hidden"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open menu"
           >
@@ -76,7 +76,7 @@ export default function Navigation() {
             <div className="flex items-center justify-between">
               <span className="text-sm font-semibold uppercase tracking-[0.2em] text-text-muted">Menu</span>
               <button
-                className="inline-flex h-10 w-10 items-center justify-center border border-white/10 text-text-secondary"
+                className="inline-flex h-10 w-10 items-center justify-center  text-text-secondary"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
               >

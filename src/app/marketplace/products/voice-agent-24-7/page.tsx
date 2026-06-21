@@ -108,7 +108,7 @@ export default function VoiceAgent247Page() {
                 <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
                   Book a Call
                 </a>
-                <a href={emailHref} className="inline-flex min-h-12 items-center justify-center border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+                <a href={emailHref} className="inline-flex min-h-12 items-center justify-center  px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
                   Start by Email
                 </a>
               </div>
@@ -141,7 +141,7 @@ export default function VoiceAgent247Page() {
               <p className="mt-2 text-sm text-text-secondary">Three ways to work with us. Pricing is tailored to your call volume, stack, and complexity. Book a call to get a precise quote.</p>
               <div className="mt-5 grid gap-3">
                 {product.tiers?.map((tier) => (
-                  <div key={tier.name} className="border border-white/10 bg-white/[0.03] p-4">
+                  <div key={tier.name} className=" bg-white/[0.03] p-4">
                     <h3 className="font-semibold text-white">{tier.name}</h3>
                     <p className="mt-2 text-sm leading-6 text-text-secondary">{tier.description}</p>
                   </div>
@@ -171,7 +171,7 @@ export default function VoiceAgent247Page() {
               <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
                 Book a Call
               </a>
-              <a href={emailHref} className="inline-flex min-h-12 items-center justify-center border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+              <a href={emailHref} className="inline-flex min-h-12 items-center justify-center  px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
                 Start by Email
               </a>
             </div>

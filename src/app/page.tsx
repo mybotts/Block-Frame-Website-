@@ -105,7 +105,7 @@ export default function Home() {
   };
 
   const fieldClass =
-    "border border-white/10 bg-white/[0.04] px-5 py-4 text-white outline-none transition placeholder:text-text-muted focus:border-primary/60 focus:ring-1 focus:ring-primary/50";
+    "bg-white/[0.02] px-5 py-4 text-white outline-none transition placeholder:text-text-muted focus:border-primary/60 focus:ring-1 focus:ring-primary/50";
 
   return (
     <>
@@ -134,7 +134,7 @@ export default function Home() {
                 <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
                   Start a Project
                 </a>
-                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center border border-white/15 px-7 text-sm font-semibold text-white transition hover:border-primary/60">
+                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center  px-7 text-sm font-semibold text-white transition hover:bg-white/[0.04]">
                   Book a Call
                 </a>
               </div>
@@ -146,7 +146,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="relative"
             >
-              <div className="overflow-hidden border border-white/10 bg-white/[0.035]">
+              <div className="overflow-hidden bg-white/[0.02]">
                 <div className="relative h-[520px]">
                   <Image
                     src="/images/hero-image.jpg"
@@ -158,7 +158,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-[#06070a]/25 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                    <div className="grid gap-3 border border-white/10 bg-black/55 p-4 backdrop-blur-md sm:grid-cols-3">
+                    <div className="grid gap-3  bg-black/55 p-4 backdrop-blur-md sm:grid-cols-3">
                       {["AI Systems", "Web Platforms", "Content Systems"].map((item) => (
                         <div key={item} className="bg-white/[0.06] p-4">
                           <span className="text-sm font-semibold text-white">{item}</span>
@@ -175,7 +175,7 @@ export default function Home() {
           <section className="relative border-y border-white/10 bg-[#080b10]/80 px-6 py-14 md:px-12">
             <div className="mx-auto grid w-full max-w-7xl gap-5 md:grid-cols-3">
               {contentAreas.map((area) => (
-                <a key={area.label} href={area.href} className="border border-white/10 bg-white/[0.035] p-6 transition hover:border-primary/50 hover:bg-white/[0.055]">
+                <a key={area.label} href={area.href} className="bg-white/[0.02] p-6 transition hover:bg-white/[0.04] hover:bg-white/[0.055]">
                   <p className="section-kicker mb-4">{area.label}</p>
                   <p className="text-base leading-7 text-text-secondary">{area.description}</p>
                 </a>
@@ -195,7 +195,7 @@ export default function Home() {
               </div>
               <div className="grid gap-4 md:grid-cols-4">
                 {processSteps.map(([number, title, text]) => (
-                  <article key={number} className="border border-white/10 bg-white/[0.035] p-6">
+                  <article key={number} className="bg-white/[0.02] p-6">
                     <span className="text-sm font-bold text-primary-light">{number}</span>
                     <h3 className="mt-8 text-xl font-semibold text-white">{title}</h3>
                     <p className="mt-4 text-sm leading-6 text-text-secondary">{text}</p>
@@ -206,7 +206,7 @@ export default function Home() {
           </section>
 
           <section className="relative px-6 py-24 md:px-12 md:py-32">
-            <div className="mx-auto grid w-full max-w-7xl overflow-hidden border border-white/10 bg-white/[0.04] lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="mx-auto grid w-full max-w-7xl overflow-hidden bg-white/[0.02] lg:grid-cols-[0.9fr_1.1fr]">
               <div className="relative min-h-[360px]">
                 <Image
                   src="/images/book-a-call.png"
