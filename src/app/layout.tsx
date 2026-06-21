@@ -136,7 +136,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className={`${inter.variable} ${lora.variable} antialiased text-white bg-[#050507] font-serif`}>
+      <body className={`${inter.variable} ${lora.variable} antialiased text-white bg-[#050507]`}>
         {children}
       </body>
     </html>
