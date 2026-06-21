@@ -102,7 +102,7 @@ export default function VoiceAgent247Page() {
               </div>
 
               <h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">{product.title}</h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-text-secondary">{product.description}</p>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-text-secondary italic">{product.description}</p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
@@ -130,7 +130,7 @@ export default function VoiceAgent247Page() {
             {docs.map((item) => (
               <article key={item.title} className="glass-card p-6">
                 <h2 className="text-xl font-semibold text-text-primary">{item.title}</h2>
-                <p className="mt-3 text-sm leading-7 text-text-secondary">{item.body}</p>
+                <p className="mt-3 text-sm leading-7 text-text-secondary italic">{item.body}</p>
               </article>
             ))}
           </section>

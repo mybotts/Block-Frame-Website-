@@ -102,7 +102,7 @@ export default function Services() {
                     <h3 className="mt-3 text-lg font-semibold tracking-tight text-white group-hover:text-primary-light transition-colors">
                       {product.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-6 text-text-secondary">
+                    <p className="mt-3 text-sm leading-6 text-text-secondary italic">
                       {product.description}
                     </p>
                   </div>
@@ -136,7 +136,7 @@ export default function Services() {
                     {service.team}
                   </p>
                   <h3 className="text-xl font-semibold tracking-tight text-white">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-text-secondary">
+                  <p className="mt-3 text-sm leading-6 text-text-secondary italic">
                     {serviceNotes[service.id] || service.description}
                   </p>
                 </div>

@@ -177,7 +177,7 @@ export default function Home() {
               {contentAreas.map((area) => (
                 <a key={area.label} href={area.href} className="bg-white/[0.02] p-6 transition hover:bg-white/[0.04] hover:bg-white/[0.055]">
                   <p className="section-kicker mb-4">{area.label}</p>
-                  <p className="text-base leading-7 text-text-secondary">{area.description}</p>
+                  <p className="text-base leading-7 text-text-secondary italic">{area.description}</p>
                 </a>
               ))}
             </div>
@@ -198,7 +198,7 @@ export default function Home() {
                   <article key={number} className="bg-white/[0.02] p-6">
                     <span className="text-sm font-bold text-primary-light">{number}</span>
                     <h3 className="mt-8 text-xl font-semibold text-white">{title}</h3>
-                    <p className="mt-4 text-sm leading-6 text-text-secondary">{text}</p>
+                    <p className="mt-4 text-sm leading-6 text-text-secondary italic">{text}</p>
                   </article>
                 ))}
               </div>
@@ -222,7 +222,7 @@ export default function Home() {
                 <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">
                   Talk through what you need before committing.
                 </h2>
-                <p className="mt-5 text-lg leading-8 text-text-secondary">
+                <p className="mt-5 text-lg leading-8 text-text-secondary italic">
                   No pitch. Just a conversation about your workflow, what's not working, and whether we can help.
                 </p>
                 <a
