@@ -81,7 +81,7 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
             <article>
               {/* Hero Video Thumbnail (images render inline in body only) */}
               {heroVideo && (
-                <div className="mb-10 rounded-2xl overflow-hidden border border-white/10">
+                <div className="mb-10 rounded overflow-hidden border border-white/10">
                   <ThumbnailPlayer
                     src={heroVideo.src}
                     embedSrc={`https://www.youtube-nocookie.com/embed/${heroVideo.videoId}`}

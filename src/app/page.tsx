@@ -105,7 +105,7 @@ export default function Home() {
   };
 
   const fieldClass =
-    "rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 text-white outline-none transition placeholder:text-text-muted focus:border-primary/60 focus:ring-1 focus:ring-primary/50";
+    "border border-white/10 bg-white/[0.04] px-5 py-4 text-white outline-none transition placeholder:text-text-muted focus:border-primary/60 focus:ring-1 focus:ring-primary/50";
 
   return (
     <>
@@ -131,10 +131,10 @@ export default function Home() {
                 We build and deploy AI systems and services that handle support, content, and operations, so your team can focus on the decisions that actually need a human.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
+                <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
                   Start a Project
                 </a>
-                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 px-7 text-sm font-semibold text-white transition hover:border-primary/60">
+                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center border border-white/15 px-7 text-sm font-semibold text-white transition hover:border-primary/60">
                   Book a Call
                 </a>
               </div>
@@ -146,7 +146,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="relative"
             >
-              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-2xl">
+              <div className="overflow-hidden border border-white/10 bg-white/[0.035]">
                 <div className="relative h-[520px]">
                   <Image
                     src="/images/hero-image.jpg"
@@ -158,9 +158,9 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-[#06070a]/25 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                    <div className="grid gap-3 rounded-3xl border border-white/10 bg-black/55 p-4 backdrop-blur-md sm:grid-cols-3">
+                    <div className="grid gap-3 border border-white/10 bg-black/55 p-4 backdrop-blur-md sm:grid-cols-3">
                       {["AI Systems", "Web Platforms", "Content Systems"].map((item) => (
-                        <div key={item} className="rounded-2xl bg-white/[0.06] p-4">
+                        <div key={item} className="bg-white/[0.06] p-4">
                           <span className="text-sm font-semibold text-white">{item}</span>
                           <p className="mt-1 text-xs text-text-secondary">Built and deployed</p>
                         </div>
@@ -175,7 +175,7 @@ export default function Home() {
           <section className="relative border-y border-white/10 bg-[#080b10]/80 px-6 py-14 md:px-12">
             <div className="mx-auto grid w-full max-w-7xl gap-5 md:grid-cols-3">
               {contentAreas.map((area) => (
-                <a key={area.label} href={area.href} className="rounded-3xl border border-white/10 bg-white/[0.035] p-6 transition hover:border-primary/50 hover:bg-white/[0.055]">
+                <a key={area.label} href={area.href} className="border border-white/10 bg-white/[0.035] p-6 transition hover:border-primary/50 hover:bg-white/[0.055]">
                   <p className="section-kicker mb-4">{area.label}</p>
                   <p className="text-base leading-7 text-text-secondary">{area.description}</p>
                 </a>
@@ -195,7 +195,7 @@ export default function Home() {
               </div>
               <div className="grid gap-4 md:grid-cols-4">
                 {processSteps.map(([number, title, text]) => (
-                  <article key={number} className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
+                  <article key={number} className="border border-white/10 bg-white/[0.035] p-6">
                     <span className="text-sm font-bold text-primary-light">{number}</span>
                     <h3 className="mt-8 text-xl font-semibold text-white">{title}</h3>
                     <p className="mt-4 text-sm leading-6 text-text-secondary">{text}</p>
@@ -206,7 +206,7 @@ export default function Home() {
           </section>
 
           <section className="relative px-6 py-24 md:px-12 md:py-32">
-            <div className="mx-auto grid w-full max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="mx-auto grid w-full max-w-7xl overflow-hidden border border-white/10 bg-white/[0.04] lg:grid-cols-[0.9fr_1.1fr]">
               <div className="relative min-h-[360px]">
                 <Image
                   src="/images/book-a-call.png"
@@ -229,7 +229,7 @@ export default function Home() {
                   href={callHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-8 inline-flex min-h-14 items-center rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light"
+                  className="mt-8 inline-flex min-h-14 items-center bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light"
                 >
                   Book on Calendly
                 </a>
@@ -251,7 +251,7 @@ export default function Home() {
 
               <form className="grid gap-5" onSubmit={handleSubmit}>
                 {success ? (
-                  <div className="rounded-3xl border border-primary/30 bg-primary/10 p-8">
+                  <div className="border border-primary/30 bg-primary/10 p-8">
                     <h3 className="text-2xl font-semibold text-white">Message received.</h3>
                     <p className="mt-3 text-text-secondary">We'll review your request and get back to you within 24 hours.</p>
                     <button type="button" onClick={() => setSuccess(false)} className="mt-6 text-sm font-semibold text-primary-light">
@@ -284,7 +284,7 @@ export default function Home() {
                       What are you trying to automate?
                       <textarea required rows={5} className={`${fieldClass} resize-none`} placeholder="e.g. We spend 10 hours a week on customer support replies. We want an AI system that handles the common questions and escalates the rest." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
                     </label>
-                    <button disabled={loading} className="min-h-14 rounded-full bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60">
+                    <button disabled={loading} className="min-h-14 bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60">
                       {loading ? "Sending..." : "Submit Project Request"}
                     </button>
                   </>

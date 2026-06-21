@@ -330,10 +330,10 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     badge: "New",
     cta: "Book implementation call",
     highlights: [
-      "Runs 24/7 on your website or phone line — never sleeps, never misses a call.",
+      "Runs 24/7 on your website or phone line. Never sleeps, never misses a call.",
       "Learns your business, services, pricing, and FAQs so it answers like a real team member.",
       "Books meetings, consultations, and sessions directly into your calendar based on your real-time availability.",
-      "Call screening, qualification, and routing — only hot leads and confirmed bookings reach you.",
+      "Call screening, qualification, and routing. Only hot leads and confirmed bookings reach you.",
     ],
     tiers: [
       {

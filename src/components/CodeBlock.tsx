@@ -33,7 +33,7 @@ export default function CodeBlock({ code, language }: CodeBlockProps) {
   }, [code]);
 
   return (
-    <div className="relative group rounded-xl overflow-hidden bg-[#0d0d12] border border-white/10 my-6">
+    <div className="relative group rounded overflow-hidden bg-[#0d0d12] border border-white/10 my-6">
       <div className="absolute top-2 right-2 flex items-center gap-2">
         {language && (
           <span className="px-2 py-0.5 text-xs font-semibold rounded bg-white/5 text-text-muted border border-white/10">

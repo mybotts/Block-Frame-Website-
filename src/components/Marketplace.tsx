@@ -49,7 +49,7 @@ export default function Marketplace() {
             <div key={i} className="glass-card overflow-hidden">
               <div className="h-44 bg-white/5 animate-pulse" />
               <div className="p-6">
-                <div className="shimmer h-5 w-24 rounded-full mb-3" />
+                <div className="shimmer h-5 w-24 rounded mb-3" />
                 <div className="shimmer h-6 w-full rounded mb-2" />
                 <div className="shimmer h-4 w-full rounded mb-4" />
                 <div className="shimmer h-10 w-full rounded" />
@@ -127,7 +127,7 @@ export default function Marketplace() {
                 <ul className="mb-5 space-y-2">
                   {product.highlights.map((highlight) => (
                     <li key={highlight} className="flex gap-2 text-xs leading-relaxed text-text-secondary">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-light" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded bg-primary-light" />
                       <span>{highlight}</span>
                     </li>
                   ))}
@@ -149,7 +149,7 @@ export default function Marketplace() {
 
               <Link
                 href={`/marketplace/products/${product.id}`}
-                className="block w-full rounded-xl bg-gradient-to-r from-primary to-primary-dark py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:from-primary-light hover:to-primary active:scale-[0.98]"
+                className="block w-full rounded bg-gradient-to-r from-primary to-primary-dark py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:from-primary-light hover:to-primary active:scale-[0.98]"
               >
                 {product.cta ?? "Get Access"}
               </Link>

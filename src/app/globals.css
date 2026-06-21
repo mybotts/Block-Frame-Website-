@@ -17,9 +17,9 @@
   html, body {
     background-color: var(--color-background);
     color: var(--color-text-primary);
+    font-family: var(--font-lora), Georgia, "Times New Roman", serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Enable vertical scrolling but hide bar */
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: none;
@@ -51,22 +51,21 @@
 }
 
 @layer utilities {
-  /* Minimalist Premium Glass Card */
+  /* Solid card: no glass, no blur, no thin ghost borders */
   .glass-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.018) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(18px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #0f1318;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: border-color 0.2s ease, background 0.2s ease;
   }
   
   .glass-card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.16);
+    background: #13181e;
   }
 
   .category-pill {
-    @apply inline-block px-3 py-1 text-xs font-medium rounded-full;
+    @apply inline-block px-3 py-1 text-xs font-medium;
+    border-radius: 2px;
   }
 
   /* Core UI Elements */
@@ -74,8 +73,8 @@
     background-color: #ffffff;
     color: #000000;
     font-weight: 600;
-    transition: all 0.3s ease;
-    border-radius: 9999px;
+    transition: background 0.15s ease;
+    border-radius: 4px;
   }
 
   .nav-link {
@@ -123,24 +122,30 @@
   }
   
   .button-primary:hover {
-    background-color: #f4f4f5;
-    transform: scale(1.02);
+    background-color: #e5e5e5;
   }
 
   .button-secondary {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: #ffffff;
     font-weight: 500;
-    transition: all 0.3s ease;
-    border-radius: 9999px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+    border-radius: 4px;
   }
 
   .button-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.35);
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  .nav-link, .footer-heading, .section-kicker, .category-pill,
+  button, .button-primary, .button-secondary {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
   /* Typography Enhancements */
   .text-gradient {
     background-clip: text;
@@ -207,6 +212,10 @@
     color: white;
     font-weight: 600;
   }
+  .prose em {
+    font-style: italic;
+    color: #c0c0c8;
+  }
   .prose a {
     color: var(--color-accent);
     text-decoration: underline;
@@ -223,7 +232,7 @@
     margin: 1.5em 0;
   }
   .prose img, .prose video, .prose iframe {
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     margin: 1.5em 0;
     border: 1px solid rgba(255,255,255,0.08);
   }
@@ -237,7 +246,7 @@
   }
   .prose pre {
     margin: 1.5em 0;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     overflow: hidden;
   }
   .prose pre code {

@@ -51,7 +51,7 @@ export default function Guides() {
           {[1, 2, 3].map((i) => (
             <div key={i} className="glass-card overflow-hidden">
               <div className="p-6">
-                <div className="shimmer h-5 w-24 rounded-full mb-4" />
+                <div className="shimmer h-5 w-24 rounded mb-4" />
                 <div className="shimmer h-6 w-full rounded mb-3" />
                 <div className="shimmer h-4 w-full rounded mb-2" />
                 <div className="shimmer h-4 w-2/3 rounded" />

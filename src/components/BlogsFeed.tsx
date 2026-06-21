@@ -100,7 +100,7 @@ export default function BlogsFeed() {
           {[1, 2, 3].map((i) => (
             <div key={i} className="glass-card overflow-hidden">
               <div className="p-6">
-                <div className="shimmer h-5 w-20 rounded-full mb-4" />
+                <div className="shimmer h-5 w-20 rounded mb-4" />
                 <div className="shimmer h-6 w-full rounded mb-3" />
                 <div className="shimmer h-4 w-full rounded mb-2" />
                 <div className="shimmer h-4 w-3/4 rounded mb-4" />
@@ -130,7 +130,7 @@ export default function BlogsFeed() {
       <div className="mb-8 flex flex-wrap gap-4">
         <button 
           onClick={() => setFilter(null)}
-          className={`rounded-full px-4 py-2 transition-all duration-300 hover:bg-primary/10 ${
+          className={`rounded px-4 py-2 transition-all duration-300 hover:bg-primary/10 ${
             filter === null ? "bg-primary/20 text-primary-light" : "bg-transparent text-text-secondary"
           }`}
         >
@@ -154,7 +154,7 @@ export default function BlogsFeed() {
             <button 
               key={catSlug}
               onClick={() => setFilter(catSlug)}
-              className={`rounded-full px-4 py-2 transition-all duration-300 hover:bg-primary/10 ${
+              className={`rounded px-4 py-2 transition-all duration-300 hover:bg-primary/10 ${
                 filter === catSlug ? "bg-primary/20 text-primary-light" : "bg-transparent text-text-secondary"
               }`}
             >

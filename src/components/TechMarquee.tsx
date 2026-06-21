@@ -28,7 +28,7 @@ export default function TechMarquee() {
       >
         {[...tech, ...tech].map((item, index) => (
           <div key={index} className="flex items-center gap-4 text-xs font-bold tracking-[0.3em] text-text-muted uppercase">
-            <div className="h-1 w-1 bg-accent rounded-full shadow-[0_0_8px_rgba(0,240,255,1)]" />
+            <div className="h-1 w-1 bg-accent rounded shadow-[0_0_8px_rgba(0,240,255,1)]" />
             {item}
           </div>
         ))}

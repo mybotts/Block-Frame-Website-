@@ -16,7 +16,7 @@ const callHref = "https://calendly.com/blockframemedia/30min";
 const docs = [
   {
     title: "What you are buying",
-    body: "A voice AI agent that we install for your business. It runs 24/7, learns your services and FAQs, answers inbound calls in a natural conversational voice, qualifies callers, and books meetings or sessions directly into your calendar. No more missed calls. No more back-and-forth scheduling emails.",
+    body: "A voice AI agent that we install for your business. It runs 24/7, learns your services and FAQs, answers inbound calls in a natural conversational voice, qualifies callers, and books meetings or sessions directly into your calendar. No more missed calls, no more back-and-forth scheduling emails.",
   },
   {
     title: "How it learns your business",
@@ -105,10 +105,10 @@ export default function VoiceAgent247Page() {
               <p className="mt-6 max-w-2xl text-lg leading-8 text-text-secondary">{product.description}</p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
+                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
                   Book a Call
                 </a>
-                <a href={emailHref} className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+                <a href={emailHref} className="inline-flex min-h-12 items-center justify-center border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
                   Start by Email
                 </a>
               </div>
@@ -141,7 +141,7 @@ export default function VoiceAgent247Page() {
               <p className="mt-2 text-sm text-text-secondary">Three ways to work with us. Pricing is tailored to your call volume, stack, and complexity. Book a call to get a precise quote.</p>
               <div className="mt-5 grid gap-3">
                 {product.tiers?.map((tier) => (
-                  <div key={tier.name} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                  <div key={tier.name} className="border border-white/10 bg-white/[0.03] p-4">
                     <h3 className="font-semibold text-white">{tier.name}</h3>
                     <p className="mt-2 text-sm leading-6 text-text-secondary">{tier.description}</p>
                   </div>
@@ -154,7 +154,7 @@ export default function VoiceAgent247Page() {
               <ol className="mt-5 space-y-4">
                 {implementationSteps.map((step) => (
                   <li key={step} className="flex gap-4 text-sm leading-7 text-text-secondary">
-                    <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-primary-light" />
+                    <span className="mt-2.5 h-2 w-2 shrink-0 rounded bg-primary-light" />
                     <span>{step}</span>
                   </li>
                 ))}
@@ -168,10 +168,10 @@ export default function VoiceAgent247Page() {
               Share your current call volume, scheduling tool, and whether you want the blueprint, a build sprint, or managed service. We will reply with a practical recommendation and pricing tailored to your setup.
             </p>
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
+              <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-white px-6 text-sm font-semibold text-black transition hover:bg-primary-light">
                 Book a Call
               </a>
-              <a href={emailHref} className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
+              <a href={emailHref} className="inline-flex min-h-12 items-center justify-center border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-primary-light hover:text-primary-light">
                 Start by Email
               </a>
             </div>

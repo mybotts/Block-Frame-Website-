@@ -94,7 +94,7 @@ export default function Services() {
               <Link
                 key={product.id}
                 href={product.href}
-                className="glass-card group overflow-hidden rounded-3xl border border-white/10 p-6 transition hover:border-primary/40"
+                className="glass-card group overflow-hidden border border-white/10 p-6 transition hover:border-primary/40"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
@@ -119,7 +119,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.45, delay: index * 0.04 }}
-                className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035]"
+                className="group overflow-hidden border border-white/10 bg-white/[0.035]"
               >
                 <div className="relative h-52 overflow-hidden bg-surface">
                   <Image

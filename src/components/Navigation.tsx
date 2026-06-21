@@ -23,7 +23,7 @@ export default function Navigation() {
       <nav className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-[#06070a]/88 backdrop-blur-xl">
         <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-6 md:px-12">
           <Link href="/" className="group flex items-center gap-3">
-            <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-white p-1 shadow-[0_0_18px_rgba(255,255,255,0.10)]">
+            <div className="relative h-10 w-10 overflow-hidden bg-white p-1 shadow-[0_0_18px_rgba(255,255,255,0.10)]">
               <Image src="/images/logo.png" alt="BlockFrame Labs Logo" fill className="object-contain p-1" priority sizes="40px" />
             </div>
             <span className="text-base font-semibold tracking-tight text-white transition-colors group-hover:text-primary-light">
@@ -47,14 +47,14 @@ export default function Navigation() {
               href={calendlyHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light"
+              className="inline-flex min-h-11 items-center bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light"
             >
               Book a Call
             </a>
           </div>
 
           <button
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-text-secondary transition hover:text-white md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center border border-white/10 text-text-secondary transition hover:text-white md:hidden"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open menu"
           >
@@ -76,7 +76,7 @@ export default function Navigation() {
             <div className="flex items-center justify-between">
               <span className="text-sm font-semibold uppercase tracking-[0.2em] text-text-muted">Menu</span>
               <button
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-text-secondary"
+                className="inline-flex h-10 w-10 items-center justify-center border border-white/10 text-text-secondary"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
               >
@@ -104,7 +104,7 @@ export default function Navigation() {
                 href={calendlyHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-black"
+                className="mt-4 inline-flex min-h-12 items-center justify-center bg-white px-5 text-sm font-semibold text-black"
               >
                 Book a Call
               </a>

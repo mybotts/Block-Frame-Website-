@@ -45,7 +45,7 @@ export default function Footer() {
       <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1.2fr_2fr]">
         <div className="max-w-md">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative h-11 w-11 overflow-hidden rounded-xl bg-white p-2">
+            <div className="relative h-11 w-11 overflow-hidden bg-white p-2">
               <Image src="/images/logo.png" alt="BlockFrame Labs" fill className="object-contain p-1" sizes="44px" />
             </div>
             <span className="text-lg font-semibold tracking-tight text-white">BlockFrame Labs</span>
@@ -53,7 +53,7 @@ export default function Footer() {
           <p className="mt-5 text-sm leading-6 text-text-secondary">
             We build AI systems and services, web platforms, and content systems for teams that need working infrastructure, not slide decks.
           </p>
-          <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light">
+          <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-11 items-center bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light">
             Book a Call
           </a>
         </div>
