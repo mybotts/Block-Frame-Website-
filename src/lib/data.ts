@@ -67,6 +67,15 @@ export const services: Service[] = [
     gradient: "from-indigo-600/20 to-purple-900/20",
     team: "AI & Automation",
   },
+  {
+    id: "voice-agent",
+    title: "Voice Agent Service",
+    description:
+      "We install a voice AI agent on your website or business that runs 24/7. It knows your business, answers calls, and books meetings and sessions based on your provided schedule.",
+    image: "/images/voice-agent.png",
+    gradient: "from-cyan-600/20 to-blue-900/20",
+    team: "AI & Automation",
+  },
   // ── Engineering ──────────────────────────────────────────────
   {
     id: "web-apps",
@@ -309,6 +318,38 @@ export const samplePosts: BlogPost[] = [
 ];
 
 export const marketplaceProducts: MarketplaceProduct[] = [
+  {
+    id: "voice-agent-24-7",
+    title: "Voice Agent: 24/7 AI Phone Assistant, Call Handler & Meeting Booker",
+    description:
+      "A voice AI agent installed for your business that runs 24/7. It learns your services, answers inbound calls, qualifies callers, and books meetings or sessions directly into your calendar based on your provided schedule.",
+    category: "AI Systems",
+    price: "Custom pricing",
+    image: "/images/voice-agent.png",
+    gradient: "from-cyan-500/30 via-slate-900/40 to-blue-700/30",
+    badge: "New",
+    cta: "Book implementation call",
+    highlights: [
+      "Runs 24/7 on your website or phone line — never sleeps, never misses a call.",
+      "Learns your business, services, pricing, and FAQs so it answers like a real team member.",
+      "Books meetings, consultations, and sessions directly into your calendar based on your real-time availability.",
+      "Call screening, qualification, and routing — only hot leads and confirmed bookings reach you.",
+    ],
+    tiers: [
+      {
+        name: "Voice Agent Blueprint",
+        description: "Complete setup guide, call flow templates, prompt libraries, and integration docs so you or your team can deploy it yourself.",
+      },
+      {
+        name: "Build Sprint",
+        description: "We configure the voice agent with your business knowledge, call flows, calendar integration, and launch it on your phone line or website.",
+      },
+      {
+        name: "Managed Voice Agent",
+        description: "Monthly operation, call quality monitoring, knowledge base updates, and continuous improvement after launch.",
+      },
+    ],
+  },
   {
     id: "proposal-led-agentic-outreach",
     title: "Proposal Led Agentic Outreach System",

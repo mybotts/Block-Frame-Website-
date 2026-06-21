@@ -6,7 +6,8 @@ import Link from "next/link";
 const calendlyHref = "https://calendly.com/blockframemedia/30min";
 
 const serviceLinks = [
-  { label: "AI Agents", href: "/#services" },
+  { label: "AI Systems", href: "/#services" },
+  { label: "Voice Agent", href: "/marketplace/products/voice-agent-24-7" },
   { label: "Web Engineering", href: "/#services" },
   { label: "Social Media", href: "/#services" },
   { label: "Video Production", href: "/#services" },

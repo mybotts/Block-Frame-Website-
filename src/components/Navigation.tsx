@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const navItems = [
   { label: "Services", href: "/#services" },
+  { label: "Voice Agent", href: "/marketplace/products/voice-agent-24-7" },
   { label: "Blogs", href: "/blogs" },
   { label: "Videos", href: "/videos" },
   { label: "Marketplace/Products", href: "/marketplace/products" },
