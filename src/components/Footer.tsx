@@ -41,19 +41,19 @@ function FooterLink({ item }: { item: { label: string; href: string; external?: 
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 border-t border-white/10 bg-[#06070a] px-6 py-16 md:px-12">
+    <footer className="relative z-10 border-t border-border bg-background px-6 py-16 md:px-12">
       <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1.2fr_2fr]">
         <div className="max-w-md">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative h-11 w-11 overflow-hidden bg-white p-2">
+            <div className="relative h-11 w-11 overflow-hidden bg-surface p-2">
               <Image src="/images/logo.png" alt="BlockFrame Labs" fill className="object-contain p-1" sizes="44px" />
             </div>
-            <span className="text-lg font-semibold tracking-tight text-white">BlockFrame Labs</span>
+            <span className="text-lg font-semibold tracking-tight text-text-primary">BlockFrame Labs</span>
           </Link>
           <p className="mt-5 text-sm leading-6 text-text-secondary">
             We build AI systems and services, web platforms, and content systems for teams that need working infrastructure, not slide decks.
           </p>
-          <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-11 items-center bg-white px-5 text-sm font-semibold text-black transition hover:bg-primary-light">
+          <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-11 items-center bg-text-primary px-5 text-sm font-semibold text-background transition hover:opacity-85">
             Book a Call
           </a>
         </div>
@@ -80,7 +80,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 flex w-full max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.18em] text-text-muted md:flex-row md:items-center md:justify-between">
+      <div className="mx-auto mt-12 flex w-full max-w-7xl flex-col gap-3 border-t border-border pt-6 text-xs uppercase tracking-[0.18em] text-text-muted md:flex-row md:items-center md:justify-between">
         <span>BlockFrame Labs</span>
         <span>&copy; {new Date().getFullYear()} All rights reserved</span>
       </div>

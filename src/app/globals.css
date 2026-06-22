@@ -1,18 +1,64 @@
 @import "tailwindcss";
 
 @theme {
+  --color-primary: #00b3bf;
+  --color-primary-light: #00d4e0;
+  --color-primary-dark: #008a94;
+  --color-accent: #00b3bf;
+  --font-serif: var(--font-lora);
+  --font-sans: var(--font-inter);
+}
+
+/* ============================================
+   DARK THEME (default)
+   ============================================ */
+:root, .dark {
   --color-background: #06070a;
   --color-surface: #0d1117;
   --color-surface-light: #151b23;
-  --color-primary: #00f0ff;
-  --color-primary-light: #66f6ff;
-  --color-primary-dark: #00b3bf;
-  --color-accent: #00f0ff;
   --color-text-primary: #ffffff;
   --color-text-secondary: #a1a1aa;
   --color-text-muted: #626872;
-  --font-serif: var(--font-lora);
-  --font-sans: var(--font-inter);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
+  --color-card-bg: #11161d;
+  --color-card-bg-hover: #161d26;
+  --color-card-border: rgba(255, 255, 255, 0.06);
+  --color-card-border-hover: rgba(255, 255, 255, 0.1);
+  --color-input-bg: rgba(255, 255, 255, 0.04);
+  --color-input-border: rgba(255, 255, 255, 0.1);
+  --color-input-focus: rgba(0, 179, 191, 0.4);
+  --color-overlay: rgba(0, 0, 0, 0.7);
+  --color-nav-bg: rgba(6, 7, 10, 0.88);
+  --color-code-bg: #0d0d12;
+  --color-glow: rgba(0, 240, 255, 0.08);
+  --color-glow-secondary: rgba(0, 240, 255, 0.03);
+}
+
+/* ============================================
+   LIGHT THEME
+   ============================================ */
+.light {
+  --color-background: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-light: #ebedf0;
+  --color-text-primary: #0f1318;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-hover: rgba(0, 0, 0, 0.15);
+  --color-card-bg: #ffffff;
+  --color-card-bg-hover: #f8f9fa;
+  --color-card-border: rgba(0, 0, 0, 0.08);
+  --color-card-border-hover: rgba(0, 0, 0, 0.14);
+  --color-input-bg: #f0f1f3;
+  --color-input-border: rgba(0, 0, 0, 0.1);
+  --color-input-focus: rgba(0, 179, 191, 0.3);
+  --color-overlay: rgba(255, 255, 255, 0.7);
+  --color-nav-bg: rgba(245, 246, 248, 0.92);
+  --color-code-bg: #1a1f28;
+  --color-glow: rgba(0, 179, 191, 0.06);
+  --color-glow-secondary: rgba(0, 179, 191, 0.02);
 }
 
 @layer base {
@@ -29,18 +75,19 @@
     overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   html {
     scroll-behavior: auto !important;
   }
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
   html::-webkit-scrollbar,
   body::-webkit-scrollbar {
     display: none;
   }
 
+  /* Noise overlay — only visible in dark mode */
   body::after {
     content: "";
     position: fixed;
@@ -49,9 +96,13 @@
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 9998; /* Under cursor, above all */
+    z-index: 9998;
     opacity: 0.03;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .light body::after {
+    opacity: 0;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -59,15 +110,18 @@
   }
 }
 
-/* Custom utility classes - Tailwind v4 compatible */
+/* ============================================
+   COMPONENT CLASSES
+   ============================================ */
+
 .glass-card {
-  background: #11161d;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 .glass-card:hover {
-  background: #161d26;
-  border-color: rgba(255, 255, 255, 0.1);
+  background: var(--color-card-bg-hover);
+  border-color: var(--color-card-border-hover);
 }
 
 .category-pill {
@@ -79,26 +133,26 @@
 }
 
 .button-primary {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--color-text-primary);
+  color: var(--color-background);
   font-weight: 600;
-  transition: background 0.15s ease;
+  transition: opacity 0.15s ease;
   border-radius: 4px;
 }
 .button-primary:hover {
-  background-color: #e5e5e5;
+  opacity: 0.85;
 }
 
 .button-secondary {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
   font-weight: 500;
   transition: border-color 0.15s ease, color 0.15s ease;
   border-radius: 4px;
 }
 .button-secondary:hover {
-  border-color: rgba(255, 255, 255, 0.35);
+  border-color: var(--color-border-hover);
 }
 
 .nav-link {
@@ -110,11 +164,11 @@
   transition: color 0.2s ease;
 }
 .nav-link:hover {
-  color: #ffffff;
+  color: var(--color-text-primary);
 }
 
 .footer-heading {
-  color: #ffffff;
+  color: var(--color-text-primary);
   font-size: 0.72rem;
   font-weight: 750;
   letter-spacing: 0.18em;
@@ -128,7 +182,7 @@
   transition: color 0.2s ease;
 }
 .footer-link:hover {
-  color: #ffffff;
+  color: var(--color-text-primary);
 }
 
 .section-kicker {
@@ -142,16 +196,22 @@
 .professional-image {
   filter: saturate(0.88) contrast(1.05);
 }
+.light .professional-image {
+  filter: saturate(1) contrast(1);
+}
 
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(to right, #ffffff, #a1a1aa);
+  background-image: linear-gradient(to right, var(--color-text-primary), var(--color-text-secondary));
 }
 
 .text-glow {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+.light .text-glow {
+  text-shadow: none;
 }
 
 .hero-radial-glow {
@@ -161,12 +221,14 @@
   transform: translateX(-50%);
   width: 1200px;
   height: 800px;
-  background: radial-gradient(ellipse at center top, rgba(0, 240, 255, 0.08) 0%, rgba(0, 240, 255, 0.03) 35%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(ellipse at center top, var(--color-glow) 0%, var(--color-glow-secondary) 35%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none;
   z-index: -1;
 }
 
-/* Blog post content styling (prose-like) */
+/* ============================================
+   BLOG POST CONTENT (prose)
+   ============================================ */
 .prose {
   line-height: 1.75;
   max-width: 90ch;
@@ -174,7 +236,7 @@
   margin-right: auto;
 }
 .prose h1, .prose h2, .prose h3, .prose h4 {
-  color: white;
+  color: var(--color-text-primary);
   font-weight: 700;
   margin-top: 2em;
   margin-bottom: 0.75em;
@@ -204,12 +266,12 @@
   margin-bottom: 0.5em;
 }
 .prose strong {
-  color: white;
+  color: var(--color-text-primary);
   font-weight: 600;
 }
 .prose em {
   font-style: italic;
-  color: #c0c0c8;
+  color: var(--color-text-secondary);
 }
 .prose a {
   color: var(--color-accent);
@@ -229,15 +291,15 @@
 .prose img, .prose video, .prose iframe {
   border-radius: 0.5rem;
   margin: 1.5em 0;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid var(--color-border);
 }
 .prose code:not(pre code) {
-  background: rgba(255,255,255,0.05);
+  background: var(--color-input-bg);
   padding: 0.2em 0.4em;
   border-radius: 0.25rem;
   font-size: 0.875em;
   color: var(--color-primary-light);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid var(--color-border);
 }
 .prose pre {
   margin: 1.5em 0;
@@ -257,3 +319,48 @@ article p, .content-area p, .service-description, .process-description {
   font-style: italic;
 }
 
+/* ============================================
+   THEME TOGGLE SWITCH
+   ============================================ */
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--color-input-bg);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--color-border-hover);
+}
+.theme-toggle-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.theme-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-text-primary);
+  transition: transform 0.3s ease, background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.light .theme-toggle-thumb {
+  transform: translateX(22px);
+}
+.theme-toggle-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--color-background);
+  transition: color 0.3s ease;
+}

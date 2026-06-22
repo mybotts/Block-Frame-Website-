@@ -15,7 +15,7 @@ function escapeHtml(text: string): string {
     '"': "&quot;",
     "'": "&#039;",
   };
-  return text.replace(/[&<>"']/g, (m) => map[m]);
+  return text.replace(/[&<>\"']/g, (m) => map[m]);
 }
 
 export default function CodeBlock({ code, language }: CodeBlockProps) {
@@ -33,16 +33,16 @@ export default function CodeBlock({ code, language }: CodeBlockProps) {
   }, [code]);
 
   return (
-    <div className="relative group rounded overflow-hidden bg-[#0d0d12]  my-6">
+    <div className="relative group rounded overflow-hidden bg-code-bg my-6">
       <div className="absolute top-2 right-2 flex items-center gap-2">
         {language && (
-          <span className="px-2 py-0.5 text-xs font-semibold rounded bg-white/5 text-text-muted ">
+          <span className="px-2 py-0.5 text-xs font-semibold rounded bg-surface-light text-text-muted">
             {language}
           </span>
         )}
         <button
           onClick={handleCopy}
-          className="p-2 rounded-lg bg-white/5  text-text-muted hover:text-white hover:bg-white/10 transition-all"
+          className="p-2 rounded-lg bg-surface-light text-text-muted hover:text-text-primary hover:bg-card-bg transition-all"
           aria-label="Copy code to clipboard"
           title={copied ? "Copied!" : "Copy code"}
         >

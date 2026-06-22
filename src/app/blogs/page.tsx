@@ -16,7 +16,7 @@ export default function BlogsPage() {
 
         <div className="w-full max-w-6xl mx-auto">
           <div className="mb-12 text-center">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight mb-4">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-text-primary leading-tight mb-4">
               Blogs
             </h1>
             <p className="text-xl text-text-secondary font-light max-w-2xl mx-auto">

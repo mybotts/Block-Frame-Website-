@@ -136,7 +136,7 @@ export default function VideoFeed() {
               const thumbnail = getThumbnailSrc(video.url, video.platform);
               const embedSrc = getEmbedSrc(video.url, video.platform);
               return (
-                <div key={video.id} className="glass-card overflow-hidden rounded  shadow-lg transition-all hover:bg-white/[0.04] hover:shadow-xl">
+                <div key={video.id} className="glass-card overflow-hidden rounded shadow-lg transition-all hover:shadow-xl">
                   {thumbnail ? (
                     <ThumbnailPlayer src={thumbnail} embedSrc={embedSrc} />
                   ) : (

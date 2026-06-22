@@ -43,7 +43,7 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
           <img
             src={content}
             alt=""
-            className="w-full rounded "
+            className="w-full rounded"
           />
         </div>
       );
@@ -79,7 +79,7 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
             href={data.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded bg-white/5  text-accent hover:bg-white/10 hover:border-accent/30 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded bg-surface-light text-accent hover:bg-card-bg hover:border-accent/30 transition-all duration-300"
           >
             <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -94,7 +94,7 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
     case "markdown":
     default:
       return (
-        <div className="mb-6 prose prose-invert max-w-none">
+        <div className="mb-6 prose max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -105,7 +105,7 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
                 const isInline = !match;
                 if (isInline) {
                   return (
-                    <code className="bg-white/5 px-1 py-0.5 rounded text-sm text-primary-light " {...props}>
+                    <code className="bg-input-bg px-1 py-0.5 rounded text-sm text-primary-light" {...props}>
                       {children}
                     </code>
                   );
@@ -115,7 +115,7 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
               h1: ({ children }) => {
                 const id = slugify(String(children));
                 return (
-                  <h1 id={id} className="text-4xl md:text-5xl font-bold text-white mb-6 mt-10 leading-tight">
+                  <h1 id={id} className="text-4xl md:text-5xl font-bold text-text-primary mb-6 mt-10 leading-tight">
                     {children}
                   </h1>
                 );
@@ -123,7 +123,7 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
               h2: ({ children }) => {
                 const id = slugify(String(children));
                 return (
-                  <h2 id={id} className="text-3xl md:text-4xl font-bold text-white mb-5 mt-8 leading-tight">
+                  <h2 id={id} className="text-3xl md:text-4xl font-bold text-text-primary mb-5 mt-8 leading-tight">
                     {children}
                   </h2>
                 );
@@ -131,7 +131,7 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
               h3: ({ children }) => {
                 const id = slugify(String(children));
                 return (
-                  <h3 id={id} className="text-2xl md:text-3xl font-bold text-white mb-4 mt-6 leading-tight">
+                  <h3 id={id} className="text-2xl md:text-3xl font-bold text-text-primary mb-4 mt-6 leading-tight">
                     {children}
                   </h3>
                 );
@@ -139,7 +139,7 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
               h4: ({ children }) => {
                 const id = slugify(String(children));
                 return (
-                  <h4 id={id} className="text-xl md:text-2xl font-bold text-white mb-3 mt-5 leading-tight">
+                  <h4 id={id} className="text-xl md:text-2xl font-bold text-text-primary mb-3 mt-5 leading-tight">
                     {children}
                   </h4>
                 );
@@ -154,7 +154,6 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
                 </blockquote>
               ),
               a: ({ href, children }) => {
-                // Render YouTube links as embedded video players
                 if (href) {
                   const videoId = extractYouTubeId(href);
                   if (videoId) {
@@ -169,7 +168,6 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
                     );
                   }
                 }
-                // Normal links
                 const isAnchor = href && href.startsWith('#');
                 return (
                   <a

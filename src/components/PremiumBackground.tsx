@@ -3,45 +3,45 @@
 export default function PremiumBackground() {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-      {/* Base dark background */}
+      {/* Base background — uses CSS variable */}
       <div className="absolute inset-0 bg-background" />
 
-      {/* Soft product glow in top-left */}
+      {/* Top-left cyan glow */}
       <div
         className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] opacity-25"
         style={{
           background: `
             radial-gradient(circle at 30% 30%,
-              rgba(0, 240, 255, 0.09) 0%,
-              rgba(0, 240, 255, 0.04) 25%,
+              var(--color-glow) 0%,
+              var(--color-glow-secondary) 25%,
               transparent 55%
             )
           `,
         }}
       />
 
-      {/* Mid-page ambient glow — keeps lower content from going flat */}
+      {/* Mid-page ambient glow */}
       <div
         className="absolute top-[40%] left-[20%] h-[50%] w-[60%] opacity-15"
         style={{
           background: `
             radial-gradient(ellipse at 40% 50%,
-              rgba(0, 240, 255, 0.06) 0%,
-              rgba(0, 240, 255, 0.02) 30%,
+              var(--color-glow) 0%,
+              var(--color-glow-secondary) 30%,
               transparent 60%
             )
           `,
         }}
       />
 
-      {/* Low contrast slate depth, not a decorative gradient field */}
+      {/* Bottom-right slate depth */}
       <div
         className="absolute -bottom-[35%] -right-[20%] h-[80%] w-[80%] opacity-20"
         style={{
           background: `
             radial-gradient(circle at 70% 70%,
-              rgba(80, 92, 110, 0.16) 0%,
-              rgba(80, 92, 110, 0.07) 26%,
+              rgba(80, 92, 110, 0.12) 0%,
+              rgba(80, 92, 110, 0.05) 26%,
               transparent 50%
             )
           `,
@@ -53,8 +53,8 @@ export default function PremiumBackground() {
         className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
+            linear-gradient(to right, var(--color-text-primary) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--color-text-primary) 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px',
         }}
@@ -64,7 +64,7 @@ export default function PremiumBackground() {
       <div
         className="absolute top-0 left-0 right-0 h-32"
         style={{
-          background: 'linear-gradient(to bottom, rgba(5,5,7,0.8), transparent)',
+          background: 'linear-gradient(to bottom, var(--color-background), transparent)',
         }}
       />
 
@@ -72,7 +72,7 @@ export default function PremiumBackground() {
       <div
         className="absolute bottom-0 left-0 right-0 h-32"
         style={{
-          background: 'linear-gradient(to top, rgba(5,5,7,0.9), transparent)',
+          background: 'linear-gradient(to top, var(--color-background), transparent)',
         }}
       />
     </div>

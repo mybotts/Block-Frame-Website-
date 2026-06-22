@@ -75,7 +75,6 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setLoading(true);
 
     try {
@@ -105,7 +104,7 @@ export default function Home() {
   };
 
   const fieldClass =
-    "bg-white/[0.02] px-5 py-4 text-white outline-none transition placeholder:text-text-muted focus:border-primary/60 focus:ring-1 focus:ring-primary/50";
+    "bg-input-bg border border-input-border px-5 py-4 text-text-primary outline-none transition placeholder:text-text-muted focus:border-primary/60 focus:ring-1 focus:ring-input-focus";
 
   return (
     <>
@@ -124,17 +123,17 @@ export default function Home() {
           <section className="mx-auto grid min-h-[88vh] w-full max-w-7xl items-center gap-12 px-6 pb-20 pt-16 md:px-12 lg:grid-cols-[1.02fr_0.98fr]">
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="section-kicker mb-5">AI agency for practical automation</p>
-              <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-white md:text-7xl lg:text-8xl">
+              <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-text-primary md:text-7xl lg:text-8xl">
                 AI systems and services that do real work.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
                 We build and deploy AI systems and services that handle support, content, and operations, so your team can focus on the decisions that actually need a human.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light">
+                <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center bg-text-primary px-7 text-sm font-semibold text-background transition hover:opacity-85">
                   Start a Project
                 </a>
-                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center  px-7 text-sm font-semibold text-white transition hover:bg-white/[0.04]">
+                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center border border-border px-7 text-sm font-semibold text-text-primary transition hover:bg-surface-light">
                   Book a Call
                 </a>
               </div>
@@ -146,7 +145,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="relative"
             >
-              <div className="overflow-hidden bg-white/[0.02]">
+              <div className="overflow-hidden bg-surface-light">
                 <div className="relative h-[520px]">
                   <Image
                     src="/images/hero-image.jpg"
@@ -156,12 +155,12 @@ export default function Home() {
                     className="professional-image object-cover"
                     sizes="(min-width: 1024px) 48vw, 100vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-[#06070a]/25 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                    <div className="grid gap-3  bg-black/55 p-4 backdrop-blur-md sm:grid-cols-3">
+                    <div className="grid gap-3 bg-card-bg/80 backdrop-blur-md p-4 sm:grid-cols-3">
                       {["AI Systems", "Web Platforms", "Content Systems"].map((item) => (
-                        <div key={item} className="bg-white/[0.06] p-4">
-                          <span className="text-sm font-semibold text-white">{item}</span>
+                        <div key={item} className="bg-surface-light p-4">
+                          <span className="text-sm font-semibold text-text-primary">{item}</span>
                           <p className="mt-1 text-xs text-text-secondary">Built and deployed</p>
                         </div>
                       ))}
@@ -172,10 +171,10 @@ export default function Home() {
             </motion.div>
           </section>
 
-          <section className="relative border-y border-white/10 bg-[#080b10]/80 px-6 py-14 md:px-12">
+          <section className="relative border-y border-border bg-surface/80 px-6 py-14 md:px-12">
             <div className="mx-auto grid w-full max-w-7xl gap-5 md:grid-cols-3">
               {contentAreas.map((area) => (
-                <a key={area.label} href={area.href} className="bg-white/[0.02] p-6 transition hover:bg-white/[0.04] hover:bg-white/[0.055]">
+                <a key={area.label} href={area.href} className="bg-surface-light p-6 transition hover:bg-card-bg">
                   <p className="section-kicker mb-4">{area.label}</p>
                   <p className="text-base leading-7 text-text-secondary italic">{area.description}</p>
                 </a>
@@ -185,19 +184,19 @@ export default function Home() {
 
           <Services />
 
-          <section className="relative border-t border-white/10 bg-[#07090d] px-6 py-24 md:px-12 md:py-32">
+          <section className="relative border-t border-border bg-surface px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto w-full max-w-7xl">
               <div className="mb-12 max-w-3xl">
                 <p className="section-kicker mb-4">How we work</p>
-                <h2 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
+                <h2 className="text-4xl font-semibold tracking-tight text-text-primary md:text-6xl">
                   Audit. Productize. Deploy.
                 </h2>
               </div>
               <div className="grid gap-4 md:grid-cols-4">
                 {processSteps.map(([number, title, text]) => (
-                  <article key={number} className="bg-white/[0.02] p-6">
+                  <article key={number} className="bg-surface-light p-6">
                     <span className="text-sm font-bold text-primary-light">{number}</span>
-                    <h3 className="mt-8 text-xl font-semibold text-white">{title}</h3>
+                    <h3 className="mt-8 text-xl font-semibold text-text-primary">{title}</h3>
                     <p className="mt-4 text-sm leading-6 text-text-secondary italic">{text}</p>
                   </article>
                 ))}
@@ -206,7 +205,7 @@ export default function Home() {
           </section>
 
           <section className="relative px-6 py-24 md:px-12 md:py-32">
-            <div className="mx-auto grid w-full max-w-7xl overflow-hidden bg-white/[0.02] lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="mx-auto grid w-full max-w-7xl overflow-hidden bg-surface-light lg:grid-cols-[0.9fr_1.1fr]">
               <div className="relative min-h-[360px]">
                 <Image
                   src="/images/book-a-call.png"
@@ -215,11 +214,11 @@ export default function Home() {
                   className="professional-image object-cover"
                   sizes="(min-width: 1024px) 42vw, 100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-transparent to-transparent lg:bg-gradient-to-r" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent lg:bg-gradient-to-r" />
               </div>
               <div className="p-8 md:p-12">
                 <p className="section-kicker mb-4">Book a call</p>
-                <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">
+                <h2 className="text-4xl font-semibold tracking-tight text-text-primary md:text-5xl">
                   Talk through what you need before committing.
                 </h2>
                 <p className="mt-5 text-lg leading-8 text-text-secondary italic">
@@ -229,7 +228,7 @@ export default function Home() {
                   href={callHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-8 inline-flex min-h-14 items-center bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light"
+                  className="mt-8 inline-flex min-h-14 items-center bg-text-primary px-7 text-sm font-semibold text-background transition hover:opacity-85"
                 >
                   Book on Calendly
                 </a>
@@ -237,11 +236,11 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="contact" className="relative border-t border-white/10 bg-[#07090d] px-6 py-24 md:px-12 md:py-32">
+          <section id="contact" className="relative border-t border-border bg-surface px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
               <div>
                 <p className="section-kicker mb-4">Start here</p>
-                <h2 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">
+                <h2 className="text-4xl font-semibold tracking-tight text-text-primary md:text-6xl">
                   Tell us what you need.
                 </h2>
                 <p className="mt-6 text-lg leading-8 text-text-secondary">
@@ -252,7 +251,7 @@ export default function Home() {
               <form className="grid gap-5" onSubmit={handleSubmit}>
                 {success ? (
                   <div className="border border-primary/30 bg-primary/10 p-8">
-                    <h3 className="text-2xl font-semibold text-white">Message received.</h3>
+                    <h3 className="text-2xl font-semibold text-text-primary">Message received.</h3>
                     <p className="mt-3 text-text-secondary">We'll review your request and get back to you within 24 hours.</p>
                     <button type="button" onClick={() => setSuccess(false)} className="mt-6 text-sm font-semibold text-primary-light">
                       Send another request
@@ -260,7 +259,6 @@ export default function Home() {
                   </div>
                 ) : (
                   <>
-                    {/* Honeypot field — hidden from real users */}
                     <div className="absolute opacity-0 pointer-events-none h-0 w-0 overflow-hidden" aria-hidden="true">
                       <label>
                         <input name="_hp" type="text" tabIndex={-1} autoComplete="off" />
@@ -284,7 +282,7 @@ export default function Home() {
                       What are you trying to automate?
                       <textarea required rows={5} className={`${fieldClass} resize-none`} placeholder="e.g. We spend 10 hours a week on customer support replies. We want an AI system that handles the common questions and escalates the rest." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
                     </label>
-                    <button disabled={loading} className="min-h-14 bg-white px-7 text-sm font-semibold text-black transition hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-60">
+                    <button disabled={loading} className="min-h-14 bg-text-primary px-7 text-sm font-semibold text-background transition hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-60">
                       {loading ? "Sending..." : "Submit Project Request"}
                     </button>
                   </>

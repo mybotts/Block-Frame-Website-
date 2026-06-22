@@ -23,7 +23,6 @@ function extractYouTubeId(url: string): string | null {
 }
 
 export default function PostContent({ initialPost }: { initialPost: BlogPost }) {
-  // Handle hash anchor clicks for smooth scroll
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -50,7 +49,6 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
     return () => window.removeEventListener("click", handleClick);
   }, []);
 
-  // Get hero video thumbnail only
   const heroVideo = useMemo(() => {
     if (!initialPost?.blocks) return null;
     for (const block of initialPost.blocks) {
@@ -79,9 +77,8 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
         <div className="w-full max-w-7xl mx-auto pointer-events-auto px-4 md:px-0">
           <ErrorBoundary>
             <article>
-              {/* Hero Video Thumbnail (images render inline in body only) */}
               {heroVideo && (
-                <div className="mb-10 rounded overflow-hidden ">
+                <div className="mb-10 rounded overflow-hidden">
                   <ThumbnailPlayer
                     src={heroVideo.src}
                     embedSrc={`https://www.youtube-nocookie.com/embed/${heroVideo.videoId}`}
@@ -89,12 +86,11 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
                 </div>
               )}
 
-              {/* Header */}
               <header className="mb-12">
                 <span className="category-pill bg-accent/15 text-accent-light mb-4">
                   {initialPost.category}
                 </span>
-                <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+                <h1 className="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-6">
                   {initialPost.title}
                 </h1>
                 <div className="flex items-center gap-4 text-sm text-text-muted">
@@ -110,8 +106,7 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
                 </div>
               </header>
 
-              {/* Blocks */}
-              <div className="prose prose-invert max-w-none">
+              <div className="prose max-w-none">
                 {initialPost.blocks
                   .sort((a, b) => a.order - b.order)
                   .map((block) => (

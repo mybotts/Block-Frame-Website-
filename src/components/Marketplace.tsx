@@ -47,7 +47,7 @@ export default function Marketplace() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3].map((i) => (
             <div key={i} className="glass-card overflow-hidden">
-              <div className="h-44 bg-white/5 animate-pulse" />
+              <div className="h-44 bg-surface-light animate-pulse" />
               <div className="p-6">
                 <div className="shimmer h-5 w-24 rounded mb-3" />
                 <div className="shimmer h-6 w-full rounded mb-2" />
@@ -92,11 +92,11 @@ export default function Marketplace() {
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center p-4 text-center text-xs font-medium uppercase tracking-[0.12em] text-white/60">
+                <div className="flex h-full w-full items-center justify-center p-4 text-center text-xs font-medium uppercase tracking-[0.12em] text-text-secondary">
                   {product.title}
                 </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-card-bg/90 via-card-bg/40 to-transparent" />
             </div>
 
             <div className="p-6">
@@ -105,7 +105,7 @@ export default function Marketplace() {
                   {product.category}
                 </span>
                 {product.badge ? (
-                  <span className="category-pill border border-amber-300/30 bg-amber-300/10 text-amber-100">
+                  <span className="category-pill border border-amber-400/30 bg-amber-50 text-amber-700">
                     {product.badge}
                   </span>
                 ) : null}
@@ -137,7 +137,7 @@ export default function Marketplace() {
               {product.tiers ? (
                 <div className="mb-5 grid gap-3 sm:grid-cols-3">
                   {product.tiers.map((tier) => (
-                    <div key={tier.name} className="rounded-lg  bg-white/[0.03] p-3">
+                    <div key={tier.name} className="rounded-lg bg-surface-light p-3">
                       <div className="text-xs font-semibold uppercase tracking-[0.08em] text-text-secondary">
                         {tier.name}
                       </div>
@@ -149,7 +149,7 @@ export default function Marketplace() {
 
               <Link
                 href={`/marketplace/products/${product.id}`}
-                className="block w-full rounded bg-gradient-to-r from-primary to-primary-dark py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:from-primary-light hover:to-primary active:scale-[0.98]"
+                className="block w-full rounded bg-text-primary py-3 text-center text-sm font-semibold text-background transition-all duration-300 hover:opacity-85 active:scale-[0.98]"
               >
                 {product.cta ?? "Get Access"}
               </Link>

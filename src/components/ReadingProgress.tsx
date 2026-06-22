@@ -15,7 +15,6 @@ export default function ReadingProgress() {
       const articleHeight = rect.height;
       const windowHeight = window.innerHeight;
 
-      // Calculate how much of article has been scrolled past
       const scrolled = -articleTop;
       const total = articleHeight - windowHeight;
       const pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0;
@@ -24,7 +23,7 @@ export default function ReadingProgress() {
 
     window.addEventListener("scroll", update);
     window.addEventListener("resize", update);
-    update(); // initial
+    update();
 
     return () => {
       window.removeEventListener("scroll", update);
@@ -33,7 +32,7 @@ export default function ReadingProgress() {
   }, []);
 
   return (
-    <div className="fixed left-0 top-0 h-full w-1 bg-white/5 z-50 pointer-events-none">
+    <div className="fixed left-0 top-0 h-full w-1 bg-border z-50 pointer-events-none">
       <div
         className="h-full bg-accent transition-all duration-100 ease-out"
         style={{ width: `${progress}%` }}

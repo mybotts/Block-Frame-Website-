@@ -7,24 +7,20 @@ import { BlogPost } from "@/lib/types";
 export default function BlogsFeed() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<string | null>(null); // null = all, otherwise category slug
+  const [filter, setFilter] = useState<string | null>(null);
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        // Fetch all posts first to get categories and thumbnails
         const allRes = await fetch("/api/posts");
         if (allRes.ok) {
           const allData = await allRes.json();
           let allPosts: BlogPost[] = allData.posts;
-          
-          // Exclude videos from the blogs feed
+
           allPosts = allPosts.filter(post => post.categorySlug !== "videos");
-          
-          // Extract unique categories (excluding videos)
+
           const uniqueCategories = [...new Set(allPosts.map((p) => p.categorySlug))];
-          // Always include educational and tech categories
           if (!uniqueCategories.includes("educational")) {
             uniqueCategories.push("educational");
           }
@@ -32,13 +28,12 @@ export default function BlogsFeed() {
             uniqueCategories.push("tech");
           }
           setCategories(uniqueCategories);
-          
-          // Apply filter
+
           let filteredPosts = allPosts;
           if (filter) {
             filteredPosts = allPosts.filter((p) => p.categorySlug === filter);
           }
-          
+
           setPosts(filteredPosts);
         }
       } catch (error) {
@@ -47,11 +42,10 @@ export default function BlogsFeed() {
         setLoading(false);
       }
     }
-    
+
     fetchData();
   }, [filter]);
 
-  // Helper to extract YouTube ID from a video URL
   const extractYouTubeId = (url: string): string | null => {
     const patterns = [/youtube\.com\/(?:watch\?v=|embed\/|shorts\/)([^?&\s]+)/, /youtu\.be\/([^?&\s]+)/];
     for (const p of patterns) {
@@ -61,18 +55,15 @@ export default function BlogsFeed() {
     return null;
   };
 
-  // Helper to get thumbnail URL from post blocks
   const getPostThumbnail = (post: BlogPost): string | undefined => {
     if (!post.blocks || post.blocks.length === 0) return undefined;
-    
-    // Look for first image block
+
     for (const block of post.blocks) {
       if (block.type === "image") {
         return block.content as string;
       }
     }
-    
-    // Fallback: check for video blocks — generate YouTube thumbnail
+
     for (const block of post.blocks) {
       if (block.type === "video") {
         const videoId = extractYouTubeId(block.content);
@@ -81,7 +72,7 @@ export default function BlogsFeed() {
         }
       }
     }
-    
+
     return undefined;
   };
 
@@ -128,7 +119,7 @@ export default function BlogsFeed() {
     <section id="blogs">
       {/* Filter Controls */}
       <div className="mb-8 flex flex-wrap gap-4">
-        <button 
+        <button
           onClick={() => setFilter(null)}
           className={`rounded px-4 py-2 transition-all duration-300 hover:bg-primary/10 ${
             filter === null ? "bg-primary/20 text-primary-light" : "bg-transparent text-text-secondary"
@@ -137,7 +128,6 @@ export default function BlogsFeed() {
           All Blogs
         </button>
         {categories.map((catSlug) => {
-          // Map slug to display name
           const categoryNames: Record<string, string> = {
             'ai-news': 'AI News',
             'guides': 'Guides',
@@ -149,9 +139,9 @@ export default function BlogsFeed() {
             'news': 'News'
           };
           const displayName = categoryNames[catSlug] || catSlug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-          
+
           return (
-            <button 
+            <button
               key={catSlug}
               onClick={() => setFilter(catSlug)}
               className={`rounded px-4 py-2 transition-all duration-300 hover:bg-primary/10 ${
@@ -173,35 +163,29 @@ export default function BlogsFeed() {
               key={post.id}
               className={`glass-card group overflow-hidden p-6 fade-in-up fade-in-up-delay-${index + 1}`}
             >
-              {/* Thumbnail if available */}
               {thumbnail && (
-                <div className="w-full h-48 bg-cover bg-center mb-4 rounded-lg" 
+                <div className="w-full h-48 bg-cover bg-center mb-4 rounded-lg"
                      style={{ backgroundImage: `url(${thumbnail})` }}>
-                  {/* Optional: add a gradient overlay for better text readability */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
                 </div>
               )}
-              
-              {/* Category Pill */}
+
               <span className="category-pill bg-accent/15 text-accent-light mb-4">
                 {post.category}
               </span>
 
-              {/* Title */}
               <h3 className="text-lg font-semibold text-text-primary mb-3 group-hover:text-primary-light transition-colors duration-300 line-clamp-2">
                 {post.title}
               </h3>
 
-              {/* Excerpt/Preview */}
               <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-3">
                 {getPreview(post)}
               </p>
 
-              {/* Date + Read Link */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs text-text-muted">
                   <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v12a2 2 0 002 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                   <time dateTime={post.date}>
                     {new Date(post.date).toLocaleDateString("en-US", {

@@ -62,13 +62,13 @@ export default function Services() {
     .filter(Boolean) as typeof services;
 
   return (
-    <section id="services" className="relative w-full border-t border-white/10 bg-[#07090d]">
+    <section id="services" className="relative w-full border-t border-border bg-surface">
       <div className="mx-auto flex w-full max-w-7xl flex-col px-6 md:px-12">
         <div className="py-24 md:py-32">
           <div className="mb-14 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
             <div>
               <p className="section-kicker mb-4">Core services</p>
-              <h2 className="max-w-2xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
+              <h2 className="max-w-2xl text-4xl font-semibold tracking-tight text-text-primary md:text-6xl">
                 What we build and ship.
               </h2>
             </div>
@@ -81,7 +81,7 @@ export default function Services() {
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="section-kicker mb-2">Case studies</p>
-                <h3 className="text-2xl font-semibold tracking-tight text-white md:text-4xl">Built and deployed</h3>
+                <h3 className="text-2xl font-semibold tracking-tight text-text-primary md:text-4xl">Built and deployed</h3>
               </div>
               <p className="max-w-xl text-sm leading-6 text-text-secondary">
                 Real systems we operate daily. Not demos, not slide decks.
@@ -94,12 +94,12 @@ export default function Services() {
               <Link
                 key={product.id}
                 href={product.href}
-                className="glass-card group overflow-hidden p-6 transition hover:bg-white/[0.04]"
+                className="glass-card group overflow-hidden p-6 transition"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
                     <span className="category-pill bg-primary/15 text-primary-light">{product.category}</span>
-                    <h3 className="mt-3 text-lg font-semibold tracking-tight text-white group-hover:text-primary-light transition-colors">
+                    <h3 className="mt-3 text-lg font-semibold tracking-tight text-text-primary group-hover:text-primary-light transition-colors">
                       {product.title}
                     </h3>
                     <p className="mt-3 text-sm leading-6 text-text-secondary italic">
@@ -119,7 +119,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.45, delay: index * 0.04 }}
-                className="group overflow-hidden bg-white/[0.02]"
+                className="group overflow-hidden bg-surface-light"
               >
                 <div className="relative h-52 overflow-hidden bg-surface">
                   <Image
@@ -129,13 +129,13 @@ export default function Services() {
                     className="professional-image object-cover opacity-85 transition duration-700 group-hover:scale-105 group-hover:opacity-95"
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#07090d] via-[#07090d]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent" />
                 </div>
                 <div className="p-6">
                   <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-primary-light">
                     {service.team}
                   </p>
-                  <h3 className="text-xl font-semibold tracking-tight text-white">{service.title}</h3>
+                  <h3 className="text-xl font-semibold tracking-tight text-text-primary">{service.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-text-secondary italic">
                     {serviceNotes[service.id] || service.description}
                   </p>
