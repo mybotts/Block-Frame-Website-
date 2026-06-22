@@ -8,13 +8,27 @@ export default function PremiumBackground() {
 
       {/* Soft product glow in top-left */}
       <div
-        className="absolute -top-[30%] -left-[20%] h-[80%] w-[80%] opacity-20"
+        className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] opacity-25"
         style={{
           background: `
             radial-gradient(circle at 30% 30%,
-              rgba(0, 240, 255, 0.07) 0%,
-              rgba(0, 240, 255, 0.035) 22%,
-              transparent 50%
+              rgba(0, 240, 255, 0.09) 0%,
+              rgba(0, 240, 255, 0.04) 25%,
+              transparent 55%
+            )
+          `,
+        }}
+      />
+
+      {/* Mid-page ambient glow — keeps lower content from going flat */}
+      <div
+        className="absolute top-[40%] left-[20%] h-[50%] w-[60%] opacity-15"
+        style={{
+          background: `
+            radial-gradient(ellipse at 40% 50%,
+              rgba(0, 240, 255, 0.06) 0%,
+              rgba(0, 240, 255, 0.02) 30%,
+              transparent 60%
             )
           `,
         }}

@@ -61,12 +61,13 @@
 
 /* Custom utility classes - Tailwind v4 compatible */
 .glass-card {
-  background: #0f1318;
-  border: none;
-  transition: background 0.2s ease;
+  background: #11161d;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 .glass-card:hover {
-  background: #13181e;
+  background: #161d26;
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .category-pill {
@@ -155,12 +156,12 @@
 
 .hero-radial-glow {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(0, 240, 255, 0.055) 0%, rgba(0, 0, 0, 0) 70%);
+  transform: translateX(-50%);
+  width: 1200px;
+  height: 800px;
+  background: radial-gradient(ellipse at center top, rgba(0, 240, 255, 0.08) 0%, rgba(0, 240, 255, 0.03) 35%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none;
   z-index: -1;
 }
