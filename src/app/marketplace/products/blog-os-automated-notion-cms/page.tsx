@@ -88,6 +88,7 @@ export default function BlogOsProductPage() {
             <div>
               <div className="mb-4 flex flex-wrap gap-2">
                 <span className="category-pill bg-primary/15 text-primary-light">{product.category}</span>
+                <span className="category-pill border border-emerald-400/30 bg-emerald-50 text-emerald-700">1 Month Free Trial</span>
                 <span className="category-pill border border-amber-400/30 bg-amber-50 text-amber-700">{product.badge}</span>
               </div>
 
@@ -151,9 +152,9 @@ export default function BlogOsProductPage() {
           </section>
 
           <section className="mt-12 glass-card p-6 text-center md:p-10">
-            <h2 className="text-2xl font-semibold text-text-primary">Ready to see if it fits your business?</h2>
+            <h2 className="text-2xl font-semibold text-text-primary">Start with a free 30-day trial</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-text-secondary">
-              Tell us your website stack, publishing goals, number of authors, whether you want the blueprint, build sprint, or managed operation. We will reply with a concrete recommendation and pricing tailored to your setup.
+              Test the complete Blog OS in your own stack. Full access, no commitment, no credit card. If it works for you, pick a tier that fits. If not, walk away with the blueprint.
             </p>
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
               <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-text-primary px-6 text-sm font-semibold text-background transition hover:opacity-85">

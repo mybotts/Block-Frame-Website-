@@ -368,6 +368,10 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     ],
     tiers: [
       {
+        name: "1 Month Free Trial",
+        description: "Full access for 30 days. Test the complete workflow in your own stack with our onboarding support. No commitment, no credit card required.",
+      },
+      {
         name: "Workflow Blueprint",
         description: "DIY operating map, templates, data model, prompts, and setup checklist.",
       },
@@ -398,6 +402,10 @@ export const marketplaceProducts: MarketplaceProduct[] = [
       "Built for clients who want consistent publishing without manual copy-paste or scattered toolchains.",
     ],
     tiers: [
+      {
+        name: "1 Month Free Trial",
+        description: "Full access for 30 days. Test the complete Blog OS workflow in your own stack with our onboarding support. No commitment, no credit card required.",
+      },
       {
         name: "One-Time Setup",
         description:

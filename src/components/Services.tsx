@@ -39,6 +39,7 @@ const proofProducts = [
     description: "Researches prospects, creates personalized sample assets, and sends proof-led outreach through your existing CRM.",
     category: "Growth Automation",
     href: "/marketplace/products/proposal-led-agentic-outreach",
+    badge: "1 Month Free Trial",
   },
   {
     id: "blog-os-automated-notion-cms",
@@ -46,6 +47,7 @@ const proofProducts = [
     description: "Runs our own blog: daily posts, zero manual effort. Notion-backed research, drafting, approvals, and publishing on autopilot.",
     category: "Content Systems",
     href: "/marketplace/products/blog-os-automated-notion-cms",
+    badge: "1 Month Free Trial",
   },
   {
     id: "social-agent-multi-platform",
@@ -98,7 +100,12 @@ export default function Services() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <span className="category-pill bg-primary/15 text-primary-light">{product.category}</span>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="category-pill bg-primary/15 text-primary-light">{product.category}</span>
+                      {product.badge && (
+                        <span className="category-pill border border-emerald-400/30 bg-emerald-50 text-emerald-700">{product.badge}</span>
+                      )}
+                    </div>
                     <h3 className="mt-3 text-lg font-semibold tracking-tight text-text-primary group-hover:text-primary-light transition-colors">
                       {product.title}
                     </h3>
