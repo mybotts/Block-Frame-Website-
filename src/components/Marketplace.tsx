@@ -109,6 +109,11 @@ export default function Marketplace() {
                     {product.badge}
                   </span>
                 ) : null}
+                {product.tiers?.some((t) => t.name === "1 Month Free Trial") ? (
+                  <span className="category-pill border border-emerald-400/30 bg-emerald-50 text-emerald-700">
+                    1 Month Free Trial
+                  </span>
+                ) : null}
               </div>
 
               <h3 className="text-lg font-semibold text-text-primary mb-2 group-hover:text-primary-light transition-colors duration-300">
