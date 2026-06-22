@@ -31,6 +31,10 @@ export interface BlogPost {
   blocks: Block[];
   /** Backward compatibility: concatenated text of all text blocks (or plain text fallback) */
   content?: string;
+  /** YouTube URL from Notion property (for video posts stored via URL property instead of child blocks) */
+  youtubeUrl?: string;
+  /** YouTube video ID from Notion property */
+  youtubeId?: string;
 }
 
 export interface MarketplaceProduct {

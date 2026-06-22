@@ -301,6 +301,10 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
     .map(b => b.content)
     .join('\n\n')
 
+  // Extract YouTube URL from post properties if present
+  const youtubeUrl = props['YouTube URL']?.url || ''
+  const youtubeId = props['YouTube ID']?.rich_text?.[0]?.plain_text || ''
+
   return {
     id: page.id,
     title,
@@ -312,6 +316,8 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
     author,
     blocks,
     content: contentString,
+    youtubeUrl,
+    youtubeId,
   }
 }
 

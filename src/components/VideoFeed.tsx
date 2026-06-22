@@ -38,18 +38,34 @@ export default function VideoFeed() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
 
-        const raw: Array<{ id: string; url: string; platform: string; cmsTitle: string; excerpt: string }> = data.posts
-          .flatMap((post: any) =>
-            post.blocks
-              .filter((b: any) => b.type === "video")
-              .map((b: any) => ({
-                id: b.id || `${post.id}-${b.order}`,
-                url: b.content,
-                platform: getPlatformFromUrl(b.content),
-                cmsTitle: post.title,
-                excerpt: post.excerpt || "",
-              }))
-          );
+        const raw: Array<{ id: string; url: string; platform: string; cmsTitle: string; excerpt: string }> = [];
+
+        for (const post of data.posts) {
+          // First: look for video blocks in content
+          const videoBlocks = post.blocks
+            .filter((b: any) => b.type === "video")
+            .map((b: any) => ({
+              id: b.id || `${post.id}-${b.order}`,
+              url: b.content,
+              platform: getPlatformFromUrl(b.content),
+              cmsTitle: post.title,
+              excerpt: post.excerpt || "",
+            }));
+          raw.push(...videoBlocks);
+
+          // Fallback: if no video blocks but post has YouTube URL property, use that
+          if (videoBlocks.length === 0 && post.youtubeUrl) {
+            const ytUrl = post.youtubeUrl;
+            const ytIdMatch = ytUrl.match(/(?:v=|youtu\.be\/|shorts\/)([^?&]+)/);
+            raw.push({
+              id: `${post.id}-youtube`,
+              url: ytUrl,
+              platform: "youtube",
+              cmsTitle: post.title,
+              excerpt: post.excerpt || "",
+            });
+          }
+        }
 
         const enriched: Array<{ id: string; url: string; platform: string; title: string; excerpt: string }> = await Promise.all(
           raw.map(async (item) => ({
