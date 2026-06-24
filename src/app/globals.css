@@ -320,6 +320,39 @@ article p, .content-area p, .service-description, .process-description {
 }
 
 /* ============================================
+   SCROLL-TRIGGERED FADE ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in-up-delay-1 { animation-delay: 0.05s; }
+.fade-in-up-delay-2 { animation-delay: 0.1s; }
+.fade-in-up-delay-3 { animation-delay: 0.15s; }
+.fade-in-up-delay-4 { animation-delay: 0.2s; }
+.fade-in-up-delay-5 { animation-delay: 0.25s; }
+.fade-in-up-delay-6 { animation-delay: 0.3s; }
+.fade-in-up-delay-7 { animation-delay: 0.35s; }
+.fade-in-up-delay-8 { animation-delay: 0.4s; }
+.fade-in-up-delay-9 { animation-delay: 0.45s; }
+.fade-in-up-delay-10 { animation-delay: 0.5s; }
+.fade-in-up-delay-11 { animation-delay: 0.55s; }
+.fade-in-up-delay-12 { animation-delay: 0.6s; }
+
+/* ============================================
    THEME TOGGLE SWITCH
    ============================================ */
 .theme-toggle {
