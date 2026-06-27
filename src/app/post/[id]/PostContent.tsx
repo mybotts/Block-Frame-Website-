@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
+import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
 import BlockRenderer from "@/components/BlockRenderer";
@@ -11,10 +12,18 @@ import ScrollToTop from "@/components/ScrollToTop";
 import ReadingProgress from "@/components/ReadingProgress";
 import ShareButton from "@/components/ShareButton";
 
+interface RelatedPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+}
+
 function extractYouTubeId(url: string): string | null {
   const patterns = [
-    /youtube\.com\/(?:watch\?v=|embed\/|shorts\/)([^?&\s]+)/,
-    /youtu\.be\/([^?&\s]+)/,
+    /youtube\.com\/(?:watch\?v=|embed\/|shorts\/)([^?\s]+)/,
+    /youtu\.be\/([^?\s]+)/,
   ];
   for (const p of patterns) {
     const m = url.match(p);
@@ -23,7 +32,13 @@ function extractYouTubeId(url: string): string | null {
   return null;
 }
 
-export default function PostContent({ initialPost }: { initialPost: BlogPost }) {
+export default function PostContent({
+  initialPost,
+  relatedPosts = [],
+}: {
+  initialPost: BlogPost;
+  relatedPosts?: RelatedPost[];
+}) {
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -80,7 +95,7 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
       <PremiumBackground />
 
       <ReadingProgress />
-      <main className="relative z-10 w-full min-h-screen flex flex-col items-center pt-40 pb-24 px-6 md:px-12 pointer-events-none">
+      <main id="main-content" className="relative z-10 w-full min-h-screen flex flex-col items-center pt-40 pb-24 px-6 md:px-12 pointer-events-none">
         <div className="hero-radial-glow opacity-40 z-[-1]" />
 
         <div className="w-full max-w-7xl mx-auto pointer-events-auto px-4 md:px-0">
@@ -94,6 +109,40 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
                   />
                 </div>
               )}
+
+              {/* Breadcrumb */}
+              <nav aria-label="Breadcrumb" className="mb-6">
+                <ol className="flex flex-wrap items-center gap-2 text-sm text-text-muted">
+                  <li>
+                    <Link href="/" className="hover:text-primary-light transition-colors">
+                      Home
+                    </Link>
+                  </li>
+                  <li className="text-text-muted">/</li>
+                  <li>
+                    <Link href="/blogs" className="hover:text-primary-light transition-colors">
+                      Blogs
+                    </Link>
+                  </li>
+                  {initialPost.category && (
+                    <>
+                      <li className="text-text-muted">/</li>
+                      <li>
+                        <Link
+                          href={`/blogs?filter=${initialPost.categorySlug || ""}`}
+                          className="hover:text-primary-light transition-colors"
+                        >
+                          {initialPost.category}
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                  <li className="text-text-muted">/</li>
+                  <li className="text-text-secondary truncate max-w-[200px]" aria-current="page">
+                    {initialPost.title}
+                  </li>
+                </ol>
+              </nav>
 
               <header className="mb-12">
                 <span className="category-pill bg-accent/15 text-accent-light mb-4">
@@ -136,6 +185,43 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
                   ))}
               </div>
             </article>
+
+            {/* Related Posts */}
+            {relatedPosts.length > 0 && (
+              <section className="mt-16 border-t border-border pt-12" aria-label="Related articles">
+                <h2 className="text-2xl font-semibold text-text-primary mb-8">
+                  Related Articles
+                </h2>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {relatedPosts.map((relPost) => (
+                    <Link
+                      key={relPost.id}
+                      href={`/post/${relPost.id}`}
+                      className="group block bg-surface-light p-6 transition hover:border hover:border-card-border"
+                    >
+                      <span className="category-pill bg-accent/15 text-accent-light text-xs">
+                        {relPost.category}
+                      </span>
+                      <h3 className="mt-3 text-base font-semibold text-text-primary group-hover:text-primary-light transition-colors line-clamp-2">
+                        {relPost.title}
+                      </h3>
+                      {relPost.excerpt && (
+                        <p className="mt-2 text-sm text-text-secondary line-clamp-2">
+                          {relPost.excerpt}
+                        </p>
+                      )}
+                      <time className="mt-3 block text-xs text-text-muted" dateTime={relPost.date}>
+                        {new Date(relPost.date).toLocaleDateString("en-US", {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
+                      </time>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
           </ErrorBoundary>
         </div>
       </main>

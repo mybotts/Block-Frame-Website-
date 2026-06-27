@@ -128,25 +128,33 @@ export default function Services() {
                 transition={{ duration: 0.45, delay: index * 0.04 }}
                 className="group overflow-hidden bg-surface-light"
               >
-                <div className="relative h-52 overflow-hidden bg-surface">
-                  <Image
-                    src={serviceImages[service.id] || service.image}
-                    alt={service.title}
-                    fill
-                    className="professional-image object-cover opacity-85 transition duration-700 group-hover:scale-105 group-hover:opacity-95"
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent" />
-                </div>
-                <div className="p-6">
-                  <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-primary-light">
-                    {service.team}
-                  </p>
-                  <h3 className="text-xl font-semibold tracking-tight text-text-primary">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-text-secondary italic">
-                    {serviceNotes[service.id] || service.description}
-                  </p>
-                </div>
+                <Link href={`/services/${service.id}`} className="block">
+                  <div className="relative h-52 overflow-hidden bg-surface">
+                    <Image
+                      src={serviceImages[service.id] || service.image}
+                      alt={service.title}
+                      fill
+                      className="professional-image object-cover opacity-85 transition duration-700 group-hover:scale-105 group-hover:opacity-95"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent" />
+                  </div>
+                  <div className="p-6">
+                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-primary-light">
+                      {service.team}
+                    </p>
+                    <h3 className="text-xl font-semibold tracking-tight text-text-primary group-hover:text-primary-light transition-colors">{service.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-text-secondary italic">
+                      {serviceNotes[service.id] || service.description}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:text-primary-light transition-colors">
+                      Learn more
+                      <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
               </motion.article>
             ))}
           </div>

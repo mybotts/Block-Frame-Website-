@@ -43,7 +43,7 @@ const implementationSteps = [
 export const metadata: Metadata = {
   title: "Proposal-Led Agentic Outreach System",
   description: "A custom BlockFrame Labs implementation for proposal-led prospecting, personalized sample assets, private preview pages, and controlled outreach workflows.",
-  alternates: { canonical: "/marketplace/products/proposal-led-agentic-outreach" },
+  alternates: { canonical: "https://www.blockframe.cloud/marketplace/products/proposal-led-agentic-outreach" },
   openGraph: {
     title: "Proposal-Led Agentic Outreach System",
     description: "A custom growth workflow that researches prospects, creates personalized sample assets, publishes private proposal pages, and prepares controlled outreach.",

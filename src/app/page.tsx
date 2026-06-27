@@ -119,7 +119,7 @@ export default function Home() {
       <Navigation />
       <PremiumBackground />
 
-      <main id="home" className="relative z-10 overflow-hidden pt-28">
+      <main id="main-content" className="relative z-10 overflow-hidden pt-28">
           <section className="mx-auto grid min-h-[88vh] w-full max-w-7xl items-center gap-12 px-6 pb-20 pt-16 md:px-12 lg:grid-cols-[1.02fr_0.98fr]">
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="section-kicker mb-5">AI agency for practical automation</p>

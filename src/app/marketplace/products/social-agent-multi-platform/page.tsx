@@ -44,7 +44,7 @@ const implementationSteps = [
 export const metadata: Metadata = {
   title: "Social Agent: AI Multi-Platform Posting, Engagement & Lead Qualification",
   description: "An AI agent that posts across 15 platforms, auto-replies to comments and DMs, qualifies inbound leads, and routes them to your CRM. Built by BlockFrame Labs.",
-  alternates: { canonical: "/marketplace/products/social-agent-multi-platform" },
+  alternates: { canonical: "https://www.blockframe.cloud/marketplace/products/social-agent-multi-platform" },
   openGraph: {
     title: "Social Agent: AI Multi-Platform Posting, Engagement & Lead Qualification",
     description: "Auto-posting, auto-reply, lead qualification across 15 social platforms. Built on the same systems BlockFrame Labs uses for its own distribution.",

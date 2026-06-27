@@ -13,7 +13,7 @@ export default function MarketplaceProductsPage() {
       <Navigation />
       <PremiumBackground />
 
-      <main className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center pt-40 pb-24 px-6 md:px-12">
+      <main id="main-content" className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center pt-40 pb-24 px-6 md:px-12">
         <div className="hero-radial-glow opacity-40 z-[-1]" />
 
         <div className="w-full max-w-6xl mx-auto">

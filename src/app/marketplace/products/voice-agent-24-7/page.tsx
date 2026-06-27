@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   title: "Voice Agent: 24/7 AI Phone Assistant, Call Handler & Meeting Booker",
   description:
     "A voice AI agent installed for your business that runs 24/7. It learns your services, answers inbound calls, qualifies callers, and books meetings directly into your calendar. Built by BlockFrame Labs.",
-  alternates: { canonical: "/marketplace/products/voice-agent-24-7" },
+  alternates: { canonical: "https://www.blockframe.cloud/marketplace/products/voice-agent-24-7" },
   openGraph: {
     title: "Voice Agent: 24/7 AI Phone Assistant, Call Handler & Meeting Booker",
     description:

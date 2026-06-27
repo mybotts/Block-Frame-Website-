@@ -43,7 +43,7 @@ const implementationSteps = [
 export const metadata: Metadata = {
   title: "Blog OS: Automated Notion-CMS Blog Publishing System",
   description: "A BlockFrame Labs system that researches topics, drafts posts, manages approvals, and publishes finished blog content automatically via Notion CMS.",
-  alternates: { canonical: "/marketplace/products/blog-os-automated-notion-cms" },
+  alternates: { canonical: "https://www.blockframe.cloud/marketplace/products/blog-os-automated-notion-cms" },
   openGraph: {
     title: "Blog OS: Automated Notion-CMS Blog Publishing System",
     description: "A managed, Notion-backed editorial system that researches topics, drafts posts, manages approvals, and publishes finished content to your website on a reliable schedule.",

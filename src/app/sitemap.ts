@@ -32,6 +32,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           : 0.7,
   }));
 
+  // Service routes
+  const serviceRoutes: MetadataRoute.Sitemap = services
+    .filter(s => !s.image.includes("placeholder"))
+    .map((service) => ({
+      url: `${baseUrl}/services/${service.id}`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+
   // Fetch live posts from Notion
   let notionPosts: MetadataRoute.Sitemap = [];
   try {
@@ -45,8 +55,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return {
         url: `${baseUrl}/post/${post.id}`,
         lastModified: new Date(post.date).toISOString().split("T")[0],
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
       };
     });
   } catch (error) {
@@ -76,5 +86,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   );
 
-  return [...staticRoutes, ...notionPosts, ...sampleRoutes, ...productRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...notionPosts, ...sampleRoutes, ...productRoutes];
 }
