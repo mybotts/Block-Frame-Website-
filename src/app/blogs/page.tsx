@@ -5,7 +5,7 @@ import BlogsFeed from "@/components/BlogsFeed";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Blogs | BlockFrame Labs",
+  title: "Blogs",
   description:
     "Practical guides and news on AI systems, automation, and web engineering. Written by the team building these systems daily.",
   alternates: {

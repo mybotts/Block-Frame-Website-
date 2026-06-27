@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ].filter(Boolean);
 
     return {
-      title: `${post.title} | BlockFrame Labs`,
+      title: post.title,
       description,
       keywords,
       alternates: {
