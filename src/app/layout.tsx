@@ -34,15 +34,18 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "BlockFrame Labs" }],
   metadataBase: new URL("https://www.blockframe.cloud"),
-  alternates: {
-    canonical: "/"
-  },
   icons: {
     icon: "/images/logo.png",
     apple: "/images/logo.png",
     other: [
       { rel: "icon", type: "image/png", sizes: "32x32", url: "/images/logo.png" }
     ]
+  },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": "https://www.blockframe.cloud/feed.xml",
+    },
   },
   openGraph: {
     title: "BlockFrame Labs | Architecting Autonomy",
