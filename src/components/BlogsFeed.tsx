@@ -160,9 +160,10 @@ export default function BlogsFeed() {
         {posts.map((post, index) => {
           const thumbnail = getPostThumbnail(post);
           return (
-            <article
+            <Link
               key={post.id}
-              className={`glass-card group overflow-hidden p-6 fade-in-up fade-in-up-delay-${index + 1}`}
+              href={`/post/${post.id}`}
+              className={`glass-card group block overflow-hidden p-6 fade-in-up fade-in-up-delay-${index + 1} cursor-pointer transition hover:border-primary-light`}
             >
               {thumbnail && (
                 <div className="w-full h-48 bg-cover bg-center mb-4 rounded-lg"
@@ -196,13 +197,7 @@ export default function BlogsFeed() {
                     })}
                   </time>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Link
-                    href={`/post/${post.id}`}
-                    className="inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:text-primary-light transition-colors duration-300"
-                  >
-                    Read
-                  </Link>
+                <div className="flex items-center gap-3 pointer-events-auto" onClick={(e) => e.stopPropagation()}>
                   <ShareButton
                     url={`/post/${post.id}`}
                     title={post.title}
@@ -212,7 +207,7 @@ export default function BlogsFeed() {
                   />
                 </div>
               </div>
-            </article>
+            </Link>
           );
         })}
       </div>

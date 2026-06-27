@@ -7,7 +7,7 @@ type SharePlatform = "twitter" | "linkedin" | "facebook" | "copy";
 interface SharePlatformConfig {
   name: string;
   icon: ReactNode;
-  shareUrl: (( fullUrl: string, title: string, description: string) => string) | null;
+  shareUrl: ((fullUrl: string, title: string, description: string) => string) | null;
   color: string;
   hoverColor: string;
 }
@@ -112,23 +112,44 @@ export default function ShareButton({
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<"share" | "preview">("share");
+  const [popoverPos, setPopoverPos] = useState({ top: 0, right: 0 });
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
 
   const configs = getPlatformConfigs();
   const fullUrl = url.startsWith("http") ? url : "https://www.blockframe.cloud" + url;
 
   useEffect(() => {
+    if (!isOpen || !buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    setPopoverPos({
+      top: rect.bottom + 8,
+      right: window.innerWidth - rect.right,
+    });
+  }, [isOpen]);
+
+  useEffect(() => {
     if (!isOpen) return;
     function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
       if (
         popoverRef.current &&
-        !popoverRef.current.contains(event.target as Node)
+        buttonRef.current &&
+        !popoverRef.current.contains(target) &&
+        !buttonRef.current.contains(target)
       ) {
         setIsOpen(false);
       }
     }
+    function handleScroll() {
+      setIsOpen(false);
+    }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll, true);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, true);
+    };
   }, [isOpen]);
 
   const handleCopy = useCallback(async () => {
@@ -170,12 +191,13 @@ export default function ShareButton({
       "inline-flex items-center gap-2 rounded px-4 py-2 text-sm font-medium border border-border bg-card-bg text-text-primary transition hover:border-primary-light hover:text-primary-light",
     compact:
       "inline-flex items-center justify-center rounded p-2 text-text-secondary transition hover:bg-surface hover:text-text-primary",
-    card: "inline-flex items-center gap-2 rounded px-3 py-1.5 text-xs font-medium text-text-secondary transition hover:bg-surface hover:text-text-primary",
+    card: "inline-flex items-center justify-center rounded p-1.5 text-text-secondary transition hover:bg-surface hover:text-text-primary",
   };
 
   return (
-    <div className={"relative inline-block " + className}>
+    <>
       <button
+        ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         className={buttonStyles[variant]}
         aria-label="Share"
@@ -188,8 +210,14 @@ export default function ShareButton({
       {isOpen && (
         <div
           ref={popoverRef}
-          className="absolute right-0 top-full z-50 mt-2 w-80 border border-border bg-card-bg shadow-xl shadow-black/20 md:w-96"
-          style={{ borderRadius: "2px" }}
+          className="fixed border border-border bg-card-bg shadow-2xl shadow-black/40 md:w-96"
+          style={{
+            top: popoverPos.top,
+            right: popoverPos.right,
+            width: "min(384px, calc(100vw - 32px))",
+            zIndex: 99999,
+            borderRadius: "2px",
+          }}
         >
           <div className="flex border-b border-border">
             <button
@@ -266,7 +294,7 @@ export default function ShareButton({
           )}
         </div>
       )}
-    </div>
+    </>
   );
 }
 
@@ -334,7 +362,7 @@ function SocialCard({
   return (
     <div className="border border-border bg-background">
       <div className="p-3 pb-0">
-        <p className="text-xs text-text-muted">facebook</p>
+        <p className="text-xs text-text-muted">Facebook</p>
       </div>
       {image && (
         <div className="relative mt-2 h-36 w-full bg-surface">
