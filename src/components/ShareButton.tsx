@@ -122,10 +122,22 @@ export default function ShareButton({
   useEffect(() => {
     if (!isOpen || !buttonRef.current) return;
     const rect = buttonRef.current.getBoundingClientRect();
-    setPopoverPos({
-      top: rect.bottom + 8,
-      right: window.innerWidth - rect.right,
-    });
+    const popoverWidth = Math.min(384, window.innerWidth - 32);
+    const spaceRight = window.innerWidth - rect.right;
+    const spaceLeft = rect.left;
+
+    // Prefer right-aligned, but flip to left if not enough space on right
+    let right, top;
+    if (spaceRight >= popoverWidth) {
+      right = window.innerWidth - rect.right;
+    } else if (spaceLeft >= popoverWidth) {
+      right = window.innerWidth - rect.left - popoverWidth;
+    } else {
+      right = 16; // fallback: 16px from left edge
+    }
+    top = Math.min(rect.bottom + 8, window.innerHeight - 200);
+
+    setPopoverPos({ top, right });
   }, [isOpen]);
 
   useEffect(() => {
@@ -198,7 +210,11 @@ export default function ShareButton({
     <>
       <button
         ref={buttonRef}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          setIsOpen(!isOpen);
+        }}
         className={buttonStyles[variant]}
         aria-label="Share"
         aria-expanded={isOpen}
@@ -221,7 +237,10 @@ export default function ShareButton({
         >
           <div className="flex border-b border-border">
             <button
-              onClick={() => setActiveTab("share")}
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveTab("share");
+              }}
               className={
                 "flex-1 px-4 py-3 text-xs font-semibold uppercase tracking-wider transition " +
                 (activeTab === "share"
@@ -232,7 +251,10 @@ export default function ShareButton({
               Share
             </button>
             <button
-              onClick={() => setActiveTab("preview")}
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveTab("preview");
+              }}
               className={
                 "flex-1 px-4 py-3 text-xs font-semibold uppercase tracking-wider transition " +
                 (activeTab === "preview"
@@ -252,7 +274,11 @@ export default function ShareButton({
                   return (
                     <button
                       key={key}
-                      onClick={() => handleShare(key)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        handleShare(key);
+                      }}
                       className={
                         "flex items-center gap-2 rounded px-3 py-2.5 text-sm font-medium transition " +
                         platform.color + " " + platform.hoverColor
