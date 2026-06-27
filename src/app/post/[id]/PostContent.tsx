@@ -9,6 +9,7 @@ import { BlogPost } from "@/lib/types";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import ScrollToTop from "@/components/ScrollToTop";
 import ReadingProgress from "@/components/ReadingProgress";
+import ShareButton from "@/components/ShareButton";
 
 function extractYouTubeId(url: string): string | null {
   const patterns = [
@@ -65,6 +66,14 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
     return null;
   }, [initialPost]);
 
+  const heroImage = useMemo(() => {
+    if (!initialPost?.blocks) return undefined;
+    const imageBlock = initialPost.blocks.find((b) => b.type === "image");
+    if (imageBlock) return imageBlock.content;
+    if (heroVideo) return heroVideo.src;
+    return undefined;
+  }, [initialPost, heroVideo]);
+
   return (
     <>
       <Navigation />
@@ -105,6 +114,16 @@ export default function PostContent({ initialPost }: { initialPost: BlogPost }) 
                   <span>{initialPost.author}</span>
                 </div>
               </header>
+
+              <div className="mb-8 flex items-center justify-between gap-4">
+                <ShareButton
+                  url={`/post/${initialPost.id}`}
+                  title={initialPost.title}
+                  description={initialPost.excerpt}
+                  image={heroImage}
+                  variant="default"
+                />
+              </div>
 
               <div className="prose max-w-none">
                 {initialPost.blocks

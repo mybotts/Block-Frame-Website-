@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { BlogPost } from "@/lib/types";
+import ShareButton from "@/components/ShareButton";
 
 export default function BlogsFeed() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -195,15 +196,21 @@ export default function BlogsFeed() {
                     })}
                   </time>
                 </div>
-                <Link
-                  href={`/post/${post.id}`}
-                  className="inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:text-primary-light transition-colors duration-300"
-                >
-                  Read Article
-                  <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </Link>
+                <div className="flex items-center gap-3">
+                  <Link
+                    href={`/post/${post.id}`}
+                    className="inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:text-primary-light transition-colors duration-300"
+                  >
+                    Read
+                  </Link>
+                  <ShareButton
+                    url={`/post/${post.id}`}
+                    title={post.title}
+                    description={post.excerpt}
+                    image={thumbnail}
+                    variant="card"
+                  />
+                </div>
               </div>
             </article>
           );

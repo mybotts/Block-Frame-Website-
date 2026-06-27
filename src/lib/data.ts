@@ -138,6 +138,39 @@ export const services: Service[] = [
 // Sample blog posts (in a real app, these come from the API)
 export const samplePosts: BlogPost[] = [
   {
+    id: "openai-jalapeno-chip",
+    title: "OpenAI just built its own AI chip. Here is why that matters.",
+    excerpt:
+      "OpenAI unveiled Jalapeño, its first custom-built inference processor from Broadcom, and it signals where the AI hardware race is heading.",
+    category: "AI News",
+    categorySlug: "ai-news",
+    date: "2026-06-25",
+    status: "approved",
+    author: "BlockframeLabs",
+    blocks: [
+      { id: "jalapeno-img", type: "image", content: "https://upload.wikimedia.org/wikipedia/commons/9/99/TPU_v4.png", order: 0 },
+      { id: "jalapeno-1", type: "text", content: "On June 24, OpenAI announced Jalapeño, its first custom-built inference processor. Broadcom designed and manufactured the chip specifically for OpenAI's inference workloads. The partnership was officially revealed in October 2025, but the chip itself is only now being shown publicly.", order: 1 },
+      { id: "jalapeno-2", type: "text", content: "This is a big deal for anyone who has ever wondered why AI companies keep complaining about GPU shortages. The answer is simple: Nvidia currently dominates the market for running AI models in production. OpenAI, Google, and Amazon have all been working to reduce that dependence. Custom chips are how these companies get off Nvidia's leash.", order: 2 },
+      { id: "jalapeno-3", type: "markdown", content: "## What jalapeño actually does", order: 3 },
+      { id: "jalapeno-4", type: "text", content: "Jalapeño is an inference processor. That means it runs already-trained AI models in response to user requests. Think of it as the engine that powers the moment between you hitting \"send\" on a prompt and getting a response from a model like GPT-4 or Codex.", order: 4 },
+      { id: "jalapeno-5", type: "text", content: "OpenAI says early results show better performance-per-watt than current alternatives. The company is specifically targeting real-time coding models, where low latency and low operating costs directly affect the bottom line.", order: 5 },
+      { id: "jalapeno-6", type: "text", content: "Pre-training will likely still rely on Nvidia hardware for the foreseeable future. But inference is where the volume is. Every time someone uses an AI product, inference happens. Even small cost reductions per request add up fast at scale.", order: 6 },
+      { id: "jalapeno-7", type: "markdown", content: "## OpenAI used AI to help design the chip", order: 7 },
+      { id: "jalapeno-8", type: "text", content: "One detail that stands out: OpenAI's own AI models assisted in developing Jalapeño. The company used its tools to optimize parts of the chip design process. AI helping build the infrastructure that will run more AI. There is something unsettling about that loop, but also kind of efficient.", order: 8 },
+      { id: "jalapeno-9", type: "text", content: "Greg Brockman, OpenAI's president, explained the thinking on the company's podcast. \"We know the workload better than anyone,\" he said. \"We've been looking for specific workloads that are underserved, and asking how can we build something to accelerate what's possible.\"", order: 9 },
+      { id: "jalapeno-10", type: "markdown", content: "## The full-stack strategy", order: 10 },
+      { id: "jalapeno-11", type: "text", content: "OpenAI is not just building models. It is building everything underneath them too. The company's announcement laid this out: chip architecture, kernels, memory systems, networking, scheduling, deployment systems, and product experience. Every layer gets optimized toward the same goal of making models faster, more reliable, and cheaper.", order: 11 },
+      { id: "jalapeno-12", type: "text", content: "This matters because the bottlenecks in AI are rarely the models themselves. They are the surrounding infrastructure. Moving data between memory and compute. Scheduling requests across thousands of GPUs. Keeping latency low enough that users don't abandon a chat session. These are the problems that custom silicon can solve in ways that general-purpose hardware cannot.", order: 12 },
+      { id: "jalapeno-13", type: "text", content: "This vertical integration mirrors what Google has done with its TPUs and what Amazon does with Trainium and Inferentia. If you want AI at scale, you probably need to own the silicon.", order: 13 },
+      { id: "jalapeno-14", type: "text", content: "For developers and teams building on top of these models, the implications are practical. Cheaper inference means lower API prices. Lower latency means better user experiences. And more competition in the chip space means Nvidia can't keep raising prices without pushback.", order: 14 },
+      { id: "jalapeno-15", type: "markdown", content: "## What happens next", order: 15 },
+      { id: "jalapeno-16", type: "text", content: "Jalapeño is still in testing. OpenAI hasn't shared exact pricing, deployment timelines, or benchmarks against specific Nvidia configurations. The announcement is more of a statement of intent than a product launch.", order: 16 },
+      { id: "jalapeno-17", type: "text", content: "The real test comes when the chip hits production workloads. If OpenAI can deliver lower costs for inference, other AI companies will follow. If not, it remains an expensive experiment in vertical integration.", order: 17 },
+      { id: "jalapeno-18", type: "text", content: "Either way, the era of AI companies relying entirely on off-the-shelf Nvidia GPUs is ending. The companies that build their own silicon will have more control over their costs, their roadmaps, and their ability to keep up with demand.", order: 18 },
+      { id: "jalapeno-19", type: "text", content: "The Jalapeño announcement doesn't change anything for developers today. Nvidia isn't going anywhere soon. But it signals where the industry is heading. The next time you budget for GPU instances, remember that the companies renting those GPUs to you are actively working to reduce what it costs them. That should affect your planning.", order: 19 },
+    ],
+  },
+  {
     id: "1",
     title: "GPT-5 and the Future of Autonomous Agents",
     excerpt:

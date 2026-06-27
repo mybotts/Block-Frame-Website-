@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
 import Footer from "@/components/Footer";
+import ShareButton from "@/components/ShareButton";
 import { marketplaceProducts } from "@/lib/data";
 
 const product = marketplaceProducts.find((item) => item.id === "voice-agent-24-7")!;
@@ -102,6 +103,15 @@ export default function VoiceAgent247Page() {
               </div>
 
               <h1 className="text-4xl font-bold leading-tight tracking-tight text-text-primary md:text-6xl">{product.title}</h1>
+              <div className="mt-3">
+                <ShareButton
+                  url={`/marketplace/products/${product.id}`}
+                  title={product.title}
+                  description={product.description}
+                  image={product.image}
+                  variant="default"
+                />
+              </div>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-text-secondary italic">{product.description}</p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">

@@ -21,7 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     // Find first image for OG
     const imageBlock = post.blocks?.find((b) => b.type === "image");
-    const ogImage = imageBlock?.content || "/images/og-preview.png";
+    const rawImage = imageBlock?.content || "/images/og-preview.png";
+    const ogImage = rawImage.startsWith("http") ? rawImage : `https://www.blockframe.cloud${rawImage.startsWith("/") ? "" : "/"}${rawImage}`;
 
     return {
       title: post.title,
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title: post.title,
         description,
-        url: `/post/${id}`,
+        url: `https://www.blockframe.cloud/post/${id}`,
         siteName: "BlockFrame Labs",
         images: [
           {
