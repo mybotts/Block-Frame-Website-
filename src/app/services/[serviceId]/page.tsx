@@ -107,6 +107,45 @@ function breadcrumbSchema(serviceId: string, title: string) {
 const callHref = "https://calendly.com/blockframemedia/30min";
 const emailHref = "mailto:contact@blockframe.cloud?subject=Service%20inquiry%3A%20AI%20consultation";
 
+const serviceFAQs: Record<string, { q: string; a: string }[]> = {
+  "ai-systems": [
+    { q: "What kinds of tasks can an AI system actually handle reliably?", a: "Repetitive, rule-based tasks with clear inputs and outputs: customer support triage, data entry and validation, report generation, lead qualification, and scheduling. If a human does it the same way 80% of the time, it can likely be automated." },
+    { q: "How do you prevent the system from making mistakes at scale?", a: "Every system has guardrails: confidence thresholds (low-confidence responses get escalated), daily caps on automated actions, human-in-the-loop checkpoints for high-stakes decisions, and audit logs so you can see exactly what happened and why." },
+    { q: "Do you provide ongoing support?", a: "Yes. Most clients choose managed service where we run the system, monitor performance, and handle updates. You own the outcome, we handle the operations." },
+    { q: "Can this integrate with our existing tools?", a: "We build on top of your existing stack. Whether you use Notion, Slack, HubSpot, Salesforce, or custom infrastructure, we connect to what you already have." },
+  ],
+  "voice-agent": [
+    { q: "What happens when a caller asks something outside the agent's knowledge?", a: "The agent recognizes when it doesn't have a confident answer and gracefully redirects. It can offer to take a message, transfer to a human, or log the question for a callback. It never guesses or makes up information." },
+    { q: "Can it handle different accents and speech patterns?", a: "Yes. The voice engine is trained on diverse speech data and handles regional accents, varied pacing, and background noise well. If a caller is genuinely unintelligible, the agent escalates rather than misinterpreting." },
+    { q: "How does the appointment booking work?", a: "The agent connects to your real calendar (Google Calendar, Calendly, or similar). It checks live availability, offers open slots, confirms the booking, and sends a calendar invite. You set the rules: meeting types, buffer times, daily caps, and blackout dates." },
+    { q: "What is the difference between Starter, Growth, and Pro?", a: "Starter covers business hours with a single voice channel and appointment booking. Growth adds 24/7 coverage, a website chat widget, CRM integration, and lead qualification. Pro adds SMS follow-up, an analytics dashboard, and priority support. All tiers share the same core AI." },
+  ],
+  "web-apps": [
+    { q: "Do you build from scratch or work with existing codebases?", a: "Both. We can architect a new platform from the ground up or integrate with and extend your existing application. Most engagements start with a code review of what you have so we can recommend the fastest path." },
+    { q: "What technologies do you work with?", a: "Primarily Next.js, React, and Node.js for full-stack work. We also work with Python backends, PostgreSQL, and various CMS platforms. If you have a specific stack requirement, ask. We will tell you honestly if it's our strength." },
+    { q: "How do you handle deployment and hosting?", a: "We typically deploy on Vercel or AWS. We set up CI/CD pipelines, monitoring, and staging environments so deployments are predictable and rollbacks are instant. You retain full ownership of all infrastructure." },
+    { q: "Do you provide ongoing support after launch?", a: "Yes. We offer maintenance contracts that cover bug fixes, performance optimization, and feature additions. Or we document everything and hand off to your team. Your choice." },
+  ],
+  "managed-agent-services": [
+    { q: "What does 'managed' actually mean day to day?", a: "We run the system, monitor its output, fix issues as they come up, update the knowledge base, and send you regular performance reports. You interact with the results, not the infrastructure." },
+    { q: "How do you handle system downtime or errors?", a: "All managed systems have alerting. If something breaks, we know within minutes and fix it before it compounds. You get an incident report, not a surprise." },
+    { q: "Can we switch from managed to self-run later?", a: "Yes. Every managed system comes with full documentation, runbooks, and access credentials. If you want to take it in-house, we do a structured handoff with a transition period." },
+    { q: "How is managed service priced?", a: "Monthly fee based on the complexity of the system, volume of work it handles, and level of support you need. We scope it on a call and give you a fixed monthly number. No surprise overage charges." },
+  ],
+  "social-media": [
+    { q: "Which platforms does the system post to?", a: "X, LinkedIn, Instagram, TikTok, YouTube, Facebook, Threads, and more. The system adapts content format and tone per platform automatically. A single piece of source content becomes platform-native posts." },
+    { q: "What safeguards prevent embarrassing or off-brand posts?", a: "Every post goes through brand-voice validation, fact-checking, and an optional approval queue before publishing. You set the guardrails. If you want every post reviewed by a human first, that's a setting, not a workaround." },
+    { q: "Does it handle replies and DMs too?", a: "Yes. The system can auto-reply to comments and DMs with brand-voiced, context-aware responses. It also qualifies inbound leads from social interactions and routes them to your CRM." },
+    { q: "How do you measure results?", a: "We track posting consistency, engagement rates, follower growth, lead generation, and click-through to your site. You get a monthly performance report with the metrics that actually matter for your goals." },
+  ],
+  "ugc-video-production": [
+    { q: "What kinds of videos do you produce?", a: "UGC-style content, scripted explainers, product demos, short-form ads for TikTok and YouTube Shorts, and longer YouTube content. We handle scripting, filming direction, editing, and delivery in publish-ready formats." },
+    { q: "Do you use real creators or AI-generated content?", a: "Both, depending on your needs. We work with real creators for authentic UGC and use AI-assisted tools for motion graphics and animation. We will recommend the right approach for your audience and budget." },
+    { q: "How fast can you turn around a video?", a: "Short-form content (under 60 seconds): 3 to 5 business days. Longer explainers and demos: 1 to 2 weeks. Rush delivery available for an additional fee." },
+    { q: "Do you write the scripts too?", a: "Yes. Scripting is included. We research your product, study what performs in your niche, and write scripts designed to stop the scroll. You review and approve before production starts." },
+  ],
+};
+
 export default async function ServicePage({ params }: Props) {
   const { serviceId } = await params;
   const service = services.find((s) => s.id === serviceId);
@@ -116,39 +155,24 @@ export default async function ServicePage({ params }: Props) {
   const note = serviceNotesMap[service.id];
   const imageUrl = service.image.startsWith("http") ? service.image : `https://www.blockframe.cloud${service.image}`;
 
+  const faqs = serviceFAQs[service.id] ?? [];
+
   // Build FAQ schema
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "How long does deployment take?",
-        acceptedAnswer: { "@type": "Answer", text: "Most systems are operational within 1 to 2 weeks. We map your workflow, build the solution, test it with real data, and hand it over ready to run." },
-      },
-      {
-        "@type": "Question",
-        name: "Do you provide ongoing support?",
-        acceptedAnswer: { "@type": "Answer", text: "Yes. Most clients choose managed service where we run the system, monitor performance, and handle updates. You own the outcome, we handle the operations." },
-      },
-      {
-        "@type": "Question",
-        name: "What does pricing look like?",
-        acceptedAnswer: { "@type": "Answer", text: "Pricing is tailored to your stack, volume, and complexity. Book a call where we scope your needs and give you a precise quote based on actual requirements." },
-      },
-      {
-        "@type": "Question",
-        name: "Can this integrate with our existing tools?",
-        acceptedAnswer: { "@type": "Answer", text: "We build on top of your existing stack. Whether you use Notion, Slack, HubSpot, or custom infrastructure, we connect to what you already have." },
-      },
-    ],
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
   };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema(service, note)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema(serviceId, service.title)) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      {faqs.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <Navigation />
       <PremiumBackground />
 
@@ -197,27 +221,19 @@ export default async function ServicePage({ params }: Props) {
           </div>
 
           {/* FAQ Section */}
-          <section className="mt-16 border-t border-border pt-12">
-            <h2 className="text-2xl font-semibold text-text-primary mb-8">Frequently Asked Questions</h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="bg-surface-light p-6">
-                <h3 className="text-base font-semibold text-text-primary">How long does deployment take?</h3>
-                <p className="mt-2 text-sm text-text-secondary">Most systems are operational within 1 to 2 weeks. We map your workflow, build the solution, test it with real data, and hand it over ready to run.</p>
+          {faqs.length > 0 && (
+            <section className="mt-16 border-t border-border pt-12">
+              <h2 className="text-2xl font-semibold text-text-primary mb-8">Frequently Asked Questions</h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                {faqs.map((faq) => (
+                  <div key={faq.q} className="bg-surface-light p-6">
+                    <h3 className="text-base font-semibold text-text-primary">{faq.q}</h3>
+                    <p className="mt-2 text-sm text-text-secondary">{faq.a}</p>
+                  </div>
+                ))}
               </div>
-              <div className="bg-surface-light p-6">
-                <h3 className="text-base font-semibold text-text-primary">Do you provide ongoing support?</h3>
-                <p className="mt-2 text-sm text-text-secondary">Yes. Most clients choose managed service where we run the system, monitor performance, and handle updates. You own the outcome, we handle the operations.</p>
-              </div>
-              <div className="bg-surface-light p-6">
-                <h3 className="text-base font-semibold text-text-primary">What does pricing look like?</h3>
-                <p className="mt-2 text-sm text-text-secondary">Pricing is tailored to your stack, volume, and complexity. Book a call where we scope your needs and give you a precise quote based on actual requirements.</p>
-              </div>
-              <div className="bg-surface-light p-6">
-                <h3 className="text-base font-semibold text-text-primary">Can this integrate with our existing tools?</h3>
-                <p className="mt-2 text-sm text-text-secondary">We build on top of your existing stack. Whether you use Notion, Slack, HubSpot, or custom infrastructure, we connect to what you already have.</p>
-              </div>
-            </div>
-          </section>
+            </section>
+          )}
         </div>
       </main>
       <Footer />

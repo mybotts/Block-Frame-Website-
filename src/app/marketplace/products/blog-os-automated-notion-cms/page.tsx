@@ -85,6 +85,25 @@ export default function BlogOsProductPage() {
             Back to Marketplace/Products
           </Link>
 
+          {/* Proof banner */}
+          <div className="mt-8 grid grid-cols-3 gap-4 md:gap-6">
+            <div className="glass-card p-5 text-center md:p-6">
+              <p className="text-3xl font-bold text-primary-light md:text-4xl">37</p>
+              <p className="mt-1 text-sm text-text-secondary">Posts published</p>
+            </div>
+            <div className="glass-card p-5 text-center md:p-6">
+              <p className="text-3xl font-bold text-primary-light md:text-4xl">90</p>
+              <p className="mt-1 text-sm text-text-secondary">Days running</p>
+            </div>
+            <div className="glass-card p-5 text-center md:p-6">
+              <p className="text-3xl font-bold text-primary-light md:text-4xl">0</p>
+              <p className="mt-1 text-sm text-text-secondary">Manual edits</p>
+            </div>
+          </div>
+          <p className="mt-3 text-center text-sm text-text-secondary">
+            These are our real numbers. <a href="/blogs" className="text-primary-light underline underline-offset-2 hover:opacity-80">See the live blog &rarr;</a>
+          </p>
+
           <section className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
               <div className="mb-4 flex flex-wrap gap-2">
@@ -94,6 +113,9 @@ export default function BlogOsProductPage() {
               </div>
 
               <h1 className="text-4xl font-bold leading-tight tracking-tight text-text-primary md:text-6xl">{product.title}</h1>
+              <p className="mt-2 text-sm font-medium uppercase tracking-wide text-emerald-400">
+                Try it free for 30 days. No credit card. Full access.
+              </p>
               <div className="mt-3">
                 <ShareButton
                   url={`/marketplace/products/${product.id}`}
@@ -106,15 +128,17 @@ export default function BlogOsProductPage() {
               <p className="mt-6 max-w-2xl text-lg leading-8 text-text-secondary">{product.description}</p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-text-primary px-6 text-sm font-semibold text-background transition hover:opacity-85">
-                  Book a Call
+                <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-emerald-600 px-6 text-sm font-semibold text-white transition hover:bg-emerald-700">
+                  Start Free Trial
                 </a>
                 <a href={emailHref} className="inline-flex min-h-12 items-center justify-center border border-border px-6 text-sm font-semibold text-text-primary transition hover:border-primary-light hover:text-primary-light">
                   Start by Email
                 </a>
               </div>
 
-              <p className="mt-4 text-sm text-text-secondary">Use this as a sellable system for clients who want consistent publishing without hiring in-house editors. We will reply with a practical recommendation and pricing tailored to your setup.</p>
+              <p className="mt-4 text-sm text-text-secondary">
+                We set it up on your site. If it doesn&apos;t work for you, walk away. No strings.
+              </p>
             </div>
 
             <div className="glass-card overflow-hidden">
@@ -162,13 +186,13 @@ export default function BlogOsProductPage() {
           </section>
 
           <section className="mt-12 glass-card p-6 text-center md:p-10">
-            <h2 className="text-2xl font-semibold text-text-primary">Start with a free 30-day trial</h2>
+            <h2 className="text-2xl font-semibold text-text-primary">Try it free for 30 days</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-text-secondary">
-              Test the complete Blog OS in your own stack. Full access, no commitment, no credit card. If it works for you, pick a tier that fits. If not, walk away with the blueprint.
+              Full access, no commitment, no credit card. We set it up on your site. If it works, pick a tier. If not, walk away.
             </p>
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-text-primary px-6 text-sm font-semibold text-background transition hover:opacity-85">
-                Book a Call
+              <a href={callHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center bg-emerald-600 px-6 text-sm font-semibold text-white transition hover:bg-emerald-700">
+                Start Free Trial
               </a>
               <a href={emailHref} className="inline-flex min-h-12 items-center justify-center border border-border px-6 text-sm font-semibold text-text-primary transition hover:border-primary-light hover:text-primary-light">
                 Start by Email

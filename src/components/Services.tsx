@@ -44,10 +44,11 @@ const proofProducts = [
   {
     id: "blog-os-automated-notion-cms",
     title: "Blog OS: Automated Content Pipeline",
-    description: "Runs our own blog: daily posts, zero manual effort. Notion-backed research, drafting, approvals, and publishing on autopilot.",
+    description: "37 posts published in 90 days with zero manual editing. The same Notion-backed pipeline we use for our own blog, now available for yours.",
     category: "Content Systems",
     href: "/marketplace/products/blog-os-automated-notion-cms",
     badge: "1 Month Free Trial",
+    stats: [{ label: "Posts", value: "37" }, { label: "Days", value: "90" }, { label: "Manual edits", value: "0" }],
   },
   {
     id: "social-agent-multi-platform",
@@ -112,6 +113,16 @@ export default function Services() {
                     <p className="mt-3 text-sm leading-6 text-text-secondary italic">
                       {product.description}
                     </p>
+                    {"stats" in product && product.stats && (
+                      <div className="mt-4 grid grid-cols-3 gap-2">
+                        {(product.stats as { label: string; value: string }[]).map((stat) => (
+                          <div key={stat.label} className="bg-surface-light p-2.5 text-center">
+                            <p className="text-xl font-bold text-primary-light">{stat.value}</p>
+                            <p className="text-xs text-text-secondary">{stat.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </Link>

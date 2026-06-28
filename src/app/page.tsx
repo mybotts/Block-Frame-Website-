@@ -124,10 +124,10 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="section-kicker mb-5">AI agency for practical automation</p>
               <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-text-primary md:text-7xl lg:text-8xl">
-                AI systems and services that do real work.
+                We automated our own blog to 37 posts in 90 days. We will do the same for your operations.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
-                We build and deploy AI systems and services that handle support, content, and operations, so your team can focus on the decisions that actually need a human.
+                AI systems and services that automate support, content, and operations. Built on proof, not promises. We run everything we sell on our own business first.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href={projectMailHref} className="inline-flex min-h-14 items-center justify-center bg-text-primary px-7 text-sm font-semibold text-background transition hover:opacity-85">
@@ -244,7 +244,7 @@ export default function Home() {
                   Tell us what you need.
                 </h2>
                 <p className="mt-6 text-lg leading-8 text-text-secondary">
-                  Describe your workflow, what's breaking, and what you'd like to automate. We'll respond with a practical next step.
+                  Tell us what is slowing you down. We will respond with a practical next step, not a sales pitch.
                 </p>
               </div>
 
@@ -279,8 +279,8 @@ export default function Home() {
                       <input required type="email" className={fieldClass} placeholder="you@company.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                     </label>
                     <label className="grid gap-2 text-sm font-medium text-text-secondary">
-                      What are you trying to automate?
-                      <textarea required rows={5} className={`${fieldClass} resize-none`} placeholder="e.g. We spend 10 hours a week on customer support replies. We want an AI system that handles the common questions and escalates the rest." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+                      What is the biggest bottleneck in your business right now?
+                      <textarea required rows={5} className={`${fieldClass} resize-none`} placeholder="e.g. We miss 30% of inbound calls. Our blog has not been updated in months. We spend hours every day on repetitive support emails." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
                     </label>
                     <button disabled={loading} className="min-h-14 bg-text-primary px-7 text-sm font-semibold text-background transition hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-60">
                       {loading ? "Sending..." : "Submit Project Request"}

@@ -8,10 +8,9 @@ import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { label: "Services", href: "/#services" },
-  { label: "Voice Agent", href: "/marketplace/products/voice-agent-24-7" },
-  { label: "Blogs", href: "/blogs" },
-  { label: "Videos", href: "/videos" },
-  { label: "Marketplace/Products", href: "/marketplace/products" },
+  { label: "Products", href: "/marketplace/products" },
+  { label: "Blog", href: "/blogs" },
+  { label: "Contact", href: "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs" },
 ];
 
 const businessMailHref = "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs";
@@ -88,9 +87,12 @@ export default function Navigation() {
 
           <div className="hidden items-center gap-3 md:flex">
             <ThemeToggle />
-            <a href={businessMailHref} className="nav-link">
-              Contact
-            </a>
+            <Link
+              href="/marketplace/products/voice-agent-24-7"
+              className="nav-link text-primary-light hover:text-primary-light/80"
+            >
+              Voice Agent
+            </Link>
             <a
               href={calendlyHref}
               target="_blank"
@@ -159,9 +161,13 @@ export default function Navigation() {
                   </Link>
                 );
               })}
-              <a href={businessMailHref} className="text-lg font-medium text-text-primary" onClick={closeMobileMenu}>
-                Contact
-              </a>
+              <Link
+                href="/marketplace/products/voice-agent-24-7"
+                className="text-lg font-medium text-primary-light"
+                onClick={closeMobileMenu}
+              >
+                Voice Agent
+              </Link>
               <a
                 href={calendlyHref}
                 target="_blank"
