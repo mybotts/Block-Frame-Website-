@@ -69,9 +69,9 @@ export const services: Service[] = [
   },
   {
     id: "voice-agent",
-    title: "Voice Agent Service",
+    title: "AI Voice Agent Service",
     description:
-      "We install a voice AI agent on your website or business that runs 24/7. It knows your business, answers calls, and books meetings and sessions based on your provided schedule.",
+      "AI voice systems that answer calls, qualify leads, and book meetings around the clock. Tiered plans from single-channel business hours to 24/7 multi-channel with SMS and analytics.",
     image: "/images/voice-agent.png",
     gradient: "from-cyan-600/20 to-blue-900/20",
     team: "AI & Automation",
@@ -370,16 +370,16 @@ export const marketplaceProducts: MarketplaceProduct[] = [
     ],
     tiers: [
       {
-        name: "Voice Agent Blueprint",
-        description: "Complete setup guide, call flow templates, prompt libraries, and integration docs so you or your team can deploy it yourself.",
+        name: "Starter",
+        description: "AI voice agent, business hours, appointment booking, 1 channel",
       },
       {
-        name: "Build Sprint",
-        description: "We configure the voice agent with your business knowledge, call flows, calendar integration, and launch it on your phone line or website.",
+        name: "Growth",
+        description: "Voice + website chat, 24/7, CRM integration, lead qualification",
       },
       {
-        name: "Managed Voice Agent",
-        description: "Monthly operation, call quality monitoring, knowledge base updates, and continuous improvement after launch.",
+        name: "Pro",
+        description: "Everything + SMS follow-up, analytics dashboard, priority support",
       },
     ],
   },

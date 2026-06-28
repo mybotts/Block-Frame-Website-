@@ -33,6 +33,32 @@ const docs = [
   },
 ];
 
+const tierFeatures: Record<string, string[]> = {
+  Starter: [
+    "AI voice agent installed on your phone line or website",
+    "Business hours coverage with on-hours escalation",
+    "Appointment booking into your calendar (1 channel)",
+    "Knowledge base built from your business materials",
+    "Basic call qualification and routing",
+  ],
+  Growth: [
+    "Everything in Starter",
+    "Website chat widget with the same AI agent",
+    "24/7 coverage, not just business hours",
+    "CRM integration (syncs qualified leads instantly)",
+    "Lead qualification with scoring and routing",
+    "Multi-channel: voice + chat from one agent",
+  ],
+  Pro: [
+    "Everything in Growth",
+    "SMS follow-up to no-shows and missed calls",
+    "Analytics dashboard: call volume, booking rate, missed opportunities",
+    "Priority support with SLA-backed response",
+    "Monthly performance review and knowledge refreshes",
+    "Custom reporting and pipeline attribution",
+  ],
+};
+
 const implementationSteps = [
   "Discovery call: map your services, pricing, FAQs, call volume, current scheduling tool, and qualification criteria.",
   "Knowledge base build: we compile your business knowledge, tone guidelines, objection-handling scripts, and escalation rules into the agent's training data.",
@@ -43,23 +69,23 @@ const implementationSteps = [
 ];
 
 export const metadata: Metadata = {
-  title: "Voice Agent: 24/7 AI Phone Assistant, Call Handler & Meeting Booker",
+  title: "AI Voice Agent Service — Starter, Growth & Pro Tiers | BlockFrame Labs",
   description:
-    "A voice AI agent installed for your business that runs 24/7. It learns your services, answers inbound calls, qualifies callers, and books meetings directly into your calendar. Built by BlockFrame Labs.",
+    "Tiered AI voice agent plans: Starter (business hours, 1 channel), Growth (24/7 voice + chat, CRM, lead qualification), Pro (SMS, analytics, priority support).",
   alternates: { canonical: "https://www.blockframe.cloud/marketplace/products/voice-agent-24-7" },
   openGraph: {
-    title: "Voice Agent: 24/7 AI Phone Assistant, Call Handler & Meeting Booker",
+    title: "AI Voice Agent Service — Starter, Growth & Pro",
     description:
-      "24/7 voice AI that answers calls, qualifies callers, and books meetings into your calendar. Never miss a lead again.",
+      "From single-channel business hours to 24/7 multi-channel with SMS follow-up and analytics. Pick the tier that fits your coverage needs.",
     url: "https://www.blockframe.cloud/marketplace/products/voice-agent-24-7",
     siteName: "BlockFrame Labs",
     type: "website",
-    images: [{ url: "/images/voice-agent-og.png", width: 1200, height: 630, alt: "Voice Agent by BlockFrame Labs" }],
+    images: [{ url: "/images/voice-agent-og.png", width: 1200, height: 630, alt: "AI Voice Agent Service by BlockFrame Labs" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Voice Agent: 24/7 AI Phone Assistant & Meeting Booker",
-    description: "Answer calls, qualify leads, and book meetings 24/7. Runs on your phone line or website.",
+    title: "AI Voice Agent Service — Starter, Growth & Pro",
+    description: "Tiered voice AI plans. Business hours to 24/7, SMS follow-up, analytics dashboard, priority support.",
     images: ["/images/voice-agent-og.png"],
   },
 };
@@ -102,7 +128,8 @@ export default function VoiceAgent247Page() {
                 <span className="category-pill border border-emerald-400/30 bg-emerald-50 text-emerald-700">{product.badge}</span>
               </div>
 
-              <h1 className="text-4xl font-bold leading-tight tracking-tight text-text-primary md:text-6xl">{product.title}</h1>
+              <h1 className="text-4xl font-bold leading-tight tracking-tight text-text-primary md:text-5xl">{product.title}</h1>
+              <p className="mt-2 text-sm font-medium uppercase tracking-wide text-primary-light">Three tiers — scaled to your coverage needs</p>
               <div className="mt-3">
                 <ShareButton
                   url={`/marketplace/products/${product.id}`}
@@ -147,13 +174,33 @@ export default function VoiceAgent247Page() {
 
           <section className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="glass-card p-6">
-              <h2 className="text-2xl font-semibold text-text-primary">Engagement models</h2>
-              <p className="mt-2 text-sm text-text-secondary">Three ways to work with us. Pricing is tailored to your call volume, stack, and complexity. Book a call to get a precise quote.</p>
-              <div className="mt-5 grid gap-3">
-                {product.tiers?.map((tier) => (
-                  <div key={tier.name} className="bg-surface-light p-4">
-                    <h3 className="font-semibold text-text-primary">{tier.name}</h3>
-                    <p className="mt-2 text-sm leading-6 text-text-secondary">{tier.description}</p>
+              <h2 className="text-2xl font-semibold text-text-primary">Plans &amp; tiers</h2>
+              <p className="mt-2 text-sm text-text-secondary">Three tiers to match your coverage and automation needs. Pricing scaled to your call volume and complexity.</p>
+              <div className="mt-5 grid gap-4">
+                {product.tiers?.map((tier, idx) => (
+                  <div
+                    key={tier.name}
+                    className={`relative p-5 ${
+                      idx === 1
+                        ? "ring-2 ring-primary/40 bg-primary/5"
+                        : "bg-surface-light"
+                    }`}
+                  >
+                    {idx === 1 && (
+                      <span className="absolute -top-3 left-4 bg-primary px-2 py-0.5 text-xs font-semibold text-background">
+                        Popular
+                      </span>
+                    )}
+                    <h3 className="text-lg font-semibold text-text-primary">{tier.name}</h3>
+                    <p className="mt-1 text-sm text-text-secondary">{tier.description}</p>
+                    <ul className="mt-3 space-y-1.5">
+                      {(tierFeatures[tier.name] ?? []).map((feat) => (
+                        <li key={feat} className="flex gap-2 text-sm leading-6 text-text-secondary">
+                          <svg className="mt-1 h-3.5 w-3.5 shrink-0 text-primary-light" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.4 7.4a1 1 0 0 1-1.4 0L3.3 9.5a1 1 0 1 1 1.4-1.4L8.6 12l6.7-6.7a1 1 0 0 1 1.4 0z" clipRule="evenodd"/></svg>
+                          {feat}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
