@@ -92,7 +92,7 @@ export default function BlogOsProductPage() {
               <p className="mt-1 text-sm text-text-secondary">Posts published</p>
             </div>
             <div className="glass-card p-5 text-center md:p-6">
-              <p className="text-3xl font-bold text-primary-light md:text-4xl">90</p>
+70
               <p className="mt-1 text-sm text-text-secondary">Days running</p>
             </div>
             <div className="glass-card p-5 text-center md:p-6">
