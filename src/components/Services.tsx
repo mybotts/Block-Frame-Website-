@@ -44,11 +44,11 @@ const proofProducts = [
   {
     id: "blog-os-automated-notion-cms",
     title: "Blog OS: Automated Content Pipeline",
-    description: "37 posts published in 70 days with zero manual editing. The same Notion-backed pipeline we use for our own blog, now available for yours.",
+    description: "30 blogs in 30 days, zero manual editing. The same Notion-backed pipeline we use for our own blog, now available for yours.",
     category: "Content Systems",
     href: "/marketplace/products/blog-os-automated-notion-cms",
     badge: "1 Month Free Trial",
-    stats: [{ label: "Posts", value: "37" }, { label: "Days", value: "70" }, { label: "Manual edits", value: "0" }],
+    stats: [{ label: "Posts", value: "30" }, { label: "Days", value: "30" }, { label: "Manual edits", value: "0" }],
   },
   {
     id: "social-agent-multi-platform",

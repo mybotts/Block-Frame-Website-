@@ -124,7 +124,7 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="section-kicker mb-5">AI agency for practical automation</p>
               <h1 className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-tight text-text-primary md:text-7xl lg:text-8xl">
-                We automated our own blog to 37 posts in 70 days. We will do the same for your operations.
+                We automated our own blog to 30 blogs in 30 days. We will do the same for your operations.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-text-secondary md:text-xl">
                 AI systems and services that automate support, content, and operations. Built on proof, not promises. We run everything we sell on our own business first.

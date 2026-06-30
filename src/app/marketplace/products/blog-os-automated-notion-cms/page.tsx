@@ -88,11 +88,11 @@ export default function BlogOsProductPage() {
           {/* Proof banner */}
           <div className="mt-8 grid grid-cols-3 gap-4 md:gap-6">
             <div className="glass-card p-5 text-center md:p-6">
-              <p className="text-3xl font-bold text-primary-light md:text-4xl">37</p>
-              <p className="mt-1 text-sm text-text-secondary">Posts published</p>
+              <p className="text-3xl font-bold text-primary-light md:text-4xl">30</p>
+              <p className="mt-1 text-sm text-text-secondary">Blogs published</p>
             </div>
             <div className="glass-card p-5 text-center md:p-6">
-70
+30
               <p className="mt-1 text-sm text-text-secondary">Days running</p>
             </div>
             <div className="glass-card p-5 text-center md:p-6">
