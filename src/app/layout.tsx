@@ -140,6 +140,7 @@ export default function RootLayout({
         <script
           src="https://groply.blockframe.cloud/static/widget.js"
           data-tenant-id="ece0006a-670e-4888-b8ea-f1a95013a03c"
+          async
         />
       </head>
       <body className={`${inter.variable} ${lora.variable} antialiased`}>
