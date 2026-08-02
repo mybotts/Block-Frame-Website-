@@ -138,7 +138,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <script
-          src="https://groply.blockframe.cloud/static/widget.js"
+          src="/widget.js"
           data-tenant-id="ece0006a-670e-4888-b8ea-f1a95013a03c"
           async
         />
