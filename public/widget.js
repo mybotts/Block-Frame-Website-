@@ -228,6 +228,7 @@
                 font-size: 14px;
                 outline: none;
                 background: #FFFFFF;
+                color: #333333;
                 box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
             }
             .wa-widget-send-btn {
@@ -368,7 +369,7 @@
 
             try {
                 // 3. POST user message to backend widget chat endpoint
-                const response = await fetch(`${baseUrl}/api/widget/chat`, {
+                const response = await fetch(`${baseUrl}/api/groply/widget-chat`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
