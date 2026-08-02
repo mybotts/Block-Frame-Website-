@@ -137,6 +137,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <script
+          src="https://groply.blockframe.cloud/static/widget.js"
+          data-tenant-id="ece0006a-670e-4888-b8ea-f1a95013a03c"
+        />
       </head>
       <body className={`${inter.variable} ${lora.variable} antialiased`}>
         <ThemeProvider>
