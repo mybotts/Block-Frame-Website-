@@ -397,3 +397,167 @@ article p, .content-area p, .service-description, .process-description {
   color: var(--color-background);
   transition: color 0.3s ease;
 }
+
+/* ============================================
+   NOIR HOME — Design 2 ("Engineering Practical Intelligence")
+   Scoped to .noir-home so the rest of the site keeps its theme.
+   Plain CSS, NOT inside @layer (Tailwind v4 strips custom classes from layers).
+   ============================================ */
+
+.noir-home {
+  background-color: #050505;
+  color: #e3e2e2;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Pin the noir palette for child components (Navigation, Services, Footer)
+   that read theme custom properties. Prevents light-mode toggle from
+   washing out the permanently-dark homepage. */
+.noir-home {
+  --color-background: #050505;
+  --color-surface: rgba(255, 255, 255, 0.02);
+  --color-surface-light: #14171a;
+  --color-card-bg: #101214;
+  --color-card-bg-hover: #16191c;
+  --color-card-border: rgba(255, 255, 255, 0.1);
+  --color-card-border-hover: rgba(0, 240, 255, 0.35);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(0, 240, 255, 0.3);
+  --color-text-primary: #f2f4f5;
+  --color-text-secondary: #b9cacb;
+  --color-text-muted: #849495;
+  --color-input-bg: #101214;
+  --color-input-border: rgba(255, 255, 255, 0.12);
+  --color-input-focus: rgba(0, 240, 255, 0.35);
+  --color-accent: #00f0ff;
+  --color-accent-light: #7df4ff;
+  --color-primary-light: #00dbe9;
+}
+
+.noir-home ::selection {
+  background: #00f0ff;
+  color: #050505;
+}
+
+.noir-panel {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.noir-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.noir-glow {
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.12);
+}
+
+.noir-text-gradient {
+  background: linear-gradient(to right, #ffffff, #849495);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.noir-card-hover {
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.noir-card-hover:hover {
+  border-color: rgba(0, 240, 255, 0.45);
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.14);
+}
+
+.noir-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0 2rem;
+  background: #00f0ff;
+  color: #050505;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
+}
+.noir-btn-primary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+}
+
+.noir-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0 2rem;
+  border: 1px solid rgba(0, 240, 255, 0.6);
+  color: #00f0ff;
+  background: transparent;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  transition: background 0.25s ease;
+}
+.noir-btn-outline:hover {
+  background: rgba(0, 240, 255, 0.08);
+}
+
+.noir-hud {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0, 240, 255, 0.55);
+}
+
+.noir-kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0, 240, 255, 0.75);
+}
+
+.noir-input {
+  width: 100%;
+  background: #101214;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e3e2e2;
+  padding: 0.9rem 1.1rem;
+  outline: none;
+  border-radius: 4px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  font-size: 0.95rem;
+}
+.noir-input::placeholder {
+  color: #6b7280;
+}
+.noir-input:focus {
+  border-color: #00f0ff;
+  box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.35), 0 0 16px rgba(0, 240, 255, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noir-card-hover,
+  .noir-btn-primary {
+    transition: none;
+  }
+  .noir-btn-primary:hover {
+    transform: none;
+  }
+}
