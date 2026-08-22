@@ -103,7 +103,7 @@ const terminalLines = [
 ];
 
 const heroStats = [
-  { value: "37", label: "posts in 90 days" },
+  { value: "30", label: "blogs in 30 days" },
   { value: "0", label: "manual edits" },
   { value: "15", label: "platforms reached" },
   { value: "24/7", label: "voice coverage" },
@@ -308,8 +308,8 @@ export default function Home() {
                         {product.id === "blog-os-automated-notion-cms" && (
                           <div className="mb-5 grid grid-cols-3 gap-3">
                             {[
-                              ["37", "posts"],
-                              ["90", "days"],
+                              ["30", "blogs"],
+                              ["30", "days"],
                               ["0", "manual edits"],
                             ].map(([v, l]) => (
                               <div key={l} className="border border-white/10 px-3 py-2 text-center">
