@@ -16,10 +16,13 @@ export function extractYouTubeId(url: string): string | null {
   return null;
 }
 
-/** First image or YouTube thumbnail found in the post's blocks. */
+/** Card/share image: explicit Thumbnail property first, then first image/video frame in blocks.
+ * Accepts absolute URLs AND root-relative paths (/images/...) — absoluteImageUrl() absolutizes for share crawlers. */
 export function getPostThumbnail(post: BlogPost): string | undefined {
+  if (post.thumbnail && (post.thumbnail.startsWith("http") || post.thumbnail.startsWith("/"))) {
+    return post.thumbnail;
+  }
   if (!post.blocks || post.blocks.length === 0) return undefined;
-
   for (const block of post.blocks) {
     if (block.type === "image" && block.content && block.content.startsWith("http")) {
       return block.content;
@@ -60,6 +63,13 @@ export function wordCount(post: BlogPost): number {
 /** Rounded reading time in minutes (200 wpm), minimum 1. */
 export function readingTimeMinutes(post: BlogPost): number {
   return Math.max(1, Math.round(wordCount(post) / 200));
+}
+
+/** Absolute URL for share images (OG/Twitter require absolute). Local paths get the domain prefixed. */
+export function absoluteImageUrl(url: string, baseUrl: string): string {
+  if (!url) return url;
+  if (/^https?:\/\//.test(url)) return url;
+  return `${baseUrl.replace(/\/$/, "")}${url.startsWith("/") ? "" : "/"}${url}`;
 }
 
 /** Heading entries (## and ###) extracted from text blocks, for table of contents. */

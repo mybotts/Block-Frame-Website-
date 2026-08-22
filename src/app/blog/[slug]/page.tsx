@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { getApprovedPosts, getPostBySlug } from "@/lib/blogData";
 import { CONTENT_TEAM_NAME, BASE_URL, looksLikeUuid, postPath, postSlug, categoryName } from "@/lib/slug";
-import { getPostThumbnail, wordCount, readingTimeMinutes, getTableOfContents } from "@/lib/postView";
+import { getPostThumbnail, absoluteImageUrl, wordCount, readingTimeMinutes, getTableOfContents } from "@/lib/postView";
 import PostArticle from "./PostArticle";
 
 export const revalidate = 300;
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalPath = postPath(post.title, post.id);
   const description =
     post.excerpt || post.content?.substring(0, 160) || `Read ${post.title} on BlockFrame Labs`;
-  const ogImage = getPostThumbnail(post) || `${BASE_URL}/images/og-preview.png`;
+  const ogImage = absoluteImageUrl(getPostThumbnail(post) || `${BASE_URL}/images/og-preview.png`, BASE_URL);
 
   return {
     title: post.title,
@@ -132,7 +132,7 @@ export default async function BlogPostPage({ params }: Props) {
   // ---- Structured data ----
   const imageBlock = post.blocks?.find((b) => b.type === "image");
   const videoBlock = post.blocks?.find((b) => b.type === "video");
-  const ogImage = getPostThumbnail(post) || `${BASE_URL}/images/og-preview.png`;
+  const ogImage = absoluteImageUrl(getPostThumbnail(post) || `${BASE_URL}/images/og-preview.png`, BASE_URL);
 
   const articleSchema = {
     "@context": "https://schema.org",

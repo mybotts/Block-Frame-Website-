@@ -28,6 +28,8 @@ export interface BlogPost {
   date: string;
   /** Notion last_edited_time (ISO) — used for dateModified in schema */
   updatedAt?: string;
+  /** Card/share thumbnail URL (Notion "Thumbnail" url property). Falls back to first image/video frame in blocks. */
+  thumbnail?: string;
   status: "pending" | "approved" | "rejected";
   author: string;
   blocks: Block[];
