@@ -1,31 +1,26 @@
-import { queryPosts, notionPageToBlogPost } from "@/lib/notionClient";
-import { samplePosts } from "@/lib/data";
+import { getApprovedPosts } from "@/lib/blogData";
+import { postPath, categoryName } from "@/lib/slug";
 
 export const dynamic = "force-dynamic";
+
+type FeedPost = {
+  id: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  content?: string;
+};
 
 export async function GET() {
   const baseUrl = "https://www.blockframe.cloud";
 
-  // Fetch live posts from Notion
-  let posts: Array<{
-    id: string;
-    title: string;
-    excerpt: string;
-    date: string;
-    category: string;
-    content?: string;
-  }> = [];
+  let posts: FeedPost[] = [];
 
   try {
-    const approvedFilter = {
-      property: "Status",
-      select: { equals: "approved" },
-    };
-    const rawPages = await queryPosts(approvedFilter);
-    posts = rawPages
-      .map(notionPageToBlogPost)
-      .filter((p) => p.status === "approved" && p.categorySlug !== "videos")
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    const live = await getApprovedPosts();
+    posts = live
+      .filter((p) => p.categorySlug !== "videos")
       .slice(0, 50)
       .map((p) => ({
         id: p.id,
@@ -36,19 +31,7 @@ export async function GET() {
         content: p.content,
       }));
   } catch {
-    // Fallback to sample posts
-    posts = samplePosts
-      .filter((p) => p.status === "approved")
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, 50)
-      .map((p) => ({
-        id: p.id,
-        title: p.title,
-        excerpt: p.excerpt,
-        date: p.date,
-        category: p.category,
-        content: p.content,
-      }));
+    // Leave empty; the feed renders with no items rather than crashing.
   }
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
@@ -64,18 +47,19 @@ export async function GET() {
     <category>AI Automation</category>
     <category>Web Engineering</category>
     ${posts
-      .map(
-        (post) => `
+      .map((post) => {
+        const url = `${baseUrl}${postPath(post.title, post.id)}`;
+        return `
     <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>${baseUrl}/post/${post.id}</link>
-      <guid isPermaLink="true">${baseUrl}/post/${post.id}</guid>
+      <link>${url}</link>
+      <guid isPermaLink="true">${url}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <category><![CDATA[${post.category || "AI Systems"}]]></category>
       <description><![CDATA[${post.excerpt || ""}]]></description>
-      <content:encoded><![CDATA[${post.excerpt || ""}<p><a href="${baseUrl}/post/${post.id}">Read full article →</a></p>]]></content:encoded>
-    </item>`
-      )
+      <content:encoded><![CDATA[${post.excerpt || ""}<p><a href="${url}">Read full article →</a></p>]]></content:encoded>
+    </item>`;
+      })
       .join("")}
   </channel>
 </rss>`;

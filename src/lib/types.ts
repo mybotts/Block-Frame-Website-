@@ -26,6 +26,8 @@ export interface BlogPost {
   category: string;
   categorySlug: string;
   date: string;
+  /** Notion last_edited_time (ISO) — used for dateModified in schema */
+  updatedAt?: string;
   status: "pending" | "approved" | "rejected";
   author: string;
   blocks: Block[];

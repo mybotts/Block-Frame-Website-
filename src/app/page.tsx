@@ -63,6 +63,30 @@ const breadcrumbSchema = {
   ],
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.blockframe.cloud/#organization",
+  name: "BlockFrame Labs",
+  description: "AI agency for practical automation. AI systems and services that automate support, content, and operations.",
+  url: "https://www.blockframe.cloud",
+  logo: "https://www.blockframe.cloud/images/logo.png",
+  email: "contact@blockframe.cloud",
+  sameAs: [
+    "https://twitter.com/blockframelabs",
+    "https://linkedin.com/company/blockframelabs",
+  ],
+  knowsAbout: [
+    "AI Systems",
+    "AI Automation",
+    "Web Engineering",
+    "Content Automation",
+    "Notion CMS",
+    "Voice Agents",
+    "Social Media Automation",
+  ],
+};
+
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -115,6 +139,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <Navigation />
       <PremiumBackground />

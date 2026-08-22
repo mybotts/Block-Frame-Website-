@@ -312,6 +312,7 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
     category: category as 'AI News' | 'Guides',
     categorySlug,
     date,
+    updatedAt: (page as any).last_edited_time || undefined,
     status,
     author,
     blocks,

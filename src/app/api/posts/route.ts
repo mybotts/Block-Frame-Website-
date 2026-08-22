@@ -2,10 +2,43 @@ import { NextRequest, NextResponse } from "next/server";
 import { queryPosts, fetchBlogPostWithBlocks, createPostPage, appendBlocksToPage } from "@/lib/notionClient";
 import { Block } from "@/lib/types";
 
+const BASE_URL = "https://www.blockframe.cloud";
+
 /**
- * GET /api/posts?category=ai-news|guides&status=approved
- * Returns posts filtered by status (default: approved) and optional category.
+ * POST /api/posts
+ * Creates a new blog post in Notion and pings IndexNow for instant indexing
  */
+async function pingIndexNow(url: string): Promise<void> {
+  const indexNowKey = process.env.INDEXNOW_KEY;
+  const indexNowHost = process.env.INDEXNOW_HOST || "www.blockframe.cloud";
+  
+  if (!indexNowKey) {
+    console.log("IndexNow key not configured, skipping ping");
+    return;
+  }
+
+  try {
+    const response = await fetch("https://api.indexnow.org/indexnow", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        host: indexNowHost,
+        key: indexNowKey,
+        keyLocation: `https://${indexNowHost}/${indexNowKey}.txt`,
+        urlList: [url],
+      }),
+    });
+    
+    if (!response.ok) {
+      console.warn("IndexNow ping failed:", response.status, await response.text());
+    } else {
+      console.log("IndexNow ping successful for:", url);
+    }
+  } catch (error) {
+    console.warn("IndexNow ping error:", error);
+  }
+}
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const category = searchParams.get("category");
@@ -107,6 +140,13 @@ export async function POST(request: NextRequest) {
     // Append blocks as child blocks (not Content property)
     if (blocks && blocks.length > 0) {
       await appendBlocksToPage(page.id, blocks);
+    }
+
+    // Ping IndexNow for instant indexing if post is approved
+    if (notionStatus === 'approved') {
+      const slug = title.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '') || 'post';
+      const postUrl = `${BASE_URL}/blog/${slug}`;
+      await pingIndexNow(postUrl);
     }
 
     return NextResponse.json({ id: page.id, status: notionStatus }, { status: 201 });

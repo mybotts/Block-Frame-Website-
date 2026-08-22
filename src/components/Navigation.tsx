@@ -21,7 +21,12 @@ function isActive(href: string, pathname: string): boolean {
     return pathname === "/";
   }
   if (href === "/blogs") {
-    return pathname === "/blogs" || pathname.startsWith("/post/");
+    return (
+      pathname === "/blogs" ||
+      pathname.startsWith("/blog/") ||
+      pathname.startsWith("/blogs/category/") ||
+      pathname.startsWith("/post/")
+    );
   }
   return pathname === href || pathname.startsWith(href + "/");
 }

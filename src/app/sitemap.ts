@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
-import { queryPosts, notionPageToBlogPost } from "@/lib/notionClient";
+import { getApprovedPosts, getCategorySummary } from "@/lib/blogData";
+import { postPath } from "@/lib/slug";
 import { samplePosts } from "@/lib/data";
 import { services } from "@/lib/data";
 import { marketplaceProducts } from "@/lib/data";
@@ -34,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Service routes
   const serviceRoutes: MetadataRoute.Sitemap = services
-    .filter(s => !s.image.includes("placeholder"))
+    .filter((s) => !s.image.includes("placeholder"))
     .map((service) => ({
       url: `${baseUrl}/services/${service.id}`,
       lastModified: new Date().toISOString().split("T")[0],
@@ -42,23 +43,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
-  // Fetch live posts from Notion
+  // Live posts (slug URLs) + category pages from Notion
   let notionPosts: MetadataRoute.Sitemap = [];
+  let categoryRoutes: MetadataRoute.Sitemap = [];
   try {
-    const approvedFilter = {
-      property: "Status",
-      select: { equals: "approved" },
-    };
-    const rawPages = await queryPosts(approvedFilter);
-    notionPosts = rawPages.map((page) => {
-      const post = notionPageToBlogPost(page);
-      return {
-        url: `${baseUrl}/post/${post.id}`,
-        lastModified: new Date(post.date).toISOString().split("T")[0],
-        changeFrequency: "weekly" as const,
-        priority: 0.7,
-      };
-    });
+    const posts = await getApprovedPosts();
+    notionPosts = posts.map((post) => ({
+      url: `${baseUrl}${postPath(post.title, post.id)}`,
+      lastModified: new Date(post.updatedAt || post.date).toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
+    categoryRoutes = (await getCategorySummary()).map((c) => ({
+      url: `${baseUrl}/blogs/category/${c.slug}`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "daily" as const,
+      priority: 0.6,
+    }));
   } catch (error) {
     console.error("Failed to fetch Notion posts for sitemap:", error);
   }
@@ -69,7 +70,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ? samplePosts
           .filter((post) => post.status === "approved")
           .map((post) => ({
-            url: `${baseUrl}/post/${post.id}`,
+            url: `${baseUrl}${postPath(post.title, post.id)}`,
             lastModified: new Date(post.date).toISOString().split("T")[0],
             changeFrequency: "monthly" as const,
             priority: 0.6,
@@ -77,14 +78,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       : [];
 
   // Marketplace product routes
-  const productRoutes: MetadataRoute.Sitemap = marketplaceProducts.map(
-    (product) => ({
-      url: `${baseUrl}/marketplace/products/${product.id}`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    })
-  );
+  const productRoutes: MetadataRoute.Sitemap = marketplaceProducts.map((product) => ({
+    url: `${baseUrl}/marketplace/products/${product.id}`,
+    lastModified: new Date().toISOString().split("T")[0],
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  }));
 
-  return [...staticRoutes, ...serviceRoutes, ...notionPosts, ...sampleRoutes, ...productRoutes];
+  return [
+    ...staticRoutes,
+    ...categoryRoutes,
+    ...serviceRoutes,
+    ...notionPosts,
+    ...sampleRoutes,
+    ...productRoutes,
+  ];
 }

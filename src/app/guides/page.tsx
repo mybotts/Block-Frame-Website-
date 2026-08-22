@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function GuidesPage() {
-  redirect("/blogs?filter=guides");
+  redirect("/blogs/category/guides");
 }

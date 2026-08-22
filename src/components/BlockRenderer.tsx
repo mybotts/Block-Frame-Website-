@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import ThumbnailPlayer from "./ThumbnailPlayer";
 import { useMemo } from "react";
+import { slugifyHeading } from "@/lib/slug";
 
 function extractYouTubeId(url: string): string | null {
   const patterns = [/youtube\.com\/(?:watch\?v=|embed\/|shorts\/)([^?&\s\/]+)/, /youtu\.be\/([^?&\s\/]+)/];
@@ -14,15 +15,6 @@ function extractYouTubeId(url: string): string | null {
     if (m) return m[1];
   }
   return null;
-}
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
 }
 
 interface BlockRendererProps {
@@ -112,34 +104,26 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
                 }
                 return <CodeBlock code={codeString} language={codeLang} />;
               },
-              h1: ({ children }) => {
-                const id = slugify(String(children));
-                return (
-                  <h1 id={id} className="text-4xl md:text-5xl font-bold text-text-primary mb-6 mt-10 leading-tight">
-                    {children}
-                  </h1>
-                );
-              },
               h2: ({ children }) => {
-                const id = slugify(String(children));
+                const id = slugifyHeading(String(children));
                 return (
-                  <h2 id={id} className="text-3xl md:text-4xl font-bold text-text-primary mb-5 mt-8 leading-tight">
+                  <h2 id={id} className="text-3xl md:text-4xl font-bold text-text-primary mb-5 mt-8 leading-tight scroll-mt-32">
                     {children}
                   </h2>
                 );
               },
               h3: ({ children }) => {
-                const id = slugify(String(children));
+                const id = slugifyHeading(String(children));
                 return (
-                  <h3 id={id} className="text-2xl md:text-3xl font-bold text-text-primary mb-4 mt-6 leading-tight">
+                  <h3 id={id} className="text-2xl md:text-3xl font-bold text-text-primary mb-4 mt-6 leading-tight scroll-mt-32">
                     {children}
                   </h3>
                 );
               },
               h4: ({ children }) => {
-                const id = slugify(String(children));
+                const id = slugifyHeading(String(children));
                 return (
-                  <h4 id={id} className="text-xl md:text-2xl font-bold text-text-primary mb-3 mt-5 leading-tight">
+                  <h4 id={id} className="text-xl md:text-2xl font-bold text-text-primary mb-3 mt-5 leading-tight scroll-mt-32">
                     {children}
                   </h4>
                 );
