@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-# Verify the redesigned /blogs surface (run against next start on :3458)
+# Verify the redesigned /blogs surface.
+# Usage: bash scripts/verify-blog-redesign.sh [base_url]
+# Defaults to local next start on :3458; pass https://www.blockframe.cloud for prod.
 set -u
-BASE="http://localhost:3458"
+BASE="${1:-http://localhost:3458}"
+echo "Target: $BASE"
 pass=0; fail=0
 ok()   { echo "PASS: $1"; pass=$((pass+1)); }
 bad()  { echo "FAIL: $1"; fail=$((fail+1)); }
