@@ -1,10 +1,19 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
 import Footer from "@/components/Footer";
 import PostCard from "@/components/PostCard";
-import { getApprovedPosts, getCategorySummary } from "@/lib/blogData";
+import BlogSidebar from "@/components/blog/BlogSidebar";
+import {
+  getApprovedPosts,
+  getCategorySummary,
+  getTagSummary,
+  getPopularPosts,
+  getArchiveMonths,
+} from "@/lib/blogData";
+import { readingTimeMinutes } from "@/lib/postView";
 import { categoryName, postPath } from "@/lib/slug";
 
 const BASE_URL = "https://www.blockframe.cloud";
@@ -80,6 +89,23 @@ export default async function BlogCategoryPage({ params }: Props) {
 
   const name = categoryName(slug);
   const allCategories = await getCategorySummary();
+  const [tags, popularRaw, months] = await Promise.all([
+    getTagSummary(),
+    getPopularPosts(5),
+    getArchiveMonths(),
+  ]);
+  // On a category page the featured slot IS the page, so exclude nothing from
+  // popular except posts already shown at the top of this list.
+  const firstIds = new Set(posts.slice(0, 2).map((p) => p.id));
+  const popular = popularRaw
+    .filter((p) => !firstIds.has(p.id))
+    .slice(0, 5)
+    .map((p) => ({
+      id: p.id,
+      title: p.title,
+      href: postPath(p.title, p.id),
+      minutes: readingTimeMinutes(p),
+    }));
 
   const collectionSchema = {
     "@context": "https://schema.org",
@@ -107,10 +133,10 @@ export default async function BlogCategoryPage({ params }: Props) {
       <Navigation />
       <PremiumBackground />
 
-      <main id="main-content" className="relative z-10 w-full min-h-screen flex flex-col items-center pt-40 pb-24 px-6 md:px-12">
+      <main id="main-content" className="relative z-10 w-full min-h-screen pt-40 pb-24 px-6 md:px-12">
         <div className="hero-radial-glow opacity-40 z-[-1]" />
 
-        <div className="w-full max-w-6xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto">
           <nav aria-label="Breadcrumb" className="mb-8 text-sm text-text-muted">
             <ol className="flex flex-wrap items-center gap-2">
               <li><Link href="/" className="hover:text-primary-light transition-colors">Home</Link></li>
@@ -121,36 +147,52 @@ export default async function BlogCategoryPage({ params }: Props) {
             </ol>
           </nav>
 
-          <header className="mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-text-primary leading-tight mb-4">
-              {name}
-            </h1>
-            <p className="text-xl text-text-secondary font-light">
-              {posts.length} article{posts.length === 1 ? "" : "s"} in this category.
-            </p>
-          </header>
+          <div className="blog-layout">
+            {/* Main column */}
+            <div className="min-w-0">
+              <header className="mb-10">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-text-primary leading-tight mb-4">
+                  {name}
+                </h1>
+                <p className="text-xl text-text-secondary font-light">
+                  {posts.length} article{posts.length === 1 ? "" : "s"} in this category.
+                </p>
+              </header>
 
-          {/* Other categories */}
-          {allCategories.length > 1 && (
-            <div className="mb-10 flex flex-wrap gap-3" aria-label="Other categories">
-              {allCategories
-                .filter((c) => c.slug !== slug)
-                .map((c) => (
-                  <Link
-                    key={c.slug}
-                    href={`/blogs/category/${c.slug}`}
-                    className="rounded px-4 py-2 bg-transparent text-text-secondary transition-all duration-300 hover:bg-primary/10 hover:text-primary-light"
-                  >
-                    {c.name} ({c.count})
+              {/* Cross-category navigation */}
+              {allCategories.length > 1 && (
+                <div className="mb-10 flex flex-wrap gap-2" aria-label="Other categories">
+                  <Link href="/blogs" className="blog-pill">
+                    All
                   </Link>
-                ))}
-            </div>
-          )}
+                  {allCategories
+                    .filter((c) => c.slug !== slug)
+                    .map((c) => (
+                      <Link key={c.slug} href={`/blogs/category/${c.slug}`} className="blog-pill">
+                        {c.name} <span className="blog-pill-count">{c.count}</span>
+                      </Link>
+                    ))}
+                </div>
+              )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {posts.map((post) => (
+                  <PostCard key={post.id} post={post} />
+                ))}
+              </div>
+            </div>
+
+            {/* Discovery rail */}
+            <Suspense fallback={null}>
+              <BlogSidebar
+                categories={allCategories}
+                tags={tags}
+                popular={popular}
+                months={months}
+                totalPosts={posts.length}
+                basePath={`/blogs/category/${slug}`}
+              />
+            </Suspense>
           </div>
         </div>
       </main>
