@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${BASE_URL}/images/og-preview.png`,
           width: 1200,
           height: 630,
-          alt: "BlockFrame Labs Blog — AI Systems, Automation & Web Engineering",
+          alt: "BlockFrame Labs Blog : AI Systems, Automation & Web Engineering",
         },
       ],
       locale: "en_US",
@@ -156,7 +156,7 @@ export default async function BlogsPage({ searchParams }: Props) {
             <p className="text-sm text-text-muted">{CONTENT_TEAM_NAME}</p>
           </div>
 
-          {/* Proof strip — live counter + cadence claim */}
+          {/* Proof strip : live counter + cadence claim */}
           <div className="blog-proof-strip mb-12" role="status" aria-label="Publishing cadence">
             <div className="blog-proof-item">
               <span className="blog-proof-number">{totalPosts}</span>

@@ -5,6 +5,20 @@ const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 })
 
+// Check if a URL is from Notion's expiring S3 hosts
+export function isNotionHostedImage(url: string): boolean {
+  return /prod-files-secure\.(s3|us-west-2)|prod-files\.secure\.notion\.static\.com|notion-static\.com|s3\.us-west-2\.amazonaws\.com|amazonaws\.com/.test(url);
+}
+
+// Rewrite Notion-hosted image URLs to go through our proxy (which caches them long-term)
+export function rewriteImageUrl(url: string): string {
+  if (isNotionHostedImage(url)) {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.blockframe.cloud';
+    return `${baseUrl}/api/image-proxy?url=${encodeURIComponent(url)}`;
+  }
+  return url;
+}
+
 export function getPostsDatabaseId(): string {
   const id = process.env.NOTION_POSTS_DB_ID
   if (!id) throw new Error('Missing NOTION_POSTS_DB_ID')
@@ -189,12 +203,14 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
           case 'image':
             type = 'image'
             const img = block.image
-            content = img.type === 'external' ? img.external.url : img.file.url
+            const rawImageUrl = img.type === 'external' ? img.external.url : img.file.url
+            content = rewriteImageUrl(rawImageUrl)
             break
           case 'video':
             type = 'video'
             const vid = block.video
-            content = vid.type === 'external' ? vid.external.url : vid.file.url
+            const rawVideoUrl = vid.type === 'external' ? vid.external.url : vid.file.url
+            content = rewriteImageUrl(rawVideoUrl)
             break
           case 'code':
             type = 'code'
@@ -313,7 +329,10 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
     categorySlug,
     date,
     updatedAt: (page as any).last_edited_time || undefined,
-    thumbnail: props.Thumbnail?.url || props.Thumbnail?.rich_text?.[0]?.plain_text || undefined,
+    thumbnail: (() => {
+      const raw = props.Thumbnail?.url || props.Thumbnail?.rich_text?.[0]?.plain_text || props.Thumbnail?.files?.[0]?.file?.url || props.Thumbnail?.files?.[0]?.external?.url || undefined;
+      return raw ? rewriteImageUrl(raw) : undefined;
+    })(),
     status,
     author,
     blocks,
@@ -381,7 +400,10 @@ export function notionPageToBlogPost(page: any): BlogPost {
     categorySlug,
     date: getText(props.Date) || new Date().toISOString().split('T')[0],
     updatedAt: (page as any).last_edited_time || undefined,
-    thumbnail: props.Thumbnail?.url || props.Thumbnail?.rich_text?.[0]?.plain_text || undefined,
+    thumbnail: (() => {
+      const raw = props.Thumbnail?.url || props.Thumbnail?.rich_text?.[0]?.plain_text || props.Thumbnail?.files?.[0]?.file?.url || props.Thumbnail?.files?.[0]?.external?.url || undefined;
+      return raw ? rewriteImageUrl(raw) : undefined;
+    })(),
     status: getText(props.Status).toLowerCase() as 'pending' | 'approved' | 'rejected',
     author: getText(props.Author) || 'BlockFrameLabs',
     blocks,

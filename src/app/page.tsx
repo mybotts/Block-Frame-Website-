@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Services from "@/components/Services";
 import Footer from "@/components/Footer";
@@ -110,7 +110,17 @@ const heroStats = [
 ];
 
 export default function Home() {
+  const [visibleLines, setVisibleLines] = useState(1);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (visibleLines < terminalLines.length) {
+      const timer = setTimeout(() => {
+        setVisibleLines((v) => v + 1);
+      }, 450);
+      return () => clearTimeout(timer);
+    }
+  }, [visibleLines]);
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -217,7 +227,7 @@ export default function Home() {
                     <span className="noir-hud ml-3">blog-os // daily run</span>
                   </div>
                   <div className="space-y-2 px-5 py-5 font-mono text-[13px] leading-relaxed">
-                    {terminalLines.map((line) => (
+                    {terminalLines.slice(0, visibleLines).map((line, idx) => (
                       <p
                         key={line.text}
                         className={
@@ -231,6 +241,9 @@ export default function Home() {
                         }
                       >
                         {line.text}
+                        {idx === visibleLines - 1 && visibleLines < terminalLines.length && (
+                          <span className="ml-1 inline-block h-3.5 w-1.5 animate-pulse bg-[#00f0ff] align-middle" />
+                        )}
                       </p>
                     ))}
                   </div>

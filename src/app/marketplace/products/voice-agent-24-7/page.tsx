@@ -17,7 +17,7 @@ const callHref = "https://calendly.com/blockframemedia/30min";
 const docs = [
   {
     title: "What you are buying",
-    body: "A voice AI agent that we install for your business. It runs 24/7, learns your services and FAQs, answers inbound calls in a natural conversational voice, qualifies callers, and books meetings or sessions directly into your calendar. No more missed calls, no more back-and-forth scheduling emails.",
+    body: "A voice AI system that we install for your business. It runs 24/7, learns your services and FAQs, answers inbound calls in a natural conversational voice, qualifies callers, and books meetings or sessions directly into your calendar. No more missed calls, no more back-and-forth scheduling emails.",
   },
   {
     title: "How it learns your business",
@@ -43,7 +43,7 @@ const tierFeatures: Record<string, string[]> = {
   ],
   Growth: [
     "Everything in Starter",
-    "Website chat widget with the same AI agent",
+    "Website chat widget with the same voice AI system",
     "24/7 coverage, not just business hours",
     "CRM integration (syncs qualified leads instantly)",
     "Lead qualification with scoring and routing",
@@ -71,7 +71,7 @@ const implementationSteps = [
 export const metadata: Metadata = {
   title: "AI Voice Agent Service — Starter, Growth & Pro Tiers | BlockFrame Labs",
   description:
-    "Tiered AI voice agent plans: Starter (business hours, 1 channel), Growth (24/7 voice + chat, CRM, lead qualification), Pro (SMS, analytics, priority support).",
+    "Tiered AI voice system plans: Starter (business hours, 1 channel), Growth (24/7 voice + chat, CRM, lead qualification), Pro (SMS, analytics, priority support).",
   alternates: { canonical: "https://www.blockframe.cloud/marketplace/products/voice-agent-24-7" },
   openGraph: {
     title: "AI Voice Agent Service — Starter, Growth & Pro",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     url: "https://www.blockframe.cloud/marketplace/products/voice-agent-24-7",
     siteName: "BlockFrame Labs",
     type: "website",
-    images: [{ url: "/images/voice-agent-og.png", width: 1200, height: 630, alt: "AI Voice Agent Service by BlockFrame Labs" }],
+    images: [{ url: "/images/voice-agent-og.png", width: 1200, height: 630, alt: "AI Voice System Service by BlockFrame Labs" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -96,7 +96,7 @@ const productSchema = {
   name: product.title,
   image: "https://www.blockframe.cloud/images/voice-agent-og.png",
   description:
-    "24/7 voice AI agent that answers calls, qualifies callers, and books meetings into your calendar.",
+    "24/7 voice AI system that answers calls, qualifies callers, and books meetings into your calendar.",
   brand: { "@type": "Brand", name: "BlockFrame Labs" },
   offers: {
     "@type": "Offer",

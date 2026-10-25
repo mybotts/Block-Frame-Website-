@@ -10,7 +10,7 @@ const navItems = [
   { label: "Services", href: "/#services" },
   { label: "Products", href: "/marketplace/products" },
   { label: "Blog", href: "/blogs" },
-  { label: "Contact", href: "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const businessMailHref = "mailto:contact@blockframe.cloud?subject=Project%20inquiry%20for%20BlockFrame%20Labs";

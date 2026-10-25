@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: `${BASE_URL}/images/og-preview.png`,
           width: 1200,
           height: 630,
-          alt: `BlockFrame Labs Blog — ${name}`,
+          alt: `BlockFrame Labs Blog : ${name}`,
         },
       ],
       locale: "en_US",

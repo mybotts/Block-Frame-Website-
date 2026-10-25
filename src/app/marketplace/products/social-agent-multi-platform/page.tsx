@@ -17,7 +17,7 @@ const callHref = "https://calendly.com/blockframemedia/30min";
 const docs = [
   {
     title: "What you are buying",
-    body: "An AI agent that publishes your content across 15 social platforms, replies to comments and DMs in your brand voice, qualifies inbound leads, and routes them to your CRM or inbox. The same system BlockFrame Labs uses internally for its own distribution.",
+    body: "An autonomous AI system that publishes your content across 15 social platforms, replies to comments and DMs in your brand voice, qualifies inbound leads, and routes them to your CRM or inbox. The same system BlockFrame Labs uses internally for its own distribution.",
   },
   {
     title: "How posting works",
@@ -43,7 +43,7 @@ const implementationSteps = [
 
 export const metadata: Metadata = {
   title: "Social Agent: AI Multi-Platform Posting, Engagement & Lead Qualification",
-  description: "An AI agent that posts across 15 platforms, auto-replies to comments and DMs, qualifies inbound leads, and routes them to your CRM. Built by BlockFrame Labs.",
+  description: "An autonomous AI system that posts across 15 platforms, auto-replies to comments and DMs, qualifies inbound leads, and routes them to your CRM. Built by BlockFrame Labs.",
   alternates: { canonical: "https://www.blockframe.cloud/marketplace/products/social-agent-multi-platform" },
   openGraph: {
     title: "Social Agent: AI Multi-Platform Posting, Engagement & Lead Qualification",
@@ -66,7 +66,7 @@ const productSchema = {
   "@type": "Product",
   name: product.title,
   image: "https://www.blockframe.cloud/images/social-agent-og.png",
-  description: "AI agent for multi-platform posting, auto-reply, lead qualification, and CRM routing across 15 social platforms.",
+  description: "Autonomous AI system for multi-platform posting, auto-reply, lead qualification, and CRM routing across 15 social platforms.",
   brand: { "@type": "Brand", name: "BlockFrame Labs" },
   offers: { "@type": "Offer", priceCurrency: "USD", availability: "https://schema.org/InStock", url: "https://www.blockframe.cloud/marketplace/products/social-agent-multi-platform" },
 };
