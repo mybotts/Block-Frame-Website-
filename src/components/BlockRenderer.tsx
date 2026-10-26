@@ -29,7 +29,7 @@ export default function BlockRenderer({ block }: BlockRendererProps) {
       return <CodeBlock code={content} language={language} />;
 
     case "image":
-      if (!content || !content.startsWith("http")) return null;
+      if (!content || (!content.startsWith("http") && !content.startsWith("/"))) return null;
       return (
         <div className="my-6">
           <img

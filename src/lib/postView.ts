@@ -24,7 +24,7 @@ export function getPostThumbnail(post: BlogPost): string | undefined {
   }
   if (!post.blocks || post.blocks.length === 0) return undefined;
   for (const block of post.blocks) {
-    if (block.type === "image" && block.content && block.content.startsWith("http")) {
+    if (block.type === "image" && block.content && (block.content.startsWith("http") || block.content.startsWith("/"))) {
       return block.content;
     }
   }
