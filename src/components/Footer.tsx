@@ -15,6 +15,7 @@ const serviceLinks = [
 ];
 
 const contentLinks = [
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Blogs", href: "/blogs" },
   { label: "Videos", href: "/videos" },
   { label: "Marketplace/Products", href: "/marketplace/products" },
