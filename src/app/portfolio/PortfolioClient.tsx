@@ -15,14 +15,23 @@ const navSections = [
   { id: "problems", label: "02  Problems I Solve" },
   { id: "systems", label: "03  Systems & Case Studies" },
   { id: "discord-bots", label: "04  Custom Discord Bots" },
-  { id: "artifacts", label: "05  Work Samples & Proofs" },
-  { id: "stack", label: "06  Tech Stack & Ecosystem" },
-  { id: "credentials", label: "07  Certifications & History" },
-  { id: "contact", label: "08  Work With Me" },
+  { id: "web3-gaming", label: "05  Web3 Gaming & Media" },
+  { id: "artifacts", label: "06  Work Samples & Proofs" },
+  { id: "stack", label: "07  Tech Stack & Ecosystem" },
+  { id: "credentials", label: "08  Verified Certifications" },
+  { id: "contact", label: "09  Work With Me" },
 ];
+
+interface LightboxItem {
+  src: string;
+  title: string;
+  subtitle?: string;
+  verifyHref?: string;
+}
 
 export default function PortfolioClient() {
   const [activeSection, setActiveSection] = useState("about");
+  const [activeLightbox, setActiveLightbox] = useState<LightboxItem | null>(null);
   const [checklist, setChecklist] = useState({
     inputSanitization: true,
     domainGuardrails: true,
@@ -72,6 +81,62 @@ export default function PortfolioClient() {
 
   return (
     <div className="relative mx-auto w-full max-w-7xl pt-36 pb-24 px-6 md:px-12">
+      
+      {/* Lightbox Modal for Certificate / Proof Inspection */}
+      {activeLightbox && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md transition-opacity"
+          onClick={() => setActiveLightbox(null)}
+        >
+          <div
+            className="relative max-h-[92vh] max-w-4xl w-full overflow-hidden rounded-2xl border border-primary/40 bg-surface p-4 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-card-border">
+              <div>
+                <h4 className="text-base font-bold text-text-primary">{activeLightbox.title}</h4>
+                {activeLightbox.subtitle && (
+                  <p className="text-xs text-text-muted font-mono">{activeLightbox.subtitle}</p>
+                )}
+              </div>
+              <div className="flex items-center gap-3">
+                {activeLightbox.verifyHref && (
+                  <a
+                    href={activeLightbox.verifyHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded bg-primary/15 border border-primary/40 px-3 py-1 text-xs font-mono text-primary-light hover:bg-primary/25 transition"
+                  >
+                    <span>Verify Credential</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setActiveLightbox(null)}
+                  className="rounded-lg bg-surface-light px-3 py-1 text-xs font-semibold text-text-secondary hover:text-white transition"
+                  aria-label="Close modal"
+                >
+                  ✕ Close
+                </button>
+              </div>
+            </div>
+
+            <div className="relative h-[65vh] w-full rounded-lg overflow-hidden bg-background/50 flex items-center justify-center">
+              <Image
+                src={activeLightbox.src}
+                alt={activeLightbox.title}
+                fill
+                className="object-contain p-2"
+                sizes="(max-width: 1024px) 100vw, 900px"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="lg:grid lg:grid-cols-[300px_1fr] lg:gap-14 xl:grid-cols-[320px_1fr]">
         
         {/* ========================================================
@@ -82,10 +147,16 @@ export default function PortfolioClient() {
             
             {/* Identity Card */}
             <div className="glass-card p-6 border border-card-border">
-              {/* Typographic Monogram Emblem */}
+              {/* Official 3D BlockFrame Emblem */}
               <div className="mb-5 flex items-center justify-between">
-                <div className="relative flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 via-surface to-surface-light border border-primary/50 shadow-[0_0_25px_rgba(0,179,191,0.2)]">
-                  <span className="font-mono text-2xl font-bold tracking-tight text-primary-light">S</span>
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-surface border border-primary/40 p-2 shadow-[0_0_25px_rgba(0,179,191,0.25)]">
+                  <Image
+                    src="/images/blockframe-3d-badge.png"
+                    alt="BlockFrame Labs Badge"
+                    width={56}
+                    height={56}
+                    className="object-contain drop-shadow"
+                  />
                   <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary/40 text-[9px] font-mono text-primary-light">
                     &gt;_
                   </span>
@@ -556,7 +627,7 @@ export default function PortfolioClient() {
             <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-primary/40 bg-surface shadow-md">
+                  <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-primary/40 bg-surface shadow-md">
                     <Image
                       src="/images/ignition-icon.png"
                       alt="Ignition Discord Bot"
@@ -693,43 +764,199 @@ export default function PortfolioClient() {
 
             {/* Prime Ops Showcase */}
             <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                <span className="category-pill bg-accent/15 text-accent-light text-xs font-mono">
-                  INTERNAL OPERATIONS BOT
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-primary/40 bg-surface shadow-md p-1">
+                    <Image
+                      src="/images/blockframe-bot-avatar.png"
+                      alt="Prime Ops Bot"
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-text-primary">Prime Ops</h3>
+                      <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-mono font-semibold text-emerald-400 border border-emerald-500/40">
+                        &check; INTERNAL SECURITY
+                      </span>
+                    </div>
+                    <span className="text-xs text-text-muted font-mono">Operations &amp; Community Shield</span>
+                  </div>
+                </div>
+
+                <span className="rounded-full border border-card-border bg-surface px-3 py-1 text-xs font-mono text-text-muted">
+                  Private HQ Deployment
                 </span>
-                <span className="text-xs font-mono text-text-muted">Private Deployment</span>
               </div>
 
-              <h3 className="text-2xl font-bold text-text-primary mb-2">
-                Prime Ops Bot: Operations &amp; Community Security
-              </h3>
-              <p className="text-sm text-primary-light mb-6 font-mono">
-                Automated Ticketing &middot; Anti-Phishing Defense &middot; Role Gating
+              <p className="text-sm text-text-secondary leading-relaxed mb-6">
+                Engineered and deployed for my own private community server (Prime Nexus / BlockFrame HQ). Prime Ops acts as the central command bot handling member onboarding, ticket triage, scam link neutralization, and autonomous server-health alerts.
               </p>
 
-              <div className="space-y-4 text-sm text-text-secondary leading-relaxed">
-                <p>
-                  Engineered and deployed for my own private community server (Prime Nexus / BlockFrame HQ). Prime Ops acts as the central command bot handling member onboarding, ticket triage, scam and phishing link neutralization, and event tracking.
-                </p>
-                <div className="rounded-lg bg-surface p-4 border border-card-border font-mono text-xs flex flex-wrap items-center justify-between gap-2">
-                  <span className="text-text-primary">Need a custom bot for your Discord or Telegram server?</span>
-                  <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="text-primary-light font-semibold hover:underline">
-                    Let&apos;s build it &rarr;
-                  </a>
+              {/* VISUAL PROOF ARTIFACT: Prime Ops Security Action Embed */}
+              <div className="rounded-xl border border-card-border bg-[#313338] p-5 font-sans text-xs text-[#dbdee1] shadow-2xl max-w-2xl">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/10 bg-[#1e1f22]">
+                    <Image src="/images/blockframe-bot-avatar.png" alt="Prime Ops" fill className="object-contain p-0.5" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-semibold text-white text-sm">Prime Ops</span>
+                      <span className="rounded bg-[#5865f2] px-1.5 py-0.2 text-[10px] font-semibold text-white uppercase">
+                        APP
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-[#949ba4]">Automated Incident &middot; Security Protocol</span>
+                  </div>
                 </div>
+
+                {/* Prime Ops Security Embed Box */}
+                <div className="rounded border-l-4 border-l-emerald-500 bg-[#2b2d31] p-4 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-emerald-400">
+                      🛡️ Phishing Link Intercepted &amp; Quarantined
+                    </span>
+                    <span className="text-[10px] font-mono text-text-muted">AutoMod Rule #04</span>
+                  </div>
+                  <p className="text-xs text-[#dbdee1] leading-relaxed">
+                    Malicious impersonation URL quarantined in <code className="text-primary-light">#general-chat</code>. Sender temporarily muted. Incident logged to Sentry telemetry and moderation log channel.
+                  </p>
+                  <div className="pt-2 text-[11px] font-mono text-text-muted border-t border-white/5 flex items-center justify-between">
+                    <span>Target: Phish / Fake AirDrop Vector</span>
+                    <span className="text-emerald-400 font-semibold">Status: Cleaned (0.3s)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 rounded-lg bg-surface p-4 border border-card-border font-mono text-xs flex flex-wrap items-center justify-between gap-2">
+                <span className="text-text-primary">Need a custom bot for your Discord or Telegram community?</span>
+                <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="text-primary-light font-semibold hover:underline">
+                  Let&apos;s build it &rarr;
+                </a>
               </div>
             </div>
 
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 05: WORK SAMPLES & ARTIFACTS
+              SECTION 05: WEB3 GAMING & MEDIA PRODUCTION
+              ------------------------------------------------------ */}
+          <section id="web3-gaming" className="scroll-mt-32 space-y-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
+                  05 &middot; WEB3 GAMING &amp; MEDIA
+                </span>
+                <span className="h-px flex-1 bg-border" aria-hidden="true" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
+                Web3 Gaming, Ambassador &amp; Media Production
+              </h2>
+              <p className="text-base text-text-secondary max-w-2xl">
+                Direct experience driving player acquisition, live tournament broadcasting, video content creation, and community moderation across top Web3 titles.
+              </p>
+            </div>
+
+            {/* Showcase Grid */}
+            <div className="grid gap-6 md:grid-cols-2">
+              
+              {/* Villains Robot Battle Royale Card */}
+              <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
+                <div>
+                  <div
+                    className="relative aspect-video w-full overflow-hidden rounded-lg border border-card-border mb-4 cursor-pointer group"
+                    onClick={() => setActiveLightbox({
+                      src: "/images/villains-robot-battle-royale.webp",
+                      title: "Villains: Robot Battle Royale",
+                      subtitle: "Birdy Inc · Official Ambassador & Content Creation"
+                    })}
+                  >
+                    <Image
+                      src="/images/villains-robot-battle-royale.webp"
+                      alt="Villains Robot Battle Royale"
+                      fill
+                      className="object-cover group-hover:scale-105 transition duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                      <span className="rounded bg-black/75 px-3 py-1 text-xs font-mono text-white">
+                        Click to enlarge 🔍
+                      </span>
+                    </div>
+                  </div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-1">
+                    BIRDY INC &middot; OFFICIAL AMBASSADOR
+                  </div>
+                  <h3 className="text-lg font-bold text-text-primary mb-2">
+                    Villains: Robot Battle Royale
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                    Content creator and community ambassador. Led player outreach, created game strategy walkthroughs, live-streamed tournament showdowns, and managed community events.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
+                  <span>Role: Ambassador &amp; Creator</span>
+                  <span className="text-primary-light">Web3 Esports</span>
+                </div>
+              </div>
+
+              {/* Voxie Tactics Card */}
+              <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
+                <div>
+                  <div
+                    className="relative aspect-video w-full overflow-hidden rounded-lg border border-card-border mb-4 cursor-pointer group bg-background/50 flex items-center justify-center"
+                    onClick={() => setActiveLightbox({
+                      src: "/images/immutable-gaming-banner.webp",
+                      title: "Immutable Web3 Gaming & Voxie Tactics",
+                      subtitle: "AlwaysGeeky Games / Avocado DAO · Creator & Moderator"
+                    })}
+                  >
+                    <Image
+                      src="/images/immutable-gaming-banner.webp"
+                      alt="Immutable Web3 Gaming"
+                      fill
+                      className="object-cover group-hover:scale-105 transition duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                      <span className="rounded bg-black/75 px-3 py-1 text-xs font-mono text-white">
+                        Click to enlarge 🔍
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="relative h-8 w-8 overflow-hidden rounded-md border border-primary/40">
+                      <Image src="/images/voxie-tactics.webp" alt="Voxie Tactics" fill className="object-cover" />
+                    </div>
+                    <div>
+                      <div className="font-mono text-xs text-primary-light font-semibold">
+                        ALWAYSGEEKY GAMES &middot; AMBASSADOR
+                      </div>
+                      <h3 className="text-lg font-bold text-text-primary">
+                        Voxie Tactics &amp; Web3 Guilds
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                    Ambassador and community moderator for Voxie Tactics (tactical RPG on Polygon). Onboarded hundreds of players, authored meta guides, and supported gaming scholarship programs.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
+                  <span>Role: Community Moderator</span>
+                  <span className="text-primary-light">Tactical RPG</span>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          {/* ------------------------------------------------------
+              SECTION 06: WORK SAMPLES & PRODUCTION PROOFS
               ------------------------------------------------------ */}
           <section id="artifacts" className="scroll-mt-32 space-y-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  05 &middot; WORK SAMPLES &amp; ARTIFACTS
+                  06 &middot; WORK SAMPLES &amp; ARTIFACTS
                 </span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
@@ -737,11 +964,71 @@ export default function PortfolioClient() {
                 Visible Proof of Work &amp; Frameworks
               </h2>
               <p className="text-base text-text-secondary max-w-2xl">
-                Just like in top technical auditing, here are the real prompt templates, security frameworks, and execution checklists used across my systems.
+                Just like in top technical auditing, here are the real prompt templates, security frameworks, studio media assets, and execution checklists used across my systems.
               </p>
             </div>
 
-            {/* Artifact 1: The Production Prompt Architecture (Like in Reference Video) */}
+            {/* Artifact 1: Studio Media Production & Visual Assets */}
+            <div className="glass-card p-8 border border-card-border rounded-xl">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-mono text-xs text-text-muted uppercase tracking-widest">
+                  MEDIA &amp; STUDIO INFRASTRUCTURE
+                </span>
+                <span className="text-[11px] font-mono text-primary-light">BlockFrame Creative Pipeline</span>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-2">
+                AI &amp; Web3 Studio Video Automation Assets
+              </h3>
+              <p className="text-xs text-text-secondary mb-6 leading-relaxed">
+                Automated multi-modal studio pipelines: generating AI avatars, broadcast backgrounds, dynamic overlays, and high-CTR thumbnails.
+              </p>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <div
+                  className="relative aspect-video w-full overflow-hidden rounded-lg border border-card-border cursor-pointer group"
+                  onClick={() => setActiveLightbox({
+                    src: "/images/ai-web3-studio-banner.webp",
+                    title: "AI & Web3 Virtual Studio Environment",
+                    subtitle: "Multi-monitor AI avatar studio production asset"
+                  })}
+                >
+                  <Image
+                    src="/images/ai-web3-studio-banner.webp"
+                    alt="AI and Web3 Studio Banner"
+                    fill
+                    className="object-cover group-hover:scale-105 transition duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <span className="rounded bg-black/75 px-3 py-1 text-xs font-mono text-white">
+                      Click to inspect 🔍
+                    </span>
+                  </div>
+                </div>
+
+                <div
+                  className="relative aspect-video w-full overflow-hidden rounded-lg border border-card-border cursor-pointer group"
+                  onClick={() => setActiveLightbox({
+                    src: "/images/blockframe-cinematic-banner.webp",
+                    title: "BlockFrame 3D Cinematic Visual Engine",
+                    subtitle: "High-speed optical film reel and frame branding asset"
+                  })}
+                >
+                  <Image
+                    src="/images/blockframe-cinematic-banner.webp"
+                    alt="BlockFrame Cinematic Banner"
+                    fill
+                    className="object-cover group-hover:scale-105 transition duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <span className="rounded bg-black/75 px-3 py-1 text-xs font-mono text-white">
+                      Click to inspect 🔍
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Artifact 2: The Production Prompt Architecture */}
             <div className="glass-card p-8 border border-card-border rounded-xl">
               <div className="flex items-center justify-between mb-4">
                 <span className="font-mono text-xs text-text-muted uppercase tracking-widest">
@@ -771,7 +1058,7 @@ export default function PortfolioClient() {
               </div>
             </div>
 
-            {/* Artifact 2: Interactive QA & Guardrail Checklist */}
+            {/* Artifact 3: Interactive QA & Guardrail Checklist */}
             <div className="glass-card p-8 border border-card-border rounded-xl">
               <div className="flex items-center justify-between mb-4">
                 <span className="font-mono text-xs text-text-muted uppercase tracking-widest">
@@ -875,12 +1162,12 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 06: TECH STACK & TOOLS
+              SECTION 07: TECH STACK & TOOLS
               ------------------------------------------------------ */}
           <section id="stack" className="scroll-mt-32">
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                06 &middot; TOOLS &amp; TECHNOLOGIES
+                07 &middot; TOOLS &amp; TECHNOLOGIES
               </span>
               <span className="h-px flex-1 bg-border" aria-hidden="true" />
             </div>
@@ -963,90 +1250,236 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 07: CREDENTIALS & BACKGROUND
+              SECTION 08: VERIFIED CERTIFICATIONS & HISTORY
               ------------------------------------------------------ */}
           <section id="credentials" className="scroll-mt-32">
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                07 &middot; CREDENTIALS &amp; BACKGROUND
+                08 &middot; VERIFIED CREDENTIALS
               </span>
               <span className="h-px flex-1 bg-border" aria-hidden="true" />
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
-              Certifications &amp; Experience
+              Official Certifications &amp; Credentials
             </h2>
             <p className="text-base text-text-secondary mb-10 max-w-2xl">
-              Backed by verified credentials in autonomous AI frameworks, cybersecurity fundamentals, and community leadership.
+              Backed by authentic, verifiable badges and certificates across AI systems, ethical hacking, network defense, and community operations. Click any credential to inspect the full document.
             </p>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               
-              <div className="glass-card p-6 border border-card-border">
-                <div className="font-mono text-xs text-primary-light font-semibold mb-2">ANTHROPIC CLAUDE ACADEMY &middot; 2026</div>
-                <h3 className="text-base font-semibold text-text-primary mb-1">
-                  AI Fluency Framework Foundations
-                </h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  Verified certification on foundational principles of large language models, prompt orchestration, and domain-bounded system performance.
-                </p>
+              {/* 1. Claude Academy: AI Fluency */}
+              <div
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                onClick={() => setActiveLightbox({
+                  src: "/images/badge-ai-fluency.webp",
+                  title: "AI Fluency: Framework and Foundations",
+                  subtitle: "Anthropic Claude Academy · Issued Nov 4, 2026",
+                  verifyHref: "https://academy.claude.com/verify/cd849217aa52d99682e3beecb73d47ca"
+                })}
+              >
+                <div>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/50 border border-card-border mb-3 group-hover:scale-[1.02] transition">
+                    <Image
+                      src="/images/badge-ai-fluency.webp"
+                      alt="Claude Academy AI Fluency Badge"
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <div className="font-mono text-[11px] text-primary-light font-semibold mb-1">
+                    CLAUDE ACADEMY &middot; 2026
+                  </div>
+                  <h3 className="text-sm font-bold text-text-primary mb-1">
+                    AI Fluency: Framework &amp; Foundations
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Foundational LLM principles, prompt architecture, and domain-bounded system performance.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span className="text-emerald-400 font-semibold">&check; Verified Badge</span>
+                  <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
+                </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <div className="font-mono text-xs text-primary-light font-semibold mb-2">ANTHROPIC CLAUDE ACADEMY &middot; 2026</div>
-                <h3 className="text-base font-semibold text-text-primary mb-1">
-                  Building Effective Human-Agent Teams
-                </h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  Advanced certification focusing on multi-agent collaboration, human-in-the-loop controls, task delegation boundaries, and operational safety.
-                </p>
+              {/* 2. Claude Academy: Human-Agent Teams */}
+              <div
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                onClick={() => setActiveLightbox({
+                  src: "/images/badge-human-agent-teams.webp",
+                  title: "Building Effective Human-Agent Teams",
+                  subtitle: "Anthropic Claude Academy · Issued Nov 4, 2026",
+                  verifyHref: "https://academy.claude.com/verify/579caba171a9c9cf67648125d7f68d64"
+                })}
+              >
+                <div>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/50 border border-card-border mb-3 group-hover:scale-[1.02] transition">
+                    <Image
+                      src="/images/badge-human-agent-teams.webp"
+                      alt="Claude Academy Human-Agent Teams Badge"
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <div className="font-mono text-[11px] text-primary-light font-semibold mb-1">
+                    CLAUDE ACADEMY &middot; 2026
+                  </div>
+                  <h3 className="text-sm font-bold text-text-primary mb-1">
+                    Building Human-Agent Teams
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Multi-agent coordination, human-in-the-loop control, delegation boundaries, and safety.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span className="text-emerald-400 font-semibold">&check; Verified Badge</span>
+                  <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
+                </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <div className="font-mono text-xs text-emerald-400 font-semibold mb-2">EC-COUNCIL &middot; CYBERSECURITY</div>
-                <h3 className="text-base font-semibold text-text-primary mb-1">
-                  Ethical Hacking Essentials (EHE)
-                </h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  Core competencies in penetration testing fundamentals, vulnerability identification, web threat vectors, and defense mechanisms.
-                </p>
+              {/* 3. EC-Council: Ethical Hacking Essentials (EHE) */}
+              <div
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                onClick={() => setActiveLightbox({
+                  src: "/images/cert-ecc-ehe.webp",
+                  title: "Ethical Hacking Essentials (EHE)",
+                  subtitle: "EC-Council · Cert #ECC8316945270"
+                })}
+              >
+                <div>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/50 border border-card-border mb-3 group-hover:scale-[1.02] transition">
+                    <Image
+                      src="/images/cert-ecc-ehe.webp"
+                      alt="EC-Council Ethical Hacking Essentials Certificate"
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <div className="font-mono text-[11px] text-emerald-400 font-semibold mb-1">
+                    EC-COUNCIL &middot; ECC8316945270
+                  </div>
+                  <h3 className="text-sm font-bold text-text-primary mb-1">
+                    Ethical Hacking Essentials
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Penetration testing fundamentals, web application vulnerability identification, and mitigation.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span className="text-emerald-400 font-semibold">&check; Official Cert</span>
+                  <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
+                </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <div className="font-mono text-xs text-emerald-400 font-semibold mb-2">EC-COUNCIL &middot; CYBERSECURITY</div>
-                <h3 className="text-base font-semibold text-text-primary mb-1">
-                  Network Defense Essentials (NDE)
-                </h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  Certified in network infrastructure protection, port management, firewall configuration, encryption protocols, and intrusion detection.
-                </p>
+              {/* 4. EC-Council: Network Defense Essentials (NDE) */}
+              <div
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                onClick={() => setActiveLightbox({
+                  src: "/images/cert-ecc-nde.webp",
+                  title: "Network Defense Essentials (NDE)",
+                  subtitle: "EC-Council · Cert #ECC6219384570"
+                })}
+              >
+                <div>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/50 border border-card-border mb-3 group-hover:scale-[1.02] transition">
+                    <Image
+                      src="/images/cert-ecc-nde.webp"
+                      alt="EC-Council Network Defense Essentials Certificate"
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <div className="font-mono text-[11px] text-emerald-400 font-semibold mb-1">
+                    EC-COUNCIL &middot; ECC6219384570
+                  </div>
+                  <h3 className="text-sm font-bold text-text-primary mb-1">
+                    Network Defense Essentials
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Network security protocols, port hardening, firewall rules, encryption, and intrusion detection.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span className="text-emerald-400 font-semibold">&check; Official Cert</span>
+                  <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
+                </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <div className="font-mono text-xs text-emerald-400 font-semibold mb-2">EC-COUNCIL &middot; CYBERSECURITY</div>
-                <h3 className="text-base font-semibold text-text-primary mb-1">
-                  Certified Secure Computer User (CSCU)
-                </h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  Comprehensive training in endpoint security, identity protection, phishing countermeasures, and data risk management.
-                </p>
+              {/* 5. EC-Council: Certified Secure Computer User (CSCU) */}
+              <div
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                onClick={() => setActiveLightbox({
+                  src: "/images/cert-ecc-cscu.webp",
+                  title: "Certified Secure Computer User (CSCU)",
+                  subtitle: "EC-Council · Cert #ECC2901748365"
+                })}
+              >
+                <div>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/50 border border-card-border mb-3 group-hover:scale-[1.02] transition">
+                    <Image
+                      src="/images/cert-ecc-cscu.webp"
+                      alt="EC-Council Certified Secure Computer User Certificate"
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <div className="font-mono text-[11px] text-emerald-400 font-semibold mb-1">
+                    EC-COUNCIL &middot; ECC2901748365
+                  </div>
+                  <h3 className="text-sm font-bold text-text-primary mb-1">
+                    Certified Secure Computer User
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Endpoint protection, identity theft defense, anti-phishing hygiene, and data risk governance.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span className="text-emerald-400 font-semibold">&check; Official Cert</span>
+                  <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
+                </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <div className="font-mono text-xs text-text-muted font-semibold mb-2">LEADERSHIP &amp; COMMUNITY</div>
-                <h3 className="text-base font-semibold text-text-primary mb-1">
-                  Avocado DAO &middot; Marketing &amp; Operations
-                </h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  Official Certificate of Employment and Letter of Recommendation recognized for initiative, user onboarding, and operational reliability across large-scale Web3 gaming communities.
-                </p>
+              {/* 6. Avocado DAO: Proof of Employment & Recommendation */}
+              <div
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                onClick={() => setActiveLightbox({
+                  src: "/images/avocado-dao-coe.webp",
+                  title: "Avocado DAO · Certificate of Employment & Recommendation",
+                  subtitle: "David Shi, Chief of Operations (COO) · Avocado IDO Limited"
+                })}
+              >
+                <div>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/50 border border-card-border mb-3 group-hover:scale-[1.02] transition">
+                    <Image
+                      src="/images/avocado-dao-coe.webp"
+                      alt="Avocado DAO Proof of Employment Letter"
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <div className="font-mono text-[11px] text-text-muted font-semibold mb-1">
+                    AVOCADO DAO &middot; LEADERSHIP
+                  </div>
+                  <h3 className="text-sm font-bold text-text-primary mb-1">
+                    Marketing &amp; Community Operations
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Recognized by COO David Shi for community onboarding, campaign execution, and team reliability.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span className="text-emerald-400 font-semibold">&check; Official Letter</span>
+                  <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
+                </div>
               </div>
 
             </div>
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 08: WORK WITH ME / CTA
+              SECTION 09: WORK WITH ME / CTA
               ------------------------------------------------------ */}
           <section id="contact" className="scroll-mt-32">
             <div className="glass-card p-8 md:p-12 border border-card-border rounded-2xl relative overflow-hidden">
@@ -1054,10 +1487,10 @@ export default function PortfolioClient() {
               
               <div className="max-w-2xl">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light block mb-3">
-                  08 &middot; GET IN TOUCH
+                  09 &middot; GET IN TOUCH
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-4">
-                  Your business has work to get done. Let's make it autonomous.
+                  Your business has work to get done. Let&apos;s make it autonomous.
                 </h2>
                 <p className="text-sm md:text-base text-text-secondary leading-relaxed mb-8">
                   Whether you are looking to deploy custom Discord bots, an autonomous conversational commerce engine, or resilient multi-agent infrastructure, I bring architectural clarity and hands-on execution.
