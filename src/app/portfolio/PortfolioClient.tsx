@@ -1,20 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const calendlyHref = "https://calendly.com/blockframemedia/30min";
 const emailHref = "mailto:sergeolisco@gmail.com?subject=Project%20or%20Advisory%20Inquiry%20for%20Sergeo";
 const groplyRepoHref = "https://github.com/Sergeo01/Groply-Open-Core-Autonomous-AI-Commerce-Engine";
+const ignitionTopGgHref = "https://top.gg/bot/1388870348841287690";
+const ignitionDiscordHref = "https://discord.com/discovery/applications/1388870348841287690";
 
 const navSections = [
   { id: "about", label: "01  About & Thesis" },
   { id: "problems", label: "02  Problems I Solve" },
-  { id: "proof", label: "03  Systems & Case Studies" },
-  { id: "standards", label: "04  Engineering Standards" },
-  { id: "stack", label: "05  Tech Stack & Tools" },
-  { id: "credentials", label: "06  Certifications & History" },
-  { id: "contact", label: "07  Work With Me" },
+  { id: "systems", label: "03  Systems & Case Studies" },
+  { id: "discord-bots", label: "04  Custom Discord Bots" },
+  { id: "artifacts", label: "05  Work Samples & Proofs" },
+  { id: "stack", label: "06  Tech Stack & Ecosystem" },
+  { id: "credentials", label: "07  Certifications & History" },
+  { id: "contact", label: "08  Work With Me" },
 ];
 
 export default function PortfolioClient() {
@@ -27,6 +31,7 @@ export default function PortfolioClient() {
     asyncQueueIsolation: true,
     sentryTelemetry: true,
     systemdRecovery: true,
+    antiPhishingShield: true,
   });
 
   useEffect(() => {
@@ -70,7 +75,7 @@ export default function PortfolioClient() {
       <div className="lg:grid lg:grid-cols-[300px_1fr] lg:gap-14 xl:grid-cols-[320px_1fr]">
         
         {/* ========================================================
-            LEFT STICKY SIDEBAR (Dossier Identity & Navigation)
+            LEFT STICKY SIDEBAR (Executive Identity & Navigation)
             ======================================================== */}
         <aside className="mb-14 lg:mb-0">
           <div className="lg:sticky lg:top-28 space-y-6">
@@ -79,13 +84,13 @@ export default function PortfolioClient() {
             <div className="glass-card p-6 border border-card-border">
               {/* Typographic Monogram Emblem */}
               <div className="mb-5 flex items-center justify-between">
-                <div className="relative flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 via-surface to-surface-light border border-primary/40 shadow-[0_0_25px_rgba(0,179,191,0.15)]">
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 via-surface to-surface-light border border-primary/50 shadow-[0_0_25px_rgba(0,179,191,0.2)]">
                   <span className="font-mono text-2xl font-bold tracking-tight text-primary-light">S</span>
                   <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary/40 text-[9px] font-mono text-primary-light">
                     &gt;_
                   </span>
                 </div>
-                <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1">
+                <div className="flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
@@ -105,7 +110,7 @@ export default function PortfolioClient() {
               </p>
 
               <p className="mt-4 text-xs leading-relaxed text-text-secondary">
-                Designing, deploying, and hardening autonomous AI systems, conversational commerce engines, and resilient cloud infrastructure.
+                Designing, deploying, and hardening autonomous AI systems, custom Discord bots, conversational commerce engines, and resilient cloud infrastructure.
               </p>
 
               {/* Navigation Jump Links */}
@@ -173,7 +178,7 @@ export default function PortfolioClient() {
               </div>
               <div className="flex items-center justify-between text-text-muted">
                 <span>Focus:</span>
-                <span className="text-primary-light font-medium">Autonomous Systems</span>
+                <span className="text-primary-light font-medium">Autonomous Systems &amp; Bots</span>
               </div>
             </div>
 
@@ -205,7 +210,7 @@ export default function PortfolioClient() {
                 Most modern AI projects stop at a toy demo, a fragile prompt, or an API wrapper that breaks the moment unexpected inputs arrive. I take the opposite path: I engineer end-to-end autonomous infrastructure designed for production reality.
               </p>
               <p>
-                From low-level Linux VPS servers and containerized agent fleets to trilingual conversational commerce engines and deterministic publishing pipelines, my focus is always on building systems that operate 24/7 with strict reliability and measurable business outcomes.
+                From low-level Linux VPS servers and containerized agent fleets to custom verified Discord automation platforms, trilingual conversational commerce engines, and deterministic publishing pipelines, my focus is always on building systems that operate 24/7 with strict reliability and measurable business outcomes.
               </p>
             </div>
 
@@ -220,8 +225,8 @@ export default function PortfolioClient() {
                 <span className="text-xs text-text-muted leading-tight block">Days, Zero Manual Edits (Blog OS)</span>
               </div>
               <div className="glass-card p-5 border border-card-border">
-                <span className="font-mono text-3xl font-bold text-text-primary block mb-1">3</span>
-                <span className="text-xs text-text-muted leading-tight block">Dialects Supported (EN, FR, Pidgin)</span>
+                <span className="font-mono text-3xl font-bold text-text-primary block mb-1">Verified</span>
+                <span className="text-xs text-text-muted leading-tight block">Custom Discord Bots (Ignition)</span>
               </div>
               <div className="glass-card p-5 border border-card-border">
                 <span className="font-mono text-3xl font-bold text-primary-light block mb-1">100%</span>
@@ -261,12 +266,12 @@ export default function PortfolioClient() {
               </div>
 
               <div className="glass-card p-7 border border-card-border hover:border-primary/40 transition">
-                <div className="font-mono text-xs text-primary-light font-semibold mb-3">02 / UNATTENDED OPERATIONS</div>
+                <div className="font-mono text-xs text-primary-light font-semibold mb-3">02 / DISCORD &amp; COMMUNITY AUTOMATION</div>
                 <h3 className="text-lg font-semibold text-text-primary mb-3">
-                  Autonomous Multi-Agent Fleets
+                  Custom Discord Bots for Any Server &amp; Task
                 </h3>
                 <p className="text-sm text-text-secondary leading-relaxed">
-                  Single prompts fail when complexity rises. I orchestrate specialized fleets of systems (researchers, web engineers, publishers, distribution bots) that communicate through structured REQ/ACK protocols, maintain persistent memory across sessions, and self-heal upon service disruption.
+                  Building bespoke, verified Discord bots for onboarding funnels, gamified quizzes, tournaments, automated ticketing, moderation, server-wide economies, and custom API webhooks for communities of any scale.
                 </p>
               </div>
 
@@ -296,7 +301,7 @@ export default function PortfolioClient() {
           {/* ------------------------------------------------------
               SECTION 03: PROOF OF WORK & SYSTEMS
               ------------------------------------------------------ */}
-          <section id="proof" className="scroll-mt-32 space-y-12">
+          <section id="systems" className="scroll-mt-32 space-y-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
@@ -367,6 +372,48 @@ export default function PortfolioClient() {
                   </ul>
                 </div>
 
+                {/* VISUAL PROOF ARTIFACT: Realistic WhatsApp Chat Simulator */}
+                <div className="rounded-xl border border-card-border bg-[#0b141a] p-5 shadow-inner">
+                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs font-mono">
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-emerald-500"></div>
+                      <span className="text-text-primary font-semibold">WhatsApp Business &middot; Groply AI Sales Rep</span>
+                    </div>
+                    <span className="text-text-muted">Autonomous Session #BF-9042</span>
+                  </div>
+
+                  <div className="space-y-3 font-sans text-xs max-w-lg">
+                    {/* Customer Message */}
+                    <div className="flex justify-start">
+                      <div className="rounded-lg bg-[#202c33] p-3 text-text-primary max-w-[85%] shadow-sm">
+                        <p className="font-semibold text-[10px] text-emerald-400 mb-0.5">Customer &middot; +237 671... </p>
+                        <p>Hey boss, how much for the Nike Air sneakers in size 43? Can you do 20,000 FCFA?</p>
+                        <span className="text-[9px] text-text-muted float-right mt-1">10:14 PM</span>
+                      </div>
+                    </div>
+
+                    {/* Groply AI Response */}
+                    <div className="flex justify-end">
+                      <div className="rounded-lg bg-[#005c4b] p-3 text-white max-w-[85%] shadow-sm space-y-2">
+                        <p className="font-semibold text-[10px] text-emerald-200">Groply Autonomous Rep</p>
+                        <p>
+                          Hello! Size 43 is available in Black/Cyan. Normal retail price is 26,000 FCFA. 
+                          The best I can do tonight is <strong>22,500 FCFA</strong> with same-day parcel dispatch via Touristique Express to Yaoundé. Would that work for you?
+                        </p>
+                        <div className="pt-2 border-t border-emerald-600/50 flex flex-col gap-1.5">
+                          <button className="w-full bg-[#111b21] hover:bg-[#202c33] text-emerald-300 font-semibold py-1.5 px-3 rounded text-[11px] text-center border border-emerald-500/30">
+                            &check; Accept 22,500 FCFA &amp; Order
+                          </button>
+                          <button className="w-full bg-[#111b21]/60 hover:bg-[#202c33] text-white py-1 px-3 rounded text-[10px] text-center">
+                            Browse Storefront Sheet (&lt;25KB)
+                          </button>
+                        </div>
+                        <span className="text-[9px] text-emerald-200/80 float-right">10:14 PM &middot; Automated in 1.4s</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="rounded-lg bg-surface p-4 border border-card-border font-mono text-xs">
                   <span className="text-text-muted block mb-1">// Production Architecture Stack</span>
                   <span className="text-text-primary">Meta WhatsApp Cloud API &middot; FastAPI (Python) &middot; PostgreSQL &middot; Docker &middot; Ubuntu VPS &middot; Sentry Telemetry</span>
@@ -411,29 +458,39 @@ export default function PortfolioClient() {
                   </p>
                 </div>
 
-                <div>
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-1.5">
-                    The Architecture
-                  </h4>
-                  <p>
-                    I engineered a fully autonomous pipeline connecting Notion databases directly to Next.js on Vercel:
-                  </p>
-                  <ul className="mt-3 list-disc list-inside space-y-1.5 pl-2 text-text-secondary">
-                    <li><strong className="text-text-primary">Automated Thumbnail Localization:</strong> Downloads and localizes remote assets into permanent CDN paths upon approval, eliminating external image expiration completely.</li>
-                    <li><strong className="text-text-primary">Turbopack &amp; On-Demand ISR:</strong> Sub-second page generation with on-demand webhook cache purging.</li>
-                    <li><strong className="text-text-primary">AI &amp; Crawler Syndication:</strong> Full RSS 2.0 feeds, XML sitemaps, JSON APIs, and markdown mirrors (<code className="text-primary-light text-xs">/llms.txt</code> and <code className="text-primary-light text-xs">/agents.txt</code>) for programmatic consumption.</li>
-                    <li><strong className="text-text-primary">Instant IndexNow Pings:</strong> Automatically notifies search engines the second a post is approved in Notion.</li>
-                  </ul>
+                {/* VISUAL PROOF ARTIFACT: Pipeline Flowchart */}
+                <div className="rounded-xl border border-card-border bg-surface p-5">
+                  <span className="font-mono text-xs text-text-muted uppercase tracking-wider block mb-3">
+                    // Pipeline Execution Flowchart
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 font-mono text-xs text-center">
+                    <div className="rounded-lg bg-surface-light p-3 border border-card-border flex flex-col justify-center">
+                      <span className="text-primary-light font-bold mb-1">01. NOTION</span>
+                      <span className="text-text-muted text-[11px]">Post marked Approved</span>
+                    </div>
+                    <div className="rounded-lg bg-surface-light p-3 border border-card-border flex flex-col justify-center">
+                      <span className="text-primary-light font-bold mb-1">02. ASSET CACHE</span>
+                      <span className="text-text-muted text-[11px]">Downloads &amp; localizes S3 files</span>
+                    </div>
+                    <div className="rounded-lg bg-surface-light p-3 border border-card-border flex flex-col justify-center">
+                      <span className="text-primary-light font-bold mb-1">03. EDGE REVALIDATE</span>
+                      <span className="text-text-muted text-[11px]">Next.js ISR instant cache purge</span>
+                    </div>
+                    <div className="rounded-lg bg-surface-light p-3 border border-card-border flex flex-col justify-center">
+                      <span className="text-primary-light font-bold mb-1">04. SYNDICATION</span>
+                      <span className="text-text-muted text-[11px]">IndexNow + RSS + LLMs.txt</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="rounded-lg bg-surface p-4 border border-card-border font-mono text-xs flex flex-wrap items-center justify-between gap-2">
                   <span className="text-text-primary">Proof Stat: 30 blogs in 30 days, zero manual edits.</span>
-                  <span className="text-emerald-400 font-semibold">100% Asset Uptime Verified</span>
+                  <span className="text-emerald-400 font-semibold">&check; 100% Asset Uptime Verified</span>
                 </div>
               </div>
             </div>
 
-            {/* Case Study 3: 8-Agent Autonomous Fleet */}
+            {/* Case Study 3: 8-Agent Fleet */}
             <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div className="flex items-center gap-2">
@@ -453,123 +510,280 @@ export default function PortfolioClient() {
                 Dual Platform (Hermes + OpenClaw) &middot; REQ/ACK Protocol &middot; Self-Healing VPS
               </p>
 
-              <div className="space-y-6 text-sm text-text-secondary leading-relaxed">
-                <div>
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-1.5">
-                    Architecture &amp; Roles
-                  </h4>
-                  <p>
-                    Designed and deployed a fleet of 8 specialized systems with domain-specific boundaries: OWL (Technical Lead), Daniel (Web Engineer), Michael (Lead Research), Roy (Content Publishing), Hans (Social Distribution), Rex (Operations), SEO Specialist, and David (Video Production).
-                  </p>
-                  <ul className="mt-3 list-disc list-inside space-y-1.5 pl-2 text-text-secondary">
-                    <li><strong className="text-text-primary">Inter-Agent Communication:</strong> Structured messaging protocol (REQ, ACK, INFO tags) over Discord and Telegram channels with strict file boundary safety.</li>
-                    <li><strong className="text-text-primary">Self-Healing Services:</strong> Configured systemd service isolation with automatic restart triggers (<code className="text-primary-light text-xs">Restart=on-failure</code>, <code className="text-primary-light text-xs">StartLimitBurst=3</code>) ending gateway restart loops.</li>
-                    <li><strong className="text-text-primary">Self-Hosted Marketing &amp; DB:</strong> Deployed Mautic 7 on Docker Compose with MySQL 8.4, executing 43 database migrations while preserving production data.</li>
-                    <li><strong className="text-text-primary">Daily Autonomous Research:</strong> Scheduled cron jobs scanning AI hackathons, grants, and competitive intelligence without human intervention.</li>
-                  </ul>
+              {/* VISUAL PROOF ARTIFACT: Production Terminal Console */}
+              <div className="rounded-xl border border-card-border bg-[#0d1117] p-4 font-mono text-xs text-text-secondary shadow-2xl overflow-x-auto">
+                <div className="flex items-center gap-2 pb-3 mb-3 border-b border-white/10">
+                  <div className="h-3 w-3 rounded-full bg-red-500/80"></div>
+                  <div className="h-3 w-3 rounded-full bg-yellow-500/80"></div>
+                  <div className="h-3 w-3 rounded-full bg-green-500/80"></div>
+                  <span className="text-text-muted text-[11px] ml-2">root@blockframe-vps:~ (systemctl status &middot; fleet-orchestration)</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Case Study 4: Process Audit Scanner */}
-            <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="flex items-center gap-2">
-                  <span className="category-pill bg-accent/15 text-accent-light text-xs font-mono">
-                    WEB APPLICATION
-                  </span>
-                  <span className="category-pill bg-surface-light text-text-secondary text-xs font-mono">
-                    LEAD ENGINE
-                  </span>
+                <div className="space-y-1 text-[11px] leading-relaxed">
+                  <p><span className="text-emerald-400 font-bold">&bull; hermes-gateway.service</span> - Multi-Agent Gateway Daemon</p>
+                  <p className="text-text-muted">&nbsp;&nbsp;Loaded: loaded (/etc/systemd/system/hermes-gateway.service; enabled)</p>
+                  <p className="text-text-muted">&nbsp;&nbsp;Active: <span className="text-emerald-400 font-semibold">active (running)</span> since Thu 2026-10-22 08:12:04 UTC; 4 days ago</p>
+                  <p className="text-text-muted">&nbsp;&nbsp;Restart Policy: Restart=on-failure; StartLimitBurst=3; RestartSec=120</p>
+                  <p className="text-primary-light mt-2">[FLEET PROTOCOL LOG]</p>
+                  <p><span className="text-blue-400">[REQ:OWL-&gt;DANIEL]</span> Audit Next.js build bundle &amp; verify image localization</p>
+                  <p><span className="text-emerald-400">[ACK:DANIEL-&gt;OWL]</span> 51/51 routes statically generated in 3.7s; 0 broken assets</p>
+                  <p><span className="text-yellow-400">[INFO:ROY-&gt;HANS]</span> Article published to Notion; IndexNow pings verified</p>
                 </div>
-                <span className="text-xs font-mono text-text-muted">analyze.blockframe.cloud</span>
-              </div>
-
-              <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
-                Process Audit Scanner
-              </h3>
-              <p className="text-sm text-primary-light mb-6 font-mono">
-                Python Flask &middot; 6-Dimension AI Suitability Scoring &middot; Roadmap Generator
-              </p>
-
-              <div className="space-y-4 text-sm text-text-secondary leading-relaxed">
-                <p>
-                  Built an interactive evaluation scanner evaluating business operations across 6 dimensions: Frequency, Volume, Complexity, Rule-based structure, Data Availability, and Integration readiness.
-                </p>
-                <p>
-                  Features tailored industry templates (eCommerce, SaaS, Agency, Manufacturing, Healthcare, Finance) producing instant ROI estimates, AI maturity gap analysis, and automated consultation booking capture.
-                </p>
               </div>
             </div>
 
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 04: ENGINEERING STANDARDS & GUARDRAILS
+              SECTION 04: CUSTOM DISCORD BOTS (Ignition & Prime Ops)
               ------------------------------------------------------ */}
-          <section id="standards" className="scroll-mt-32">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                04 &middot; ENGINEERING FRAMEWORK
-              </span>
-              <span className="h-px flex-1 bg-border" aria-hidden="true" />
+          <section id="discord-bots" className="scroll-mt-32 space-y-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
+                  04 &middot; DISCORD BOT ARCHITECTURE
+                </span>
+                <span className="h-px flex-1 bg-border" aria-hidden="true" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
+                Custom Discord Bots for Any Server &amp; Task
+              </h2>
+              <p className="text-base text-text-secondary max-w-2xl">
+                I build bespoke, verified Discord applications engineered for community onboarding, automated economies, interactive tournaments, security, and administrative operations.
+              </p>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
-              How I Think &amp; Build
-            </h2>
-            <p className="text-base text-text-secondary mb-10 max-w-2xl">
-              Strict engineering standards prevent costly bugs, eliminate hallucinations, and keep production systems online.
-            </p>
+            {/* Ignition Bot Showcase Card */}
+            <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-primary/40 bg-surface shadow-md">
+                    <Image
+                      src="/images/ignition-icon.png"
+                      alt="Ignition Discord Bot"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-text-primary">Ignition</h3>
+                      <span className="rounded bg-[#5865f2]/20 px-2 py-0.5 text-[10px] font-mono font-semibold text-[#5865f2] border border-[#5865f2]/40">
+                        &check; VERIFIED BOT
+                      </span>
+                    </div>
+                    <span className="text-xs text-text-muted font-mono">App ID: 1388870348841287690</span>
+                  </div>
+                </div>
 
-            {/* 4 Pillars */}
-            <div className="grid gap-6 md:grid-cols-2 mb-10">
-              <div className="glass-card p-6 border border-card-border">
-                <span className="font-mono text-xs text-primary-light font-semibold mb-2 block">PILLAR 1</span>
-                <h3 className="text-base font-semibold text-text-primary mb-2">Real Flow Over Spec Ideals</h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  The spec ideal is rarely what happens in production. Clocks drift, network sockets hang, and users send malformed inputs. I trace the real data flow end-to-end and patch root causes, not symptoms.
-                </p>
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href={ignitionDiscordHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded bg-[#5865f2] hover:bg-[#4752c4] px-4 py-2 text-xs font-semibold text-white transition shadow-sm"
+                  >
+                    <span>Discord App Directory</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                  <a
+                    href={ignitionTopGgHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded border border-card-border bg-surface hover:bg-surface-light px-4 py-2 text-xs font-medium text-text-secondary transition"
+                  >
+                    <span>Top.gg Listing</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <span className="font-mono text-xs text-primary-light font-semibold mb-2 block">PILLAR 2</span>
-                <h3 className="text-base font-semibold text-text-primary mb-2">Strict Domain Guardrails</h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  An AI system that hallucinates dates, owners, or prices is a corporate liability. I enforce deterministic validation layers, schema bounds, and non-bypassable business rules.
-                </p>
+              <p className="text-sm text-text-secondary leading-relaxed mb-6">
+                Ignition is a verified Discord application that helps communities educate, engage, and reward members through interactive gamified workflows, competitive tournaments, and a built-in server marketplace.
+              </p>
+
+              {/* Core Feature Badges */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 mb-8 font-mono text-xs">
+                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
+                  <span className="text-primary-light font-semibold block">&bull; Quizzes &amp; Trivia</span>
+                  <span className="text-text-muted text-[10px]">Educational engagement</span>
+                </div>
+                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
+                  <span className="text-primary-light font-semibold block">&bull; Raffles &amp; Giveaways</span>
+                  <span className="text-text-muted text-[10px]">Verifiable fair draws</span>
+                </div>
+                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
+                  <span className="text-primary-light font-semibold block">&bull; Tournaments</span>
+                  <span className="text-text-muted text-[10px]">Live leaderboards</span>
+                </div>
+                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
+                  <span className="text-primary-light font-semibold block">&bull; Guilds &amp; Teams</span>
+                  <span className="text-text-muted text-[10px]">Group collaboration</span>
+                </div>
+                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
+                  <span className="text-primary-light font-semibold block">&bull; Server Marketplace</span>
+                  <span className="text-text-muted text-[10px]">Reward redemptions</span>
+                </div>
+                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
+                  <span className="text-primary-light font-semibold block">&bull; Smart Onboarding</span>
+                  <span className="text-text-muted text-[10px]">Automated role gates</span>
+                </div>
+                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
+                  <span className="text-primary-light font-semibold block">&bull; Q&amp;A Systems</span>
+                  <span className="text-text-muted text-[10px]">Community knowledgebase</span>
+                </div>
+                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
+                  <span className="text-primary-light font-semibold block">&bull; Credits &amp; Economy</span>
+                  <span className="text-text-muted text-[10px]">Custom token balance</span>
+                </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <span className="font-mono text-xs text-primary-light font-semibold mb-2 block">PILLAR 3</span>
-                <h3 className="text-base font-semibold text-text-primary mb-2">Multi-Model Resilience</h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  Upstream LLM providers experience outages and rate limits. Production systems must implement automated fallback chains, caching, and graceful degradation without crashing user sessions.
-                </p>
+              {/* VISUAL PROOF ARTIFACT: Realistic Discord Embed Preview */}
+              <div className="rounded-xl border border-card-border bg-[#313338] p-5 font-sans text-xs text-[#dbdee1] shadow-2xl max-w-2xl">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/10 bg-[#1e1f22]">
+                    <Image src="/images/ignition-icon.png" alt="Ignition" fill className="object-cover" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-semibold text-white text-sm">Ignition</span>
+                      <span className="rounded bg-[#5865f2] px-1.5 py-0.2 text-[10px] font-semibold text-white uppercase">
+                        APP
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-[#949ba4]">Today at 9:42 PM &middot; /tournament join</span>
+                  </div>
+                </div>
+
+                {/* Discord Embed Box */}
+                <div className="rounded border-l-4 border-l-[#5865f2] bg-[#2b2d31] p-4 space-y-3">
+                  <span className="text-xs uppercase tracking-wider font-semibold text-white block">
+                    &bull; Weekly Server Championship &middot; Round 3
+                  </span>
+                  <p className="text-xs text-[#dbdee1] leading-relaxed">
+                    Welcome to the tournament arena! Solve the cybersecurity riddle to earn <strong>250 Community Credits</strong> and advance your guild on the leaderboard.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 gap-3 pt-2 text-[11px] font-mono border-t border-white/5">
+                    <div>
+                      <span className="text-[#949ba4] block">Current Leader:</span>
+                      <span className="text-white font-semibold">Alpha Guild (1,450 pts)</span>
+                    </div>
+                    <div>
+                      <span className="text-[#949ba4] block">Prize Pool:</span>
+                      <span className="text-emerald-400 font-semibold">50,000 Credits</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Discord Interactive Buttons */}
+                <div className="flex flex-wrap gap-2 pt-3">
+                  <button className="rounded bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold px-3 py-1.5 text-xs transition">
+                    &bull; Join Tournament
+                  </button>
+                  <button className="rounded bg-[#4e5058] hover:bg-[#6d6f78] text-white px-3 py-1.5 text-xs transition">
+                    Open Marketplace
+                  </button>
+                  <button className="rounded bg-[#4e5058] hover:bg-[#6d6f78] text-white px-3 py-1.5 text-xs transition">
+                    View Leaderboard
+                  </button>
+                </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <span className="font-mono text-xs text-primary-light font-semibold mb-2 block">PILLAR 4</span>
-                <h3 className="text-base font-semibold text-text-primary mb-2">Measurable Business Impact</h3>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  The best code is the code that never had to be written. Every system built must eliminate a verifiable human bottleneck, reduce cycle time, or drive revenue.
+            </div>
+
+            {/* Prime Ops Showcase */}
+            <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                <span className="category-pill bg-accent/15 text-accent-light text-xs font-mono">
+                  INTERNAL OPERATIONS BOT
+                </span>
+                <span className="text-xs font-mono text-text-muted">Private Deployment</span>
+              </div>
+
+              <h3 className="text-2xl font-bold text-text-primary mb-2">
+                Prime Ops Bot: Operations &amp; Community Security
+              </h3>
+              <p className="text-sm text-primary-light mb-6 font-mono">
+                Automated Ticketing &middot; Anti-Phishing Defense &middot; Role Gating
+              </p>
+
+              <div className="space-y-4 text-sm text-text-secondary leading-relaxed">
+                <p>
+                  Engineered and deployed for my own private community server (Prime Nexus / BlockFrame HQ). Prime Ops acts as the central command bot handling member onboarding, ticket triage, scam and phishing link neutralization, and event tracking.
                 </p>
+                <div className="rounded-lg bg-surface p-4 border border-card-border font-mono text-xs flex flex-wrap items-center justify-between gap-2">
+                  <span className="text-text-primary">Need a custom bot for your Discord or Telegram server?</span>
+                  <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="text-primary-light font-semibold hover:underline">
+                    Let&apos;s build it &rarr;
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Interactive Quality Checklist Card (Inspired by the Reference Video) */}
+          </section>
+
+          {/* ------------------------------------------------------
+              SECTION 05: WORK SAMPLES & ARTIFACTS
+              ------------------------------------------------------ */}
+          <section id="artifacts" className="scroll-mt-32 space-y-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
+                  05 &middot; WORK SAMPLES &amp; ARTIFACTS
+                </span>
+                <span className="h-px flex-1 bg-border" aria-hidden="true" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
+                Visible Proof of Work &amp; Frameworks
+              </h2>
+              <p className="text-base text-text-secondary max-w-2xl">
+                Just like in top technical auditing, here are the real prompt templates, security frameworks, and execution checklists used across my systems.
+              </p>
+            </div>
+
+            {/* Artifact 1: The Production Prompt Architecture (Like in Reference Video) */}
             <div className="glass-card p-8 border border-card-border rounded-xl">
               <div className="flex items-center justify-between mb-4">
                 <span className="font-mono text-xs text-text-muted uppercase tracking-widest">
-                  PRODUCTION DEPLOYMENT ARTIFACT
+                  PRODUCTION SYSTEM PROMPT ARTIFACT
                 </span>
-                <span className="text-[11px] font-mono text-primary-light">Interactive Guardrail Checklist</span>
+                <span className="text-[11px] font-mono text-primary-light">Groply Anti-Hallucination &amp; Haggling Guard</span>
               </div>
               <h3 className="text-xl font-bold text-text-primary mb-2">
-                Autonomous AI Systems Verification Checklist
+                The Prompt Specification &amp; Boundary Rules
+              </h3>
+              <p className="text-xs text-text-secondary mb-4 leading-relaxed">
+                Firm boundaries ensure conversational agents never invent dates, speculate on stock, or breach merchant floor margins:
+              </p>
+
+              {/* Code / Prompt Box */}
+              <div className="rounded-lg bg-[#0d1117] p-5 border border-card-border font-mono text-xs text-text-secondary leading-relaxed overflow-x-auto">
+                <span className="text-emerald-400 block mb-2 font-bold">// SYSTEM PROMPT &middot; DOMAIN BOUNDARIES</span>
+                <p className="text-text-primary mb-2">
+                  You are Groply, an expert trilingual sales coordinator for local commerce. You strictly represent the merchant&apos;s verified inventory.
+                </p>
+                <div className="space-y-1 text-text-secondary pl-3 border-l-2 border-primary/40">
+                  <p>1. <strong className="text-white">Strict Truth Anchor:</strong> Never invent inventory quantities, colors, or sizes. If not specified in the database, declare &apos;Pending merchant confirmation&apos;.</p>
+                  <p>2. <strong className="text-white">Price Negotiation Rule:</strong> Current listed price = P_retail. Minimum floor price = P_floor. If customer negotiates below P_retail, counter-offer between (P_retail - 0.5 &times; delta) and P_floor. Never dip below P_floor under any circumstances.</p>
+                  <p>3. <strong className="text-white">Trilingual Tone:</strong> Detect user language (English, French, or Cameroonian Pidgin) and reply with high cultural fluency and warmth.</p>
+                  <p>4. <strong className="text-white">Payment Rail Verification:</strong> Only generate order codes when user selects confirmed payment option (MTN MoMo, Orange Money, or Bus Waybill).</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Artifact 2: Interactive QA & Guardrail Checklist */}
+            <div className="glass-card p-8 border border-card-border rounded-xl">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-mono text-xs text-text-muted uppercase tracking-widest">
+                  DEPLOYMENT VERIFICATION CHECKLIST
+                </span>
+                <span className="text-[11px] font-mono text-primary-light">Interactive System QA</span>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-2">
+                Production Readiness &amp; Safety Checklist
               </h3>
               <p className="text-xs text-text-secondary mb-6">
-                The minimum non-negotiable checklist executed before any autonomous system goes live in production:
+                The non-negotiable verification gates executed before any autonomous system or bot goes live:
               </p>
 
               <div className="space-y-3 font-mono text-xs">
@@ -593,7 +807,7 @@ export default function PortfolioClient() {
                     className="mt-0.5 accent-primary h-4 w-4 rounded"
                   />
                   <span className={checklist.domainGuardrails ? "text-text-primary" : "text-text-muted line-through"}>
-                    Domain boundary lockdown: system prompt forbids hallucinating unlisted dates, prices, or inventory.
+                    Domain boundary lockdown: system prompt strictly forbids hallucinating unlisted dates, prices, or inventory.
                   </span>
                 </label>
 
@@ -624,12 +838,12 @@ export default function PortfolioClient() {
                 <label className="flex items-start gap-3 cursor-pointer p-2 rounded hover:bg-surface-light transition">
                   <input
                     type="checkbox"
-                    checked={checklist.asyncQueueIsolation}
-                    onChange={() => toggleCheck("asyncQueueIsolation")}
+                    checked={checklist.antiPhishingShield}
+                    onChange={() => toggleCheck("antiPhishingShield")}
                     className="mt-0.5 accent-primary h-4 w-4 rounded"
                   />
-                  <span className={checklist.asyncQueueIsolation ? "text-text-primary" : "text-text-muted line-through"}>
-                    Async event queue isolation: webhook responses acknowledge immediately; LLM processing handled off-thread.
+                  <span className={checklist.antiPhishingShield ? "text-text-primary" : "text-text-muted line-through"}>
+                    Community safety &amp; anti-phishing: Discord auto-mod link scanners and verified role gates active.
                   </span>
                 </label>
 
@@ -641,7 +855,7 @@ export default function PortfolioClient() {
                     className="mt-0.5 accent-primary h-4 w-4 rounded"
                   />
                   <span className={checklist.sentryTelemetry ? "text-text-primary" : "text-text-muted line-through"}>
-                    Live telemetry &amp; error alerts: Sentry tracking active with stack trace capture and automated alerting.
+                    Live telemetry &amp; error alerts: Sentry tracking active with real-time stack trace alerts.
                   </span>
                 </label>
 
@@ -653,7 +867,7 @@ export default function PortfolioClient() {
                     className="mt-0.5 accent-primary h-4 w-4 rounded"
                   />
                   <span className={checklist.systemdRecovery ? "text-text-primary" : "text-text-muted line-through"}>
-                    Infrastructure fault tolerance: systemd service isolation with Restart=on-failure policy verified.
+                    Infrastructure fault tolerance: systemd service isolation with Restart=on-failure verified.
                   </span>
                 </label>
               </div>
@@ -661,12 +875,12 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 05: TECH STACK & TOOLS
+              SECTION 06: TECH STACK & TOOLS
               ------------------------------------------------------ */}
           <section id="stack" className="scroll-mt-32">
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                05 &middot; TOOLS &amp; TECHNOLOGIES
+                06 &middot; TOOLS &amp; TECHNOLOGIES
               </span>
               <span className="h-px flex-1 bg-border" aria-hidden="true" />
             </div>
@@ -675,11 +889,24 @@ export default function PortfolioClient() {
               Technologies &amp; Ecosystem
             </h2>
             <p className="text-base text-text-secondary mb-10 max-w-2xl">
-              A battle-tested stack spanning autonomous agent orchestration, low-level server environments, and modern edge web platforms.
+              A battle-tested stack spanning autonomous agent orchestration, Discord bot development, low-level server environments, and modern edge web platforms.
             </p>
 
             <div className="space-y-6">
               
+              <div className="glass-card p-6 border border-card-border">
+                <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-4">
+                  Discord &amp; Community Bot Engineering
+                </h3>
+                <div className="flex flex-wrap gap-2.5">
+                  {["Discord API / Gateway", "discord.js / discord.py", "Slash Commands & Subcommands", "Interactive Embeds & Buttons", "Top.gg Integration", "AutoMod & Anti-Spam", "OAuth2 Server Verification"].map((t) => (
+                    <span key={t} className="rounded-md border border-card-border bg-surface px-3 py-1.5 text-xs font-mono text-text-primary hover:border-primary/50 transition">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
               <div className="glass-card p-6 border border-card-border">
                 <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-4">
                   AI Systems &amp; LLM Architecture
@@ -732,29 +959,16 @@ export default function PortfolioClient() {
                 </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-4">
-                  Messaging, FinTech &amp; Operations
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  {["Meta WhatsApp Cloud API", "MTN Mobile Money API", "Orange Money", "Discord Bot APIs", "Telegram Bot APIs", "Mautic 7 Marketing Automation", "Sentry Observability"].map((t) => (
-                    <span key={t} className="rounded-md border border-card-border bg-surface px-3 py-1.5 text-xs font-mono text-text-primary hover:border-primary/50 transition">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
             </div>
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 06: CREDENTIALS & BACKGROUND
+              SECTION 07: CREDENTIALS & BACKGROUND
               ------------------------------------------------------ */}
           <section id="credentials" className="scroll-mt-32">
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                06 &middot; CREDENTIALS &amp; BACKGROUND
+                07 &middot; CREDENTIALS &amp; BACKGROUND
               </span>
               <span className="h-px flex-1 bg-border" aria-hidden="true" />
             </div>
@@ -832,7 +1046,7 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 07: WORK WITH ME / CTA
+              SECTION 08: WORK WITH ME / CTA
               ------------------------------------------------------ */}
           <section id="contact" className="scroll-mt-32">
             <div className="glass-card p-8 md:p-12 border border-card-border rounded-2xl relative overflow-hidden">
@@ -840,13 +1054,13 @@ export default function PortfolioClient() {
               
               <div className="max-w-2xl">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light block mb-3">
-                  07 &middot; GET IN TOUCH
+                  08 &middot; GET IN TOUCH
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-4">
                   Your business has work to get done. Let's make it autonomous.
                 </h2>
                 <p className="text-sm md:text-base text-text-secondary leading-relaxed mb-8">
-                  Whether you are looking to deploy a conversational WhatsApp commerce engine, automate complex multi-agent workflows, or build resilient cloud infrastructure, I bring architectural clarity and hands-on execution.
+                  Whether you are looking to deploy custom Discord bots, an autonomous conversational commerce engine, or resilient multi-agent infrastructure, I bring architectural clarity and hands-on execution.
                 </p>
 
                 {/* Working Availability Matrix */}
@@ -861,7 +1075,7 @@ export default function PortfolioClient() {
                   </div>
                   <div className="rounded-lg bg-surface p-4 border border-card-border">
                     <span className="text-text-muted block mb-1">// Engagement</span>
-                    <span className="text-primary-light font-semibold">Advisory &amp; Build</span>
+                    <span className="text-primary-light font-semibold">Custom Bots &amp; AI Systems</span>
                   </div>
                 </div>
 
