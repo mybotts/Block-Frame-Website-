@@ -14,12 +14,13 @@ const navSections = [
   { id: "about", label: "01  About & Skills" },
   { id: "capabilities", label: "02  What I Do & Deliver" },
   { id: "software-stack", label: "03  Apps & Software Stack" },
-  { id: "community-ops", label: "04  Community Ops & Growth" },
-  { id: "discord-bots", label: "05  Custom Discord Bots" },
-  { id: "systems", label: "06  AI Systems & Automations" },
-  { id: "reviews", label: "07  Team Feedback & Reviews" },
-  { id: "credentials", label: "08  Verified Certifications" },
-  { id: "contact", label: "09  Work With Me" },
+  { id: "video-edits", label: "04  Video Editing & Motion" },
+  { id: "community-ops", label: "05  Community Ops & Growth" },
+  { id: "discord-bots", label: "06  Custom Discord Bots" },
+  { id: "systems", label: "07  AI Systems & Automations" },
+  { id: "reviews", label: "08  Team Feedback & Reviews" },
+  { id: "credentials", label: "09  Verified Certifications" },
+  { id: "contact", label: "10  Work With Me" },
 ];
 
 interface LightboxItem {
@@ -27,6 +28,7 @@ interface LightboxItem {
   title: string;
   subtitle?: string;
   verifyHref?: string;
+  isVideo?: boolean;
 }
 
 export default function PortfolioClient() {
@@ -136,7 +138,7 @@ export default function PortfolioClient() {
   return (
     <div className="relative mx-auto w-full max-w-7xl pt-36 pb-24 px-6 md:px-12">
       
-      {/* Lightbox Modal for Certificate / Proof Inspection */}
+      {/* Lightbox Modal for Certificate / Proof / Video Inspection */}
       {activeLightbox && (
         <div
           role="dialog"
@@ -179,13 +181,22 @@ export default function PortfolioClient() {
             </div>
 
             <div className="relative h-[65vh] w-full rounded-lg overflow-hidden bg-background/50 flex items-center justify-center">
-              <Image
-                src={activeLightbox.src}
-                alt={activeLightbox.title}
-                fill
-                className="object-contain p-2"
-                sizes="(max-width: 1024px) 100vw, 900px"
-              />
+              {activeLightbox.isVideo ? (
+                <video
+                  src={activeLightbox.src}
+                  controls
+                  autoPlay
+                  className="max-h-full max-w-full rounded-lg shadow-2xl"
+                />
+              ) : (
+                <Image
+                  src={activeLightbox.src}
+                  alt={activeLightbox.title}
+                  fill
+                  className="object-contain p-2"
+                  sizes="(max-width: 1024px) 100vw, 900px"
+                />
+              )}
             </div>
           </div>
         </div>
@@ -234,10 +245,10 @@ export default function PortfolioClient() {
               {/* Multi-Disciplinary Skills Pills */}
               <div className="mt-4 flex flex-wrap gap-1.5">
                 <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
-                  Community Management
+                  Video Editing
                 </span>
                 <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
-                  Video Editing
+                  Community Management
                 </span>
                 <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
                   Social Media Growth
@@ -254,7 +265,7 @@ export default function PortfolioClient() {
               </div>
 
               <p className="mt-4 text-xs leading-relaxed text-text-secondary">
-                A versatile digital operator. Whether you need community management on Discord/Telegram, crisp video editing, Notion workflows, or custom AI automations, I deliver clean, end-to-end execution.
+                A versatile digital operator. Whether you need community management on Discord/Telegram, crisp commercial video editing, Notion workflows, or custom AI automations, I deliver clean, end-to-end execution.
               </p>
 
               {/* Navigation Jump Links */}
@@ -346,7 +357,7 @@ export default function PortfolioClient() {
             </div>
 
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-text-primary leading-tight mb-6">
-              Hands-on execution across community management, video editing, social media, custom Discord bots, and AI automation.
+              Hands-on execution across video editing, community management, social media, custom Discord bots, and AI automation.
             </h2>
 
             <div className="prose prose-invert max-w-none text-base md:text-lg text-text-secondary leading-relaxed space-y-4">
@@ -354,7 +365,7 @@ export default function PortfolioClient() {
                 Many businesses struggle because work gets fragmented across multiple single-skill freelancers who fail to communicate. A video editor doesn&apos;t know how to run community engagement; a community manager doesn&apos;t know how to build a Discord bot or track metrics in Notion; and an automation engineer often overcharges for things that can be solved simply.
               </p>
               <p>
-                I take a comprehensive approach: I combine daily operational discipline (managing Telegram and Discord communities, organizing live events, tracking spreadsheets, handling Zendesk and Bitrix queues) with creative production (editing engaging short-form videos and banners) and modern software automation (building custom Discord bots, trilingual WhatsApp sales agents, and Notion publishing pipelines).
+                I take a comprehensive approach: I combine daily operational discipline (managing Telegram and Discord communities, organizing live events, tracking spreadsheets, handling Zendesk and Bitrix queues) with creative production (editing engaging short-form videos and commercials) and modern software automation (building custom Discord bots, trilingual WhatsApp sales agents, and Notion publishing pipelines).
               </p>
             </div>
 
@@ -394,14 +405,29 @@ export default function PortfolioClient() {
               What I Can Do For Your Business
             </h2>
             <p className="text-base text-text-secondary mb-10 max-w-2xl">
-              Flexible skills designed to remove bottlenecks, keep communities engaged, produce high-retention media, and automate repetitive tasks.
+              Flexible skills designed to remove bottlenecks, produce high-retention media, keep communities engaged, and automate repetitive tasks.
             </p>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               
               <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
                 <div>
-                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">01 / COMMUNITY &amp; SUPPORT</div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">01 / CONTENT &amp; MEDIA</div>
+                  <h3 className="text-base font-semibold text-text-primary mb-2">
+                    Video Editing &amp; Motion Design
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Editing high-retention short-form videos (TikTok, Reels, Shorts), SaaS product commercials, kinetic typography, dynamic subtitles, and high-CTR thumbnail designs using CapCut, Premiere Pro, and Canva.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
+                  CapCut &middot; Premiere &middot; Canva &middot; Remotion
+                </div>
+              </div>
+
+              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">02 / COMMUNITY &amp; SUPPORT</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
                     Community Management &amp; Moderation
                   </h3>
@@ -411,21 +437,6 @@ export default function PortfolioClient() {
                 </div>
                 <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
                   Telegram &middot; Discord &middot; Slack &middot; Zendesk
-                </div>
-              </div>
-
-              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
-                <div>
-                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">02 / CONTENT &amp; MEDIA</div>
-                  <h3 className="text-base font-semibold text-text-primary mb-2">
-                    Video Editing &amp; Content Creation
-                  </h3>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    Editing high-retention short-form videos (TikTok, Reels, Shorts), podcast cutdowns, kinetic typography, dynamic subtitles, and high-CTR thumbnail designs using CapCut, Premiere Pro, and Canva.
-                  </p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
-                  CapCut &middot; Premiere &middot; Canva &middot; Remotion
                 </div>
               </div>
 
@@ -569,13 +580,150 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 04: COMMUNITY MANAGEMENT & ORGANIC GROWTH PROOF
+              SECTION 04: VIDEO EDITING & COMMERCIAL MOTION DESIGN (NEW!)
+              ------------------------------------------------------ */}
+          <section id="video-edits" className="scroll-mt-32 space-y-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
+                  04 &middot; VIDEO EDITING &amp; MOTION DESIGN
+                </span>
+                <span className="h-px flex-1 bg-border" aria-hidden="true" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
+                Video Edits &amp; Commercial Motion Samples
+              </h2>
+              <p className="text-base text-text-secondary max-w-2xl">
+                High-impact video editing designed for customer retention: kinetic typography, SaaS product walkthroughs, synchronized audio design, and modern brand aesthetic. Press play below to watch.
+              </p>
+            </div>
+
+            <div className="grid gap-8 lg:grid-cols-2">
+              
+              {/* Video 1: TinyFish Commercial */}
+              <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
+                <div>
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black border border-card-border shadow-lg mb-4">
+                    <video
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster="/images/poster-tinyfish-commercial.webp"
+                      className="h-full w-full object-cover rounded-xl"
+                    >
+                      <source src="/videos/tinyfish-commercial.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono text-primary-light">
+                      Product Commercial
+                    </span>
+                    <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                      Kinetic Typography
+                    </span>
+                    <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                      1080p Full HD
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-text-primary mb-2">
+                    TinyFish: AI Agent Web Stack Commercial
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                    Fast-paced SaaS launch commercial featuring bold hook architecture (&ldquo;Your agent can think. It just can&apos;t click.&rdquo;), live browser UI screen animations, synchronized sound effects, and benchmark comparisons.
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
+                  <span>Duration: 44s &middot; 30 FPS</span>
+                  <button
+                    onClick={() => setActiveLightbox({
+                      src: "/videos/tinyfish-commercial.mp4",
+                      title: "TinyFish Product Launch Commercial",
+                      subtitle: "Edited by Sergeo · Kinetic Typography & SaaS Walkthrough",
+                      isVideo: true
+                    })}
+                    className="text-primary-light hover:underline font-semibold"
+                  >
+                    Cinema Mode ↗
+                  </button>
+                </div>
+              </div>
+
+              {/* Video 2: Cambrian DeFi Explainer */}
+              <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
+                <div>
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black border border-card-border shadow-lg mb-4">
+                    <video
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster="/images/poster-cambrian-defi.webp"
+                      className="h-full w-full object-cover rounded-xl"
+                    >
+                      <source src="/videos/cambrian-defi-explainer.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="rounded bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-mono text-emerald-400">
+                      SaaS Explainer
+                    </span>
+                    <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                      2D Motion Design
+                    </span>
+                    <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                      UI Component Cards
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-text-primary mb-2">
+                    Cambrian: AI Agents x DeFi Explainer
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                    Clean 2D motion graphics explainer translating complex decentralized finance infrastructure into clear, digestible visual concepts. Features subtle grid layouts, component cards, and smooth pacing.
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
+                  <span>Duration: 32s &middot; 30 FPS</span>
+                  <button
+                    onClick={() => setActiveLightbox({
+                      src: "/videos/cambrian-defi-explainer.mp4",
+                      title: "Cambrian AI x DeFi Explainer Video",
+                      subtitle: "Edited by Sergeo · 2D Motion Graphics & Explainer Video",
+                      isVideo: true
+                    })}
+                    className="text-primary-light hover:underline font-semibold"
+                  >
+                    Cinema Mode ↗
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="rounded-xl bg-surface p-5 border border-card-border flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+              <span className="text-text-secondary">
+                Need short-form reels, TikToks, YouTube cutdowns, or product video ads?
+              </span>
+              <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="text-primary-light font-semibold hover:underline">
+                Let&apos;s discuss your video project &rarr;
+              </a>
+            </div>
+          </section>
+
+          {/* ------------------------------------------------------
+              SECTION 05: COMMUNITY MANAGEMENT & ORGANIC GROWTH PROOF
               ------------------------------------------------------ */}
           <section id="community-ops" className="scroll-mt-32 space-y-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  04 &middot; REAL WORK PROOFS &middot; COMMUNITY
+                  05 &middot; REAL WORK PROOFS &middot; COMMUNITY
                 </span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
@@ -695,13 +843,13 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 05: CUSTOM DISCORD BOTS (Ignition & Prime Ops)
+              SECTION 06: CUSTOM DISCORD BOTS (Ignition & Prime Ops)
               ------------------------------------------------------ */}
           <section id="discord-bots" className="scroll-mt-32 space-y-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  05 &middot; BESPOKE BOT APPLICATIONS
+                  06 &middot; BESPOKE BOT APPLICATIONS
                 </span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
@@ -911,13 +1059,13 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 06: AI SYSTEMS & PRODUCTION CASE STUDIES
+              SECTION 07: AI SYSTEMS & PRODUCTION CASE STUDIES
               ------------------------------------------------------ */}
           <section id="systems" className="scroll-mt-32 space-y-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  06 &middot; AI SYSTEMS &amp; AUTOMATION
+                  07 &middot; AI SYSTEMS &amp; AUTOMATION
                 </span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
@@ -1129,13 +1277,13 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 07: TEAM FEEDBACK & MANAGER REVIEWS
+              SECTION 08: TEAM FEEDBACK & MANAGER REVIEWS
               ------------------------------------------------------ */}
           <section id="reviews" className="scroll-mt-32 space-y-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  07 &middot; TEAM PRAISE &amp; MANAGER REVIEWS
+                  08 &middot; TEAM PRAISE &amp; MANAGER REVIEWS
                 </span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
@@ -1233,12 +1381,12 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 08: VERIFIED CERTIFICATIONS & HISTORY
+              SECTION 09: VERIFIED CERTIFICATIONS & HISTORY
               ------------------------------------------------------ */}
           <section id="credentials" className="scroll-mt-32">
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                08 &middot; VERIFIED CREDENTIALS
+                09 &middot; VERIFIED CREDENTIALS
               </span>
               <span className="h-px flex-1 bg-border" aria-hidden="true" />
             </div>
@@ -1462,7 +1610,7 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 09: WORK WITH ME / CTA
+              SECTION 10: WORK WITH ME / CTA
               ------------------------------------------------------ */}
           <section id="contact" className="scroll-mt-32">
             <div className="glass-card p-8 md:p-12 border border-card-border rounded-2xl relative overflow-hidden">
@@ -1470,13 +1618,13 @@ export default function PortfolioClient() {
               
               <div className="max-w-2xl">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light block mb-3">
-                  09 &middot; GET IN TOUCH
+                  10 &middot; GET IN TOUCH
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-4">
                   Have work to get done? Let&apos;s make it happen.
                 </h2>
                 <p className="text-sm md:text-base text-text-secondary leading-relaxed mb-8">
-                  Whether you need full community management, video editing, custom Discord bots, or streamlined AI workflow automations, I bring hands-on dedication, clear communication, and reliable execution.
+                  Whether you need commercial video editing, community management, custom Discord bots, or streamlined AI workflow automations, I bring hands-on dedication, clear communication, and reliable execution.
                 </p>
 
                 {/* Working Availability Matrix */}
@@ -1491,7 +1639,7 @@ export default function PortfolioClient() {
                   </div>
                   <div className="rounded-lg bg-surface p-4 border border-card-border">
                     <span className="text-text-muted block mb-1">// Roles</span>
-                    <span className="text-primary-light font-semibold">Community &middot; Video &middot; Bots &middot; AI</span>
+                    <span className="text-primary-light font-semibold">Video &middot; Community &middot; Bots &middot; AI</span>
                   </div>
                 </div>
 
