@@ -932,13 +932,13 @@ export default function PortfolioClient() {
                   </span>
                 </div>
                 <span className="rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-mono text-xs px-3 py-1 font-semibold">
-                  &check; June 2024 &ndash; June 2025
+                  &check; Verified Role Proof
                 </span>
               </div>
 
               {/* Exact user-specified block */}
               <p className="text-base md:text-lg text-text-primary leading-relaxed mb-6 font-medium">
-                At Avocado DAO, June 2024 to June 2025, I moderated communities of up to 118,000 members on Discord, 10,000 members on Telegram, and a 90,000 follower account on X, each counted on its own platform. I also ran a 30-day security awareness campaign there.
+                At Avocado DAO, I moderated communities of up to 118,000 members on Discord, 10,000 members on Telegram, and a 90,000 follower account on X, each counted on its own platform. I also ran a 30-day security awareness campaign there.
               </p>
 
               {/* Platform Scale Breakdown Cards (each counted on its own platform, not added together) */}
