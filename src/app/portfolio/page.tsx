@@ -5,16 +5,16 @@ import Footer from "@/components/Footer";
 import PortfolioClient from "./PortfolioClient";
 
 export const metadata: Metadata = {
-  title: "Sergeo | Founder & AI Systems Architect",
+  title: "Sergeo | Video Editing, Community Operations, Discord Bots & AI Systems",
   description:
-    "Founder and Technical Lead at BlockFrame Labs. Architecting autonomous AI systems, conversational commerce engines (Groply), and resilient multi-agent cloud infrastructure.",
+    "Multi-skilled digital operator and builder: high-impact video editing, Web3 community & social media operations, custom Discord bots, and autonomous AI automation.",
   alternates: {
     canonical: "https://www.blockframe.cloud/portfolio",
   },
   openGraph: {
-    title: "Sergeo | Founder & AI Systems Architect | BlockFrame Labs",
+    title: "Sergeo | Video Editing, Community Operations, Discord Bots & AI Systems",
     description:
-      "Architecting autonomous AI systems, conversational commerce engines (Groply), and resilient multi-agent cloud infrastructure.",
+      "High-impact video editing, Web3 community & social media operations, custom Discord bots, and autonomous AI automation.",
     url: "https://www.blockframe.cloud/portfolio",
     siteName: "BlockFrame Labs",
     images: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         url: "/images/og-preview.png",
         width: 1200,
         height: 630,
-        alt: "Sergeo - Founder & AI Systems Architect",
+        alt: "Sergeo - Portfolio",
       },
     ],
     locale: "en_US",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sergeo | Founder & AI Systems Architect",
+    title: "Sergeo | Video Editing, Community Operations, Discord Bots & AI Systems",
     description:
-      "Architecting autonomous AI systems, conversational commerce engines (Groply), and resilient multi-agent cloud infrastructure.",
+      "High-impact video editing, Web3 community & social media operations, custom Discord bots, and autonomous AI automation.",
     images: ["/images/og-preview.png"],
   },
 };
@@ -42,22 +42,21 @@ export default function PortfolioPage() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Sergeo",
-    jobTitle: "Founder & AI Systems Architect",
+    jobTitle: "Multi-Disciplinary Digital Specialist",
     worksFor: {
       "@type": "Organization",
       name: "BlockFrame Labs",
       url: "https://www.blockframe.cloud",
     },
     url: "https://www.blockframe.cloud/portfolio",
-    email: "sergeolisco@gmail.com",
+    email: "contactsergeo@gmail.com",
     knowsAbout: [
-      "Autonomous AI Systems",
-      "Multi-Agent Fleet Orchestration",
-      "Conversational Commerce",
-      "WhatsApp Cloud API",
-      "Next.js and Web Engineering",
-      "Linux VPS & Docker Infrastructure",
-      "Cybersecurity & Threat Defense",
+      "Video Editing & Motion Graphics",
+      "Web3 Community Operations",
+      "Social Media Management",
+      "Custom Discord Bot Development",
+      "AI Systems & Workflow Automation",
+      "Customer Support & Trust & Safety",
     ],
   };
 

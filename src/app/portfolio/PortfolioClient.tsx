@@ -6,7 +6,7 @@ import Link from "next/link";
 import ToolLogo from "./ToolLogo";
 
 const calendlyHref = "https://calendly.com/blockframemedia/30min";
-const emailHref = "mailto:sergeolisco@gmail.com?subject=Project%20or%20Work%20Inquiry%20for%20Sergeo";
+const emailHref = "mailto:contactsergeo@gmail.com?subject=Project%20or%20Work%20Inquiry%20for%20Sergeo";
 const groplyRepoHref = "https://github.com/Sergeo01/Groply-Open-Core-Autonomous-AI-Commerce-Engine";
 const ignitionTopGgHref = "https://top.gg/bot/1388870348841287690";
 const ignitionDiscordHref = "https://discord.com/discovery/applications/1388870348841287690";
@@ -325,8 +325,8 @@ export default function PortfolioClient() {
             {/* Quick Meta Card */}
             <div className="glass-card p-5 border border-card-border space-y-3 text-xs">
               <div className="flex items-center justify-between text-text-muted">
-                <span>Location:</span>
-                <span className="text-text-primary font-mono">West Africa (WAT / UTC+1)</span>
+                <span>Availability:</span>
+                <span className="text-text-primary font-mono">Global Remote</span>
               </div>
               <div className="flex items-center justify-between text-text-muted">
                 <span>Working Overlap:</span>
@@ -1680,8 +1680,8 @@ export default function PortfolioClient() {
                     <span className="text-text-primary font-semibold">Global Remote</span>
                   </div>
                   <div className="rounded-lg bg-surface p-4 border border-card-border">
-                    <span className="text-text-muted block mb-1">// Time Zone</span>
-                    <span className="text-text-primary font-semibold">WAT (UTC+1) &middot; Flexible</span>
+                    <span className="text-text-muted block mb-1">// Schedule</span>
+                    <span className="text-text-primary font-semibold">Flexible Overlap (US / EU)</span>
                   </div>
                   <div className="rounded-lg bg-surface p-4 border border-card-border">
                     <span className="text-text-muted block mb-1">// Roles</span>
