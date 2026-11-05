@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ToolLogo from "./ToolLogo";
+import TailoredResumeModal, { ResumeRole } from "./TailoredResumeModal";
 
 const calendlyHref = "https://calendly.com/blockframemedia/30min";
 const emailHref = "mailto:contactsergeo@gmail.com?subject=Project%20or%20Work%20Inquiry%20for%20Sergeo";
@@ -21,7 +22,9 @@ const navSections = [
   { id: "systems", label: "07  AI Systems & Automations" },
   { id: "reviews", label: "08  Team Feedback & Reviews" },
   { id: "credentials", label: "09  Verified Certifications" },
-  { id: "contact", label: "10  Work With Me" },
+  { id: "engagement", label: "10  Ways to Work Together" },
+  { id: "faq", label: "11  Client FAQ" },
+  { id: "contact", label: "12  Work With Me" },
 ];
 
 interface LightboxItem {
@@ -34,6 +37,9 @@ interface LightboxItem {
 
 export default function PortfolioClient() {
   const [activeSection, setActiveSection] = useState("about");
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  const [resumeInitialRole, setResumeInitialRole] = useState<ResumeRole>("all");
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeLightbox, setActiveLightbox] = useState<LightboxItem | null>(null);
   const [activeToolCategory, setActiveToolCategory] = useState<string>("all");
   const [checklist, setChecklist] = useState({
@@ -308,6 +314,19 @@ export default function PortfolioClient() {
                 >
                   <span>Email Direct</span>
                 </a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setResumeInitialRole("all");
+                    setIsResumeModalOpen(true);
+                  }}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded border border-primary/50 bg-primary/10 px-4 py-2.5 text-xs font-semibold text-primary-light transition hover:bg-primary/20 hover:border-primary shadow-sm"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Download Tailored Resume</span>
+                </button>
                 <a
                   href="https://github.com/Sergeo01"
                   target="_blank"
@@ -387,6 +406,111 @@ export default function PortfolioClient() {
               <div className="glass-card p-5 border border-card-border">
                 <span className="font-mono text-3xl font-bold text-primary-light block mb-1">30+ Apps</span>
                 <span className="text-xs text-text-muted leading-tight block">Mastered Daily Software Stack</span>
+              </div>
+            </div>
+
+            {/* Quick Discipline Jump Bar */}
+            <div className="mt-8 pt-6 border-t border-card-border/60">
+              <span className="font-mono text-xs uppercase tracking-wider text-text-muted block mb-3">
+                Quick Jump by Discipline:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href="#video-edits"
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                >
+                  <span>🎬</span>
+                  <span>Video Editing &amp; Motion</span>
+                </a>
+                <a
+                  href="#community-ops"
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                >
+                  <span>🌐</span>
+                  <span>Community &amp; Social</span>
+                </a>
+                <a
+                  href="#discord-bots"
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                >
+                  <span>🤖</span>
+                  <span>Custom Discord Bots</span>
+                </a>
+                <a
+                  href="#systems"
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                >
+                  <span>⚡</span>
+                  <span>AI Systems &amp; Automation</span>
+                </a>
+                <a
+                  href="#engagement"
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                >
+                  <span>🤝</span>
+                  <span>Engagement Models</span>
+                </a>
+                <a
+                  href="#faq"
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                >
+                  <span>❓</span>
+                  <span>Client FAQ</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Tailored Resume Generator Banner */}
+            <div className="mt-6 rounded-xl border border-primary/40 bg-primary/5 p-5 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="font-mono text-xs uppercase tracking-wider text-primary-light font-semibold">
+                    Dynamic 1-Page Resume Generator
+                  </span>
+                  <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-mono font-semibold text-emerald-400 border border-emerald-500/30">
+                    Auto-Tailored
+                  </span>
+                </div>
+                <p className="text-xs text-text-secondary max-w-xl">
+                  Hiring for a specific role? Pick your discipline below to generate a tailored, print-ready 1-page PDF highlighting the exact metrics, tools, and experience relevant to your post.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => { setResumeInitialRole("video"); setIsResumeModalOpen(true); }}
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary/60 hover:text-white transition"
+                >
+                  🎬 Video
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setResumeInitialRole("community"); setIsResumeModalOpen(true); }}
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary/60 hover:text-white transition"
+                >
+                  🌐 Community
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setResumeInitialRole("discord"); setIsResumeModalOpen(true); }}
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary/60 hover:text-white transition"
+                >
+                  🤖 Discord
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setResumeInitialRole("ai"); setIsResumeModalOpen(true); }}
+                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary/60 hover:text-white transition"
+                >
+                  ⚡ AI Systems
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setResumeInitialRole("all"); setIsResumeModalOpen(true); }}
+                  className="rounded-lg bg-primary px-3.5 py-1.5 text-xs font-semibold text-background hover:bg-primary-light transition shadow-sm font-sans"
+                >
+                  Choose Role &rarr;
+                </button>
               </div>
             </div>
           </section>
@@ -647,9 +771,29 @@ export default function PortfolioClient() {
                   <h3 className="text-lg font-bold text-text-primary mb-2">
                     TinyFish: AI Agent Web Stack Commercial
                   </h3>
-                  <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                  <p className="text-xs text-text-secondary leading-relaxed mb-3">
                     Fast-paced SaaS launch commercial featuring bold hook architecture (&ldquo;Your agent can think. It just can&apos;t click.&rdquo;), live browser UI screen animations, synchronized sound effects, and benchmark comparisons.
                   </p>
+
+                  {/* Micro-Metrics & Deliverables */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4 pt-3 border-t border-card-border/60 text-xs font-mono">
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Retention Hook</span>
+                      <span className="text-emerald-400 font-semibold">0-3s Kinetic Pacing</span>
+                    </div>
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Deliverables</span>
+                      <span className="text-text-primary font-semibold">1080p 60fps + 9:16</span>
+                    </div>
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Turnaround</span>
+                      <span className="text-primary-light font-semibold">24-48h Draft</span>
+                    </div>
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Audio Sync</span>
+                      <span className="text-text-primary font-semibold">SFX &amp; Dynamic Ducking</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
@@ -709,9 +853,29 @@ export default function PortfolioClient() {
                   <h3 className="text-lg font-bold text-text-primary mb-2">
                     Cambrian: AI Agents x DeFi Explainer
                   </h3>
-                  <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                  <p className="text-xs text-text-secondary leading-relaxed mb-3">
                     Clean 2D motion graphics explainer translating complex decentralized finance infrastructure into clear, digestible visual concepts. Features subtle grid layouts, component cards, and smooth pacing.
                   </p>
+
+                  {/* Micro-Metrics & Deliverables */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4 pt-3 border-t border-card-border/60 text-xs font-mono">
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Concept Clarity</span>
+                      <span className="text-emerald-400 font-semibold">2D UI Cards</span>
+                    </div>
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Deliverables</span>
+                      <span className="text-text-primary font-semibold">1080p FinTech Motion</span>
+                    </div>
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Turnaround</span>
+                      <span className="text-primary-light font-semibold">24-48h Draft</span>
+                    </div>
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Aesthetic</span>
+                      <span className="text-text-primary font-semibold">Dark Grid &amp; Vectors</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
@@ -1658,6 +1822,318 @@ export default function PortfolioClient() {
           {/* ------------------------------------------------------
               SECTION 10: WORK WITH ME / CTA
               ------------------------------------------------------ */}
+                    {/* ------------------------------------------------------
+              SECTION 10: WAYS TO WORK TOGETHER (ENGAGEMENT MODELS)
+              ------------------------------------------------------ */}
+          <section id="engagement" className="scroll-mt-32 space-y-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
+                  10 &middot; ENGAGEMENT MODELS &amp; HIRING OPTIONS
+                </span>
+                <span className="h-px flex-1 bg-border" aria-hidden="true" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
+                Ways to Work Together
+              </h2>
+              <p className="text-base text-text-secondary max-w-2xl">
+                Whether you need dedicated monthly capacity, a rapid project sprint, or a high-impact technical audit, choose the engagement format that matches your timeline.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              
+              {/* Model 1: Monthly Retainer */}
+              <div className="glass-card p-6 md:p-8 border border-card-border rounded-xl flex flex-col justify-between hover:border-primary/50 transition relative overflow-hidden group">
+                <div className="absolute top-0 right-0 rounded-bl-xl bg-primary/10 border-b border-l border-primary/30 px-3 py-1 font-mono text-[10px] font-semibold text-primary-light">
+                  HIGH VELOCITY
+                </div>
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">
+                    RETAINER PARTNERSHIP
+                  </div>
+                  <h3 className="text-xl font-bold text-text-primary mb-2">
+                    Dedicated Monthly Retainer
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed mb-6">
+                    Full-spectrum or specialized monthly bandwidth embedded directly with your core team. Ideal for funded startups, Web3 ecosystems, and agencies scaling their digital footprint.
+                  </p>
+                  
+                  <ul className="space-y-2.5 text-xs text-text-secondary mb-6 border-t border-card-border/60 pt-4 font-mono">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Dedicated weekly operational hours</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Direct Slack / Discord channel integration</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Fast 24 to 48 hour turnaround on tasks</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Flexible cross-skill allocation as needs evolve</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <a
+                  href={calendlyHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded bg-text-primary px-4 py-2.5 text-xs font-semibold text-background transition hover:opacity-90 shadow-sm"
+                >
+                  <span>Inquire About Retainer</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+
+              {/* Model 2: Project Sprint */}
+              <div className="glass-card p-6 md:p-8 border border-primary/40 bg-primary/5 rounded-xl flex flex-col justify-between hover:border-primary transition relative overflow-hidden group shadow-lg">
+                <div className="absolute top-0 right-0 rounded-bl-xl bg-emerald-500/20 border-b border-l border-emerald-500/40 px-3 py-1 font-mono text-[10px] font-semibold text-emerald-400">
+                  POPULAR
+                </div>
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">
+                    SCOPED DELIVERABLE
+                  </div>
+                  <h3 className="text-xl font-bold text-text-primary mb-2">
+                    Rapid Project Sprint
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed mb-6">
+                    Fixed-scope milestones with clear deadlines. Perfect for product launch commercials, custom Discord bot creation, server revamps, or automated commerce setups.
+                  </p>
+                  
+                  <ul className="space-y-2.5 text-xs text-text-secondary mb-6 border-t border-card-border/60 pt-4 font-mono">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Clearly defined deliverables &amp; milestones</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Kickoff within 24 to 48 hours</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Staged draft reviews with prompt edits</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Complete source files &amp; deployment support</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <a
+                  href={calendlyHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded bg-primary px-4 py-2.5 text-xs font-semibold text-background transition hover:bg-primary-light shadow-sm"
+                >
+                  <span>Book a Project Sprint</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+
+              {/* Model 3: Advisory & Audit */}
+              <div className="glass-card p-6 md:p-8 border border-card-border rounded-xl flex flex-col justify-between hover:border-primary/50 transition relative overflow-hidden group">
+                <div className="absolute top-0 right-0 rounded-bl-xl bg-surface-light border-b border-l border-card-border px-3 py-1 font-mono text-[10px] font-semibold text-text-muted">
+                  DISCOVERY
+                </div>
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">
+                    STRATEGY &amp; REVIEW
+                  </div>
+                  <h3 className="text-xl font-bold text-text-primary mb-2">
+                    Advisory &amp; Systems Audit
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed mb-6">
+                    Deep-dive review of your community server architecture, AutoMod filters, content retention hooks, or AI workflow pipelines with an actionable roadmap.
+                  </p>
+                  
+                  <ul className="space-y-2.5 text-xs text-text-secondary mb-6 border-t border-card-border/60 pt-4 font-mono">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>60-minute technical discovery session</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Prioritized security &amp; retention audit</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Actionable Notion checklist &amp; Loom breakdown</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-400">&check;</span>
+                      <span>Complete report delivered within 72 hours</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <a
+                  href={calendlyHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded border border-card-border bg-surface px-4 py-2.5 text-xs font-semibold text-text-primary transition hover:bg-surface-light hover:border-primary/40"
+                >
+                  <span>Request an Audit</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+
+            </div>
+          </section>
+
+          {/* ------------------------------------------------------
+              SECTION 11: CLIENT FAQ ACCORDION
+              ------------------------------------------------------ */}
+          <section id="faq" className="scroll-mt-32 space-y-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
+                  11 &middot; CLIENT FAQ &middot; COMMON QUESTIONS
+                </span>
+                <span className="h-px flex-1 bg-border" aria-hidden="true" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-base text-text-secondary max-w-2xl">
+                Direct answers to common questions regarding onboarding, turnaround times, timezone overlap, and trial tasks.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              
+              {/* FAQ 1 */}
+              <div className="glass-card rounded-xl border border-card-border overflow-hidden transition">
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === 0 ? null : 0)}
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-sm text-text-primary hover:text-primary-light transition"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-primary-light font-mono text-xs">01.</span>
+                    How fast can you start working on our project?
+                  </span>
+                  <span className="font-mono text-lg text-primary-light">
+                    {openFaq === 0 ? "−" : "+"}
+                  </span>
+                </button>
+                {openFaq === 0 && (
+                  <div className="px-5 pb-5 pt-1 text-xs text-text-secondary leading-relaxed border-t border-card-border/40 font-mono">
+                    <p className="mb-2">
+                      <strong className="text-emerald-400">Within 24 to 48 hours.</strong> I keep operational buffer capacity available specifically so priority client sprints, launch campaigns, and retainer onboarding can kick off almost immediately without long waitlists.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* FAQ 2 */}
+              <div className="glass-card rounded-xl border border-card-border overflow-hidden transition">
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === 1 ? null : 1)}
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-sm text-text-primary hover:text-primary-light transition"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-primary-light font-mono text-xs">02.</span>
+                    What time zones do you cover?
+                  </span>
+                  <span className="font-mono text-lg text-primary-light">
+                    {openFaq === 1 ? "−" : "+"}
+                  </span>
+                </button>
+                {openFaq === 1 && (
+                  <div className="px-5 pb-5 pt-1 text-xs text-text-secondary leading-relaxed border-t border-card-border/40 font-mono">
+                    <p>
+                      <strong className="text-text-primary">Global remote with flexible working overlap.</strong> I routinely sync with teams across US Eastern (EST), US Pacific (PST), Europe (CET/BST), and Asia. I operate on transparent, async-first workflows with guaranteed sub-4-hour response windows during business hours.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* FAQ 3 */}
+              <div className="glass-card rounded-xl border border-card-border overflow-hidden transition">
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === 2 ? null : 2)}
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-sm text-text-primary hover:text-primary-light transition"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-primary-light font-mono text-xs">03.</span>
+                    Can we start with a paid test task or trial sprint?
+                  </span>
+                  <span className="font-mono text-lg text-primary-light">
+                    {openFaq === 2 ? "−" : "+"}
+                  </span>
+                </button>
+                {openFaq === 2 && (
+                  <div className="px-5 pb-5 pt-1 text-xs text-text-secondary leading-relaxed border-t border-card-border/40 font-mono">
+                    <p>
+                      <strong className="text-text-primary">Yes, absolutely.</strong> I welcome small, paid trial deliverables (such as editing a single video cut, building a scoped Discord bot module, or conducting a community audit) so your team can evaluate turnaround speed, communication style, and execution quality risk-free before committing to a larger scope.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* FAQ 4 */}
+              <div className="glass-card rounded-xl border border-card-border overflow-hidden transition">
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === 3 ? null : 3)}
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-sm text-text-primary hover:text-primary-light transition"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-primary-light font-mono text-xs">04.</span>
+                    Do you sign NDAs for unreleased projects and private data?
+                  </span>
+                  <span className="font-mono text-lg text-primary-light">
+                    {openFaq === 3 ? "−" : "+"}
+                  </span>
+                </button>
+                {openFaq === 3 && (
+                  <div className="px-5 pb-5 pt-1 text-xs text-text-secondary leading-relaxed border-t border-card-border/40 font-mono">
+                    <p>
+                      <strong className="text-text-primary">Yes.</strong> I routinely handle confidential product roadmaps, unreleased Discord server architectures, API credentials, and private customer databases under standard mutual non-disclosure agreements.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* FAQ 5 */}
+              <div className="glass-card rounded-xl border border-card-border overflow-hidden transition">
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === 4 ? null : 4)}
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-sm text-text-primary hover:text-primary-light transition"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-primary-light font-mono text-xs">05.</span>
+                    What communication tools do you use for daily updates?
+                  </span>
+                  <span className="font-mono text-lg text-primary-light">
+                    {openFaq === 4 ? "−" : "+"}
+                  </span>
+                </button>
+                {openFaq === 4 && (
+                  <div className="px-5 pb-5 pt-1 text-xs text-text-secondary leading-relaxed border-t border-card-border/40 font-mono">
+                    <p>
+                      I adapt directly to your team&apos;s preferred workspace: Slack, Discord, Telegram, or WhatsApp Business for daily communication; Loom for async video updates; and Notion, ClickUp, Asana, Jira, or GitHub for transparent task and sprint tracking.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+            </div>
+          </section>
+
+          {/* ------------------------------------------------------
+              SECTION 12: WORK WITH ME (CONTACT)
+              ------------------------------------------------------ */}
           <section id="contact" className="scroll-mt-32">
             <div className="glass-card p-8 md:p-12 border border-card-border rounded-2xl relative overflow-hidden">
               <div className="hero-radial-glow opacity-30 z-[-1]" />
@@ -1720,6 +2196,13 @@ export default function PortfolioClient() {
 
         </main>
       </div>
+
+      {/* Dynamic Tailored Resume Modal */}
+      <TailoredResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+        initialRole={resumeInitialRole}
+      />
     </div>
   );
 }
