@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ToolLogo from "./ToolLogo";
 
 const calendlyHref = "https://calendly.com/blockframemedia/30min";
 const emailHref = "mailto:sergeolisco@gmail.com?subject=Project%20or%20Work%20Inquiry%20for%20Sergeo";
@@ -552,16 +553,21 @@ export default function PortfolioClient() {
               {filteredTools.map((tool) => (
                 <div
                   key={tool.name}
-                  className="glass-card p-4 border border-card-border hover:border-primary/50 transition flex flex-col justify-between"
+                  className="glass-card p-4 border border-card-border hover:border-primary/50 transition flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-bold text-text-primary">{tool.name}</span>
-                      <span className="rounded bg-surface-light px-2 py-0.5 text-[10px] font-mono text-primary-light border border-card-border">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="flex-shrink-0 transition-transform group-hover:scale-110">
+                          <ToolLogo name={tool.name} size={30} />
+                        </div>
+                        <span className="text-sm font-bold text-text-primary truncate">{tool.name}</span>
+                      </div>
+                      <span className="flex-shrink-0 rounded bg-surface-light px-2 py-0.5 text-[10px] font-mono text-primary-light border border-card-border">
                         {tool.tag}
                       </span>
                     </div>
-                    <p className="text-xs text-text-secondary leading-relaxed">
+                    <p className="text-xs text-text-secondary leading-relaxed pl-[40px]">
                       {tool.role}
                     </p>
                   </div>
@@ -616,16 +622,26 @@ export default function PortfolioClient() {
                     </video>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono text-primary-light">
-                      Product Commercial
-                    </span>
-                    <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
-                      Kinetic Typography
-                    </span>
-                    <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
-                      1080p Full HD
-                    </span>
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono text-primary-light">
+                        Product Commercial
+                      </span>
+                      <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                        Kinetic Typography
+                      </span>
+                      <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                        1080p Full HD
+                      </span>
+                    </div>
+                    <div className="relative h-6 w-24 flex-shrink-0">
+                      <Image
+                        src="/images/logo-tinyfish.webp"
+                        alt="TinyFish Logo"
+                        fill
+                        className="object-contain object-right"
+                      />
+                    </div>
                   </div>
 
                   <h3 className="text-lg font-bold text-text-primary mb-2">
@@ -668,16 +684,26 @@ export default function PortfolioClient() {
                     </video>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="rounded bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-mono text-emerald-400">
-                      SaaS Explainer
-                    </span>
-                    <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
-                      2D Motion Design
-                    </span>
-                    <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
-                      UI Component Cards
-                    </span>
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-mono text-emerald-400">
+                        SaaS Explainer
+                      </span>
+                      <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                        2D Motion Design
+                      </span>
+                      <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                        UI Component Cards
+                      </span>
+                    </div>
+                    <div className="relative h-6 w-24 flex-shrink-0">
+                      <Image
+                        src="/images/logo-cambrian.webp"
+                        alt="Cambrian Logo"
+                        fill
+                        className="object-contain object-right"
+                      />
+                    </div>
                   </div>
 
                   <h3 className="text-lg font-bold text-text-primary mb-2">
@@ -867,7 +893,7 @@ export default function PortfolioClient() {
                 <div className="flex items-center gap-3">
                   <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-primary/40 bg-surface shadow-md">
                     <Image
-                      src="/images/ignition-icon.png"
+                      src="/images/logo-ignition.webp"
                       alt="Ignition Discord Bot"
                       fill
                       className="object-cover"
@@ -934,7 +960,7 @@ export default function PortfolioClient() {
               <div className="rounded-xl border border-card-border bg-[#313338] p-5 font-sans text-xs text-[#dbdee1] shadow-2xl max-w-2xl">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/10 bg-[#1e1f22]">
-                    <Image src="/images/ignition-icon.png" alt="Ignition" fill className="object-cover" />
+                    <Image src="/images/logo-ignition.webp" alt="Ignition" fill className="object-cover" />
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
@@ -1321,8 +1347,18 @@ export default function PortfolioClient() {
                     </div>
                   </div>
 
-                  <div className="font-mono text-xs text-primary-light font-semibold mb-1">
-                    AVOCADO DAO &middot; MARKETING WORKFLOW
+                  <div className="flex items-center justify-between gap-3 mb-1">
+                    <div className="font-mono text-xs text-primary-light font-semibold">
+                      AVOCADO DAO &middot; MARKETING WORKFLOW
+                    </div>
+                    <div className="relative h-5 w-24 flex-shrink-0">
+                      <Image
+                        src="/images/logo-avocado-dao.webp"
+                        alt="Avocado DAO Official Logo"
+                        fill
+                        className="object-contain object-right"
+                      />
+                    </div>
                   </div>
                   <h3 className="text-lg font-bold text-text-primary mb-2">
                     &ldquo;Living up to our Innovation value!&rdquo;
@@ -1590,8 +1626,18 @@ export default function PortfolioClient() {
                       className="object-contain p-2"
                     />
                   </div>
-                  <div className="font-mono text-[11px] text-text-muted font-semibold mb-1">
-                    AVOCADO DAO &middot; LEADERSHIP
+                  <div className="flex items-center justify-between gap-3 mb-1">
+                    <div className="font-mono text-[11px] text-text-muted font-semibold">
+                      AVOCADO DAO &middot; LEADERSHIP
+                    </div>
+                    <div className="relative h-4 w-20 flex-shrink-0">
+                      <Image
+                        src="/images/logo-avocado-dao.webp"
+                        alt="Avocado DAO Official Logo"
+                        fill
+                        className="object-contain object-right"
+                      />
+                    </div>
                   </div>
                   <h3 className="text-sm font-bold text-text-primary mb-1">
                     Marketing &amp; Community Operations
