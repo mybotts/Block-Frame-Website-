@@ -129,9 +129,10 @@ export default function PortfolioClient() {
     { name: "Remotion", category: "creative", role: "Programmatic React video generation, automated text overlays", tag: "Builder" },
     { name: "Adobe Photoshop", category: "creative", role: "Graphics retouching, banner art, transparent cutouts", tag: "Proficient" },
 
-    // AI & Automation
-    { name: "Anthropic Claude", category: "ai", role: "Prompt engineering, complex research, multi-agent frameworks", tag: "Certified" },
-    { name: "OpenAI GPT-4o", category: "ai", role: "Function calling, embeddings, customer response generators", tag: "Advanced" },
+    // AI & Automation (Latest Frontier Models)
+    { name: "Claude 3.7 Sonnet & 3.5 Haiku", category: "ai", role: "Hybrid reasoning architecture, agentic tool-use, vision evaluation, and production prompt architecture", tag: "Certified" },
+    { name: "OpenAI o3-mini & GPT-4o", category: "ai", role: "Structured mathematical reasoning, low-latency function calling, and structured JSON outputs", tag: "Advanced" },
+    { name: "DeepSeek-R1 & V3", category: "ai", role: "Open-weights reasoning distillation, cost-effective inference pipelines, and local agent deployments", tag: "Advanced" },
     { name: "Make / Zapier", category: "ai", role: "Cross-app workflow automations, webhook bridges, no-code integrations", tag: "Advanced" },
     { name: "Python", category: "ai", role: "Backend scripting, FastAPI endpoints, data scraping, bot engines", tag: "Builder" },
     { name: "Next.js & React", category: "ai", role: "Interactive frontend portals, static web generation, ISR caching", tag: "Builder" },
@@ -154,7 +155,7 @@ export default function PortfolioClient() {
           onClick={() => setActiveLightbox(null)}
         >
           <div
-            className="relative max-h-[92vh] max-w-4xl w-full overflow-hidden rounded-2xl border border-primary/40 bg-surface p-4 shadow-2xl"
+            className="relative max-h-[92vh] max-w-4xl w-full overflow-hidden rounded-2xl border border-white/15 bg-[#0d1117] p-5 shadow-2xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] backdrop-blur-xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-3 mb-3 border-b border-card-border">
@@ -170,7 +171,7 @@ export default function PortfolioClient() {
                     href={activeLightbox.verifyHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded bg-primary/15 border border-primary/40 px-3 py-1 text-xs font-mono text-primary-light hover:bg-primary/25 transition"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.06] border border-white/15 hover:border-white/25 hover:bg-white/[0.1] px-3 py-1 text-xs font-mono text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]"
                   >
                     <span>Verify Credential</span>
                     <span aria-hidden="true">&rarr;</span>
@@ -182,7 +183,7 @@ export default function PortfolioClient() {
                   className="rounded-lg bg-surface-light px-3 py-1 text-xs font-semibold text-text-secondary hover:text-white transition"
                   aria-label="Close modal"
                 >
-                  ✕ Close
+                  Close
                 </button>
               </div>
             </div>
@@ -221,15 +222,15 @@ export default function PortfolioClient() {
             <div className="glass-card p-6 border border-card-border">
               {/* Emblem */}
               <div className="mb-5 flex items-center justify-between">
-                <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-surface border border-primary/40 p-2 shadow-[0_0_20px_rgba(0,179,191,0.25)]">
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.04] border border-white/10 p-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] backdrop-blur-md">
                   <Image
                     src="/images/blockframe-3d-badge.png"
                     alt="BlockFrame Emblem"
                     width={52}
                     height={52}
-                    className="object-contain drop-shadow"
+                    className="object-contain"
                   />
-                  <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary/40 text-[9px] font-mono text-primary-light">
+                  <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#0d1117] border border-white/20 text-[9px] font-mono text-white/90">
                     &gt;_
                   </span>
                 </div>
@@ -251,22 +252,22 @@ export default function PortfolioClient() {
 
               {/* Multi-Disciplinary Skills Pills */}
               <div className="mt-4 flex flex-wrap gap-1.5">
-                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                <span className="rounded-md bg-white/[0.04] border border-white/10 px-2.5 py-1 text-[11px] font-mono font-medium text-text-secondary shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                   Video Editing
                 </span>
-                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                <span className="rounded-md bg-white/[0.04] border border-white/10 px-2.5 py-1 text-[11px] font-mono font-medium text-text-secondary shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                   Community Management
                 </span>
-                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                <span className="rounded-md bg-white/[0.04] border border-white/10 px-2.5 py-1 text-[11px] font-mono font-medium text-text-secondary shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                   Social Media Growth
                 </span>
-                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                <span className="rounded-md bg-white/[0.04] border border-white/10 px-2.5 py-1 text-[11px] font-mono font-medium text-text-secondary shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                   Custom Discord Bots
                 </span>
-                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                <span className="rounded-md bg-white/[0.04] border border-white/10 px-2.5 py-1 text-[11px] font-mono font-medium text-text-secondary shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                   AI Systems &amp; Automation
                 </span>
-                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                <span className="rounded-md bg-white/[0.04] border border-white/10 px-2.5 py-1 text-[11px] font-mono font-medium text-text-secondary shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                   Project Operations
                 </span>
               </div>
@@ -320,7 +321,7 @@ export default function PortfolioClient() {
                     setResumeInitialRole("all");
                     setIsResumeModalOpen(true);
                   }}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded border border-primary/50 bg-primary/10 px-4 py-2.5 text-xs font-semibold text-primary-light transition hover:bg-primary/20 hover:border-primary shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.05] hover:bg-white/[0.1] hover:border-white/25 px-4 py-2.5 text-xs font-semibold text-text-primary transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] backdrop-blur-sm"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -410,64 +411,58 @@ export default function PortfolioClient() {
             </div>
 
             {/* Quick Discipline Jump Bar */}
-            <div className="mt-8 pt-6 border-t border-card-border/60">
+            <div className="mt-8 pt-6 border-t border-white/[0.08]">
               <span className="font-mono text-xs uppercase tracking-wider text-text-muted block mb-3">
                 Quick Jump by Discipline:
               </span>
               <div className="flex flex-wrap gap-2">
                 <a
                   href="#video-edits"
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                  className="rounded-lg bg-white/[0.03] px-3.5 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.07] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  <span>🎬</span>
-                  <span>Video Editing &amp; Motion</span>
+                  Video Editing &amp; Motion
                 </a>
                 <a
                   href="#community-ops"
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                  className="rounded-lg bg-white/[0.03] px-3.5 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.07] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  <span>🌐</span>
-                  <span>Community &amp; Social</span>
+                  Community &amp; Social
                 </a>
                 <a
                   href="#discord-bots"
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                  className="rounded-lg bg-white/[0.03] px-3.5 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.07] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  <span>🤖</span>
-                  <span>Custom Discord Bots</span>
+                  Custom Discord Bots
                 </a>
                 <a
                   href="#systems"
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                  className="rounded-lg bg-white/[0.03] px-3.5 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.07] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  <span>⚡</span>
-                  <span>AI Systems &amp; Automation</span>
+                  AI Systems &amp; Automation
                 </a>
                 <a
                   href="#engagement"
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                  className="rounded-lg bg-white/[0.03] px-3.5 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.07] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  <span>🤝</span>
-                  <span>Engagement Models</span>
+                  Engagement Models
                 </a>
                 <a
                   href="#faq"
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary hover:text-primary-light transition flex items-center gap-1.5"
+                  className="rounded-lg bg-white/[0.03] px-3.5 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.07] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  <span>❓</span>
-                  <span>Client FAQ</span>
+                  Client FAQ
                 </a>
               </div>
             </div>
 
             {/* Tailored Resume Generator Banner */}
-            <div className="mt-6 rounded-xl border border-primary/40 bg-primary/5 p-5 flex flex-wrap items-center justify-between gap-4">
+            <div className="mt-6 rounded-xl border border-white/10 bg-white/[0.025] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] backdrop-blur-md p-5 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="font-mono text-xs uppercase tracking-wider text-primary-light font-semibold">
+                  <span className="font-mono text-xs uppercase tracking-wider text-white/90 font-semibold">
                     Dynamic 1-Page Resume Generator
                   </span>
-                  <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-mono font-semibold text-emerald-400 border border-emerald-500/30">
+                  <span className="rounded-md bg-white/[0.06] border border-white/10 px-2.5 py-0.5 text-[10px] font-mono font-semibold text-white/80 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                     Auto-Tailored
                   </span>
                 </div>
@@ -479,35 +474,35 @@ export default function PortfolioClient() {
                 <button
                   type="button"
                   onClick={() => { setResumeInitialRole("video"); setIsResumeModalOpen(true); }}
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary/60 hover:text-white transition"
+                  className="rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.08] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  🎬 Video
+                  Video
                 </button>
                 <button
                   type="button"
                   onClick={() => { setResumeInitialRole("community"); setIsResumeModalOpen(true); }}
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary/60 hover:text-white transition"
+                  className="rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.08] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  🌐 Community
+                  Community
                 </button>
                 <button
                   type="button"
                   onClick={() => { setResumeInitialRole("discord"); setIsResumeModalOpen(true); }}
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary/60 hover:text-white transition"
+                  className="rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.08] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  🤖 Discord
+                  Discord
                 </button>
                 <button
                   type="button"
                   onClick={() => { setResumeInitialRole("ai"); setIsResumeModalOpen(true); }}
-                  className="rounded-lg bg-surface px-3 py-1.5 text-xs font-mono text-text-secondary border border-card-border hover:border-primary/60 hover:text-white transition"
+                  className="rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.08] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
-                  ⚡ AI Systems
+                  AI Systems
                 </button>
                 <button
                   type="button"
                   onClick={() => { setResumeInitialRole("all"); setIsResumeModalOpen(true); }}
-                  className="rounded-lg bg-primary px-3.5 py-1.5 text-xs font-semibold text-background hover:bg-primary-light transition shadow-sm font-sans"
+                  className="rounded-lg bg-white text-black hover:bg-white/90 px-3.5 py-1.5 text-xs font-semibold transition shadow-sm font-sans"
                 >
                   Choose Role &rarr;
                 </button>
@@ -536,7 +531,7 @@ export default function PortfolioClient() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               
               {/* Capability 01 */}
-              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+              <div className="glass-card p-6 border border-card-border hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition flex flex-col justify-between">
                 <div>
                   <div className="font-mono text-xs text-primary-light font-semibold mb-2">01 / CONTENT &amp; MEDIA</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
@@ -552,7 +547,7 @@ export default function PortfolioClient() {
               </div>
 
               {/* Capability 02 */}
-              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+              <div className="glass-card p-6 border border-card-border hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition flex flex-col justify-between">
                 <div>
                   <div className="font-mono text-xs text-primary-light font-semibold mb-2">02 / COMMUNITY &amp; SOCIAL OPS</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
@@ -568,7 +563,7 @@ export default function PortfolioClient() {
               </div>
 
               {/* Capability 03 */}
-              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+              <div className="glass-card p-6 border border-card-border hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition flex flex-col justify-between">
                 <div>
                   <div className="font-mono text-xs text-primary-light font-semibold mb-2">03 / DISCORD BOT CREATION</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
@@ -584,7 +579,7 @@ export default function PortfolioClient() {
               </div>
 
               {/* Capability 04 */}
-              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+              <div className="glass-card p-6 border border-card-border hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition flex flex-col justify-between">
                 <div>
                   <div className="font-mono text-xs text-primary-light font-semibold mb-2">04 / OPERATIONS &amp; ADMIN</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
@@ -600,7 +595,7 @@ export default function PortfolioClient() {
               </div>
 
               {/* Capability 05 */}
-              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between md:col-span-2 lg:col-span-1">
+              <div className="glass-card p-6 border border-card-border hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition flex flex-col justify-between md:col-span-2 lg:col-span-1">
                 <div>
                   <div className="font-mono text-xs text-primary-light font-semibold mb-2">05 / AI AUTOMATION</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
@@ -611,7 +606,7 @@ export default function PortfolioClient() {
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
-                  Claude &middot; Python &middot; FastMCP &middot; Make &middot; Next.js
+                  Claude 3.7 Sonnet &middot; OpenAI o3-mini &middot; DeepSeek-R1 &middot; Python &middot; Make
                 </div>
               </div>
 
@@ -667,7 +662,7 @@ export default function PortfolioClient() {
               {filteredTools.map((tool) => (
                 <div
                   key={tool.name}
-                  className="glass-card p-4 border border-card-border hover:border-primary/50 transition flex flex-col justify-between group"
+                  className="glass-card p-4 border border-card-border hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition flex flex-col justify-between group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
@@ -738,7 +733,7 @@ export default function PortfolioClient() {
 
                   <div className="flex items-center justify-between gap-3 mb-2">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono text-primary-light">
+                      <span className="rounded-md bg-white/[0.04] border border-white/10 px-2.5 py-0.5 text-[10px] font-mono text-text-secondary shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                         Product Commercial
                       </span>
                       <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
@@ -1014,7 +1009,7 @@ export default function PortfolioClient() {
                 />
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                   <span className="rounded bg-black/80 px-3 py-1.5 text-xs font-mono text-white">
-                    Click to view full metrics screenshot 🔍
+                    Click to inspect full metrics screenshot &rarr;
                   </span>
                 </div>
               </div>
@@ -1076,7 +1071,7 @@ export default function PortfolioClient() {
                 />
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                   <span className="rounded bg-black/80 px-3 py-1.5 text-xs font-mono text-white">
-                    Click to inspect Notion database view 🔍
+                    Click to inspect Notion database view &rarr;
                   </span>
                 </div>
               </div>
@@ -1107,7 +1102,7 @@ export default function PortfolioClient() {
             <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-primary/40 bg-surface shadow-md">
+                  <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]">
                     <Image
                       src="/images/logo-ignition.webp"
                       alt="Ignition Discord Bot"
@@ -1228,7 +1223,7 @@ export default function PortfolioClient() {
             <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-primary/40 bg-surface shadow-md p-1">
+                  <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] p-1">
                     <Image
                       src="/images/blockframe-bot-avatar.png"
                       alt="Prime Ops Bot"
@@ -1276,7 +1271,7 @@ export default function PortfolioClient() {
                 <div className="rounded border-l-4 border-l-emerald-500 bg-[#2b2d31] p-4 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-emerald-400">
-                      🛡️ Phishing Link Intercepted &amp; Quarantined
+                      [Security Event] Phishing Link Intercepted &amp; Quarantined
                     </span>
                     <span className="text-[10px] font-mono text-text-muted">AutoMod Rule #04</span>
                   </div>
@@ -1558,7 +1553,7 @@ export default function PortfolioClient() {
                     />
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                       <span className="rounded bg-black/80 px-3 py-1 text-xs font-mono text-white">
-                        Click to enlarge proof 🔍
+                        Click to enlarge proof &rarr;
                       </span>
                     </div>
                   </div>
@@ -1608,7 +1603,7 @@ export default function PortfolioClient() {
                     />
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                       <span className="rounded bg-black/80 px-3 py-1 text-xs font-mono text-white">
-                        Click to enlarge proof 🔍
+                        Click to enlarge proof &rarr;
                       </span>
                     </div>
                   </div>
@@ -1654,7 +1649,7 @@ export default function PortfolioClient() {
               
               {/* 1. Profunda W3 Academy: Community & Collaboration Management */}
               <div
-                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition"
                 onClick={() => setActiveLightbox({
                   src: "/images/cert-profunda-community.webp",
                   title: "Profunda W3 Academy · Certificate of Achievement",
@@ -1688,7 +1683,7 @@ export default function PortfolioClient() {
 
               {/* 2. Claude Academy: AI Fluency */}
               <div
-                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition"
                 onClick={() => setActiveLightbox({
                   src: "/images/badge-ai-fluency.webp",
                   title: "AI Fluency: Framework and Foundations",
@@ -1723,7 +1718,7 @@ export default function PortfolioClient() {
 
               {/* 3. Claude Academy: Human-Agent Teams */}
               <div
-                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition"
                 onClick={() => setActiveLightbox({
                   src: "/images/badge-human-agent-teams.webp",
                   title: "Building Effective Human-Agent Teams",
@@ -1758,7 +1753,7 @@ export default function PortfolioClient() {
 
               {/* 4. EC-Council: Ethical Hacking Essentials (EHE) */}
               <div
-                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition"
                 onClick={() => setActiveLightbox({
                   src: "/images/cert-ecc-ehe.webp",
                   title: "Ethical Hacking Essentials (EHE)",
@@ -1792,7 +1787,7 @@ export default function PortfolioClient() {
 
               {/* 5. EC-Council: Network Defense Essentials (NDE) */}
               <div
-                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition"
                 onClick={() => setActiveLightbox({
                   src: "/images/cert-ecc-nde.webp",
                   title: "Network Defense Essentials (NDE)",
@@ -1826,7 +1821,7 @@ export default function PortfolioClient() {
 
               {/* 6. Avocado DAO: Proof of Employment & Recommendation */}
               <div
-                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition"
                 onClick={() => setActiveLightbox({
                   src: "/images/avocado-dao-coe.webp",
                   title: "Avocado DAO · Certificate of Employment & Recommendation",
@@ -1896,7 +1891,7 @@ export default function PortfolioClient() {
             <div className="grid gap-6 md:grid-cols-3">
               
               {/* Model 1: Monthly Retainer */}
-              <div className="glass-card p-6 md:p-8 border border-card-border rounded-xl flex flex-col justify-between hover:border-primary/50 transition relative overflow-hidden group">
+              <div className="glass-card p-6 md:p-8 border border-card-border rounded-xl flex flex-col justify-between hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition relative overflow-hidden group">
                 <div className="absolute top-0 right-0 rounded-bl-xl bg-primary/10 border-b border-l border-primary/30 px-3 py-1 font-mono text-[10px] font-semibold text-primary-light">
                   HIGH VELOCITY
                 </div>
@@ -1943,8 +1938,8 @@ export default function PortfolioClient() {
               </div>
 
               {/* Model 2: Project Sprint */}
-              <div className="glass-card p-6 md:p-8 border border-primary/40 bg-primary/5 rounded-xl flex flex-col justify-between hover:border-primary transition relative overflow-hidden group shadow-lg">
-                <div className="absolute top-0 right-0 rounded-bl-xl bg-emerald-500/20 border-b border-l border-emerald-500/40 px-3 py-1 font-mono text-[10px] font-semibold text-emerald-400">
+              <div className="glass-card p-6 md:p-8 border border-white/25 bg-gradient-to-b from-white/[0.08] to-white/[0.02] rounded-xl flex flex-col justify-between hover:border-white/40 transition relative overflow-hidden group shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18)]">
+                <div className="absolute top-0 right-0 rounded-bl-xl bg-white/[0.08] border-b border-l border-white/20 px-3 py-1 font-mono text-[10px] font-semibold text-white">
                   POPULAR
                 </div>
                 <div>
@@ -1982,7 +1977,7 @@ export default function PortfolioClient() {
                   href={calendlyHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 rounded bg-primary px-4 py-2.5 text-xs font-semibold text-background transition hover:bg-primary-light shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-white text-black hover:bg-white/90 px-4 py-2.5 text-xs font-semibold transition shadow-sm font-sans"
                 >
                   <span>Book a Project Sprint</span>
                   <span aria-hidden="true">&rarr;</span>
@@ -1990,7 +1985,7 @@ export default function PortfolioClient() {
               </div>
 
               {/* Model 3: Advisory & Audit */}
-              <div className="glass-card p-6 md:p-8 border border-card-border rounded-xl flex flex-col justify-between hover:border-primary/50 transition relative overflow-hidden group">
+              <div className="glass-card p-6 md:p-8 border border-card-border rounded-xl flex flex-col justify-between hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition relative overflow-hidden group">
                 <div className="absolute top-0 right-0 rounded-bl-xl bg-surface-light border-b border-l border-card-border px-3 py-1 font-mono text-[10px] font-semibold text-text-muted">
                   DISCOVERY
                 </div>
@@ -2029,7 +2024,7 @@ export default function PortfolioClient() {
                   href={calendlyHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 rounded border border-card-border bg-surface px-4 py-2.5 text-xs font-semibold text-text-primary transition hover:bg-surface-light hover:border-primary/40"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded border border-card-border bg-surface px-4 py-2.5 text-xs font-semibold text-text-primary transition hover:bg-surface-light hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
                   <span>Request an Audit</span>
                   <span aria-hidden="true">&rarr;</span>
@@ -2187,12 +2182,10 @@ export default function PortfolioClient() {
               SECTION 12: WORK WITH ME (CONTACT)
               ------------------------------------------------------ */}
           <section id="contact" className="scroll-mt-32">
-            <div className="glass-card p-8 md:p-12 border border-card-border rounded-2xl relative overflow-hidden">
-              <div className="hero-radial-glow opacity-30 z-[-1]" />
-              
+            <div className="glass-card p-8 md:p-12 border border-white/10 bg-[#0f1217]/90 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] rounded-2xl relative overflow-hidden backdrop-blur-md">
               <div className="max-w-2xl">
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light block mb-3">
-                  10 &middot; GET IN TOUCH
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/90 block mb-3">
+                  12 &middot; GET IN TOUCH
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-4">
                   Have work to get done? Let&apos;s make it happen.

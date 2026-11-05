@@ -326,7 +326,11 @@ export default function ToolLogo({ name, className = "", size = 28 }: ToolLogoPr
         </svg>
       );
 
+    case "claude 3.7 sonnet & 3.5 haiku":
+    case "claude 3.7 sonnet":
+    case "claude 3.5 haiku":
     case "anthropic claude":
+    case "claude":
       return (
         <svg width={s} height={s} viewBox="0 0 24 24" fill="none" className={className}>
           <rect width="24" height="24" rx="5" fill="#D97757" />
@@ -337,12 +341,31 @@ export default function ToolLogo({ name, className = "", size = 28 }: ToolLogoPr
         </svg>
       );
 
+    case "openai o3-mini & gpt-4o":
+    case "openai o3-mini":
     case "openai gpt-4o":
+    case "openai":
+    case "chatgpt":
       return (
         <svg width={s} height={s} viewBox="0 0 24 24" fill="none" className={className}>
           <rect width="24" height="24" rx="5" fill="#10A37F" />
           <circle cx="12" cy="12" r="5" stroke="#FFFFFF" strokeWidth="2" strokeDasharray="3 3" fill="none" />
           <circle cx="12" cy="12" r="2" fill="#FFFFFF" />
+        </svg>
+      );
+
+    case "deepseek-r1 & v3":
+    case "deepseek-r1":
+    case "deepseek-v3":
+    case "deepseek":
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none" className={className}>
+          <rect width="24" height="24" rx="5" fill="#1E40AF" />
+          <path
+            d="M5 14C5 10 9 7 14 7C17 7 19 8.5 19 10C19 11.5 17.5 12.5 15.5 12.5C14.5 12.5 13.5 13 13 14C12.5 15 11.5 16 10 16C8 16 5 15.5 5 14Z"
+            fill="#FFFFFF"
+          />
+          <circle cx="15.5" cy="9.5" r="1.2" fill="#1E40AF" />
         </svg>
       );
 

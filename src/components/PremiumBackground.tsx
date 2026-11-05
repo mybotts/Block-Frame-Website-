@@ -6,28 +6,28 @@ export default function PremiumBackground() {
       {/* Base background — uses CSS variable */}
       <div className="absolute inset-0 bg-background" />
 
-      {/* Top-left cyan glow */}
+      {/* Top-left subtle obsidian depth */}
       <div
-        className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] opacity-25"
+        className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] opacity-15"
         style={{
           background: `
             radial-gradient(circle at 30% 30%,
-              var(--color-glow) 0%,
-              var(--color-glow-secondary) 25%,
+              rgba(255, 255, 255, 0.015) 0%,
+              rgba(255, 255, 255, 0.005) 25%,
               transparent 55%
             )
           `,
         }}
       />
 
-      {/* Mid-page ambient glow */}
+      {/* Mid-page subtle ambient depth */}
       <div
-        className="absolute top-[40%] left-[20%] h-[50%] w-[60%] opacity-15"
+        className="absolute top-[40%] left-[20%] h-[50%] w-[60%] opacity-10"
         style={{
           background: `
             radial-gradient(ellipse at 40% 50%,
-              var(--color-glow) 0%,
-              var(--color-glow-secondary) 30%,
+              rgba(255, 255, 255, 0.012) 0%,
+              rgba(255, 255, 255, 0.004) 30%,
               transparent 60%
             )
           `,

@@ -285,14 +285,14 @@ const resumeRoles: RoleResumeData[] = [
     coreSkills: [
       "Autonomous Multi-Agent Fleet Orchestration",
       "Conversational Commerce & WhatsApp Cloud API",
-      "LLM Tool Calling & Prompt Engineering (Claude, OpenAI, OpenRouter)",
+      "Frontier LLM Reasoning & Agentic Tool Calling (Claude 3.7 Sonnet, OpenAI o3-mini, DeepSeek-R1)",
       "Workflow Automations (Make, Zapier, Webhooks, Cron Jobs)",
       "Docker Containerization & Self-Hosted Ubuntu Linux VPS",
       "Reverse Proxying (Caddy / Nginx) & High-Reliability Supervisor Daemons",
     ],
     keyTools: [
       "Python", "Next.js", "Docker", "Linux VPS", "Caddy", "Nginx",
-      "Make", "Zapier", "OpenAI API", "Anthropic Claude API", "GitHub CI/CD",
+      "Claude 3.7 Sonnet API", "OpenAI o3-mini API", "DeepSeek API", "Make", "Zapier", "GitHub CI/CD",
     ],
     experience: [
       {
@@ -406,7 +406,7 @@ ${activeData.certifications.map((c) => `- ${c}`).join("\n")}
       onClick={onClose}
     >
       <div
-        className="relative max-h-[94vh] max-w-4xl w-full overflow-hidden rounded-2xl border border-primary/40 bg-[#0d0f12] text-text-primary shadow-2xl flex flex-col my-auto"
+        className="relative max-h-[94vh] max-w-4xl w-full overflow-hidden rounded-2xl border border-white/15 bg-[#0c0e12] text-text-primary shadow-2xl shadow-black/90 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] backdrop-blur-xl flex flex-col my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         
@@ -417,7 +417,7 @@ ${activeData.certifications.map((c) => `- ${c}`).join("\n")}
               <span className="font-mono text-xs uppercase tracking-widest text-primary-light">
                 Tailored 1-Page Resume Generator
               </span>
-              <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono text-primary-light">
+              <span className="rounded-md bg-white/[0.06] border border-white/10 px-2.5 py-0.5 text-[10px] font-mono text-white/90 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                 Live Dynamic
               </span>
             </div>
@@ -444,8 +444,8 @@ ${activeData.certifications.map((c) => `- ${c}`).join("\n")}
                 onClick={() => setSelectedRole(role.id)}
                 className={`p-2.5 rounded-xl border text-left transition text-xs flex flex-col justify-between ${
                   selectedRole === role.id
-                    ? "bg-primary/15 border-primary text-text-primary shadow-sm ring-1 ring-primary/40"
-                    : "bg-surface/50 border-card-border text-text-secondary hover:border-border hover:text-text-primary"
+                    ? "bg-white/[0.08] border-white/30 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)]"
+                    : "bg-white/[0.02] border-white/[0.06] text-text-secondary hover:border-white/15 hover:bg-white/[0.04]"
                 }`}
               >
                 <span className="font-bold block truncate">{role.label}</span>
@@ -469,14 +469,14 @@ ${activeData.certifications.map((c) => `- ${c}`).join("\n")}
               onClick={handleCopyMarkdown}
               className="inline-flex items-center gap-1.5 rounded-lg border border-card-border bg-surface px-3 py-1.5 font-mono text-text-secondary hover:text-text-primary hover:bg-surface-light transition"
             >
-              <span>{copied ? "✓ Copied to Clipboard!" : "📋 Copy Plaintext / Markdown"}</span>
+              <span>{copied ? "Copied to Clipboard" : "Copy Plaintext / Markdown"}</span>
             </button>
             <button
               type="button"
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-1.5 font-semibold text-background hover:bg-primary-light transition shadow-sm font-sans"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 font-semibold text-black hover:bg-white/90 transition shadow-sm font-sans"
             >
-              <span>🖨️ Print / Save as PDF</span>
+              <span>Print / Save as PDF</span>
             </button>
           </div>
         </div>
@@ -632,7 +632,7 @@ ${activeData.certifications.map((c) => `- ${c}`).join("\n")}
             <button
               type="button"
               onClick={handlePrint}
-              className="rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-background hover:bg-primary-light transition shadow-sm"
+              className="rounded-lg bg-white px-4 py-2 text-xs font-semibold text-black hover:bg-white/90 transition shadow-sm font-sans"
             >
               Print / Save as PDF &rarr;
             </button>
