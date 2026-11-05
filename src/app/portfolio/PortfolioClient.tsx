@@ -5,19 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 
 const calendlyHref = "https://calendly.com/blockframemedia/30min";
-const emailHref = "mailto:sergeolisco@gmail.com?subject=Project%20or%20Advisory%20Inquiry%20for%20Sergeo";
+const emailHref = "mailto:sergeolisco@gmail.com?subject=Project%20or%20Work%20Inquiry%20for%20Sergeo";
 const groplyRepoHref = "https://github.com/Sergeo01/Groply-Open-Core-Autonomous-AI-Commerce-Engine";
 const ignitionTopGgHref = "https://top.gg/bot/1388870348841287690";
 const ignitionDiscordHref = "https://discord.com/discovery/applications/1388870348841287690";
 
 const navSections = [
-  { id: "about", label: "01  About & Thesis" },
-  { id: "problems", label: "02  Problems I Solve" },
-  { id: "systems", label: "03  Systems & Case Studies" },
-  { id: "discord-bots", label: "04  Custom Discord Bots" },
-  { id: "web3-gaming", label: "05  Web3 Gaming & Media" },
-  { id: "artifacts", label: "06  Work Samples & Proofs" },
-  { id: "stack", label: "07  Tech Stack & Ecosystem" },
+  { id: "about", label: "01  About & Skills" },
+  { id: "capabilities", label: "02  What I Do & Deliver" },
+  { id: "software-stack", label: "03  Apps & Software Stack" },
+  { id: "community-ops", label: "04  Community Ops & Growth" },
+  { id: "discord-bots", label: "05  Custom Discord Bots" },
+  { id: "systems", label: "06  AI Systems & Automations" },
+  { id: "reviews", label: "07  Team Feedback & Reviews" },
   { id: "credentials", label: "08  Verified Certifications" },
   { id: "contact", label: "09  Work With Me" },
 ];
@@ -32,6 +32,7 @@ interface LightboxItem {
 export default function PortfolioClient() {
   const [activeSection, setActiveSection] = useState("about");
   const [activeLightbox, setActiveLightbox] = useState<LightboxItem | null>(null);
+  const [activeToolCategory, setActiveToolCategory] = useState<string>("all");
   const [checklist, setChecklist] = useState({
     inputSanitization: true,
     domainGuardrails: true,
@@ -78,6 +79,59 @@ export default function PortfolioClient() {
   const toggleCheck = (key: keyof typeof checklist) => {
     setChecklist((prev) => ({ ...prev, [key]: !prev[key] }));
   };
+
+  // Tools & Applications Data
+  const softwareTools = [
+    // Project & Task Management
+    { name: "Notion", category: "project", role: "Databases, client portals, SOP documentation, event tracking", tag: "Primary" },
+    { name: "ClickUp", category: "project", role: "Sprint management, workflow pipelines, custom statuses", tag: "Advanced" },
+    { name: "Asana", category: "project", role: "Cross-functional task boards, dependencies, timeline planning", tag: "Proficient" },
+    { name: "Jira", category: "project", role: "Agile issue tracking, sprint backlogs, release management", tag: "Proficient" },
+    { name: "monday.com", category: "project", role: "Operational dashboards, team task assignments, automation triggers", tag: "Proficient" },
+    { name: "Airtable", category: "project", role: "Relational data tables, automations, multi-view registries", tag: "Advanced" },
+    { name: "Trello", category: "project", role: "Kanban task boards, visual triage, workflow cards", tag: "Proficient" },
+
+    // CRM & Customer Support
+    { name: "Zendesk", category: "crm", role: "Customer support ticket queues, SLA monitoring, macro replies", tag: "Core" },
+    { name: "HubSpot", category: "crm", role: "Lead management, sales pipeline CRM, contact segmentation", tag: "Proficient" },
+    { name: "Bitrix24", category: "crm", role: "Omnichannel CRM, telephony logs, automated client funnels", tag: "Proficient" },
+    { name: "Intercom", category: "crm", role: "Conversational customer onboarding, live messenger triage", tag: "Proficient" },
+
+    // Community & Communication
+    { name: "Telegram", category: "community", role: "Channel broadcasts, group management, bot automations, moderation", tag: "Expert" },
+    { name: "Discord", category: "community", role: "Server architecture, role gating, AutoMod, verified bots, events", tag: "Expert" },
+    { name: "Slack", category: "community", role: "Internal workspace channels, async huddles, workflow notifications", tag: "Expert" },
+    { name: "WhatsApp Business", category: "community", role: "Direct client messaging, catalog management, automated commerce", tag: "Expert" },
+    { name: "Zoom", category: "community", role: "Team meetings, client onboarding calls, screen sharing", tag: "Daily" },
+    { name: "Loom", category: "community", role: "Async video walkthroughs, client updates, bug demonstrations", tag: "Daily" },
+    { name: "Calendly", category: "community", role: "Automated schedule coordination, timezone alignment", tag: "Daily" },
+
+    // Productivity & Office
+    { name: "Microsoft Excel", category: "office", role: "Data analysis, formulas, pivot tables, financial tracking", tag: "Advanced" },
+    { name: "Microsoft Word", category: "office", role: "Executive briefs, formal proposals, client agreements, SOPs", tag: "Advanced" },
+    { name: "Google Docs", category: "office", role: "Collaborative writing, live commenting, shared proposals", tag: "Daily" },
+    { name: "Google Sheets", category: "office", role: "Live trackers, data imports, workflow collaboration", tag: "Daily" },
+    { name: "Dropbox & Drive", category: "office", role: "Organized asset repositories, secure file permissions", tag: "Daily" },
+
+    // Video Editing & Creative Media
+    { name: "CapCut", category: "creative", role: "Fast short-form video editing, captions, hooks, audio ducking", tag: "Advanced" },
+    { name: "Adobe Premiere Pro", category: "creative", role: "Long-form timeline editing, color grading, multi-track audio", tag: "Proficient" },
+    { name: "Canva", category: "creative", role: "Thumbnails, social media assets, pitch decks, infographics", tag: "Advanced" },
+    { name: "Remotion", category: "creative", role: "Programmatic React video generation, automated text overlays", tag: "Builder" },
+    { name: "Adobe Photoshop", category: "creative", role: "Graphics retouching, banner art, transparent cutouts", tag: "Proficient" },
+
+    // AI & Automation
+    { name: "Anthropic Claude", category: "ai", role: "Prompt engineering, complex research, multi-agent frameworks", tag: "Certified" },
+    { name: "OpenAI GPT-4o", category: "ai", role: "Function calling, embeddings, customer response generators", tag: "Advanced" },
+    { name: "Make / Zapier", category: "ai", role: "Cross-app workflow automations, webhook bridges, no-code integrations", tag: "Advanced" },
+    { name: "Python", category: "ai", role: "Backend scripting, FastAPI endpoints, data scraping, bot engines", tag: "Builder" },
+    { name: "Next.js & React", category: "ai", role: "Interactive frontend portals, static web generation, ISR caching", tag: "Builder" },
+    { name: "GitHub", category: "ai", role: "Version control, collaborative repos, automated CI/CD actions", tag: "Daily" },
+  ];
+
+  const filteredTools = activeToolCategory === "all"
+    ? softwareTools
+    : softwareTools.filter((t) => t.category === activeToolCategory);
 
   return (
     <div className="relative mx-auto w-full max-w-7xl pt-36 pb-24 px-6 md:px-12">
@@ -147,14 +201,14 @@ export default function PortfolioClient() {
             
             {/* Identity Card */}
             <div className="glass-card p-6 border border-card-border">
-              {/* Official 3D BlockFrame Emblem */}
+              {/* Emblem */}
               <div className="mb-5 flex items-center justify-between">
-                <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-surface border border-primary/40 p-2 shadow-[0_0_25px_rgba(0,179,191,0.25)]">
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-surface border border-primary/40 p-2 shadow-[0_0_20px_rgba(0,179,191,0.25)]">
                   <Image
                     src="/images/blockframe-3d-badge.png"
-                    alt="BlockFrame Labs Badge"
-                    width={56}
-                    height={56}
+                    alt="BlockFrame Emblem"
+                    width={52}
+                    height={52}
                     className="object-contain drop-shadow"
                   />
                   <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-background border border-primary/40 text-[9px] font-mono text-primary-light">
@@ -173,15 +227,34 @@ export default function PortfolioClient() {
               <h1 className="text-2xl font-bold tracking-tight text-text-primary">
                 Sergeo
               </h1>
-              <p className="mt-1 text-sm font-medium text-primary-light">
-                Founder &amp; AI Systems Architect
-              </p>
               <p className="text-xs text-text-muted mt-0.5">
-                BlockFrame Labs
+                Chenwi Sergeo Ndonwi
               </p>
 
+              {/* Multi-Disciplinary Skills Pills */}
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                  Community Management
+                </span>
+                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                  Video Editing
+                </span>
+                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                  Social Media Growth
+                </span>
+                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                  Custom Discord Bots
+                </span>
+                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                  AI Systems &amp; Automation
+                </span>
+                <span className="rounded bg-primary/10 border border-primary/30 px-2 py-0.5 text-[10px] font-mono font-medium text-primary-light">
+                  Project Operations
+                </span>
+              </div>
+
               <p className="mt-4 text-xs leading-relaxed text-text-secondary">
-                Designing, deploying, and hardening autonomous AI systems, custom Discord bots, conversational commerce engines, and resilient cloud infrastructure.
+                A versatile digital operator. Whether you need community management on Discord/Telegram, crisp video editing, Notion workflows, or custom AI automations, I deliver clean, end-to-end execution.
               </p>
 
               {/* Navigation Jump Links */}
@@ -214,7 +287,7 @@ export default function PortfolioClient() {
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 rounded bg-text-primary px-4 py-2.5 text-xs font-semibold text-background transition hover:opacity-90 shadow-sm"
                 >
-                  <span>Book a Strategy Call</span>
+                  <span>Schedule a Call</span>
                   <span aria-hidden="true">&rarr;</span>
                 </a>
                 <a
@@ -244,12 +317,12 @@ export default function PortfolioClient() {
                 <span className="text-text-primary font-mono">West Africa (WAT / UTC+1)</span>
               </div>
               <div className="flex items-center justify-between text-text-muted">
-                <span>Overlap:</span>
+                <span>Working Overlap:</span>
                 <span className="text-text-primary font-mono">US East &amp; EU Flexible</span>
               </div>
               <div className="flex items-center justify-between text-text-muted">
-                <span>Focus:</span>
-                <span className="text-primary-light font-medium">Autonomous Systems &amp; Bots</span>
+                <span>Engagement:</span>
+                <span className="text-primary-light font-medium">Remote &middot; Full or Project</span>
               </div>
             </div>
 
@@ -262,342 +335,359 @@ export default function PortfolioClient() {
         <main className="space-y-24 min-w-0">
 
           {/* ------------------------------------------------------
-              SECTION 01: ABOUT & THESIS
+              SECTION 01: ABOUT & MULTI-SKILLED PROFILE
               ------------------------------------------------------ */}
           <section id="about" className="scroll-mt-32">
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                01 &middot; FOUNDER &amp; ARCHITECT
+                01 &middot; MULTI-SKILLED OPERATOR &amp; BUILDER
               </span>
               <span className="h-px flex-1 bg-border" aria-hidden="true" />
             </div>
 
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-text-primary leading-tight mb-6">
-              Architecting autonomous AI systems that execute real work, run in production, and solve hard business problems.
+              Hands-on execution across community management, video editing, social media, custom Discord bots, and AI automation.
             </h2>
 
             <div className="prose prose-invert max-w-none text-base md:text-lg text-text-secondary leading-relaxed space-y-4">
               <p>
-                Most modern AI projects stop at a toy demo, a fragile prompt, or an API wrapper that breaks the moment unexpected inputs arrive. I take the opposite path: I engineer end-to-end autonomous infrastructure designed for production reality.
+                Many businesses struggle because work gets fragmented across multiple single-skill freelancers who fail to communicate. A video editor doesn&apos;t know how to run community engagement; a community manager doesn&apos;t know how to build a Discord bot or track metrics in Notion; and an automation engineer often overcharges for things that can be solved simply.
               </p>
               <p>
-                From low-level Linux VPS servers and containerized agent fleets to custom verified Discord automation platforms, trilingual conversational commerce engines, and deterministic publishing pipelines, my focus is always on building systems that operate 24/7 with strict reliability and measurable business outcomes.
+                I take a comprehensive approach: I combine daily operational discipline (managing Telegram and Discord communities, organizing live events, tracking spreadsheets, handling Zendesk and Bitrix queues) with creative production (editing engaging short-form videos and banners) and modern software automation (building custom Discord bots, trilingual WhatsApp sales agents, and Notion publishing pipelines).
               </p>
             </div>
 
             {/* Metrics Strip */}
             <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="glass-card p-5 border border-card-border">
-                <span className="font-mono text-3xl font-bold text-text-primary block mb-1">8</span>
-                <span className="text-xs text-text-muted leading-tight block">Autonomous Agents in Production Fleet</span>
+                <span className="font-mono text-3xl font-bold text-text-primary block mb-1">20,500+</span>
+                <span className="text-xs text-text-muted leading-tight block">Organic Social Engagements</span>
               </div>
               <div className="glass-card p-5 border border-card-border">
-                <span className="font-mono text-3xl font-bold text-primary-light block mb-1">30 in 30</span>
-                <span className="text-xs text-text-muted leading-tight block">Days, Zero Manual Edits (Blog OS)</span>
+                <span className="font-mono text-3xl font-bold text-primary-light block mb-1">11+</span>
+                <span className="text-xs text-text-muted leading-tight block">Live Community Events Hosted</span>
               </div>
               <div className="glass-card p-5 border border-card-border">
                 <span className="font-mono text-3xl font-bold text-text-primary block mb-1">Verified</span>
-                <span className="text-xs text-text-muted leading-tight block">Custom Discord Bots (Ignition)</span>
+                <span className="text-xs text-text-muted leading-tight block">Discord Bot Creator (Ignition)</span>
               </div>
               <div className="glass-card p-5 border border-card-border">
-                <span className="font-mono text-3xl font-bold text-primary-light block mb-1">100%</span>
-                <span className="text-xs text-text-muted leading-tight block">Full-Stack Execution (Linux to Frontend)</span>
+                <span className="font-mono text-3xl font-bold text-primary-light block mb-1">30+ Apps</span>
+                <span className="text-xs text-text-muted leading-tight block">Mastered Daily Software Stack</span>
               </div>
             </div>
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 02: PROBLEMS I SOLVE
+              SECTION 02: WHAT I DO & PROBLEMS I SOLVE
               ------------------------------------------------------ */}
-          <section id="problems" className="scroll-mt-32">
+          <section id="capabilities" className="scroll-mt-32">
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                02 &middot; CAPABILITIES &amp; VALUE
+                02 &middot; CORE CAPABILITIES
               </span>
               <span className="h-px flex-1 bg-border" aria-hidden="true" />
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
-              Problems I Help Solve
+              What I Can Do For Your Business
             </h2>
             <p className="text-base text-text-secondary mb-10 max-w-2xl">
-              Where high-level systems architecture translates into direct operational and financial advantages.
+              Flexible skills designed to remove bottlenecks, keep communities engaged, produce high-retention media, and automate repetitive tasks.
             </p>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               
-              <div className="glass-card p-7 border border-card-border hover:border-primary/40 transition">
-                <div className="font-mono text-xs text-primary-light font-semibold mb-3">01 / COMMERCE BOTTLENECKS</div>
-                <h3 className="text-lg font-semibold text-text-primary mb-3">
-                  Conversational Commerce &amp; WhatsApp Automation
-                </h3>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  In many markets, over 80% of transactions occur inside chat apps. I build autonomous sales agents that discover buyer intent, intelligently negotiate within strict owner floor margins, generate native interactive catalogs, and confirm mobile money payments without human bottlenecking.
-                </p>
+              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">01 / COMMUNITY &amp; SUPPORT</div>
+                  <h3 className="text-base font-semibold text-text-primary mb-2">
+                    Community Management &amp; Moderation
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Full management of Discord and Telegram servers: welcoming members, moderating discussions, setting up role hierarchies, organizing game nights, and running prompt support queues.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
+                  Telegram &middot; Discord &middot; Slack &middot; Zendesk
+                </div>
               </div>
 
-              <div className="glass-card p-7 border border-card-border hover:border-primary/40 transition">
-                <div className="font-mono text-xs text-primary-light font-semibold mb-3">02 / DISCORD &amp; COMMUNITY AUTOMATION</div>
-                <h3 className="text-lg font-semibold text-text-primary mb-3">
-                  Custom Discord Bots for Any Server &amp; Task
-                </h3>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  Building bespoke, verified Discord bots for onboarding funnels, gamified quizzes, tournaments, automated ticketing, moderation, server-wide economies, and custom API webhooks for communities of any scale.
-                </p>
+              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">02 / CONTENT &amp; MEDIA</div>
+                  <h3 className="text-base font-semibold text-text-primary mb-2">
+                    Video Editing &amp; Content Creation
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Editing high-retention short-form videos (TikTok, Reels, Shorts), podcast cutdowns, kinetic typography, dynamic subtitles, and high-CTR thumbnail designs using CapCut, Premiere Pro, and Canva.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
+                  CapCut &middot; Premiere &middot; Canva &middot; Remotion
+                </div>
               </div>
 
-              <div className="glass-card p-7 border border-card-border hover:border-primary/40 transition">
-                <div className="font-mono text-xs text-primary-light font-semibold mb-3">03 / CONTENT FRICTION</div>
-                <h3 className="text-lg font-semibold text-text-primary mb-3">
-                  Zero-Touch Content Pipelines (Blog OS)
-                </h3>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  Eliminating manual copy-pasting, formatting bugs, and CDN image expiration. I connect headless Notion workspaces directly to production Next.js platforms with permanent asset localization, RSS syndication, IndexNow pings, and markdown mirrors for AI crawler discoverability.
-                </p>
+              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">03 / SOCIAL &amp; GROWTH</div>
+                  <h3 className="text-base font-semibold text-text-primary mb-2">
+                    Social Media Strategy &amp; Marketing
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Planning content calendars, writing engaging Twitter/X threads, running zero-sponsorship organic growth campaigns, and boosting community participation with verifiable metric logs.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
+                  Twitter/X &middot; Notion &middot; Metric Tracking
+                </div>
               </div>
 
-              <div className="glass-card p-7 border border-card-border hover:border-primary/40 transition">
-                <div className="font-mono text-xs text-primary-light font-semibold mb-3">04 / FRAGILE CLOUD STACKS</div>
-                <h3 className="text-lg font-semibold text-text-primary mb-3">
-                  Hardened Linux &amp; Docker Infrastructure
-                </h3>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  I deploy and manage reliable self-hosted infrastructure: Ubuntu VPS instances, multi-service Docker Compose stacks, automated Caddy TLS reverse proxies, PostgreSQL databases with schema migrations, and proactive systemd service isolation with zero downtime loops.
-                </p>
+              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">04 / DISCORD BOT CREATION</div>
+                  <h3 className="text-base font-semibold text-text-primary mb-2">
+                    Custom Discord Bots for Any Server
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Building custom, verified Discord applications for community engagement: gamified quizzes, raffles, live tournament leaderboards, automated ticketing, anti-phishing defense, and server economies.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
+                  Ignition (Verified) &middot; Prime Ops &middot; Discord API
+                </div>
+              </div>
+
+              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">05 / OPERATIONS &amp; ADMIN</div>
+                  <h3 className="text-base font-semibold text-text-primary mb-2">
+                    Project Management &amp; Office Systems
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Structuring databases and task sprints in Notion and ClickUp, maintaining financial spreadsheets and registries in Excel, and preparing clear SOP documentation in Word and Google Docs.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
+                  Notion &middot; ClickUp &middot; Excel &middot; Word &middot; Asana
+                </div>
+              </div>
+
+              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+                <div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">06 / AI AUTOMATION</div>
+                  <h3 className="text-base font-semibold text-text-primary mb-2">
+                    AI Systems &amp; Workflow Automations
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Deploying trilingual conversational WhatsApp sales reps, headless Notion-to-web publishing pipelines, and self-hosted Linux agent daemons to automate repetitive manual work.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
+                  Claude &middot; Python &middot; FastMCP &middot; Make &middot; Next.js
+                </div>
               </div>
 
             </div>
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 03: PROOF OF WORK & SYSTEMS
+              SECTION 03: APPS & SOFTWARE STACK (THE RICH SOFTWARE GRID)
               ------------------------------------------------------ */}
-          <section id="systems" className="scroll-mt-32 space-y-12">
+          <section id="software-stack" className="scroll-mt-32 space-y-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  03 &middot; PROOF OF WORK
+                  03 &middot; SOFTWARE &amp; TOOL PROFICIENCY
                 </span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
-                Live Production Systems &amp; Case Studies
+                Apps &amp; Software Tools I Use Daily
               </h2>
               <p className="text-base text-text-secondary max-w-2xl">
-                Every project below is real code running on real infrastructure, built to solve tangible operational bottlenecks.
+                I am hands-on and comfortable with modern project management tools, customer support software, community platforms, spreadsheet applications, and creative media suites.
               </p>
             </div>
 
-            {/* Case Study 1: Groply */}
-            <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="flex items-center gap-2">
-                  <span className="category-pill bg-accent/15 text-accent-light text-xs font-mono">
-                    OPEN CORE
-                  </span>
-                  <span className="category-pill bg-surface-light text-text-secondary text-xs font-mono">
-                    AUTONOMOUS COMMERCE
-                  </span>
-                </div>
-                <a
-                  href={groplyRepoHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-mono text-primary-light hover:underline"
+            {/* Category Filter Pills */}
+            <div className="flex flex-wrap gap-2 pt-2">
+              {[
+                { id: "all", label: "All Tools (30+)" },
+                { id: "project", label: "Project Management" },
+                { id: "crm", label: "CRM & Support" },
+                { id: "community", label: "Community & Chat" },
+                { id: "office", label: "Office & Spreadsheets" },
+                { id: "creative", label: "Video & Design" },
+                { id: "ai", label: "AI & Automation" },
+              ].map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveToolCategory(cat.id)}
+                  className={`rounded-lg px-3 py-1.5 text-xs font-mono transition ${
+                    activeToolCategory === cat.id
+                      ? "bg-primary text-background font-bold shadow-sm"
+                      : "bg-surface border border-card-border text-text-secondary hover:text-text-primary hover:bg-surface-light"
+                  }`}
                 >
-                  <span>View Public GitHub Repo</span>
-                  <span aria-hidden="true">&rarr;</span>
-                </a>
-              </div>
-
-              <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
-                Groply: Autonomous AI Commerce Engine
-              </h3>
-              <p className="text-sm text-primary-light mb-6 font-mono">
-                WhatsApp Conversational Agent &middot; Trilingual Haggling &middot; Local Mobile Money
-              </p>
-
-              <div className="space-y-6 text-sm text-text-secondary leading-relaxed">
-                <div>
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-1.5">
-                    The Situation &amp; Bottleneck
-                  </h4>
-                  <p>
-                    In emerging markets across Africa, over 80% of online commerce takes place inside WhatsApp chats rather than traditional shopping carts. But answering hundreds of DMs by hand, answering repetitive price and size inquiries, negotiating discounts, and reconciling Mobile Money screenshots manually burns shop owners out.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-1.5">
-                    The Solution &amp; Architecture
-                  </h4>
-                  <p>
-                    I engineered Groply: an open-core autonomous AI commerce engine that turns WhatsApp into a 24/7 automated storefront.
-                  </p>
-                  <ul className="mt-3 list-disc list-inside space-y-1.5 pl-2 text-text-secondary">
-                    <li><strong className="text-text-primary">Trilingual Fluency:</strong> Speaks natural English, French, and Cameroonian Pidgin.</li>
-                    <li><strong className="text-text-primary">Intelligent Margin-Safe Haggling:</strong> Owners set a retail price and a confidential floor price. If a customer haggles, the AI negotiates autonomously to close the deal without ever dipping below approved profit margins.</li>
-                    <li><strong className="text-text-primary">Native WhatsApp UI:</strong> Interactive product buttons, catalog menus, and order cards that keep the user inside WhatsApp.</li>
-                    <li><strong className="text-text-primary">Dual-Layer Storefronts:</strong> Canonical web storefront paired with a featherlight (&lt;25KB) instant WhatsApp sheet that opens immediately on low-bandwidth mobile connections.</li>
-                    <li><strong className="text-text-primary">Localized Payments &amp; Logistics:</strong> Native MTN Mobile Money and Orange Money reconciliation, plus inter-city parcel waybill dispatch via travel agency bus lines (Touristique Express, Buca Voyages).</li>
-                  </ul>
-                </div>
-
-                {/* VISUAL PROOF ARTIFACT: Realistic WhatsApp Chat Simulator */}
-                <div className="rounded-xl border border-card-border bg-[#0b141a] p-5 shadow-inner">
-                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs font-mono">
-                    <div className="flex items-center gap-2">
-                      <div className="h-3 w-3 rounded-full bg-emerald-500"></div>
-                      <span className="text-text-primary font-semibold">WhatsApp Business &middot; Groply AI Sales Rep</span>
-                    </div>
-                    <span className="text-text-muted">Autonomous Session #BF-9042</span>
-                  </div>
-
-                  <div className="space-y-3 font-sans text-xs max-w-lg">
-                    {/* Customer Message */}
-                    <div className="flex justify-start">
-                      <div className="rounded-lg bg-[#202c33] p-3 text-text-primary max-w-[85%] shadow-sm">
-                        <p className="font-semibold text-[10px] text-emerald-400 mb-0.5">Customer &middot; +237 671... </p>
-                        <p>Hey boss, how much for the Nike Air sneakers in size 43? Can you do 20,000 FCFA?</p>
-                        <span className="text-[9px] text-text-muted float-right mt-1">10:14 PM</span>
-                      </div>
-                    </div>
-
-                    {/* Groply AI Response */}
-                    <div className="flex justify-end">
-                      <div className="rounded-lg bg-[#005c4b] p-3 text-white max-w-[85%] shadow-sm space-y-2">
-                        <p className="font-semibold text-[10px] text-emerald-200">Groply Autonomous Rep</p>
-                        <p>
-                          Hello! Size 43 is available in Black/Cyan. Normal retail price is 26,000 FCFA. 
-                          The best I can do tonight is <strong>22,500 FCFA</strong> with same-day parcel dispatch via Touristique Express to Yaoundé. Would that work for you?
-                        </p>
-                        <div className="pt-2 border-t border-emerald-600/50 flex flex-col gap-1.5">
-                          <button className="w-full bg-[#111b21] hover:bg-[#202c33] text-emerald-300 font-semibold py-1.5 px-3 rounded text-[11px] text-center border border-emerald-500/30">
-                            &check; Accept 22,500 FCFA &amp; Order
-                          </button>
-                          <button className="w-full bg-[#111b21]/60 hover:bg-[#202c33] text-white py-1 px-3 rounded text-[10px] text-center">
-                            Browse Storefront Sheet (&lt;25KB)
-                          </button>
-                        </div>
-                        <span className="text-[9px] text-emerald-200/80 float-right">10:14 PM &middot; Automated in 1.4s</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-lg bg-surface p-4 border border-card-border font-mono text-xs">
-                  <span className="text-text-muted block mb-1">// Production Architecture Stack</span>
-                  <span className="text-text-primary">Meta WhatsApp Cloud API &middot; FastAPI (Python) &middot; PostgreSQL &middot; Docker &middot; Ubuntu VPS &middot; Sentry Telemetry</span>
-                </div>
-              </div>
+                  {cat.label}
+                </button>
+              ))}
             </div>
 
-            {/* Case Study 2: BlockFrame Labs Blog OS */}
-            <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="flex items-center gap-2">
-                  <span className="category-pill bg-accent/15 text-accent-light text-xs font-mono">
-                    PRODUCTION SYSTEM
-                  </span>
-                  <span className="category-pill bg-surface-light text-text-secondary text-xs font-mono">
-                    CONTENT AUTOMATION
-                  </span>
-                </div>
-                <Link
-                  href="/blogs"
-                  className="inline-flex items-center gap-2 text-xs font-mono text-primary-light hover:underline"
+            {/* Apps Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {filteredTools.map((tool) => (
+                <div
+                  key={tool.name}
+                  className="glass-card p-4 border border-card-border hover:border-primary/50 transition flex flex-col justify-between"
                 >
-                  <span>Explore Live Blog Surface</span>
-                  <span aria-hidden="true">&rarr;</span>
-                </Link>
-              </div>
-
-              <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
-                Blog OS: Zero-Touch Notion to Edge Pipeline
-              </h3>
-              <p className="text-sm text-primary-light mb-6 font-mono">
-                Permanent Asset Localization &middot; Turbopack SSR/ISR &middot; IndexNow SEO Automation
-              </p>
-
-              <div className="space-y-6 text-sm text-text-secondary leading-relaxed">
-                <div>
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-1.5">
-                    The Problem
-                  </h4>
-                  <p>
-                    Notion is an intuitive CMS, but its AWS S3 signed image URLs expire after 60 minutes. Standard static site generators end up serving broken images, while content teams waste hours re-formatting markdown and configuring metadata.
-                  </p>
-                </div>
-
-                {/* VISUAL PROOF ARTIFACT: Pipeline Flowchart */}
-                <div className="rounded-xl border border-card-border bg-surface p-5">
-                  <span className="font-mono text-xs text-text-muted uppercase tracking-wider block mb-3">
-                    // Pipeline Execution Flowchart
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 font-mono text-xs text-center">
-                    <div className="rounded-lg bg-surface-light p-3 border border-card-border flex flex-col justify-center">
-                      <span className="text-primary-light font-bold mb-1">01. NOTION</span>
-                      <span className="text-text-muted text-[11px]">Post marked Approved</span>
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-bold text-text-primary">{tool.name}</span>
+                      <span className="rounded bg-surface-light px-2 py-0.5 text-[10px] font-mono text-primary-light border border-card-border">
+                        {tool.tag}
+                      </span>
                     </div>
-                    <div className="rounded-lg bg-surface-light p-3 border border-card-border flex flex-col justify-center">
-                      <span className="text-primary-light font-bold mb-1">02. ASSET CACHE</span>
-                      <span className="text-text-muted text-[11px]">Downloads &amp; localizes S3 files</span>
-                    </div>
-                    <div className="rounded-lg bg-surface-light p-3 border border-card-border flex flex-col justify-center">
-                      <span className="text-primary-light font-bold mb-1">03. EDGE REVALIDATE</span>
-                      <span className="text-text-muted text-[11px]">Next.js ISR instant cache purge</span>
-                    </div>
-                    <div className="rounded-lg bg-surface-light p-3 border border-card-border flex flex-col justify-center">
-                      <span className="text-primary-light font-bold mb-1">04. SYNDICATION</span>
-                      <span className="text-text-muted text-[11px]">IndexNow + RSS + LLMs.txt</span>
-                    </div>
+                    <p className="text-xs text-text-secondary leading-relaxed">
+                      {tool.role}
+                    </p>
                   </div>
                 </div>
+              ))}
+            </div>
 
-                <div className="rounded-lg bg-surface p-4 border border-card-border font-mono text-xs flex flex-wrap items-center justify-between gap-2">
-                  <span className="text-text-primary">Proof Stat: 30 blogs in 30 days, zero manual edits.</span>
-                  <span className="text-emerald-400 font-semibold">&check; 100% Asset Uptime Verified</span>
+            <div className="rounded-xl bg-surface p-5 border border-card-border flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+              <span className="text-text-secondary">
+                Have a proprietary internal platform or tool not listed above?
+              </span>
+              <span className="text-primary-light font-semibold">
+                &check; Quick learner with new SaaS dashboards and interfaces
+              </span>
+            </div>
+          </section>
+
+          {/* ------------------------------------------------------
+              SECTION 04: COMMUNITY MANAGEMENT & ORGANIC GROWTH PROOF
+              ------------------------------------------------------ */}
+          <section id="community-ops" className="scroll-mt-32 space-y-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
+                  04 &middot; REAL WORK PROOFS &middot; COMMUNITY
+                </span>
+                <span className="h-px flex-1 bg-border" aria-hidden="true" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
+                Community Management, Event Hosting &amp; Growth
+              </h2>
+              <p className="text-base text-text-secondary max-w-2xl">
+                Real proof of work: organizing live game nights, driving organic community engagement without ad spend, and managing schedules with structured Notion trackers.
+              </p>
+            </div>
+
+            {/* Visual Proof 1: Organic Growth Metrics Showcase */}
+            <div className="glass-card p-8 border border-card-border rounded-xl">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div>
+                  <span className="font-mono text-xs text-primary-light font-semibold uppercase block mb-1">
+                    REAL WORK ARTIFACT &middot; METRIC AUDIT
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-text-primary">
+                    100% Organic Growth &middot; Zero Sponsorship
+                  </h3>
+                </div>
+                <span className="rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-mono text-xs px-3 py-1 font-semibold">
+                  &check; Verified Campaign Data
+                </span>
+              </div>
+
+              <p className="text-sm text-text-secondary leading-relaxed mb-6">
+                Every event, engagement, and participant below was delivered organically with zero sponsored support. Proof that consistent hosting and attentive community care drive measurable results.
+              </p>
+
+              {/* Clickable Image Preview */}
+              <div
+                className="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden rounded-xl border border-card-border bg-black/40 mb-6 cursor-pointer group"
+                onClick={() => setActiveLightbox({
+                  src: "/images/proof-organic-growth-metrics.webp",
+                  title: "100% Organic Growth Campaign Audit",
+                  subtitle: "Community Engagement & Game Night Attendance Proof"
+                })}
+              >
+                <Image
+                  src="/images/proof-organic-growth-metrics.webp"
+                  alt="Organic Growth Metrics Audit"
+                  fill
+                  className="object-contain p-2 group-hover:scale-[1.02] transition duration-300"
+                />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                  <span className="rounded bg-black/80 px-3 py-1.5 text-xs font-mono text-white">
+                    Click to view full metrics screenshot 🔍
+                  </span>
+                </div>
+              </div>
+
+              {/* Metric Breakdown Cards */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-xs">
+                <div className="rounded-lg bg-surface p-4 border border-card-border text-center">
+                  <span className="text-2xl font-bold text-text-primary block mb-1">20,511+</span>
+                  <span className="text-text-muted text-[11px]">Total Engagements</span>
+                </div>
+                <div className="rounded-lg bg-surface p-4 border border-card-border text-center">
+                  <span className="text-2xl font-bold text-primary-light block mb-1">11</span>
+                  <span className="text-text-muted text-[11px]">Events Hosted</span>
+                </div>
+                <div className="rounded-lg bg-surface p-4 border border-card-border text-center">
+                  <span className="text-2xl font-bold text-text-primary block mb-1">7+ Games</span>
+                  <span className="text-text-muted text-[11px]">Titles Covered</span>
+                </div>
+                <div className="rounded-lg bg-surface p-4 border border-card-border text-center">
+                  <span className="text-2xl font-bold text-emerald-400 block mb-1">96 Players</span>
+                  <span className="text-text-muted text-[11px]">Active Attendance</span>
                 </div>
               </div>
             </div>
 
-            {/* Case Study 3: 8-Agent Fleet */}
-            <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="flex items-center gap-2">
-                  <span className="category-pill bg-accent/15 text-accent-light text-xs font-mono">
-                    INFRASTRUCTURE
+            {/* Visual Proof 2: Real Notion Event Execution Tracker */}
+            <div className="glass-card p-8 border border-card-border rounded-xl">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                <div>
+                  <span className="font-mono text-xs text-primary-light font-semibold uppercase block mb-1">
+                    PROJECT MANAGEMENT PROOF &middot; NOTION
                   </span>
-                  <span className="category-pill bg-surface-light text-text-secondary text-xs font-mono">
-                    MULTI-AGENT PLATFORM
-                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-text-primary">
+                    Live Event Execution &amp; Schedule Tracker
+                  </h3>
                 </div>
+                <span className="text-xs font-mono text-text-muted">
+                  Organized in Notion
+                </span>
               </div>
 
-              <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
-                Autonomous 8-Agent Production Fleet
-              </h3>
-              <p className="text-sm text-primary-light mb-6 font-mono">
-                Dual Platform (Hermes + OpenClaw) &middot; REQ/ACK Protocol &middot; Self-Healing VPS
+              <p className="text-sm text-text-secondary leading-relaxed mb-6">
+                A live demonstration of rigorous project tracking: scheduling events (Among Us, Spider Tanks, Treeverse, BloodStrike), assigning hosts, tracking duration, auditing attendance, and logging post-event Twitter reach.
               </p>
 
-              {/* VISUAL PROOF ARTIFACT: Production Terminal Console */}
-              <div className="rounded-xl border border-card-border bg-[#0d1117] p-4 font-mono text-xs text-text-secondary shadow-2xl overflow-x-auto">
-                <div className="flex items-center gap-2 pb-3 mb-3 border-b border-white/10">
-                  <div className="h-3 w-3 rounded-full bg-red-500/80"></div>
-                  <div className="h-3 w-3 rounded-full bg-yellow-500/80"></div>
-                  <div className="h-3 w-3 rounded-full bg-green-500/80"></div>
-                  <span className="text-text-muted text-[11px] ml-2">root@blockframe-vps:~ (systemctl status &middot; fleet-orchestration)</span>
-                </div>
-                <div className="space-y-1 text-[11px] leading-relaxed">
-                  <p><span className="text-emerald-400 font-bold">&bull; hermes-gateway.service</span> - Multi-Agent Gateway Daemon</p>
-                  <p className="text-text-muted">&nbsp;&nbsp;Loaded: loaded (/etc/systemd/system/hermes-gateway.service; enabled)</p>
-                  <p className="text-text-muted">&nbsp;&nbsp;Active: <span className="text-emerald-400 font-semibold">active (running)</span> since Thu 2026-10-22 08:12:04 UTC; 4 days ago</p>
-                  <p className="text-text-muted">&nbsp;&nbsp;Restart Policy: Restart=on-failure; StartLimitBurst=3; RestartSec=120</p>
-                  <p className="text-primary-light mt-2">[FLEET PROTOCOL LOG]</p>
-                  <p><span className="text-blue-400">[REQ:OWL-&gt;DANIEL]</span> Audit Next.js build bundle &amp; verify image localization</p>
-                  <p><span className="text-emerald-400">[ACK:DANIEL-&gt;OWL]</span> 51/51 routes statically generated in 3.7s; 0 broken assets</p>
-                  <p><span className="text-yellow-400">[INFO:ROY-&gt;HANS]</span> Article published to Notion; IndexNow pings verified</p>
+              <div
+                className="relative aspect-[16/7] w-full overflow-hidden rounded-xl border border-card-border bg-black/40 cursor-pointer group"
+                onClick={() => setActiveLightbox({
+                  src: "/images/proof-notion-event-tracker.webp",
+                  title: "Notion Game Night & Event Execution Tracker",
+                  subtitle: "Live event schedule, duration, hosts, and social engagement logs"
+                })}
+              >
+                <Image
+                  src="/images/proof-notion-event-tracker.webp"
+                  alt="Notion Event Tracker"
+                  fill
+                  className="object-contain p-2 group-hover:scale-[1.02] transition duration-300"
+                />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                  <span className="rounded bg-black/80 px-3 py-1.5 text-xs font-mono text-white">
+                    Click to inspect Notion database view 🔍
+                  </span>
                 </div>
               </div>
             </div>
@@ -605,13 +695,13 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 04: CUSTOM DISCORD BOTS (Ignition & Prime Ops)
+              SECTION 05: CUSTOM DISCORD BOTS (Ignition & Prime Ops)
               ------------------------------------------------------ */}
           <section id="discord-bots" className="scroll-mt-32 space-y-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  04 &middot; DISCORD BOT ARCHITECTURE
+                  05 &middot; BESPOKE BOT APPLICATIONS
                 </span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
@@ -619,11 +709,11 @@ export default function PortfolioClient() {
                 Custom Discord Bots for Any Server &amp; Task
               </h2>
               <p className="text-base text-text-secondary max-w-2xl">
-                I build bespoke, verified Discord applications engineered for community onboarding, automated economies, interactive tournaments, security, and administrative operations.
+                I design, code, and host verified Discord applications for community gamification, onboarding gates, automated ticketing, moderation, and API webhooks.
               </p>
             </div>
 
-            {/* Ignition Bot Showcase Card */}
+            {/* Ignition Bot Card */}
             <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div className="flex items-center gap-3">
@@ -669,11 +759,11 @@ export default function PortfolioClient() {
               </div>
 
               <p className="text-sm text-text-secondary leading-relaxed mb-6">
-                Ignition is a verified Discord application that helps communities educate, engage, and reward members through interactive gamified workflows, competitive tournaments, and a built-in server marketplace.
+                Ignition is an official, verified Discord application that helps community servers educate, engage, and reward members through interactive gamified workflows, trivia tournaments, and a built-in server marketplace.
               </p>
 
               {/* Core Feature Badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 mb-8 font-mono text-xs">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-8 font-mono text-xs">
                 <div className="rounded bg-surface p-2.5 border border-card-border text-center">
                   <span className="text-primary-light font-semibold block">&bull; Quizzes &amp; Trivia</span>
                   <span className="text-text-muted text-[10px]">Educational engagement</span>
@@ -687,28 +777,12 @@ export default function PortfolioClient() {
                   <span className="text-text-muted text-[10px]">Live leaderboards</span>
                 </div>
                 <div className="rounded bg-surface p-2.5 border border-card-border text-center">
-                  <span className="text-primary-light font-semibold block">&bull; Guilds &amp; Teams</span>
-                  <span className="text-text-muted text-[10px]">Group collaboration</span>
-                </div>
-                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
                   <span className="text-primary-light font-semibold block">&bull; Server Marketplace</span>
-                  <span className="text-text-muted text-[10px]">Reward redemptions</span>
-                </div>
-                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
-                  <span className="text-primary-light font-semibold block">&bull; Smart Onboarding</span>
-                  <span className="text-text-muted text-[10px]">Automated role gates</span>
-                </div>
-                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
-                  <span className="text-primary-light font-semibold block">&bull; Q&amp;A Systems</span>
-                  <span className="text-text-muted text-[10px]">Community knowledgebase</span>
-                </div>
-                <div className="rounded bg-surface p-2.5 border border-card-border text-center">
-                  <span className="text-primary-light font-semibold block">&bull; Credits &amp; Economy</span>
-                  <span className="text-text-muted text-[10px]">Custom token balance</span>
+                  <span className="text-text-muted text-[10px]">Credit redemption</span>
                 </div>
               </div>
 
-              {/* VISUAL PROOF ARTIFACT: Realistic Discord Embed Preview */}
+              {/* Realistic Discord Embed Preview */}
               <div className="rounded-xl border border-card-border bg-[#313338] p-5 font-sans text-xs text-[#dbdee1] shadow-2xl max-w-2xl">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/10 bg-[#1e1f22]">
@@ -725,13 +799,12 @@ export default function PortfolioClient() {
                   </div>
                 </div>
 
-                {/* Discord Embed Box */}
                 <div className="rounded border-l-4 border-l-[#5865f2] bg-[#2b2d31] p-4 space-y-3">
                   <span className="text-xs uppercase tracking-wider font-semibold text-white block">
                     &bull; Weekly Server Championship &middot; Round 3
                   </span>
                   <p className="text-xs text-[#dbdee1] leading-relaxed">
-                    Welcome to the tournament arena! Solve the cybersecurity riddle to earn <strong>250 Community Credits</strong> and advance your guild on the leaderboard.
+                    Welcome to the tournament arena! Solve the community riddle to earn <strong>250 Credits</strong> and advance your guild on the leaderboard.
                   </p>
                   
                   <div className="grid grid-cols-2 gap-3 pt-2 text-[11px] font-mono border-t border-white/5">
@@ -746,7 +819,6 @@ export default function PortfolioClient() {
                   </div>
                 </div>
 
-                {/* Discord Interactive Buttons */}
                 <div className="flex flex-wrap gap-2 pt-3">
                   <button className="rounded bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold px-3 py-1.5 text-xs transition">
                     &bull; Join Tournament
@@ -778,23 +850,23 @@ export default function PortfolioClient() {
                     <div className="flex items-center gap-2">
                       <h3 className="text-xl md:text-2xl font-bold text-text-primary">Prime Ops</h3>
                       <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-mono font-semibold text-emerald-400 border border-emerald-500/40">
-                        &check; INTERNAL SECURITY
+                        &check; SERVER OPERATIONS BOT
                       </span>
                     </div>
-                    <span className="text-xs text-text-muted font-mono">Operations &amp; Community Shield</span>
+                    <span className="text-xs text-text-muted font-mono">Community Security &amp; Triage Shield</span>
                   </div>
                 </div>
 
                 <span className="rounded-full border border-card-border bg-surface px-3 py-1 text-xs font-mono text-text-muted">
-                  Private HQ Deployment
+                  Active Internal Deployment
                 </span>
               </div>
 
               <p className="text-sm text-text-secondary leading-relaxed mb-6">
-                Engineered and deployed for my own private community server (Prime Nexus / BlockFrame HQ). Prime Ops acts as the central command bot handling member onboarding, ticket triage, scam link neutralization, and autonomous server-health alerts.
+                Engineered for my own server (Prime Nexus / BlockFrame HQ). Prime Ops handles automated ticket triage, onboarding verification, and malicious link interception to prevent scam air-drops and server raids.
               </p>
 
-              {/* VISUAL PROOF ARTIFACT: Prime Ops Security Action Embed */}
+              {/* Realistic Security Embed */}
               <div className="rounded-xl border border-card-border bg-[#313338] p-5 font-sans text-xs text-[#dbdee1] shadow-2xl max-w-2xl">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/10 bg-[#1e1f22]">
@@ -807,11 +879,10 @@ export default function PortfolioClient() {
                         APP
                       </span>
                     </div>
-                    <span className="text-[10px] text-[#949ba4]">Automated Incident &middot; Security Protocol</span>
+                    <span className="text-[10px] text-[#949ba4]">Incident Shield &middot; Auto-Moderation</span>
                   </div>
                 </div>
 
-                {/* Prime Ops Security Embed Box */}
                 <div className="rounded border-l-4 border-l-emerald-500 bg-[#2b2d31] p-4 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-emerald-400">
@@ -820,7 +891,7 @@ export default function PortfolioClient() {
                     <span className="text-[10px] font-mono text-text-muted">AutoMod Rule #04</span>
                   </div>
                   <p className="text-xs text-[#dbdee1] leading-relaxed">
-                    Malicious impersonation URL quarantined in <code className="text-primary-light">#general-chat</code>. Sender temporarily muted. Incident logged to Sentry telemetry and moderation log channel.
+                    Malicious impersonation URL quarantined in <code className="text-primary-light">#general-chat</code>. Sender temporarily muted. Incident logged to Sentry telemetry.
                   </p>
                   <div className="pt-2 text-[11px] font-mono text-text-muted border-t border-white/5 flex items-center justify-between">
                     <span>Target: Phish / Fake AirDrop Vector</span>
@@ -830,7 +901,7 @@ export default function PortfolioClient() {
               </div>
 
               <div className="mt-6 rounded-lg bg-surface p-4 border border-card-border font-mono text-xs flex flex-wrap items-center justify-between gap-2">
-                <span className="text-text-primary">Need a custom bot for your Discord or Telegram community?</span>
+                <span className="text-text-primary">Want a custom bot built for your community server?</span>
                 <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="text-primary-light font-semibold hover:underline">
                   Let&apos;s build it &rarr;
                 </a>
@@ -840,237 +911,168 @@ export default function PortfolioClient() {
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 05: WEB3 GAMING & MEDIA PRODUCTION
+              SECTION 06: AI SYSTEMS & PRODUCTION CASE STUDIES
               ------------------------------------------------------ */}
-          <section id="web3-gaming" className="scroll-mt-32 space-y-12">
+          <section id="systems" className="scroll-mt-32 space-y-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  05 &middot; WEB3 GAMING &amp; MEDIA
+                  06 &middot; AI SYSTEMS &amp; AUTOMATION
                 </span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
-                Web3 Gaming, Ambassador &amp; Media Production
+                Autonomous Software &amp; Content Engines
               </h2>
               <p className="text-base text-text-secondary max-w-2xl">
-                Direct experience driving player acquisition, live tournament broadcasting, video content creation, and community moderation across top Web3 titles.
+                Real code running in production: eliminating manual work and driving measurable business results.
               </p>
             </div>
 
-            {/* Showcase Grid */}
-            <div className="grid gap-6 md:grid-cols-2">
-              
-              {/* Villains Robot Battle Royale Card */}
-              <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
-                <div>
-                  <div
-                    className="relative aspect-video w-full overflow-hidden rounded-lg border border-card-border mb-4 cursor-pointer group"
-                    onClick={() => setActiveLightbox({
-                      src: "/images/villains-robot-battle-royale.webp",
-                      title: "Villains: Robot Battle Royale",
-                      subtitle: "Birdy Inc · Official Ambassador & Content Creation"
-                    })}
-                  >
-                    <Image
-                      src="/images/villains-robot-battle-royale.webp"
-                      alt="Villains Robot Battle Royale"
-                      fill
-                      className="object-cover group-hover:scale-105 transition duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                      <span className="rounded bg-black/75 px-3 py-1 text-xs font-mono text-white">
-                        Click to enlarge 🔍
-                      </span>
-                    </div>
-                  </div>
-                  <div className="font-mono text-xs text-primary-light font-semibold mb-1">
-                    BIRDY INC &middot; OFFICIAL AMBASSADOR
-                  </div>
-                  <h3 className="text-lg font-bold text-text-primary mb-2">
-                    Villains: Robot Battle Royale
-                  </h3>
-                  <p className="text-xs text-text-secondary leading-relaxed mb-4">
-                    Content creator and community ambassador. Led player outreach, created game strategy walkthroughs, live-streamed tournament showdowns, and managed community events.
-                  </p>
+            {/* Case Study 1: Groply */}
+            <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="category-pill bg-accent/15 text-accent-light text-xs font-mono">
+                    OPEN CORE
+                  </span>
+                  <span className="category-pill bg-surface-light text-text-secondary text-xs font-mono">
+                    AUTONOMOUS COMMERCE
+                  </span>
                 </div>
-                <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
-                  <span>Role: Ambassador &amp; Creator</span>
-                  <span className="text-primary-light">Web3 Esports</span>
-                </div>
+                <a
+                  href={groplyRepoHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-mono text-primary-light hover:underline"
+                >
+                  <span>View Public GitHub Repo</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
               </div>
 
-              {/* Voxie Tactics Card */}
-              <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
+              <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
+                Groply: Autonomous AI Commerce Engine
+              </h3>
+              <p className="text-sm text-primary-light mb-6 font-mono">
+                WhatsApp Conversational Agent &middot; Trilingual Haggling &middot; Local Mobile Money
+              </p>
+
+              <div className="space-y-6 text-sm text-text-secondary leading-relaxed">
                 <div>
-                  <div
-                    className="relative aspect-video w-full overflow-hidden rounded-lg border border-card-border mb-4 cursor-pointer group bg-background/50 flex items-center justify-center"
-                    onClick={() => setActiveLightbox({
-                      src: "/images/immutable-gaming-banner.webp",
-                      title: "Immutable Web3 Gaming & Voxie Tactics",
-                      subtitle: "AlwaysGeeky Games / Avocado DAO · Creator & Moderator"
-                    })}
-                  >
-                    <Image
-                      src="/images/immutable-gaming-banner.webp"
-                      alt="Immutable Web3 Gaming"
-                      fill
-                      className="object-cover group-hover:scale-105 transition duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                      <span className="rounded bg-black/75 px-3 py-1 text-xs font-mono text-white">
-                        Click to enlarge 🔍
-                      </span>
+                  <h4 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-1.5">
+                    The Problem
+                  </h4>
+                  <p>
+                    In emerging markets, over 80% of online sales happen inside WhatsApp chats. Answering hundreds of repetitive inquiries, negotiating discounts, and reconciling payments manually exhausts merchants.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-1.5">
+                    The Solution
+                  </h4>
+                  <p>
+                    An open-core autonomous AI commerce engine that turns WhatsApp into an automated 24/7 storefront with trilingual fluency (English, French, Cameroonian Pidgin), margin-safe haggling, and mobile money payment verification.
+                  </p>
+                </div>
+
+                {/* WhatsApp Chat Simulator */}
+                <div className="rounded-xl border border-card-border bg-[#0b141a] p-5 shadow-inner">
+                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs font-mono">
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-emerald-500"></div>
+                      <span className="text-text-primary font-semibold">WhatsApp Business &middot; Groply AI Sales Rep</span>
                     </div>
+                    <span className="text-text-muted">Automated Session #BF-9042</span>
                   </div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="relative h-8 w-8 overflow-hidden rounded-md border border-primary/40">
-                      <Image src="/images/voxie-tactics.webp" alt="Voxie Tactics" fill className="object-cover" />
-                    </div>
-                    <div>
-                      <div className="font-mono text-xs text-primary-light font-semibold">
-                        ALWAYSGEEKY GAMES &middot; AMBASSADOR
+
+                  <div className="space-y-3 font-sans text-xs max-w-lg">
+                    <div className="flex justify-start">
+                      <div className="rounded-lg bg-[#202c33] p-3 text-text-primary max-w-[85%] shadow-sm">
+                        <p className="font-semibold text-[10px] text-emerald-400 mb-0.5">Customer &middot; +237 671... </p>
+                        <p>Hey boss, how much for the Nike Air sneakers in size 43? Can you do 20,000 FCFA?</p>
+                        <span className="text-[9px] text-text-muted float-right mt-1">10:14 PM</span>
                       </div>
-                      <h3 className="text-lg font-bold text-text-primary">
-                        Voxie Tactics &amp; Web3 Guilds
-                      </h3>
+                    </div>
+
+                    <div className="flex justify-end">
+                      <div className="rounded-lg bg-[#005c4b] p-3 text-white max-w-[85%] shadow-sm space-y-2">
+                        <p className="font-semibold text-[10px] text-emerald-200">Groply Autonomous Rep</p>
+                        <p>
+                          Hello! Size 43 is available in Black/Cyan. Normal retail price is 26,000 FCFA. 
+                          The best I can do tonight is <strong>22,500 FCFA</strong> with same-day parcel dispatch via Touristique Express to Yaoundé. Would that work for you?
+                        </p>
+                        <div className="pt-2 border-t border-emerald-600/50 flex flex-col gap-1.5">
+                          <button className="w-full bg-[#111b21] hover:bg-[#202c33] text-emerald-300 font-semibold py-1.5 px-3 rounded text-[11px] text-center border border-emerald-500/30">
+                            &check; Accept 22,500 FCFA &amp; Order
+                          </button>
+                        </div>
+                        <span className="text-[9px] text-emerald-200/80 float-right">10:14 PM &middot; Automated in 1.4s</span>
+                      </div>
                     </div>
                   </div>
-                  <p className="text-xs text-text-secondary leading-relaxed mb-4">
-                    Ambassador and community moderator for Voxie Tactics (tactical RPG on Polygon). Onboarded hundreds of players, authored meta guides, and supported gaming scholarship programs.
-                  </p>
                 </div>
-                <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
-                  <span>Role: Community Moderator</span>
-                  <span className="text-primary-light">Tactical RPG</span>
+
+                <div className="rounded-lg bg-surface p-4 border border-card-border font-mono text-xs">
+                  <span className="text-text-muted block mb-1">// Architecture Stack</span>
+                  <span className="text-text-primary">Meta WhatsApp Cloud API &middot; FastAPI (Python) &middot; PostgreSQL &middot; Docker &middot; Ubuntu VPS</span>
                 </div>
               </div>
-
-            </div>
-          </section>
-
-          {/* ------------------------------------------------------
-              SECTION 06: WORK SAMPLES & PRODUCTION PROOFS
-              ------------------------------------------------------ */}
-          <section id="artifacts" className="scroll-mt-32 space-y-12">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  06 &middot; WORK SAMPLES &amp; ARTIFACTS
-                </span>
-                <span className="h-px flex-1 bg-border" aria-hidden="true" />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
-                Visible Proof of Work &amp; Frameworks
-              </h2>
-              <p className="text-base text-text-secondary max-w-2xl">
-                Just like in top technical auditing, here are the real prompt templates, security frameworks, studio media assets, and execution checklists used across my systems.
-              </p>
             </div>
 
-            {/* Artifact 1: Studio Media Production & Visual Assets */}
-            <div className="glass-card p-8 border border-card-border rounded-xl">
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs text-text-muted uppercase tracking-widest">
-                  MEDIA &amp; STUDIO INFRASTRUCTURE
-                </span>
-                <span className="text-[11px] font-mono text-primary-light">BlockFrame Creative Pipeline</span>
-              </div>
-              <h3 className="text-xl font-bold text-text-primary mb-2">
-                AI &amp; Web3 Studio Video Automation Assets
-              </h3>
-              <p className="text-xs text-text-secondary mb-6 leading-relaxed">
-                Automated multi-modal studio pipelines: generating AI avatars, broadcast backgrounds, dynamic overlays, and high-CTR thumbnails.
-              </p>
-
-              <div className="grid gap-4 md:grid-cols-2">
-                <div
-                  className="relative aspect-video w-full overflow-hidden rounded-lg border border-card-border cursor-pointer group"
-                  onClick={() => setActiveLightbox({
-                    src: "/images/ai-web3-studio-banner.webp",
-                    title: "AI & Web3 Virtual Studio Environment",
-                    subtitle: "Multi-monitor AI avatar studio production asset"
-                  })}
+            {/* Case Study 2: Blog OS */}
+            <div className="glass-card p-8 md:p-10 border border-card-border relative overflow-hidden">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="category-pill bg-accent/15 text-accent-light text-xs font-mono">
+                    PRODUCTION SYSTEM
+                  </span>
+                  <span className="category-pill bg-surface-light text-text-secondary text-xs font-mono">
+                    CONTENT AUTOMATION
+                  </span>
+                </div>
+                <Link
+                  href="/blogs"
+                  className="inline-flex items-center gap-2 text-xs font-mono text-primary-light hover:underline"
                 >
-                  <Image
-                    src="/images/ai-web3-studio-banner.webp"
-                    alt="AI and Web3 Studio Banner"
-                    fill
-                    className="object-cover group-hover:scale-105 transition duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                    <span className="rounded bg-black/75 px-3 py-1 text-xs font-mono text-white">
-                      Click to inspect 🔍
-                    </span>
-                  </div>
-                </div>
-
-                <div
-                  className="relative aspect-video w-full overflow-hidden rounded-lg border border-card-border cursor-pointer group"
-                  onClick={() => setActiveLightbox({
-                    src: "/images/blockframe-cinematic-banner.webp",
-                    title: "BlockFrame 3D Cinematic Visual Engine",
-                    subtitle: "High-speed optical film reel and frame branding asset"
-                  })}
-                >
-                  <Image
-                    src="/images/blockframe-cinematic-banner.webp"
-                    alt="BlockFrame Cinematic Banner"
-                    fill
-                    className="object-cover group-hover:scale-105 transition duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                    <span className="rounded bg-black/75 px-3 py-1 text-xs font-mono text-white">
-                      Click to inspect 🔍
-                    </span>
-                  </div>
-                </div>
+                  <span>Explore Live Blog Surface</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
               </div>
-            </div>
 
-            {/* Artifact 2: The Production Prompt Architecture */}
-            <div className="glass-card p-8 border border-card-border rounded-xl">
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs text-text-muted uppercase tracking-widest">
-                  PRODUCTION SYSTEM PROMPT ARTIFACT
-                </span>
-                <span className="text-[11px] font-mono text-primary-light">Groply Anti-Hallucination &amp; Haggling Guard</span>
-              </div>
-              <h3 className="text-xl font-bold text-text-primary mb-2">
-                The Prompt Specification &amp; Boundary Rules
+              <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
+                Blog OS: Zero-Touch Notion to Edge Pipeline
               </h3>
-              <p className="text-xs text-text-secondary mb-4 leading-relaxed">
-                Firm boundaries ensure conversational agents never invent dates, speculate on stock, or breach merchant floor margins:
+              <p className="text-sm text-primary-light mb-6 font-mono">
+                Permanent Asset Localization &middot; Turbopack SSR/ISR &middot; IndexNow SEO Automation
               </p>
 
-              {/* Code / Prompt Box */}
-              <div className="rounded-lg bg-[#0d1117] p-5 border border-card-border font-mono text-xs text-text-secondary leading-relaxed overflow-x-auto">
-                <span className="text-emerald-400 block mb-2 font-bold">// SYSTEM PROMPT &middot; DOMAIN BOUNDARIES</span>
-                <p className="text-text-primary mb-2">
-                  You are Groply, an expert trilingual sales coordinator for local commerce. You strictly represent the merchant&apos;s verified inventory.
+              <div className="space-y-6 text-sm text-text-secondary leading-relaxed">
+                <p>
+                  Connecting headless Notion workspaces directly to production Next.js platforms with permanent asset localization, automatic RSS syndication, IndexNow pings, and markdown mirrors for search engine and AI crawler discoverability.
                 </p>
-                <div className="space-y-1 text-text-secondary pl-3 border-l-2 border-primary/40">
-                  <p>1. <strong className="text-white">Strict Truth Anchor:</strong> Never invent inventory quantities, colors, or sizes. If not specified in the database, declare &apos;Pending merchant confirmation&apos;.</p>
-                  <p>2. <strong className="text-white">Price Negotiation Rule:</strong> Current listed price = P_retail. Minimum floor price = P_floor. If customer negotiates below P_retail, counter-offer between (P_retail - 0.5 &times; delta) and P_floor. Never dip below P_floor under any circumstances.</p>
-                  <p>3. <strong className="text-white">Trilingual Tone:</strong> Detect user language (English, French, or Cameroonian Pidgin) and reply with high cultural fluency and warmth.</p>
-                  <p>4. <strong className="text-white">Payment Rail Verification:</strong> Only generate order codes when user selects confirmed payment option (MTN MoMo, Orange Money, or Bus Waybill).</p>
+
+                <div className="rounded-lg bg-surface p-4 border border-card-border font-mono text-xs flex flex-wrap items-center justify-between gap-2">
+                  <span className="text-text-primary">Canonical Stat: 30 blogs in 30 days, zero manual edits.</span>
+                  <span className="text-emerald-400 font-semibold">&check; 100% Asset Uptime Verified</span>
                 </div>
               </div>
             </div>
 
-            {/* Artifact 3: Interactive QA & Guardrail Checklist */}
+            {/* Artifact: System Readiness Checklist */}
             <div className="glass-card p-8 border border-card-border rounded-xl">
               <div className="flex items-center justify-between mb-4">
                 <span className="font-mono text-xs text-text-muted uppercase tracking-widest">
                   DEPLOYMENT VERIFICATION CHECKLIST
                 </span>
-                <span className="text-[11px] font-mono text-primary-light">Interactive System QA</span>
+                <span className="text-[11px] font-mono text-primary-light">Interactive QA Gates</span>
               </div>
               <h3 className="text-xl font-bold text-text-primary mb-2">
-                Production Readiness &amp; Safety Checklist
+                System Quality &amp; Reliability Checklist
               </h3>
               <p className="text-xs text-text-secondary mb-6">
-                The non-negotiable verification gates executed before any autonomous system or bot goes live:
+                Verification gates executed before any client automation or bot goes live:
               </p>
 
               <div className="space-y-3 font-mono text-xs">
@@ -1094,7 +1096,7 @@ export default function PortfolioClient() {
                     className="mt-0.5 accent-primary h-4 w-4 rounded"
                   />
                   <span className={checklist.domainGuardrails ? "text-text-primary" : "text-text-muted line-through"}>
-                    Domain boundary lockdown: system prompt strictly forbids hallucinating unlisted dates, prices, or inventory.
+                    Domain boundary lockdown: prompt strictly forbids hallucinating unlisted dates, prices, or inventory.
                   </span>
                 </label>
 
@@ -1106,19 +1108,7 @@ export default function PortfolioClient() {
                     className="mt-0.5 accent-primary h-4 w-4 rounded"
                   />
                   <span className={checklist.floorPriceRules ? "text-text-primary" : "text-text-muted line-through"}>
-                    Commercial profit margin locks: secret floor prices strictly enforced in code, not left to LLM discretion.
-                  </span>
-                </label>
-
-                <label className="flex items-start gap-3 cursor-pointer p-2 rounded hover:bg-surface-light transition">
-                  <input
-                    type="checkbox"
-                    checked={checklist.multiModelFailover}
-                    onChange={() => toggleCheck("multiModelFailover")}
-                    className="mt-0.5 accent-primary h-4 w-4 rounded"
-                  />
-                  <span className={checklist.multiModelFailover ? "text-text-primary" : "text-text-muted line-through"}>
-                    Multi-model failover chain: secondary provider takes over automatically on 429/500 API responses.
+                    Commercial margin locks: confidential floor prices enforced in code, never overridden.
                   </span>
                 </label>
 
@@ -1130,119 +1120,112 @@ export default function PortfolioClient() {
                     className="mt-0.5 accent-primary h-4 w-4 rounded"
                   />
                   <span className={checklist.antiPhishingShield ? "text-text-primary" : "text-text-muted line-through"}>
-                    Community safety &amp; anti-phishing: Discord auto-mod link scanners and verified role gates active.
-                  </span>
-                </label>
-
-                <label className="flex items-start gap-3 cursor-pointer p-2 rounded hover:bg-surface-light transition">
-                  <input
-                    type="checkbox"
-                    checked={checklist.sentryTelemetry}
-                    onChange={() => toggleCheck("sentryTelemetry")}
-                    className="mt-0.5 accent-primary h-4 w-4 rounded"
-                  />
-                  <span className={checklist.sentryTelemetry ? "text-text-primary" : "text-text-muted line-through"}>
-                    Live telemetry &amp; error alerts: Sentry tracking active with real-time stack trace alerts.
-                  </span>
-                </label>
-
-                <label className="flex items-start gap-3 cursor-pointer p-2 rounded hover:bg-surface-light transition">
-                  <input
-                    type="checkbox"
-                    checked={checklist.systemdRecovery}
-                    onChange={() => toggleCheck("systemdRecovery")}
-                    className="mt-0.5 accent-primary h-4 w-4 rounded"
-                  />
-                  <span className={checklist.systemdRecovery ? "text-text-primary" : "text-text-muted line-through"}>
-                    Infrastructure fault tolerance: systemd service isolation with Restart=on-failure verified.
+                    Community safety &amp; anti-phishing: link scanners and verified role gates active.
                   </span>
                 </label>
               </div>
             </div>
+
           </section>
 
           {/* ------------------------------------------------------
-              SECTION 07: TECH STACK & TOOLS
+              SECTION 07: TEAM FEEDBACK & MANAGER REVIEWS
               ------------------------------------------------------ */}
-          <section id="stack" className="scroll-mt-32">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                07 &middot; TOOLS &amp; TECHNOLOGIES
-              </span>
-              <span className="h-px flex-1 bg-border" aria-hidden="true" />
+          <section id="reviews" className="scroll-mt-32 space-y-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
+                  07 &middot; TEAM PRAISE &amp; MANAGER REVIEWS
+                </span>
+                <span className="h-px flex-1 bg-border" aria-hidden="true" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
+                Real Feedback &amp; Peer Recognition
+              </h2>
+              <p className="text-base text-text-secondary max-w-2xl">
+                Unfiltered feedback from team leads, managers, and peers on work ethic, communication, initiative, and problem solving.
+              </p>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
-              Technologies &amp; Ecosystem
-            </h2>
-            <p className="text-base text-text-secondary mb-10 max-w-2xl">
-              A battle-tested stack spanning autonomous agent orchestration, Discord bot development, low-level server environments, and modern edge web platforms.
-            </p>
-
-            <div className="space-y-6">
+            <div className="grid gap-6 md:grid-cols-2">
               
-              <div className="glass-card p-6 border border-card-border">
-                <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-4">
-                  Discord &amp; Community Bot Engineering
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  {["Discord API / Gateway", "discord.js / discord.py", "Slash Commands & Subcommands", "Interactive Embeds & Buttons", "Top.gg Integration", "AutoMod & Anti-Spam", "OAuth2 Server Verification"].map((t) => (
-                    <span key={t} className="rounded-md border border-card-border bg-surface px-3 py-1.5 text-xs font-mono text-text-primary hover:border-primary/50 transition">
-                      {t}
-                    </span>
-                  ))}
+              {/* Review 1: Avocado DAO Team Kudos */}
+              <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
+                <div>
+                  <div
+                    className="relative aspect-[9/16] max-h-80 w-full overflow-hidden rounded-lg border border-card-border mb-4 cursor-pointer group bg-black/40 flex items-center justify-center"
+                    onClick={() => setActiveLightbox({
+                      src: "/images/proof-team-kudos-avocado.webp",
+                      title: "Avocado DAO · Innovation Kudos Workflow",
+                      subtitle: "Official Marketing Team Slack/Discord Recognition"
+                    })}
+                  >
+                    <Image
+                      src="/images/proof-team-kudos-avocado.webp"
+                      alt="Team Kudos Slack Discord Recognition"
+                      fill
+                      className="object-contain p-1 group-hover:scale-[1.02] transition duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                      <span className="rounded bg-black/80 px-3 py-1 text-xs font-mono text-white">
+                        Click to enlarge proof 🔍
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-1">
+                    AVOCADO DAO &middot; MARKETING WORKFLOW
+                  </div>
+                  <h3 className="text-lg font-bold text-text-primary mb-2">
+                    &ldquo;Living up to our Innovation value!&rdquo;
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed italic mb-4">
+                    &ldquo;Sergeo recently joined the marketing team and has already hit the ground running with fresh ideas. Expect to see more in-depth GameFi content on Avocado&apos;s Twitter, all thanks to his initiative. Kudos, Sergeo!&rdquo;
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
+                  <span>Recognition: Innovation &amp; Initiative</span>
+                  <span className="text-emerald-400 font-semibold">&check; Team Kudos</span>
                 </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-4">
-                  AI Systems &amp; LLM Architecture
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  {["Anthropic Claude (3.7 / 3.5)", "OpenAI GPT-4o", "OpenRouter", "Hermes Agent Platform", "OpenClaw Engine", "Prompt Architecture", "Vector Embeddings", "Multi-Agent Protocols", "Tool & Function Calling"].map((t) => (
-                    <span key={t} className="rounded-md border border-card-border bg-surface px-3 py-1.5 text-xs font-mono text-text-primary hover:border-primary/50 transition">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              {/* Review 2: Manager Review */}
+              <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
+                <div>
+                  <div
+                    className="relative aspect-[9/16] max-h-80 w-full overflow-hidden rounded-lg border border-card-border mb-4 cursor-pointer group bg-black/40 flex items-center justify-center"
+                    onClick={() => setActiveLightbox({
+                      src: "/images/proof-manager-review.webp",
+                      title: "Manager Performance Review",
+                      subtitle: "Evaluation of Responsibility, Troubleshooting & Escalation"
+                    })}
+                  >
+                    <Image
+                      src="/images/proof-manager-review.webp"
+                      alt="Manager Review on Work Ethic"
+                      fill
+                      className="object-contain p-1 group-hover:scale-[1.02] transition duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                      <span className="rounded bg-black/80 px-3 py-1 text-xs font-mono text-white">
+                        Click to enlarge proof 🔍
+                      </span>
+                    </div>
+                  </div>
 
-              <div className="glass-card p-6 border border-card-border">
-                <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-4">
-                  Frontend &amp; Full-Stack Applications
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  {["Next.js 16 (App Router)", "React 19", "TypeScript", "Tailwind CSS v4", "Turbopack", "Framer Motion", "Python (FastAPI / Flask)", "RESTful APIs"].map((t) => (
-                    <span key={t} className="rounded-md border border-card-border bg-surface px-3 py-1.5 text-xs font-mono text-text-primary hover:border-primary/50 transition">
-                      {t}
-                    </span>
-                  ))}
+                  <div className="font-mono text-xs text-emerald-400 font-semibold mb-1">
+                    LEADERSHIP EVALUATION
+                  </div>
+                  <h3 className="text-lg font-bold text-text-primary mb-2">
+                    &ldquo;Responsible, on time, good at finding solutions&rdquo;
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed italic mb-4">
+                    &ldquo;I&apos;m delighted to have you on board as a team member. You have been responsible so far, being on time for work and all. Good skills in troubleshooting and finding solutions. Follows protocol well and you can make active decisions in escalating issues upwards.&rdquo;
+                  </p>
                 </div>
-              </div>
-
-              <div className="glass-card p-6 border border-card-border">
-                <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-4">
-                  Databases, CMS &amp; Data Layers
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  {["PostgreSQL", "MySQL 8.4", "Redis", "Supabase", "Notion API (Headless CMS)", "SQLX / Schema Migrations"].map((t) => (
-                    <span key={t} className="rounded-md border border-card-border bg-surface px-3 py-1.5 text-xs font-mono text-text-primary hover:border-primary/50 transition">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="glass-card p-6 border border-card-border">
-                <h3 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-4">
-                  Infrastructure, Cloud &amp; DevOps
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  {["Ubuntu Linux VPS", "Docker & Docker Compose", "Caddy (Automatic Let's Encrypt TLS)", "systemd Service Isolation", "Cloudflare DNS", "Vercel Edge Network", "Git / GitHub", "Bash Automation Scripts"].map((t) => (
-                    <span key={t} className="rounded-md border border-card-border bg-surface px-3 py-1.5 text-xs font-mono text-text-primary hover:border-primary/50 transition">
-                      {t}
-                    </span>
-                  ))}
+                <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
+                  <span>Evaluation: Punctuality &amp; Troubleshooting</span>
+                  <span className="text-emerald-400 font-semibold">&check; Verified Review</span>
                 </div>
               </div>
 
@@ -1264,12 +1247,46 @@ export default function PortfolioClient() {
               Official Certifications &amp; Credentials
             </h2>
             <p className="text-base text-text-secondary mb-10 max-w-2xl">
-              Backed by authentic, verifiable badges and certificates across AI systems, ethical hacking, network defense, and community operations. Click any credential to inspect the full document.
+              Authentic credentials in community management, artificial intelligence, and cybersecurity. Click any certificate to inspect the full document.
             </p>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               
-              {/* 1. Claude Academy: AI Fluency */}
+              {/* 1. Profunda W3 Academy: Community & Collaboration Management */}
+              <div
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
+                onClick={() => setActiveLightbox({
+                  src: "/images/cert-profunda-community.webp",
+                  title: "Profunda W3 Academy · Certificate of Achievement",
+                  subtitle: "Cohort 3.0 'The Soul' · Community & Collaboration Management"
+                })}
+              >
+                <div>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/50 border border-card-border mb-3 group-hover:scale-[1.02] transition">
+                    <Image
+                      src="/images/cert-profunda-community.webp"
+                      alt="Profunda W3 Academy Community Management Certificate"
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <div className="font-mono text-[11px] text-primary-light font-semibold mb-1">
+                    PROFUNDA W3 ACADEMY &middot; 2024
+                  </div>
+                  <h3 className="text-sm font-bold text-text-primary mb-1">
+                    Community &amp; Collaboration Management
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Certified in community architecture, moderation workflows, and team collaboration fundamentals.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span className="text-emerald-400 font-semibold">&check; Official Cert</span>
+                  <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
+                </div>
+              </div>
+
+              {/* 2. Claude Academy: AI Fluency */}
               <div
                 className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
                 onClick={() => setActiveLightbox({
@@ -1304,7 +1321,7 @@ export default function PortfolioClient() {
                 </div>
               </div>
 
-              {/* 2. Claude Academy: Human-Agent Teams */}
+              {/* 3. Claude Academy: Human-Agent Teams */}
               <div
                 className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
                 onClick={() => setActiveLightbox({
@@ -1339,7 +1356,7 @@ export default function PortfolioClient() {
                 </div>
               </div>
 
-              {/* 3. EC-Council: Ethical Hacking Essentials (EHE) */}
+              {/* 4. EC-Council: Ethical Hacking Essentials (EHE) */}
               <div
                 className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
                 onClick={() => setActiveLightbox({
@@ -1373,7 +1390,7 @@ export default function PortfolioClient() {
                 </div>
               </div>
 
-              {/* 4. EC-Council: Network Defense Essentials (NDE) */}
+              {/* 5. EC-Council: Network Defense Essentials (NDE) */}
               <div
                 className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
                 onClick={() => setActiveLightbox({
@@ -1399,40 +1416,6 @@ export default function PortfolioClient() {
                   </h3>
                   <p className="text-xs text-text-secondary leading-relaxed">
                     Network security protocols, port hardening, firewall rules, encryption, and intrusion detection.
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
-                  <span className="text-emerald-400 font-semibold">&check; Official Cert</span>
-                  <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
-                </div>
-              </div>
-
-              {/* 5. EC-Council: Certified Secure Computer User (CSCU) */}
-              <div
-                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-primary/50 transition"
-                onClick={() => setActiveLightbox({
-                  src: "/images/cert-ecc-cscu.webp",
-                  title: "Certified Secure Computer User (CSCU)",
-                  subtitle: "EC-Council · Cert #ECC2901748365"
-                })}
-              >
-                <div>
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/50 border border-card-border mb-3 group-hover:scale-[1.02] transition">
-                    <Image
-                      src="/images/cert-ecc-cscu.webp"
-                      alt="EC-Council Certified Secure Computer User Certificate"
-                      fill
-                      className="object-contain p-2"
-                    />
-                  </div>
-                  <div className="font-mono text-[11px] text-emerald-400 font-semibold mb-1">
-                    EC-COUNCIL &middot; ECC2901748365
-                  </div>
-                  <h3 className="text-sm font-bold text-text-primary mb-1">
-                    Certified Secure Computer User
-                  </h3>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    Endpoint protection, identity theft defense, anti-phishing hygiene, and data risk governance.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
@@ -1490,10 +1473,10 @@ export default function PortfolioClient() {
                   09 &middot; GET IN TOUCH
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-4">
-                  Your business has work to get done. Let&apos;s make it autonomous.
+                  Have work to get done? Let&apos;s make it happen.
                 </h2>
                 <p className="text-sm md:text-base text-text-secondary leading-relaxed mb-8">
-                  Whether you are looking to deploy custom Discord bots, an autonomous conversational commerce engine, or resilient multi-agent infrastructure, I bring architectural clarity and hands-on execution.
+                  Whether you need full community management, video editing, custom Discord bots, or streamlined AI workflow automations, I bring hands-on dedication, clear communication, and reliable execution.
                 </p>
 
                 {/* Working Availability Matrix */}
@@ -1504,11 +1487,11 @@ export default function PortfolioClient() {
                   </div>
                   <div className="rounded-lg bg-surface p-4 border border-card-border">
                     <span className="text-text-muted block mb-1">// Time Zone</span>
-                    <span className="text-text-primary font-semibold">WAT (UTC+1)</span>
+                    <span className="text-text-primary font-semibold">WAT (UTC+1) &middot; Flexible</span>
                   </div>
                   <div className="rounded-lg bg-surface p-4 border border-card-border">
-                    <span className="text-text-muted block mb-1">// Engagement</span>
-                    <span className="text-primary-light font-semibold">Custom Bots &amp; AI Systems</span>
+                    <span className="text-text-muted block mb-1">// Roles</span>
+                    <span className="text-primary-light font-semibold">Community &middot; Video &middot; Bots &middot; AI</span>
                   </div>
                 </div>
 
@@ -1534,7 +1517,7 @@ export default function PortfolioClient() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded border border-card-border bg-surface px-6 py-3.5 text-sm font-medium text-primary-light transition hover:bg-surface-light"
                   >
-                    <span>View Groply Repo</span>
+                    <span>View Public Code</span>
                   </a>
                 </div>
               </div>
