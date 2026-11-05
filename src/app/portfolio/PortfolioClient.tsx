@@ -535,6 +535,7 @@ export default function PortfolioClient() {
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               
+              {/* Capability 01 */}
               <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
                 <div>
                   <div className="font-mono text-xs text-primary-light font-semibold mb-2">01 / CONTENT &amp; MEDIA</div>
@@ -550,39 +551,26 @@ export default function PortfolioClient() {
                 </div>
               </div>
 
+              {/* Capability 02 */}
               <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
                 <div>
-                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">02 / COMMUNITY &amp; SUPPORT</div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">02 / COMMUNITY &amp; SOCIAL OPS</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
-                    Community Management &amp; Moderation
+                    Community Management &amp; Social Media Strategy
                   </h3>
                   <p className="text-xs text-text-secondary leading-relaxed">
-                    Full management of Discord and Telegram servers: welcoming members, moderating discussions, setting up role hierarchies, organizing game nights, and running prompt support queues.
+                    Full management of Discord and Telegram servers: welcoming members, moderating discussions, role hierarchies, organizing game nights, and running prompt support queues. Plus social media content calendars, engaging Twitter/X threads, and organic growth campaigns with verifiable metric tracking.
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
-                  Telegram &middot; Discord &middot; Slack &middot; Zendesk
+                  Discord &middot; Telegram &middot; Twitter/X &middot; Slack &middot; Zendesk &middot; Notion
                 </div>
               </div>
 
+              {/* Capability 03 */}
               <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
                 <div>
-                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">03 / SOCIAL &amp; GROWTH</div>
-                  <h3 className="text-base font-semibold text-text-primary mb-2">
-                    Social Media Strategy &amp; Marketing
-                  </h3>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    Planning content calendars, writing engaging Twitter/X threads, running zero-sponsorship organic growth campaigns, and boosting community participation with verifiable metric logs.
-                  </p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
-                  Twitter/X &middot; Notion &middot; Metric Tracking
-                </div>
-              </div>
-
-              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
-                <div>
-                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">04 / DISCORD BOT CREATION</div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">03 / DISCORD BOT CREATION</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
                     Custom Discord Bots for Any Server
                   </h3>
@@ -595,9 +583,10 @@ export default function PortfolioClient() {
                 </div>
               </div>
 
+              {/* Capability 04 */}
               <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
                 <div>
-                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">05 / OPERATIONS &amp; ADMIN</div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">04 / OPERATIONS &amp; ADMIN</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
                     Project Management &amp; Office Systems
                   </h3>
@@ -610,9 +599,10 @@ export default function PortfolioClient() {
                 </div>
               </div>
 
-              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between">
+              {/* Capability 05 */}
+              <div className="glass-card p-6 border border-card-border hover:border-primary/40 transition flex flex-col justify-between md:col-span-2 lg:col-span-1">
                 <div>
-                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">06 / AI AUTOMATION</div>
+                  <div className="font-mono text-xs text-primary-light font-semibold mb-2">05 / AI AUTOMATION</div>
                   <h3 className="text-base font-semibold text-text-primary mb-2">
                     AI Systems &amp; Workflow Automations
                   </h3>
@@ -921,11 +911,73 @@ export default function PortfolioClient() {
                 Community Management, Event Hosting &amp; Growth
               </h2>
               <p className="text-base text-text-secondary max-w-2xl">
-                Real proof of work: organizing live game nights, driving organic community engagement without ad spend, and managing schedules with structured Notion trackers.
+                Real proof of work: enterprise Web3 community moderation, live gaming event hosting, and organic engagement without ad spend.
               </p>
             </div>
 
-            {/* Visual Proof 1: Organic Growth Metrics Showcase */}
+            {/* Visual Proof 1: Avocado DAO Enterprise Community Moderation */}
+            <div className="glass-card p-8 border border-card-border rounded-xl">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-6 w-28 flex-shrink-0">
+                    <Image
+                      src="/images/logo-avocado-dao.webp"
+                      alt="Avocado DAO Official Logo"
+                      fill
+                      className="object-contain object-left"
+                    />
+                  </div>
+                  <span className="font-mono text-xs text-primary-light font-semibold uppercase">
+                    AVOCADO DAO &middot; COMMUNITY MODERATION
+                  </span>
+                </div>
+                <span className="rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-mono text-xs px-3 py-1 font-semibold">
+                  &check; June 2024 &ndash; June 2025
+                </span>
+              </div>
+
+              {/* Exact user-specified block */}
+              <p className="text-base md:text-lg text-text-primary leading-relaxed mb-6 font-medium">
+                At Avocado DAO, June 2024 to June 2025, I moderated communities of up to 118,000 members on Discord, 10,000 members on Telegram, and a 90,000 follower account on X, each counted on its own platform. I also ran a 30-day security awareness campaign there.
+              </p>
+
+              {/* Platform Scale Breakdown Cards (each counted on its own platform, not added together) */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-xs mb-6">
+                <div className="rounded-lg bg-surface p-4 border border-card-border text-center">
+                  <span className="text-2xl font-bold text-text-primary block mb-1">118,000</span>
+                  <span className="text-text-muted text-[11px]">Discord Members</span>
+                </div>
+                <div className="rounded-lg bg-surface p-4 border border-card-border text-center">
+                  <span className="text-2xl font-bold text-primary-light block mb-1">10,000</span>
+                  <span className="text-text-muted text-[11px]">Telegram Members</span>
+                </div>
+                <div className="rounded-lg bg-surface p-4 border border-card-border text-center">
+                  <span className="text-2xl font-bold text-text-primary block mb-1">90,000</span>
+                  <span className="text-text-muted text-[11px]">Followers on X</span>
+                </div>
+                <div className="rounded-lg bg-surface p-4 border border-card-border text-center">
+                  <span className="text-2xl font-bold text-emerald-400 block mb-1">30 Days</span>
+                  <span className="text-text-muted text-[11px]">Security Campaign</span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-card-border flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-text-muted">
+                <span>Credential: Official Certificate of Employment &amp; Recommendation</span>
+                <button
+                  type="button"
+                  onClick={() => setActiveLightbox({
+                    src: "/images/avocado-dao-coe.webp",
+                    title: "Avocado DAO · Certificate of Employment & Recommendation",
+                    subtitle: "Signed by David Shi, Chief of Operations (COO)"
+                  })}
+                  className="text-primary-light hover:underline font-semibold"
+                >
+                  View Signed Recommendation Letter &rarr;
+                </button>
+              </div>
+            </div>
+
+            {/* Visual Proof 2: Prime Nexus Organic Growth Metrics Showcase */}
             <div className="glass-card p-8 border border-card-border rounded-xl">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
                 <div>
@@ -988,7 +1040,7 @@ export default function PortfolioClient() {
               </div>
             </div>
 
-            {/* Visual Proof 2: Real Notion Event Execution Tracker */}
+            {/* Visual Proof 3: Real Notion Event Execution Tracker */}
             <div className="glass-card p-8 border border-card-border rounded-xl">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                 <div>
