@@ -144,7 +144,7 @@ export default function PortfolioClient() {
     : softwareTools.filter((t) => t.category === activeToolCategory);
 
   return (
-    <div className="relative mx-auto w-full max-w-7xl pt-36 pb-24 px-6 md:px-12">
+    <div className="relative w-full pt-28 md:pt-32 pb-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
       
       {/* Lightbox Modal for Certificate / Proof / Video Inspection */}
       {activeLightbox && (
@@ -210,7 +210,7 @@ export default function PortfolioClient() {
         </div>
       )}
 
-      <div className="lg:grid lg:grid-cols-[300px_1fr] lg:gap-14 xl:grid-cols-[320px_1fr]">
+      <div className="lg:grid lg:grid-cols-[280px_1fr] lg:gap-8 xl:grid-cols-[320px_1fr] xl:gap-10 2xl:grid-cols-[360px_1fr] 2xl:gap-12">
         
         {/* ========================================================
             LEFT STICKY SIDEBAR (Executive Identity & Navigation)
@@ -220,18 +220,14 @@ export default function PortfolioClient() {
             
             {/* Identity Card */}
             <div className="glass-card p-6 border border-card-border">
-              {/* Emblem */}
+              {/* Profile Avatar (SN Monogram - Sergeo Ndonwi) */}
               <div className="mb-5 flex items-center justify-between">
-                <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.04] border border-white/10 p-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] backdrop-blur-md">
-                  <Image
-                    src="/images/blockframe-3d-badge.png"
-                    alt="BlockFrame Emblem"
-                    width={52}
-                    height={52}
-                    className="object-contain"
-                  />
-                  <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#0d1117] border border-white/20 text-[9px] font-mono text-white/90">
-                    &gt;_
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-white/[0.12] via-white/[0.05] to-white/[0.02] border border-white/15 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-md">
+                  <span className="font-sans text-xl font-bold tracking-wider text-white select-none">
+                    SN
+                  </span>
+                  <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#0d1117] border border-white/20">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400" />
                   </span>
                 </div>
                 <div className="flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1">
@@ -466,7 +462,7 @@ export default function PortfolioClient() {
                     Auto-Tailored
                   </span>
                 </div>
-                <p className="text-xs text-text-secondary max-w-xl">
+                <p className="text-xs text-text-secondary max-w-3xl">
                   Hiring for a specific role? Pick your discipline below to generate a tailored, print-ready 1-page PDF highlighting the exact metrics, tools, and experience relevant to your post.
                 </p>
               </div>
@@ -524,7 +520,7 @@ export default function PortfolioClient() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
               What I Can Do For Your Business
             </h2>
-            <p className="text-base text-text-secondary mb-10 max-w-2xl">
+            <p className="text-base text-text-secondary mb-10 max-w-4xl">
               Flexible skills designed to remove bottlenecks, produce high-retention media, keep communities engaged, and automate repetitive tasks.
             </p>
 
@@ -627,7 +623,7 @@ export default function PortfolioClient() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
                 Apps &amp; Software Tools I Use Daily
               </h2>
-              <p className="text-base text-text-secondary max-w-2xl">
+              <p className="text-base text-text-secondary max-w-4xl">
                 I am hands-on and comfortable with modern project management tools, customer support software, community platforms, spreadsheet applications, and creative media suites.
               </p>
             </div>
@@ -658,7 +654,7 @@ export default function PortfolioClient() {
             </div>
 
             {/* Apps Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
               {filteredTools.map((tool) => (
                 <div
                   key={tool.name}
@@ -708,7 +704,7 @@ export default function PortfolioClient() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
                 Video Edits &amp; Commercial Motion Samples
               </h2>
-              <p className="text-base text-text-secondary max-w-2xl">
+              <p className="text-base text-text-secondary max-w-4xl">
                 High-impact video editing designed for customer retention: kinetic typography, SaaS product walkthroughs, synchronized audio design, and modern brand aesthetic. Press play below to watch.
               </p>
             </div>
@@ -905,7 +901,7 @@ export default function PortfolioClient() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
                 Community Management, Event Hosting &amp; Growth
               </h2>
-              <p className="text-base text-text-secondary max-w-2xl">
+              <p className="text-base text-text-secondary max-w-4xl">
                 Real proof of work: enterprise Web3 community moderation, live gaming event hosting, and organic engagement without ad spend.
               </p>
             </div>
@@ -1093,7 +1089,7 @@ export default function PortfolioClient() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
                 Custom Discord Bots for Any Server &amp; Task
               </h2>
-              <p className="text-base text-text-secondary max-w-2xl">
+              <p className="text-base text-text-secondary max-w-4xl">
                 I design, code, and host verified Discord applications for community gamification, onboarding gates, automated ticketing, moderation, and API webhooks.
               </p>
             </div>
@@ -1168,7 +1164,7 @@ export default function PortfolioClient() {
               </div>
 
               {/* Realistic Discord Embed Preview */}
-              <div className="rounded-xl border border-card-border bg-[#313338] p-5 font-sans text-xs text-[#dbdee1] shadow-2xl max-w-2xl">
+              <div className="rounded-xl border border-card-border bg-[#313338] p-5 font-sans text-xs text-[#dbdee1] shadow-2xl w-full max-w-3xl xl:max-w-4xl">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/10 bg-[#1e1f22]">
                     <Image src="/images/logo-ignition.webp" alt="Ignition" fill className="object-cover" />
@@ -1252,7 +1248,7 @@ export default function PortfolioClient() {
               </p>
 
               {/* Realistic Security Embed */}
-              <div className="rounded-xl border border-card-border bg-[#313338] p-5 font-sans text-xs text-[#dbdee1] shadow-2xl max-w-2xl">
+              <div className="rounded-xl border border-card-border bg-[#313338] p-5 font-sans text-xs text-[#dbdee1] shadow-2xl w-full max-w-3xl xl:max-w-4xl">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/10 bg-[#1e1f22]">
                     <Image src="/images/blockframe-bot-avatar.png" alt="Prime Ops" fill className="object-contain p-0.5" />
@@ -1309,7 +1305,7 @@ export default function PortfolioClient() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
                 Autonomous Software &amp; Content Engines
               </h2>
-              <p className="text-base text-text-secondary max-w-2xl">
+              <p className="text-base text-text-secondary max-w-4xl">
                 Real code running in production: eliminating manual work and driving measurable business results.
               </p>
             </div>
@@ -1372,7 +1368,7 @@ export default function PortfolioClient() {
                     <span className="text-text-muted">Automated Session #BF-9042</span>
                   </div>
 
-                  <div className="space-y-3 font-sans text-xs max-w-lg">
+                  <div className="space-y-3 font-sans text-xs max-w-xl xl:max-w-2xl">
                     <div className="flex justify-start">
                       <div className="rounded-lg bg-[#202c33] p-3 text-text-primary max-w-[85%] shadow-sm">
                         <p className="font-semibold text-[10px] text-emerald-400 mb-0.5">Customer &middot; +237 671... </p>
@@ -1527,7 +1523,7 @@ export default function PortfolioClient() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
                 Real Feedback &amp; Peer Recognition
               </h2>
-              <p className="text-base text-text-secondary max-w-2xl">
+              <p className="text-base text-text-secondary max-w-4xl">
                 Unfiltered feedback from team leads, managers, and peers on work ethic, communication, initiative, and problem solving.
               </p>
             </div>
@@ -1641,7 +1637,7 @@ export default function PortfolioClient() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
               Official Certifications &amp; Credentials
             </h2>
-            <p className="text-base text-text-secondary mb-10 max-w-2xl">
+            <p className="text-base text-text-secondary mb-10 max-w-4xl">
               Authentic credentials in community management, artificial intelligence, and cybersecurity. Click any certificate to inspect the full document.
             </p>
 
@@ -1883,7 +1879,7 @@ export default function PortfolioClient() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
                 Ways to Work Together
               </h2>
-              <p className="text-base text-text-secondary max-w-2xl">
+              <p className="text-base text-text-secondary max-w-4xl">
                 Whether you need dedicated monthly capacity, a rapid project sprint, or a high-impact technical audit, choose the engagement format that matches your timeline.
               </p>
             </div>
@@ -2048,7 +2044,7 @@ export default function PortfolioClient() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
                 Frequently Asked Questions
               </h2>
-              <p className="text-base text-text-secondary max-w-2xl">
+              <p className="text-base text-text-secondary max-w-4xl">
                 Direct answers to common questions regarding onboarding, turnaround times, timezone overlap, and trial tasks.
               </p>
             </div>
@@ -2183,7 +2179,7 @@ export default function PortfolioClient() {
               ------------------------------------------------------ */}
           <section id="contact" className="scroll-mt-32">
             <div className="glass-card p-8 md:p-12 border border-white/10 bg-[#0f1217]/90 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] rounded-2xl relative overflow-hidden backdrop-blur-md">
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/90 block mb-3">
                   12 &middot; GET IN TOUCH
                 </span>

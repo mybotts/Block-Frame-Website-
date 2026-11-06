@@ -65,7 +65,7 @@ export default function Navigation() {
       </a>
 
       <nav className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-nav-bg backdrop-blur-xl" aria-label="Main navigation">
-        <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-6 md:px-12">
+        <div className="flex h-20 w-full items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
           <Link href="/" className="group flex items-center gap-3">
             <div className="relative h-10 w-10 overflow-hidden bg-surface p-1 shadow-[0_0_18px_rgba(0,0,0,0.08)]">
               <Image src="/images/logo.png" alt="BlockFrame Labs Logo" fill className="object-contain p-1" priority sizes="40px" />

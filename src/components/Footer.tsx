@@ -42,8 +42,8 @@ function FooterLink({ item }: { item: { label: string; href: string; external?: 
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 border-t border-border bg-background px-6 py-16 md:px-12">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1.2fr_2fr]">
+    <footer className="relative z-10 border-t border-border bg-background px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 py-16">
+      <div className="grid w-full gap-10 lg:grid-cols-[1.2fr_2fr]">
         <div className="max-w-md">
           <Link href="/" className="flex items-center gap-3">
             <div className="relative h-11 w-11 overflow-hidden bg-surface p-2">
@@ -81,7 +81,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 flex w-full max-w-7xl flex-col gap-3 border-t border-border pt-6 text-xs uppercase tracking-[0.18em] text-text-muted md:flex-row md:items-center md:justify-between">
+      <div className="mt-12 flex w-full flex-col gap-3 border-t border-border pt-6 text-xs uppercase tracking-[0.18em] text-text-muted md:flex-row md:items-center md:justify-between">
         <span>BlockFrame Labs</span>
         <span>&copy; {new Date().getFullYear()} All rights reserved</span>
       </div>
