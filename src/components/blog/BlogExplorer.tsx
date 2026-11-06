@@ -54,14 +54,33 @@ function wordCountOf(post: BlogPost): number {
 function sortPosts(posts: BlogPost[], sort: SortKey): BlogPost[] {
   const copy = [...posts];
   if (sort === "oldest") {
-    copy.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    copy.sort((a, b) => {
+      const d = new Date(a.date).getTime() - new Date(b.date).getTime();
+      if (d !== 0) return d;
+      const ca = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const cb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return ca - cb;
+    });
   } else if (sort === "longest") {
     copy.sort(
       (a, b) =>
-        wordCountOf(b) - wordCountOf(a) || new Date(b.date).getTime() - new Date(a.date).getTime()
+        wordCountOf(b) - wordCountOf(a) ||
+        new Date(b.date).getTime() - new Date(a.date).getTime() ||
+        (b.createdAt ? new Date(b.createdAt).getTime() : 0) - (a.createdAt ? new Date(a.createdAt).getTime() : 0)
     );
+  } else {
+    // "newest"
+    copy.sort((a, b) => {
+      const d = new Date(b.date).getTime() - new Date(a.date).getTime();
+      if (d !== 0) return d;
+      const ca = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const cb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      if (cb !== ca) return cb - ca;
+      const au = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
+      const bu = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
+      return bu - au;
+    });
   }
-  // "newest" keeps the server order (date desc, updatedAt tie-break).
   return copy;
 }
 

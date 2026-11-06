@@ -38,11 +38,17 @@ export async function getApprovedPosts(): Promise<BlogPost[]> {
   try {
     const rawPages = await queryPosts(APPROVED_FILTER);
     const posts = rawPages.map(notionPageToBlogPost).filter((p) => p.status === "approved");
-    // Newest first everywhere. Tie-break same-day posts by Notion last-edit time
-    // (minute precision) so "latest post at the top" matches reality.
+    // Newest first everywhere.
+    // 1. Primary sort: Publication date (date string or ISO timestamp).
+    // 2. Secondary sort: Page creation timestamp (createdAt) as deterministic tie-breaker
+    //    for multiple posts published on the same date (newest creation first).
+    // 3. Fallback: updatedAt for any remaining ties.
     posts.sort((a, b) => {
       const d = new Date(b.date).getTime() - new Date(a.date).getTime();
       if (d !== 0) return d;
+      const ca = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const cb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      if (cb !== ca) return cb - ca;
       const au = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
       const bu = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
       return bu - au;
@@ -156,7 +162,15 @@ export async function getPopularPosts(limit = 5): Promise<BlogPost[]> {
   const cutoff = Date.now() - 30 * 24 * 60 * 60 * 1000;
   return posts
     .filter((p) => new Date(p.date).getTime() >= cutoff)
-    .sort((a, b) => wordCount(b) - wordCount(a) || new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort((a, b) => {
+      const wcDiff = wordCount(b) - wordCount(a);
+      if (wcDiff !== 0) return wcDiff;
+      const d = new Date(b.date).getTime() - new Date(a.date).getTime();
+      if (d !== 0) return d;
+      const ca = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const cb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return cb - ca;
+    })
     .slice(0, limit);
 }
 
@@ -200,7 +214,13 @@ export function getSeriesGroups(posts: BlogPost[]): Map<string, { name: string; 
     if (groupPosts.length < 2) continue;
     const m = groupPosts[0].title.match(/^\[([^\]]+)\]/);
     const name = m ? m[1].trim() : key;
-    groupPosts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    groupPosts.sort((a, b) => {
+      const d = new Date(a.date).getTime() - new Date(b.date).getTime();
+      if (d !== 0) return d;
+      const ca = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const cb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return ca - cb;
+    });
     result.set(key, { name, posts: groupPosts });
   }
   return result;

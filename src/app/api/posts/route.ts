@@ -77,6 +77,16 @@ export async function GET(request: NextRequest) {
     const rawPages = await queryPosts(notionFilter);
     // Fetch full BlogPost for each page (includes children if Content empty)
     const posts = await Promise.all(rawPages.map(p => fetchBlogPostWithBlocks(p.id)));
+    posts.sort((a, b) => {
+      const d = new Date(b.date).getTime() - new Date(a.date).getTime();
+      if (d !== 0) return d;
+      const ca = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const cb = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      if (cb !== ca) return cb - ca;
+      const au = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
+      const bu = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
+      return bu - au;
+    });
     const response = NextResponse.json({ posts });
     response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     response.headers.set('Pragma', 'no-cache');

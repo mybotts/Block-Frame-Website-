@@ -76,26 +76,57 @@ export function serializeBlocks(blocks: Block[]): string {
   return JSON.stringify(blocks)
 }
 
-// Query posts
-export async function queryPosts(filter: any, sorts: any[] = [{ property: 'Date', direction: 'descending' as const }]) {
+// Query posts (with full pagination and deterministic secondary sort)
+export async function queryPosts(
+  filter: any,
+  sorts: any[] = [
+    { property: 'Date', direction: 'descending' as const },
+    { timestamp: 'created_time', direction: 'descending' as const },
+  ]
+) {
   const dbId = getPostsDatabaseId()
-  const response = await notion.databases.query({
-    database_id: dbId,
-    filter,
-    sorts,
-  })
-  return response.results
+  const results: any[] = []
+  let cursor: string | undefined = undefined
+  let hasMore = true
+
+  while (hasMore) {
+    const response: any = await notion.databases.query({
+      database_id: dbId,
+      filter,
+      sorts,
+      start_cursor: cursor,
+      page_size: 100,
+    })
+    results.push(...response.results)
+    hasMore = response.has_more
+    cursor = response.next_cursor || undefined
+  }
+  return results
 }
 
-// Query products
-export async function queryProducts(filter: any, sorts: any[] = [{ property: 'Title', direction: 'descending' as const }]) {
+// Query products (with full pagination)
+export async function queryProducts(
+  filter: any,
+  sorts: any[] = [{ property: 'Title', direction: 'descending' as const }]
+) {
   const dbId = getProductsDatabaseId()
-  const response = await notion.databases.query({
-    database_id: dbId,
-    filter,
-    sorts,
-  })
-  return response.results
+  const results: any[] = []
+  let cursor: string | undefined = undefined
+  let hasMore = true
+
+  while (hasMore) {
+    const response: any = await notion.databases.query({
+      database_id: dbId,
+      filter,
+      sorts,
+      start_cursor: cursor,
+      page_size: 100,
+    })
+    results.push(...response.results)
+    hasMore = response.has_more
+    cursor = response.next_cursor || undefined
+  }
+  return results
 }
 
 // Create a post page
@@ -279,7 +310,7 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
   const category = getText(props.Category)
   const categorySlug = category.toLowerCase().replace(/\s+/g, '-')
   const excerpt = getText(props.Excerpt) || ''
-  const date = getText(props.Date) || new Date().toISOString().split('T')[0]
+  const date = getText(props.Date) || (page as any).created_time?.split('T')[0] || new Date().toISOString().split('T')[0]
   const status = getText(props.Status).toLowerCase() as 'pending' | 'approved' | 'rejected'
   const author = getText(props.Author) || 'BlockFrameLabs'
 
@@ -328,6 +359,7 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
     category: category as 'AI News' | 'Guides',
     categorySlug,
     date,
+    createdAt: (page as any).created_time || undefined,
     updatedAt: (page as any).last_edited_time || undefined,
     thumbnail: (() => {
       const raw = props.Thumbnail?.url || props.Thumbnail?.rich_text?.[0]?.plain_text || props.Thumbnail?.files?.[0]?.file?.url || props.Thumbnail?.files?.[0]?.external?.url || undefined;
@@ -398,7 +430,8 @@ export function notionPageToBlogPost(page: any): BlogPost {
     excerpt: getText(props.Excerpt) || '',
     category: category as 'AI News' | 'Guides',
     categorySlug,
-    date: getText(props.Date) || new Date().toISOString().split('T')[0],
+    date: getText(props.Date) || (page as any).created_time?.split('T')[0] || new Date().toISOString().split('T')[0],
+    createdAt: (page as any).created_time || undefined,
     updatedAt: (page as any).last_edited_time || undefined,
     thumbnail: (() => {
       const raw = props.Thumbnail?.url || props.Thumbnail?.rich_text?.[0]?.plain_text || props.Thumbnail?.files?.[0]?.file?.url || props.Thumbnail?.files?.[0]?.external?.url || undefined;

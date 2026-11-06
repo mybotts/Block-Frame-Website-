@@ -26,6 +26,8 @@ export interface BlogPost {
   category: string;
   categorySlug: string;
   date: string;
+  /** Notion page created_time (ISO) — used as true tie-breaker for publication order */
+  createdAt?: string;
   /** Notion last_edited_time (ISO) — used for dateModified in schema */
   updatedAt?: string;
   /** Card/share thumbnail URL (Notion "Thumbnail" url property). Falls back to first image/video frame in blocks. */
