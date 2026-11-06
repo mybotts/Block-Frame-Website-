@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { queryPosts, fetchBlogPostWithBlocks, createPostPage, appendBlocksToPage } from "@/lib/notionClient";
+import { queryPosts, notionPageToBlogPost, createPostPage, appendBlocksToPage } from "@/lib/notionClient";
 import { Block } from "@/lib/types";
 
 const BASE_URL = "https://www.blockframe.cloud";
@@ -75,8 +75,7 @@ export async function GET(request: NextRequest) {
     }
 
     const rawPages = await queryPosts(notionFilter);
-    // Fetch full BlogPost for each page (includes children if Content empty)
-    const posts = await Promise.all(rawPages.map(p => fetchBlogPostWithBlocks(p.id)));
+    const posts = rawPages.map(notionPageToBlogPost);
     posts.sort((a, b) => {
       const d = new Date(b.date).getTime() - new Date(a.date).getTime();
       if (d !== 0) return d;
