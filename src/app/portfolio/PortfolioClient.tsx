@@ -709,7 +709,7 @@ export default function PortfolioClient() {
               </p>
             </div>
 
-            <div className="grid gap-8 lg:grid-cols-2">
+            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
               
               {/* Video 1: TinyFish Commercial */}
               <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
@@ -866,6 +866,108 @@ export default function PortfolioClient() {
                       src: "/videos/cambrian-defi-explainer.mp4",
                       title: "Cambrian AI x DeFi Explainer Video",
                       subtitle: "Edited by Sergeo · 2D Motion Graphics & Explainer Video",
+                      isVideo: true
+                    })}
+                    className="text-primary-light hover:underline font-semibold"
+                  >
+                    Cinema Mode ↗
+                  </button>
+                </div>
+              </div>
+
+              {/* Video 3: Lebrel AI Commercial */}
+              <div className="glass-card p-6 border border-card-border rounded-xl flex flex-col justify-between">
+                <div>
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black border border-card-border shadow-lg mb-4">
+                    <video
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster="/images/poster-lebrel-ai.webp"
+                      className="h-full w-full object-cover rounded-xl"
+                    >
+                      <source src="/videos/lebrel-ai-commercial.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded-md bg-white/[0.04] border border-white/10 px-2.5 py-0.5 text-[10px] font-mono text-text-secondary shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+                        Launch Commercial
+                      </span>
+                      <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                        3D Motion &amp; VFX
+                      </span>
+                      <span className="rounded bg-surface-light border border-card-border px-2 py-0.5 text-[10px] font-mono text-text-muted">
+                        1080p 60fps
+                      </span>
+                    </div>
+                    <div className="relative h-6 w-20 flex-shrink-0 flex items-center justify-end">
+                      <div className="relative h-6 w-6 rounded-full overflow-hidden border border-white/20">
+                        <Image
+                          src="/images/logo-lebrel.webp"
+                          alt="Lebrel AI Logo"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-text-primary mb-2">
+                    Lebrel AI: Frontier AI Verification Commercial
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed mb-3">
+                    Fast-paced Web3 &amp; AI product reveal showcasing verifiable inference, Solana cryptographic signing, hardware enclaves, and uncensored models. Built for viral social distribution.
+                  </p>
+
+                  {/* Micro-Metrics & Deliverables */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4 pt-3 border-t border-card-border/60 text-xs font-mono">
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Hook Cadence</span>
+                      <span className="text-emerald-400 font-semibold">High Retention</span>
+                    </div>
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Deliverables</span>
+                      <span className="text-text-primary font-semibold">1080p 60fps Master</span>
+                    </div>
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Proof Link</span>
+                      <a
+                        href="https://x.com/sergeo_n/status/2119070670332076118"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-light font-semibold hover:underline truncate block"
+                      >
+                        Live on X ↗
+                      </a>
+                    </div>
+                    <div className="rounded bg-surface p-2 border border-card-border">
+                      <span className="text-[10px] text-text-muted block">Audio Sync</span>
+                      <span className="text-text-primary font-semibold">Sub-Bass &amp; SFX</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
+                  <div className="flex items-center gap-2">
+                    <span>Duration: 30s &middot; 60 FPS</span>
+                    <span>&middot;</span>
+                    <a
+                      href="https://x.com/sergeo_n/status/2119070670332076118"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-text-secondary hover:text-text-primary transition flex items-center gap-1"
+                    >
+                      <span>X Proof</span> ↗
+                    </a>
+                  </div>
+                  <button
+                    onClick={() => setActiveLightbox({
+                      src: "/videos/lebrel-ai-commercial.mp4",
+                      title: "Lebrel AI Launch Commercial",
+                      subtitle: "Edited by Sergeo · Verifiable AI on Solana Commercial",
                       isVideo: true
                     })}
                     className="text-primary-light hover:underline font-semibold"

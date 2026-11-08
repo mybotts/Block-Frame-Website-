@@ -62,7 +62,7 @@ const resumeRoles: RoleResumeData[] = [
         highlights: [
           "Architected Groply, an open-core autonomous AI commerce engine with multi-tenant inventory syncing across WhatsApp Cloud API and Telegram.",
           "Maintained 24/7 self-healing supervisor infrastructure on Ubuntu Linux VPS with zero unscheduled downtime across multi-agent fleets.",
-          "Produced commercial motion design videos (TinyFish SaaS commercial and Cambrian DeFi explainer) with 48h turnaround.",
+          "Produced commercial motion design videos (TinyFish SaaS commercial, Cambrian DeFi explainer, and Lebrel AI Solana launch) with 48h turnaround.",
         ],
       },
       {
@@ -96,6 +96,7 @@ const resumeRoles: RoleResumeData[] = [
     ],
     verifiableProofs: [
       { title: "TinyFish SaaS Product Launch Commercial", detail: "1080p Full HD kinetic video with bold hook architecture" },
+      { title: "Lebrel AI Verification Commercial", detail: "Fast-paced Solana & verifiable AI product reveal (verified on X: x.com/sergeo_n/status/2119070670332076118)" },
       { title: "Cambrian AI x DeFi Explainer", detail: "2D motion graphics explainer with modern UI component choreography" },
       { title: "Ignition Discord Bot Verification", detail: "Verified badge on Discord & official Top.gg listing" },
       { title: "Avocado DAO COO Recommendation", detail: "Formal letterhead credential signed by COO David Shi" },
@@ -135,6 +136,7 @@ const resumeRoles: RoleResumeData[] = [
         period: "2023 - Present",
         highlights: [
           "Edited TinyFish AI Agent SaaS launch commercial featuring bold kinetic text hook architecture, UI screen animations, and audio sync.",
+          "Produced Lebrel AI launch commercial highlighting verifiable inference and Solana cryptographic signing with high-retention motion design.",
           "Produced Cambrian DeFi Explainer video, translating complex yield protocols into clean 2D component cards with dark-mode aesthetic.",
           "Delivered client cutdowns within 24 to 48 hours with multiple aspect ratios for social distribution.",
         ],
@@ -150,7 +152,8 @@ const resumeRoles: RoleResumeData[] = [
       },
     ],
     verifiableProofs: [
-      { title: "TinyFish SaaS Launch Commercial", detail: "1080p 30fps kinetic typography commercial (viewable at blockframe.cloud/portfolio)" },
+      { title: "TinyFish SaaS Launch Commercial", detail: "1080p kinetic typography commercial (viewable at blockframe.cloud/portfolio)" },
+      { title: "Lebrel AI Frontier Verification", detail: "1080p 60fps high-retention commercial (verified on X: x.com/sergeo_n/status/2119070670332076118)" },
       { title: "Cambrian AI x DeFi Explainer", detail: "2D FinTech motion graphics explainer with layered UI components" },
       { title: "Multi-Format Deliverables", detail: "16:9 YouTube/Website cuts + 9:16 vertical TikTok/Reels edits" },
     ],
