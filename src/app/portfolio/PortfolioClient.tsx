@@ -94,28 +94,28 @@ export default function PortfolioClient() {
   const softwareTools = [
     // 1. AI Models & Autonomous Agents
     {
-      name: "Claude 3.7 Sonnet & 3.5 Haiku",
+      name: "Claude",
       category: "ai",
       role: "Hybrid reasoning architecture, agentic tool-use, vision evaluation, and production prompt architecture",
       tag: "Certified",
     },
     {
-      name: "OpenAI o3-mini & GPT-4o",
+      name: "Codex",
       category: "ai",
-      role: "Structured mathematical reasoning, low-latency function calling, and structured JSON schema outputs",
+      role: "Autonomous code synthesis, script automation, API scaffold generation, and automated refactoring pipelines",
       tag: "Advanced",
     },
     {
-      name: "DeepSeek-R1 & V3",
+      name: "Zapier / N8N",
       category: "ai",
-      role: "Open-weights reasoning distillation, cost-effective inference pipelines, and local agent deployments",
+      role: "Multi-step webhook integrations, automated cross-platform data syncing, event triggers, and self-hosted workflows",
       tag: "Advanced",
     },
     {
-      name: "Make / Zapier",
+      name: "Antigravity",
       category: "ai",
-      role: "Cross-app workflow automations, webhook bridges, and multi-step agent triggers",
-      tag: "Advanced",
+      role: "Advanced agentic coding environment, autonomous pair programming, deep repo auditing, and multi-agent workflows",
+      tag: "Builder",
     },
 
     // 2. Community & Operations Hub
@@ -150,12 +150,6 @@ export default function PortfolioClient() {
       category: "creative",
       role: "High-retention commercial video editing, kinetic typography, dynamic captions, and audio ducking",
       tag: "Advanced",
-    },
-    {
-      name: "Adobe Premiere Pro",
-      category: "creative",
-      role: "Multi-track timeline editing, audio mastering, color grading, and 60 FPS master commercial exports",
-      tag: "Proficient",
     },
     {
       name: "Canva",
@@ -610,11 +604,11 @@ export default function PortfolioClient() {
                     Video Editing &amp; Motion Design
                   </h3>
                   <p className="text-xs text-text-secondary leading-relaxed">
-                    Editing high-retention short-form videos (TikTok, Reels, Shorts), SaaS product commercials, kinetic typography, dynamic subtitles, and high-CTR thumbnail designs using CapCut, Premiere Pro, and Canva.
+                    Editing high-retention short-form videos (TikTok, Reels, Shorts), SaaS product commercials, kinetic typography, dynamic subtitles, and high-CTR thumbnail designs using CapCut, Canva, and Remotion.
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-card-border/50 text-[11px] font-mono text-text-muted">
-                  CapCut &middot; Premiere &middot; Canva &middot; Remotion
+                  CapCut &middot; Canva &middot; Remotion
                 </div>
               </div>
 
@@ -700,17 +694,17 @@ export default function PortfolioClient() {
                 Core Tool Stack &amp; Software Proficiency
               </h2>
               <p className="text-base text-text-secondary max-w-4xl">
-                Curated stack of 16 essential platforms, frontier AI models, creative media suites, and engineering tools I rely on to build, automate, and operate high-growth digital environments.
+                Curated stack of 15 essential platforms, frontier AI environments, creative media suites, and engineering tools I rely on to build, automate, and operate high-growth digital environments.
               </p>
             </div>
 
             {/* Category Filter Pills */}
             <div className="flex flex-wrap gap-2 pt-2">
               {[
-                { id: "all", label: "All Core Tools (16)" },
+                { id: "all", label: "All Core Tools (15)" },
                 { id: "ai", label: "AI & Autonomous Agents (4)" },
                 { id: "community", label: "Community & Operations (4)" },
-                { id: "creative", label: "Motion & Creative Media (4)" },
+                { id: "creative", label: "Motion & Creative Media (3)" },
                 { id: "tech", label: "Engineering & Data (4)" },
               ].map((cat) => (
                 <button

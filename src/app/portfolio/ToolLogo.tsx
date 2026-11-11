@@ -326,6 +326,45 @@ export default function ToolLogo({ name, className = "", size = 28 }: ToolLogoPr
         </svg>
       );
 
+    case "codex":
+    case "openai codex":
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none" className={className}>
+          <rect width="24" height="24" rx="5" fill="#0D0D0D" />
+          <path d="M7 8L11 12L7 16" stroke="#10A37F" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M12.5 16H17" stroke="#10A37F" strokeWidth="2.2" strokeLinecap="round" />
+        </svg>
+      );
+
+    case "zapier / n8n":
+    case "zapier /n8n":
+    case "zapier/n8n":
+    case "n8n":
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none" className={className}>
+          <rect width="24" height="24" rx="5" fill="#181824" />
+          <circle cx="7.5" cy="12" r="3.2" fill="#FF4A00" />
+          <circle cx="16.5" cy="12" r="3.2" fill="#EA4B71" />
+          <path d="M10.8 12H13.2" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+
+    case "antigravity":
+    case "google antigravity":
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none" className={className}>
+          <rect width="24" height="24" rx="5" fill="#0C111D" />
+          <path
+            d="M12 4.5L19 17.5H5L12 4.5Z"
+            stroke="#38BDF8"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+            fill="none"
+          />
+          <circle cx="12" cy="13.2" r="2.2" fill="#38BDF8" />
+        </svg>
+      );
+
     case "claude 3.7 sonnet & 3.5 haiku":
     case "claude 3.7 sonnet":
     case "claude 3.5 haiku":

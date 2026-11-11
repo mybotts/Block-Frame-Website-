@@ -48,9 +48,9 @@ const resumeRoles: RoleResumeData[] = [
       "Customer Support Triage & Trust & Safety Defense",
     ],
     keyTools: [
-      "Claude 3.7 Sonnet & 3.5 Haiku", "OpenAI o3-mini & GPT-4o", "DeepSeek-R1", "Make / Zapier",
+      "Claude", "Codex", "Zapier / N8N", "Antigravity",
       "Discord", "Telegram", "Slack", "Notion",
-      "CapCut", "Adobe Premiere Pro", "Canva", "Remotion",
+      "CapCut", "Canva", "Remotion",
       "Python", "Next.js & React", "GitHub", "Airtable",
     ],
     experience: [
@@ -128,7 +128,7 @@ const resumeRoles: RoleResumeData[] = [
       "Social Cutdowns (16:9 Landscape & 9:16 Vertical for X/TikTok)",
     ],
     keyTools: [
-      "Adobe Premiere Pro", "CapCut", "Canva", "Adobe Photoshop", "Remotion (React Video)", "Loom",
+      "CapCut", "Canva", "Remotion",
     ],
     experience: [
       {
@@ -298,8 +298,8 @@ const resumeRoles: RoleResumeData[] = [
       "Reverse Proxying (Caddy / Nginx) & High-Reliability Supervisor Daemons",
     ],
     keyTools: [
-      "Python", "Next.js", "Docker", "Linux VPS", "Caddy", "Nginx",
-      "Claude 3.7 Sonnet API", "OpenAI o3-mini API", "DeepSeek API", "Make", "Zapier", "GitHub CI/CD",
+      "Claude", "Codex", "Zapier / N8N", "Antigravity",
+      "Python", "Next.js & React", "GitHub", "Linux VPS",
     ],
     experience: [
       {
