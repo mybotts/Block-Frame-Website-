@@ -32,6 +32,7 @@ interface LightboxItem {
   title: string;
   subtitle?: string;
   verifyHref?: string;
+  pdfHref?: string;
   isVideo?: boolean;
 }
 
@@ -91,53 +92,117 @@ export default function PortfolioClient() {
 
   // Tools & Applications Data
   const softwareTools = [
-    // Project & Task Management
-    { name: "Notion", category: "project", role: "Databases, client portals, SOP documentation, event tracking", tag: "Primary" },
-    { name: "ClickUp", category: "project", role: "Sprint management, workflow pipelines, custom statuses", tag: "Advanced" },
-    { name: "Asana", category: "project", role: "Cross-functional task boards, dependencies, timeline planning", tag: "Proficient" },
-    { name: "Jira", category: "project", role: "Agile issue tracking, sprint backlogs, release management", tag: "Proficient" },
-    { name: "monday.com", category: "project", role: "Operational dashboards, team task assignments, automation triggers", tag: "Proficient" },
-    { name: "Airtable", category: "project", role: "Relational data tables, automations, multi-view registries", tag: "Advanced" },
-    { name: "Trello", category: "project", role: "Kanban task boards, visual triage, workflow cards", tag: "Proficient" },
+    // 1. AI Models & Autonomous Agents
+    {
+      name: "Claude 3.7 Sonnet & 3.5 Haiku",
+      category: "ai",
+      role: "Hybrid reasoning architecture, agentic tool-use, vision evaluation, and production prompt architecture",
+      tag: "Certified",
+    },
+    {
+      name: "OpenAI o3-mini & GPT-4o",
+      category: "ai",
+      role: "Structured mathematical reasoning, low-latency function calling, and structured JSON schema outputs",
+      tag: "Advanced",
+    },
+    {
+      name: "DeepSeek-R1 & V3",
+      category: "ai",
+      role: "Open-weights reasoning distillation, cost-effective inference pipelines, and local agent deployments",
+      tag: "Advanced",
+    },
+    {
+      name: "Make / Zapier",
+      category: "ai",
+      role: "Cross-app workflow automations, webhook bridges, and multi-step agent triggers",
+      tag: "Advanced",
+    },
 
-    // CRM & Customer Support
-    { name: "Zendesk", category: "crm", role: "Customer support ticket queues, SLA monitoring, macro replies", tag: "Core" },
-    { name: "HubSpot", category: "crm", role: "Lead management, sales pipeline CRM, contact segmentation", tag: "Proficient" },
-    { name: "Bitrix24", category: "crm", role: "Omnichannel CRM, telephony logs, automated client funnels", tag: "Proficient" },
-    { name: "Intercom", category: "crm", role: "Conversational customer onboarding, live messenger triage", tag: "Proficient" },
+    // 2. Community & Operations Hub
+    {
+      name: "Discord",
+      category: "community",
+      role: "Server architecture, role gating, AutoMod, verified bots, and 100,000+ member community operations",
+      tag: "Expert",
+    },
+    {
+      name: "Telegram",
+      category: "community",
+      role: "Channel broadcasts, group management, bot automations, and scam mitigation workflows",
+      tag: "Expert",
+    },
+    {
+      name: "Slack",
+      category: "community",
+      role: "Internal workspace channels, async team huddles, and automated operational bot alerts",
+      tag: "Expert",
+    },
+    {
+      name: "Notion",
+      category: "community",
+      role: "Central knowledge hubs, client portals, SOP documentation, and multi-view event registries",
+      tag: "Primary",
+    },
 
-    // Community & Communication
-    { name: "Telegram", category: "community", role: "Channel broadcasts, group management, bot automations, moderation", tag: "Expert" },
-    { name: "Discord", category: "community", role: "Server architecture, role gating, AutoMod, verified bots, events", tag: "Expert" },
-    { name: "Slack", category: "community", role: "Internal workspace channels, async huddles, workflow notifications", tag: "Expert" },
-    { name: "WhatsApp Business", category: "community", role: "Direct client messaging, catalog management, automated commerce", tag: "Expert" },
-    { name: "Zoom", category: "community", role: "Team meetings, client onboarding calls, screen sharing", tag: "Daily" },
-    { name: "Loom", category: "community", role: "Async video walkthroughs, client updates, bug demonstrations", tag: "Daily" },
-    { name: "Calendly", category: "community", role: "Automated schedule coordination, timezone alignment", tag: "Daily" },
+    // 3. Motion Design & Creative Media
+    {
+      name: "CapCut",
+      category: "creative",
+      role: "High-retention commercial video editing, kinetic typography, dynamic captions, and audio ducking",
+      tag: "Advanced",
+    },
+    {
+      name: "Adobe Premiere Pro",
+      category: "creative",
+      role: "Multi-track timeline editing, audio mastering, color grading, and 60 FPS master commercial exports",
+      tag: "Proficient",
+    },
+    {
+      name: "Canva",
+      category: "creative",
+      role: "Brand decks, executive pitch presentations, social media graphics, and promotional design",
+      tag: "Advanced",
+    },
+    {
+      name: "Remotion",
+      category: "creative",
+      role: "Programmatic React video generation, automated motion graphics, and dynamic video pipelines",
+      tag: "Builder",
+    },
 
-    // Productivity & Office
-    { name: "Microsoft Excel", category: "office", role: "Data analysis, formulas, pivot tables, financial tracking", tag: "Advanced" },
-    { name: "Microsoft Word", category: "office", role: "Executive briefs, formal proposals, client agreements, SOPs", tag: "Advanced" },
-    { name: "Google Docs", category: "office", role: "Collaborative writing, live commenting, shared proposals", tag: "Daily" },
-    { name: "Google Sheets", category: "office", role: "Live trackers, data imports, workflow collaboration", tag: "Daily" },
-    { name: "Dropbox & Drive", category: "office", role: "Organized asset repositories, secure file permissions", tag: "Daily" },
-
-    // Video Editing & Creative Media
-    { name: "CapCut", category: "creative", role: "Fast short-form video editing, captions, hooks, audio ducking", tag: "Advanced" },
-    { name: "Adobe Premiere Pro", category: "creative", role: "Long-form timeline editing, color grading, multi-track audio", tag: "Proficient" },
-    { name: "Canva", category: "creative", role: "Thumbnails, social media assets, pitch decks, infographics", tag: "Advanced" },
-    { name: "Remotion", category: "creative", role: "Programmatic React video generation, automated text overlays", tag: "Builder" },
-    { name: "Adobe Photoshop", category: "creative", role: "Graphics retouching, banner art, transparent cutouts", tag: "Proficient" },
-
-    // AI & Automation (Latest Frontier Models)
-    { name: "Claude 3.7 Sonnet & 3.5 Haiku", category: "ai", role: "Hybrid reasoning architecture, agentic tool-use, vision evaluation, and production prompt architecture", tag: "Certified" },
-    { name: "OpenAI o3-mini & GPT-4o", category: "ai", role: "Structured mathematical reasoning, low-latency function calling, and structured JSON outputs", tag: "Advanced" },
-    { name: "DeepSeek-R1 & V3", category: "ai", role: "Open-weights reasoning distillation, cost-effective inference pipelines, and local agent deployments", tag: "Advanced" },
-    { name: "Make / Zapier", category: "ai", role: "Cross-app workflow automations, webhook bridges, no-code integrations", tag: "Advanced" },
-    { name: "Python", category: "ai", role: "Backend scripting, FastAPI endpoints, data scraping, bot engines", tag: "Builder" },
-    { name: "Next.js & React", category: "ai", role: "Interactive frontend portals, static web generation, ISR caching", tag: "Builder" },
-    { name: "GitHub", category: "ai", role: "Version control, collaborative repos, automated CI/CD actions", tag: "Daily" },
+    // 4. Engineering & Data Systems
+    {
+      name: "Python",
+      category: "tech",
+      role: "Discord bot engines, automated web scrapers, data pipelines, and backend script daemons",
+      tag: "Builder",
+    },
+    {
+      name: "Next.js & React",
+      category: "tech",
+      role: "High-performance web applications, responsive client portals, ISR caching, and component architecture",
+      tag: "Builder",
+    },
+    {
+      name: "GitHub",
+      category: "tech",
+      role: "Version control, collaborative code repositories, and automated CI/CD deployment pipelines",
+      tag: "Daily",
+    },
+    {
+      name: "Airtable",
+      category: "tech",
+      role: "Relational data structures, automated records management, formula fields, and live team tracking",
+      tag: "Advanced",
+    },
   ];
+
+  const categoryLabels: Record<string, string> = {
+    ai: "AI & Agents",
+    community: "Community & Ops",
+    creative: "Motion & Creative",
+    tech: "Engineering & Data",
+  };
 
   const filteredTools = activeToolCategory === "all"
     ? softwareTools
@@ -166,6 +231,17 @@ export default function PortfolioClient() {
                 )}
               </div>
               <div className="flex items-center gap-3">
+                {activeLightbox.pdfHref && (
+                  <a
+                    href={activeLightbox.pdfHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.06] border border-white/15 hover:border-white/25 hover:bg-white/[0.1] px-3 py-1 text-xs font-mono text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]"
+                  >
+                    <span>Download PDF</span>
+                    <span aria-hidden="true">&darr;</span>
+                  </a>
+                )}
                 {activeLightbox.verifyHref && (
                   <a
                     href={activeLightbox.verifyHref}
@@ -401,8 +477,8 @@ export default function PortfolioClient() {
                 <span className="text-xs text-text-muted leading-tight block">Discord Bot Creator (Ignition)</span>
               </div>
               <div className="glass-card p-5 border border-card-border">
-                <span className="font-mono text-3xl font-bold text-primary-light block mb-1">30+ Apps</span>
-                <span className="text-xs text-text-muted leading-tight block">Mastered Daily Software Stack</span>
+                <span className="font-mono text-3xl font-bold text-primary-light block mb-1">CEFR C2</span>
+                <span className="text-xs text-text-muted leading-tight block">Mastery English (73/100 EF SET)</span>
               </div>
             </div>
 
@@ -616,33 +692,31 @@ export default function PortfolioClient() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-light">
-                  03 &middot; SOFTWARE &amp; TOOL PROFICIENCY
+                  03 &middot; CORE SOFTWARE &amp; TOOL PROFICIENCY
                 </span>
                 <span className="h-px flex-1 bg-border" aria-hidden="true" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary leading-tight mb-3">
-                Apps &amp; Software Tools I Use Daily
+                Core Tool Stack &amp; Software Proficiency
               </h2>
               <p className="text-base text-text-secondary max-w-4xl">
-                I am hands-on and comfortable with modern project management tools, customer support software, community platforms, spreadsheet applications, and creative media suites.
+                Curated stack of 16 essential platforms, frontier AI models, creative media suites, and engineering tools I rely on to build, automate, and operate high-growth digital environments.
               </p>
             </div>
 
             {/* Category Filter Pills */}
             <div className="flex flex-wrap gap-2 pt-2">
               {[
-                { id: "all", label: "All Tools (30+)" },
-                { id: "project", label: "Project Management" },
-                { id: "crm", label: "CRM & Support" },
-                { id: "community", label: "Community & Chat" },
-                { id: "office", label: "Office & Spreadsheets" },
-                { id: "creative", label: "Video & Design" },
-                { id: "ai", label: "AI & Automation" },
+                { id: "all", label: "All Core Tools (16)" },
+                { id: "ai", label: "AI & Autonomous Agents (4)" },
+                { id: "community", label: "Community & Operations (4)" },
+                { id: "creative", label: "Motion & Creative Media (4)" },
+                { id: "tech", label: "Engineering & Data (4)" },
               ].map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => setActiveToolCategory(cat.id)}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-mono transition ${
+                  className={`rounded-lg px-3.5 py-1.5 text-xs font-mono transition ${
                     activeToolCategory === cat.id
                       ? "bg-primary text-background font-bold shadow-sm"
                       : "bg-surface border border-card-border text-text-secondary hover:text-text-primary hover:bg-surface-light"
@@ -653,8 +727,8 @@ export default function PortfolioClient() {
               ))}
             </div>
 
-            {/* Apps Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+            {/* Curated Apps Grid (Clean 4x4 Grid) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {filteredTools.map((tool) => (
                 <div
                   key={tool.name}
@@ -666,13 +740,18 @@ export default function PortfolioClient() {
                         <div className="flex-shrink-0 transition-transform group-hover:scale-110">
                           <ToolLogo name={tool.name} size={30} />
                         </div>
-                        <span className="text-sm font-bold text-text-primary truncate">{tool.name}</span>
+                        <div className="min-w-0">
+                          <span className="text-sm font-bold text-text-primary block truncate">{tool.name}</span>
+                          <span className="text-[10px] font-mono text-text-muted block">
+                            {categoryLabels[tool.category] || tool.category}
+                          </span>
+                        </div>
                       </div>
                       <span className="flex-shrink-0 rounded bg-surface-light px-2 py-0.5 text-[10px] font-mono text-primary-light border border-card-border">
                         {tool.tag}
                       </span>
                     </div>
-                    <p className="text-xs text-text-secondary leading-relaxed pl-[40px]">
+                    <p className="text-xs text-text-secondary leading-relaxed pl-[38px]">
                       {tool.role}
                     </p>
                   </div>
@@ -682,10 +761,10 @@ export default function PortfolioClient() {
 
             <div className="rounded-xl bg-surface p-5 border border-card-border flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
               <span className="text-text-secondary">
-                Have a proprietary internal platform or tool not listed above?
+                Need a proprietary internal platform or specialized software not listed above?
               </span>
               <span className="text-primary-light font-semibold">
-                &check; Quick learner with new SaaS dashboards and interfaces
+                &check; Rapid learner with modern SaaS dashboards, developer APIs, and internal tooling
               </span>
             </div>
           </section>
@@ -1740,10 +1819,63 @@ export default function PortfolioClient() {
               Official Certifications &amp; Credentials
             </h2>
             <p className="text-base text-text-secondary mb-10 max-w-4xl">
-              Authentic credentials in community management, artificial intelligence, and cybersecurity. Click any certificate to inspect the full document.
+              Authentic credentials in international English proficiency (CEFR C2), artificial intelligence, community leadership, and cybersecurity. Click any credential to inspect the document or verify authenticity.
             </p>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              
+              {/* 1. EF SET: English Certificate C2 Proficient */}
+              <div
+                className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition"
+                onClick={() => setActiveLightbox({
+                  src: "/images/cert-efset-c2.webp",
+                  title: "EF SET Certificate · C2 Proficient (73/100)",
+                  subtitle: "CEFR C2 Mastery Tier · Issued Nov 10, 2026 · Listening 78/100, Reading 68/100",
+                  verifyHref: "https://cert.efset.org/en/SdicSB",
+                  pdfHref: "/documents/ef-set-certificate-sergeo-ndonwi.pdf"
+                })}
+              >
+                <div>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/50 border border-card-border mb-3 group-hover:scale-[1.02] transition">
+                    <Image
+                      src="/images/cert-efset-c2.webp"
+                      alt="EF SET English Certificate C2 Proficient"
+                      fill
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between gap-3 mb-1">
+                    <div className="font-mono text-[11px] text-primary-light font-semibold">
+                      EF SET &middot; 2026
+                    </div>
+                    <span className="font-mono text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded px-1.5 py-0.5">
+                      73/100 &middot; C2 Proficient
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-bold text-text-primary mb-1">
+                    C2 English Proficiency Certification
+                  </h3>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Certified C2 Proficient (mastery tier): Listening 78/100 (C2 Proficient), Reading 68/100 (C1 Advanced). Effortless native-level fluency in technical writing, async coordination, and client communication.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span className="text-emerald-400 font-semibold">&check; Verified C2 Credential</span>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href="https://cert.efset.org/en/SdicSB"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-primary-light hover:underline"
+                    >
+                      Verify ↗
+                    </a>
+                    <span>&middot;</span>
+                    <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
+                  </div>
+                </div>
+              </div>
               
               {/* 1. Profunda W3 Academy: Community & Collaboration Management */}
               <div

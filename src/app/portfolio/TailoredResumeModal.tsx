@@ -48,11 +48,10 @@ const resumeRoles: RoleResumeData[] = [
       "Customer Support Triage & Trust & Safety Defense",
     ],
     keyTools: [
-      "Adobe Premiere Pro", "CapCut", "Canva", "Remotion",
-      "Discord", "Telegram", "Slack", "WhatsApp Business",
-      "Notion", "ClickUp", "Asana", "Jira", "Airtable",
-      "Zendesk", "HubSpot", "Bitrix24", "Intercom",
-      "Python", "Next.js", "Docker", "Linux VPS", "Make / Zapier",
+      "Claude 3.7 Sonnet & 3.5 Haiku", "OpenAI o3-mini & GPT-4o", "DeepSeek-R1", "Make / Zapier",
+      "Discord", "Telegram", "Slack", "Notion",
+      "CapCut", "Adobe Premiere Pro", "Canva", "Remotion",
+      "Python", "Next.js & React", "GitHub", "Airtable",
     ],
     experience: [
       {
@@ -95,6 +94,7 @@ const resumeRoles: RoleResumeData[] = [
       },
     ],
     verifiableProofs: [
+      { title: "EF SET C2 English Proficiency (73/100)", detail: "Official CEFR C2 Proficient credential (Reading C1 68, Listening C2 78) · cert.efset.org/en/SdicSB" },
       { title: "TinyFish SaaS Product Launch Commercial", detail: "1080p Full HD kinetic video with bold hook architecture" },
       { title: "Lebrel AI Verification Commercial", detail: "Fast-paced Solana & verifiable AI product reveal (verified on X: x.com/sergeo_n/status/2119070670332076118)" },
       { title: "Cambrian AI x DeFi Explainer", detail: "2D motion graphics explainer with modern UI component choreography" },
@@ -103,6 +103,7 @@ const resumeRoles: RoleResumeData[] = [
       { title: "Groply Autonomous Commerce Engine", detail: "Public open-core repository on GitHub (github.com/Sergeo01)" },
     ],
     certifications: [
+      "EF SET English Certificate — C2 Proficient (73/100, CEFR C2) | cert.efset.org/en/SdicSB",
       "Claude Academy - AI Fluency Framework Foundations (Anthropic)",
       "Claude Academy - Building Effective Human-Agent Teams (Anthropic)",
       "EC-Council CSCU - Certified Secure Computer User",
@@ -158,6 +159,7 @@ const resumeRoles: RoleResumeData[] = [
       { title: "Multi-Format Deliverables", detail: "16:9 YouTube/Website cuts + 9:16 vertical TikTok/Reels edits" },
     ],
     certifications: [
+      "EF SET English Certificate — C2 Proficient (73/100, CEFR C2) | cert.efset.org/en/SdicSB",
       "Profunda - Media Production & Content Engagement",
       "Claude Academy - Visual & Prompt Architecture",
     ],
@@ -213,6 +215,7 @@ const resumeRoles: RoleResumeData[] = [
       { title: "Profunda Community Management Certificate", detail: "Certified in community strategy, retention, and crisis management" },
     ],
     certifications: [
+      "EF SET English Certificate — C2 Proficient (73/100, CEFR C2) | cert.efset.org/en/SdicSB",
       "Profunda - Community Management & Operations Masterclass",
       "EC-Council CSCU - Certified Secure Computer User",
       "Claude Academy - Building Effective Human-Agent Teams",
@@ -273,6 +276,7 @@ const resumeRoles: RoleResumeData[] = [
       { title: "Top.gg Directory Profile", detail: "Live public listing: top.gg/bot/1388870348841287690" },
     ],
     certifications: [
+      "EF SET English Certificate — C2 Proficient (73/100, CEFR C2) | cert.efset.org/en/SdicSB",
       "EC-Council CSCU - Certified Secure Computer User",
       "EC-Council NDE - Network Defense Essentials",
       "Claude Academy - AI Fluency Framework Foundations",
@@ -324,6 +328,7 @@ const resumeRoles: RoleResumeData[] = [
       { title: "EC-Council & Claude Academy Credentials", detail: "Certified in AI Fluency, Human-Agent Teams, and Network Defense" },
     ],
     certifications: [
+      "EF SET English Certificate — C2 Proficient (73/100, CEFR C2) | cert.efset.org/en/SdicSB",
       "Claude Academy - AI Fluency Framework Foundations (Anthropic)",
       "Claude Academy - Building Effective Human-Agent Teams (Anthropic)",
       "EC-Council CSCU - Certified Secure Computer User",
