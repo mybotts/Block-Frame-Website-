@@ -758,7 +758,7 @@ export default function PortfolioClient() {
                 Need a proprietary internal platform or specialized software not listed above?
               </span>
               <span className="text-primary-light font-semibold">
-                &check; Rapid learner with modern SaaS dashboards, developer APIs, and internal tooling
+                Rapid learner with modern SaaS dashboards, developer APIs, and internal tooling
               </span>
             </div>
           </section>
@@ -1098,7 +1098,7 @@ export default function PortfolioClient() {
                   </span>
                 </div>
                 <span className="rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-mono text-xs px-3 py-1 font-semibold">
-                  &check; Verified Role Proof
+                  Verified Role Proof
                 </span>
               </div>
 
@@ -1155,7 +1155,7 @@ export default function PortfolioClient() {
                   </h3>
                 </div>
                 <span className="rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-mono text-xs px-3 py-1 font-semibold">
-                  &check; Verified Campaign Data
+                  Verified Campaign Data
                 </span>
               </div>
 
@@ -1285,7 +1285,7 @@ export default function PortfolioClient() {
                     <div className="flex items-center gap-2">
                       <h3 className="text-xl md:text-2xl font-bold text-text-primary">Ignition</h3>
                       <span className="rounded bg-[#5865f2]/20 px-2 py-0.5 text-[10px] font-mono font-semibold text-[#5865f2] border border-[#5865f2]/40">
-                        &check; VERIFIED BOT
+                        VERIFIED BOT
                       </span>
                     </div>
                     <span className="text-xs text-text-muted font-mono">App ID: 1388870348841287690</span>
@@ -1406,7 +1406,7 @@ export default function PortfolioClient() {
                     <div className="flex items-center gap-2">
                       <h3 className="text-xl md:text-2xl font-bold text-text-primary">Prime Ops</h3>
                       <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-mono font-semibold text-emerald-400 border border-emerald-500/40">
-                        &check; SERVER OPERATIONS BOT
+                        SERVER OPERATIONS BOT
                       </span>
                     </div>
                     <span className="text-xs text-text-muted font-mono">Community Security &amp; Triage Shield</span>
@@ -1561,7 +1561,7 @@ export default function PortfolioClient() {
                         </p>
                         <div className="pt-2 border-t border-emerald-600/50 flex flex-col gap-1.5">
                           <button className="w-full bg-[#111b21] hover:bg-[#202c33] text-emerald-300 font-semibold py-1.5 px-3 rounded text-[11px] text-center border border-emerald-500/30">
-                            &check; Accept 22,500 FCFA &amp; Order
+                            Accept 22,500 FCFA &amp; Order
                           </button>
                         </div>
                         <span className="text-[9px] text-emerald-200/80 float-right">10:14 PM &middot; Automated in 1.4s</span>
@@ -1611,7 +1611,7 @@ export default function PortfolioClient() {
 
                 <div className="rounded-lg bg-surface p-4 border border-card-border font-mono text-xs flex flex-wrap items-center justify-between gap-2">
                   <span className="text-text-primary">Canonical Stat: 30 blogs in 30 days, zero manual edits.</span>
-                  <span className="text-emerald-400 font-semibold">&check; 100% Asset Uptime Verified</span>
+                  <span className="text-emerald-400 font-semibold">100% Asset Uptime Verified</span>
                 </div>
               </div>
             </div>
@@ -1751,7 +1751,7 @@ export default function PortfolioClient() {
                 </div>
                 <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
                   <span>Recognition: Innovation &amp; Initiative</span>
-                  <span className="text-emerald-400 font-semibold">&check; Team Kudos</span>
+                  <span className="text-emerald-400 font-semibold">Team Kudos</span>
                 </div>
               </div>
 
@@ -1791,7 +1791,7 @@ export default function PortfolioClient() {
                 </div>
                 <div className="pt-3 border-t border-card-border flex items-center justify-between text-xs font-mono text-text-muted">
                   <span>Evaluation: Punctuality &amp; Troubleshooting</span>
-                  <span className="text-emerald-400 font-semibold">&check; Verified Review</span>
+                  <span className="text-emerald-400 font-semibold">Verified Review</span>
                 </div>
               </div>
 
@@ -1854,7 +1854,7 @@ export default function PortfolioClient() {
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
-                  <span className="text-emerald-400 font-semibold">&check; Verified C2 Credential</span>
+                  <span className="text-emerald-400 font-semibold">Verified C2 Credential</span>
                   <div className="flex items-center gap-2">
                     <a
                       href="https://cert.efset.org/en/SdicSB"
@@ -1900,7 +1900,7 @@ export default function PortfolioClient() {
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
-                  <span className="text-emerald-400 font-semibold">&check; Official Cert</span>
+                  <span className="text-emerald-400 font-semibold">Official Cert</span>
                   <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
                 </div>
               </div>
@@ -1935,7 +1935,7 @@ export default function PortfolioClient() {
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
-                  <span className="text-emerald-400 font-semibold">&check; Verified Badge</span>
+                  <span className="text-emerald-400 font-semibold">Verified Badge</span>
                   <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
                 </div>
               </div>
@@ -1970,7 +1970,7 @@ export default function PortfolioClient() {
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
-                  <span className="text-emerald-400 font-semibold">&check; Verified Badge</span>
+                  <span className="text-emerald-400 font-semibold">Verified Badge</span>
                   <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
                 </div>
               </div>
@@ -2004,7 +2004,7 @@ export default function PortfolioClient() {
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
-                  <span className="text-emerald-400 font-semibold">&check; Official Cert</span>
+                  <span className="text-emerald-400 font-semibold">Official Cert</span>
                   <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
                 </div>
               </div>
@@ -2038,7 +2038,7 @@ export default function PortfolioClient() {
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
-                  <span className="text-emerald-400 font-semibold">&check; Official Cert</span>
+                  <span className="text-emerald-400 font-semibold">Official Cert</span>
                   <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
                 </div>
               </div>
@@ -2082,7 +2082,7 @@ export default function PortfolioClient() {
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
-                  <span className="text-emerald-400 font-semibold">&check; Official Letter</span>
+                  <span className="text-emerald-400 font-semibold">Official Letter</span>
                   <span className="text-primary-light group-hover:underline">Inspect &rarr;</span>
                 </div>
               </div>
@@ -2131,22 +2131,10 @@ export default function PortfolioClient() {
                   </p>
                   
                   <ul className="space-y-2.5 text-xs text-text-secondary mb-6 border-t border-card-border/60 pt-4 font-mono">
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Dedicated weekly operational hours</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Direct Slack / Discord channel integration</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Fast 24 to 48 hour turnaround on tasks</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Flexible cross-skill allocation as needs evolve</span>
-                    </li>
+                    <li>Dedicated weekly operational hours</li>
+                    <li>Direct Slack / Discord channel integration</li>
+                    <li>Fast 24 to 48 hour turnaround on tasks</li>
+                    <li>Flexible cross-skill allocation as needs evolve</li>
                   </ul>
                 </div>
 
@@ -2178,22 +2166,10 @@ export default function PortfolioClient() {
                   </p>
                   
                   <ul className="space-y-2.5 text-xs text-text-secondary mb-6 border-t border-card-border/60 pt-4 font-mono">
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Clearly defined deliverables &amp; milestones</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Kickoff within 24 to 48 hours</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Staged draft reviews with prompt edits</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Complete source files &amp; deployment support</span>
-                    </li>
+                    <li>Clearly defined deliverables &amp; milestones</li>
+                    <li>Kickoff within 24 to 48 hours</li>
+                    <li>Staged draft reviews with prompt edits</li>
+                    <li>Complete source files &amp; deployment support</li>
                   </ul>
                 </div>
 
@@ -2225,22 +2201,10 @@ export default function PortfolioClient() {
                   </p>
                   
                   <ul className="space-y-2.5 text-xs text-text-secondary mb-6 border-t border-card-border/60 pt-4 font-mono">
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>60-minute technical discovery session</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Prioritized security &amp; retention audit</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Actionable Notion checklist &amp; Loom breakdown</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-400">&check;</span>
-                      <span>Complete report delivered within 72 hours</span>
-                    </li>
+                    <li>60-minute technical discovery session</li>
+                    <li>Prioritized security &amp; retention audit</li>
+                    <li>Actionable Notion checklist &amp; Loom breakdown</li>
+                    <li>Complete report delivered within 72 hours</li>
                   </ul>
                 </div>
 
