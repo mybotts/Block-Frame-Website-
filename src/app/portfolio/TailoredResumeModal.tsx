@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export type ResumeRole = "all" | "video" | "community" | "discord" | "ai";
 
@@ -351,10 +352,18 @@ export default function TailoredResumeModal({
   const activeData = resumeRoles.find((r) => r.id === selectedRole) || resumeRoles[0];
 
   const handlePrint = () => {
+    trackEvent("resume_print_pdf", {
+      role: selectedRole,
+      target_title: activeData.targetTitle,
+    });
     window.print();
   };
 
   const handleCopyMarkdown = () => {
+    trackEvent("resume_copy_markdown", {
+      role: selectedRole,
+      target_title: activeData.targetTitle,
+    });
     const md = `
 # SERGEO
 **${activeData.targetTitle}**
@@ -449,7 +458,10 @@ ${activeData.certifications.map((c) => `- ${c}`).join("\n")}
               <button
                 key={role.id}
                 type="button"
-                onClick={() => setSelectedRole(role.id)}
+                onClick={() => {
+                  setSelectedRole(role.id);
+                  trackEvent("resume_role_tab_click", { role: role.id, label: role.label });
+                }}
                 className={`p-2.5 rounded-xl border text-left transition text-xs flex flex-col justify-between ${
                   selectedRole === role.id
                     ? "bg-white/[0.08] border-white/30 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)]"

@@ -8,9 +8,10 @@ import { marketplaceProducts } from "@/lib/data";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.blockframe.cloud";
 
-  // Static routes
+  // Static routes (including top-priority portfolio)
   const staticRoutes: MetadataRoute.Sitemap = [
     "",
+    "/portfolio",
     "/blogs",
     "/videos",
     "/marketplace/products",
@@ -20,7 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
     changeFrequency:
-      route === ""
+      route === "" || route === "/portfolio"
         ? ("daily" as const)
         : route === "/blogs" || route === "/ai-news"
           ? ("daily" as const)
@@ -28,9 +29,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority:
       route === ""
         ? 1.0
-        : route === "/blogs" || route === "/ai-news"
-          ? 0.8
-          : 0.7,
+        : route === "/portfolio"
+          ? 0.95
+          : route === "/blogs" || route === "/ai-news"
+            ? 0.8
+            : 0.7,
   }));
 
   // Service routes

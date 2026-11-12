@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 import Image from "next/image";
 import Link from "next/link";
 import ToolLogo from "./ToolLogo";
@@ -230,6 +231,7 @@ export default function PortfolioClient() {
                     href={activeLightbox.pdfHref}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("credential_pdf_download", { title: activeLightbox.title })}
                     className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.06] border border-white/15 hover:border-white/25 hover:bg-white/[0.1] px-3 py-1 text-xs font-mono text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]"
                   >
                     <span>Download PDF</span>
@@ -241,6 +243,7 @@ export default function PortfolioClient() {
                     href={activeLightbox.verifyHref}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("credential_verify_click", { title: activeLightbox.title, url: activeLightbox.verifyHref })}
                     className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.06] border border-white/15 hover:border-white/25 hover:bg-white/[0.1] px-3 py-1 text-xs font-mono text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]"
                   >
                     <span>Verify Credential</span>
@@ -370,6 +373,7 @@ export default function PortfolioClient() {
                   href={calendlyHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("booking_click", { location: "hero_sidebar", tier: "general" })}
                   className="w-full inline-flex items-center justify-center gap-2 rounded bg-text-primary px-4 py-2.5 text-xs font-semibold text-background transition hover:opacity-90 shadow-sm"
                 >
                   <span>Schedule a Call</span>
@@ -386,6 +390,7 @@ export default function PortfolioClient() {
                   onClick={() => {
                     setResumeInitialRole("all");
                     setIsResumeModalOpen(true);
+                    trackEvent("resume_modal_open", { source: "hero_sidebar_button", role: "all" });
                   }}
                   className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.05] hover:bg-white/[0.1] hover:border-white/25 px-4 py-2.5 text-xs font-semibold text-text-primary transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] backdrop-blur-sm"
                 >
@@ -539,35 +544,35 @@ export default function PortfolioClient() {
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => { setResumeInitialRole("video"); setIsResumeModalOpen(true); }}
+                  onClick={() => { setResumeInitialRole("video"); setIsResumeModalOpen(true); trackEvent("resume_modal_open", { source: "hero_role_pill", role: "video" }); }}
                   className="rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.08] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
                   Video
                 </button>
                 <button
                   type="button"
-                  onClick={() => { setResumeInitialRole("community"); setIsResumeModalOpen(true); }}
+                  onClick={() => { setResumeInitialRole("community"); setIsResumeModalOpen(true); trackEvent("resume_modal_open", { source: "hero_role_pill", role: "community" }); }}
                   className="rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.08] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
                   Community
                 </button>
                 <button
                   type="button"
-                  onClick={() => { setResumeInitialRole("discord"); setIsResumeModalOpen(true); }}
+                  onClick={() => { setResumeInitialRole("discord"); setIsResumeModalOpen(true); trackEvent("resume_modal_open", { source: "hero_role_pill", role: "discord" }); }}
                   className="rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.08] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
                   Discord
                 </button>
                 <button
                   type="button"
-                  onClick={() => { setResumeInitialRole("ai"); setIsResumeModalOpen(true); }}
+                  onClick={() => { setResumeInitialRole("ai"); setIsResumeModalOpen(true); trackEvent("resume_modal_open", { source: "hero_role_pill", role: "ai" }); }}
                   className="rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs font-mono text-text-secondary border border-white/10 hover:border-white/25 hover:bg-white/[0.08] hover:text-white transition shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
                   AI Systems
                 </button>
                 <button
                   type="button"
-                  onClick={() => { setResumeInitialRole("all"); setIsResumeModalOpen(true); }}
+                  onClick={() => { setResumeInitialRole("all"); setIsResumeModalOpen(true); trackEvent("resume_modal_open", { source: "hero_role_pill", role: "all" }); }}
                   className="rounded-lg bg-white text-black hover:bg-white/90 px-3.5 py-1.5 text-xs font-semibold transition shadow-sm font-sans"
                 >
                   Choose Role &rarr;
@@ -792,6 +797,7 @@ export default function PortfolioClient() {
                       controls
                       playsInline
                       preload="metadata"
+                      onPlay={() => trackEvent("video_play", { video_name: "TinyFish AI Commercial", client: "TinyFish AI" })}
                       poster="/images/poster-tinyfish-commercial.webp"
                       className="h-full w-full object-cover rounded-xl"
                     >
@@ -874,6 +880,7 @@ export default function PortfolioClient() {
                       controls
                       playsInline
                       preload="metadata"
+                      onPlay={() => trackEvent("video_play", { video_name: "Cambrian DeFi Explainer", client: "Cambrian" })}
                       poster="/images/poster-cambrian-defi.webp"
                       className="h-full w-full object-cover rounded-xl"
                     >
@@ -956,6 +963,7 @@ export default function PortfolioClient() {
                       controls
                       playsInline
                       preload="metadata"
+                      onPlay={() => trackEvent("video_play", { video_name: "Lebrel AI Commercial", client: "Lebrel AI" })}
                       poster="/images/poster-lebrel-ai.webp"
                       className="h-full w-full object-cover rounded-xl"
                     >
@@ -1056,7 +1064,7 @@ export default function PortfolioClient() {
               <span className="text-text-secondary">
                 Need short-form reels, TikToks, YouTube cutdowns, or product video ads?
               </span>
-              <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="text-primary-light font-semibold hover:underline">
+              <a href={calendlyHref} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("booking_click", { location: "video_showcase_cta", tier: "video_production" })} className="text-primary-light font-semibold hover:underline">
                 Let&apos;s discuss your video project &rarr;
               </a>
             </div>
@@ -1458,7 +1466,7 @@ export default function PortfolioClient() {
 
               <div className="mt-6 rounded-lg bg-surface p-4 border border-card-border font-mono text-xs flex flex-wrap items-center justify-between gap-2">
                 <span className="text-text-primary">Want a custom bot built for your community server?</span>
-                <a href={calendlyHref} target="_blank" rel="noopener noreferrer" className="text-primary-light font-semibold hover:underline">
+                <a href={calendlyHref} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("booking_click", { location: "discord_bot_cta", tier: "discord_bot" })} className="text-primary-light font-semibold hover:underline">
                   Let&apos;s build it &rarr;
                 </a>
               </div>
@@ -1860,7 +1868,10 @@ export default function PortfolioClient() {
                       href="https://cert.efset.org/en/SdicSB"
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        trackEvent("credential_verify_click", { title: "EF SET C2 English Certificate", url: "https://cert.efset.org/en/SdicSB" });
+                      }}
                       className="text-primary-light hover:underline"
                     >
                       Verify ↗
@@ -2142,6 +2153,7 @@ export default function PortfolioClient() {
                   href={calendlyHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("booking_click", { location: "pricing_card", tier: "monthly_retainer" })}
                   className="w-full inline-flex items-center justify-center gap-2 rounded bg-text-primary px-4 py-2.5 text-xs font-semibold text-background transition hover:opacity-90 shadow-sm"
                 >
                   <span>Inquire About Retainer</span>
@@ -2177,6 +2189,7 @@ export default function PortfolioClient() {
                   href={calendlyHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("booking_click", { location: "pricing_card", tier: "project_sprint" })}
                   className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-white text-black hover:bg-white/90 px-4 py-2.5 text-xs font-semibold transition shadow-sm font-sans"
                 >
                   <span>Book a Project Sprint</span>
@@ -2212,6 +2225,7 @@ export default function PortfolioClient() {
                   href={calendlyHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("booking_click", { location: "pricing_card", tier: "strategic_audit" })}
                   className="w-full inline-flex items-center justify-center gap-2 rounded border border-card-border bg-surface px-4 py-2.5 text-xs font-semibold text-text-primary transition hover:bg-surface-light hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]"
                 >
                   <span>Request an Audit</span>
@@ -2403,6 +2417,7 @@ export default function PortfolioClient() {
                     href={calendlyHref}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("booking_click", { location: "final_footer_cta", tier: "general_30min" })}
                     className="inline-flex items-center gap-2 rounded bg-text-primary px-6 py-3.5 text-sm font-semibold text-background transition hover:opacity-85 shadow-lg"
                   >
                     <span>Schedule a 30-Min Call</span>
