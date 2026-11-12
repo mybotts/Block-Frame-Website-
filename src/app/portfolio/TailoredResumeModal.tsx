@@ -607,7 +607,6 @@ ${activeData.certifications.map((c) => `- ${c}`).join("\n")}
                 <ul className="space-y-1 text-text-secondary print:text-black/90">
                   {activeData.certifications.map((cert, idx) => (
                     <li key={idx} className="flex items-start gap-1.5">
-                      <span className="text-emerald-400 print:text-black">&check;</span>
                       <span>{cert}</span>
                     </li>
                   ))}
