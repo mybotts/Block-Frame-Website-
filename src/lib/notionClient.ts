@@ -363,7 +363,7 @@ export async function fetchBlogPostWithBlocks(pageId: string): Promise<BlogPost>
     updatedAt: (page as any).last_edited_time || undefined,
     thumbnail: (() => {
       const raw = props.Thumbnail?.url || props.Thumbnail?.rich_text?.[0]?.plain_text || props.Thumbnail?.files?.[0]?.file?.url || props.Thumbnail?.files?.[0]?.external?.url || undefined;
-      return raw ? rewriteImageUrl(raw) : undefined;
+      return raw ? rewriteImageUrl(raw) : '/images/ai-news-cover.jpg';
     })(),
     status,
     author,
@@ -435,7 +435,7 @@ export function notionPageToBlogPost(page: any): BlogPost {
     updatedAt: (page as any).last_edited_time || undefined,
     thumbnail: (() => {
       const raw = props.Thumbnail?.url || props.Thumbnail?.rich_text?.[0]?.plain_text || props.Thumbnail?.files?.[0]?.file?.url || props.Thumbnail?.files?.[0]?.external?.url || undefined;
-      return raw ? rewriteImageUrl(raw) : undefined;
+      return raw ? rewriteImageUrl(raw) : '/images/ai-news-cover.jpg';
     })(),
     status: getText(props.Status).toLowerCase() as 'pending' | 'approved' | 'rejected',
     author: getText(props.Author) || 'BlockFrameLabs',

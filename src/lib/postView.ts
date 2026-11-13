@@ -18,25 +18,27 @@ export function extractYouTubeId(url: string): string | null {
 
 /** Card/share image: explicit Thumbnail property first, then first image/video frame in blocks.
  * Accepts absolute URLs AND root-relative paths (/images/...) — absoluteImageUrl() absolutizes for share crawlers. */
-export function getPostThumbnail(post: BlogPost): string | undefined {
+export function getPostThumbnail(post: BlogPost): string {
   if (post.thumbnail && (post.thumbnail.startsWith("http") || post.thumbnail.startsWith("/"))) {
     return post.thumbnail;
   }
-  if (!post.blocks || post.blocks.length === 0) return undefined;
-  for (const block of post.blocks) {
-    if (block.type === "image" && block.content && (block.content.startsWith("http") || block.content.startsWith("/"))) {
-      return block.content;
+  if (post.blocks && post.blocks.length > 0) {
+    for (const block of post.blocks) {
+      if (block.type === "image" && block.content && (block.content.startsWith("http") || block.content.startsWith("/"))) {
+        return block.content;
+      }
     }
-  }
-  for (const block of post.blocks) {
-    if (block.type === "video") {
-      const videoId = extractYouTubeId(block.content);
-      if (videoId) {
-        return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    for (const block of post.blocks) {
+      if (block.type === "video") {
+        const videoId = extractYouTubeId(block.content);
+        if (videoId) {
+          return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        }
       }
     }
   }
-  return undefined;
+  // Single branded cover image for all posts
+  return "/images/ai-news-cover.jpg";
 }
 
 /** Excerpt if present, else the opening of the content. */
