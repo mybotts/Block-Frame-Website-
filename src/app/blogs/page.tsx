@@ -141,23 +141,23 @@ export default async function BlogsPage({ searchParams }: Props) {
       <Navigation />
       <PremiumBackground />
 
-      <main id="main-content" className="relative z-10 w-full min-h-screen pt-40 pb-24 px-6 md:px-12">
+      <main id="main-content" className="relative z-10 w-full min-h-screen pt-28 sm:pt-32 md:pt-36 pb-20 px-4 sm:px-6 md:px-12">
         <div className="hero-radial-glow opacity-40 z-[-1]" />
 
         <div className="w-full max-w-7xl mx-auto">
           {/* Header */}
-          <div className="mb-10 text-center">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-text-primary leading-tight mb-4">
+          <div className="mb-8 sm:mb-12 text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-text-primary leading-tight mb-3">
               Blogs
             </h1>
-            <p className="text-xl text-text-secondary font-light max-w-2xl mx-auto mb-3">
+            <p className="text-base sm:text-lg md:text-xl text-text-secondary font-light max-w-2xl mx-auto mb-2">
               Practical guides and news on AI systems, automation, and web engineering. Written by the team building these systems daily.
             </p>
-            <p className="text-sm text-text-muted">{CONTENT_TEAM_NAME}</p>
+            <p className="text-xs sm:text-sm text-text-muted">{CONTENT_TEAM_NAME}</p>
           </div>
 
           {/* Proof strip : live counter + cadence claim */}
-          <div className="blog-proof-strip mb-12" role="status" aria-label="Publishing cadence">
+          <div className="blog-proof-strip mb-8 sm:mb-12" role="status" aria-label="Publishing cadence">
             <div className="blog-proof-item">
               <span className="blog-proof-number">{totalPosts}</span>
               <span className="blog-proof-label">live articles</span>

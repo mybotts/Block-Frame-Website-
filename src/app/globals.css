@@ -643,13 +643,15 @@ article p, .content-area p, .service-description, .process-description {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.35rem 0.7rem;
+  padding: 0.35rem 0.75rem;
   font-size: 0.78rem;
   font-weight: 550;
   color: var(--color-text-secondary);
   background: transparent;
   border: 1px solid var(--color-border);
-  border-radius: 2px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 .blog-pill:hover {
@@ -988,3 +990,13 @@ article p, .content-area p, .service-description, .process-description {
     display: none;
   }
 }
+
+/* ---- Utility: Hide scrollbars while preserving scroll functionality ---- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

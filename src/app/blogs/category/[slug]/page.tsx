@@ -133,11 +133,11 @@ export default async function BlogCategoryPage({ params }: Props) {
       <Navigation />
       <PremiumBackground />
 
-      <main id="main-content" className="relative z-10 w-full min-h-screen pt-40 pb-24 px-6 md:px-12">
+      <main id="main-content" className="relative z-10 w-full min-h-screen pt-28 sm:pt-32 md:pt-36 pb-20 px-4 sm:px-6 md:px-12">
         <div className="hero-radial-glow opacity-40 z-[-1]" />
 
         <div className="w-full max-w-7xl mx-auto">
-          <nav aria-label="Breadcrumb" className="mb-8 text-sm text-text-muted">
+          <nav aria-label="Breadcrumb" className="mb-6 sm:mb-8 text-sm text-text-muted">
             <ol className="flex flex-wrap items-center gap-2">
               <li><Link href="/" className="hover:text-primary-light transition-colors">Home</Link></li>
               <li aria-hidden="true">/</li>
@@ -150,32 +150,32 @@ export default async function BlogCategoryPage({ params }: Props) {
           <div className="blog-layout">
             {/* Main column */}
             <div className="min-w-0">
-              <header className="mb-10">
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-text-primary leading-tight mb-4">
+              <header className="mb-8 sm:mb-10">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-text-primary leading-tight mb-3 sm:mb-4">
                   {name}
                 </h1>
-                <p className="text-xl text-text-secondary font-light">
+                <p className="text-base sm:text-xl text-text-secondary font-light">
                   {posts.length} article{posts.length === 1 ? "" : "s"} in this category.
                 </p>
               </header>
 
               {/* Cross-category navigation */}
               {allCategories.length > 1 && (
-                <div className="mb-10 flex flex-wrap gap-2" aria-label="Other categories">
-                  <Link href="/blogs" className="blog-pill">
+                <div className="mb-8 flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-2 px-2 sm:mx-0 sm:px-0 sm:flex-wrap" aria-label="Other categories">
+                  <Link href="/blogs" className="blog-pill shrink-0">
                     All
                   </Link>
                   {allCategories
                     .filter((c) => c.slug !== slug)
                     .map((c) => (
-                      <Link key={c.slug} href={`/blogs/category/${c.slug}`} className="blog-pill">
+                      <Link key={c.slug} href={`/blogs/category/${c.slug}`} className="blog-pill shrink-0">
                         {c.name} <span className="blog-pill-count">{c.count}</span>
                       </Link>
                     ))}
                 </div>
               )}
 
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
                 {posts.map((post) => (
                   <PostCard key={post.id} post={post} />
                 ))}

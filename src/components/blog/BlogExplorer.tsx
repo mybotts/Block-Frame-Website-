@@ -226,10 +226,10 @@ export default function BlogExplorer({ posts, categories }: Props) {
             onChange={(e) => setQueryDraft(e.target.value)}
           />
         </form>
-        <div className="flex flex-wrap items-center gap-2" aria-label="Filter by category">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-2 px-2 sm:mx-0 sm:px-0 sm:flex-wrap" aria-label="Filter by category">
           <button
             type="button"
-            className={`blog-pill ${category === "" ? "is-active" : ""}`}
+            className={`blog-pill shrink-0 ${category === "" ? "is-active" : ""}`}
             onClick={() => setParam("category", null)}
           >
             All <span className="blog-pill-count">{posts.length}</span>
@@ -238,7 +238,7 @@ export default function BlogExplorer({ posts, categories }: Props) {
             <button
               key={cat.slug}
               type="button"
-              className={`blog-pill ${category === cat.slug ? "is-active" : ""}`}
+              className={`blog-pill shrink-0 ${category === cat.slug ? "is-active" : ""}`}
               onClick={() => setParam("category", category === cat.slug ? null : cat.slug)}
             >
               {cat.name} <span className="blog-pill-count">{cat.count}</span>
@@ -338,7 +338,7 @@ export default function BlogExplorer({ posts, categories }: Props) {
           <div
             className={
               view === "grid"
-                ? "grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
+                ? "grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2"
                 : "blog-list"
             }
           >
