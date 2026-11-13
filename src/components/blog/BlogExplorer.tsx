@@ -14,7 +14,7 @@
 // inside this island on the server for SEO.
 // ============================================
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import PostCard from "@/components/PostCard";
@@ -118,6 +118,87 @@ function getPostTagsClient(post: BlogPost, limit = 3): string[] {
 
 function normalizeSort(v: string | null): SortKey {
   return v === "oldest" || v === "longest" ? v : "newest";
+}
+
+function InlineNewsletterCard() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [msg, setMsg] = useState("");
+
+  async function handleSubscribe(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setStatus("done");
+        setMsg(data.message || "You're on the list. Watch your inbox.");
+      } else {
+        setStatus("error");
+        setMsg(data.error || "Something went wrong. Try again.");
+      }
+    } catch {
+      setStatus("error");
+      setMsg("Network error. Try again.");
+    }
+  }
+
+  return (
+    <div className="md:col-span-2 rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card-bg to-card-bg p-5 sm:p-7 relative overflow-hidden my-2">
+      <div className="absolute -right-10 -top-10 w-44 h-44 rounded-full bg-primary/15 blur-2xl pointer-events-none" />
+      <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
+        <div className="max-w-xl">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-primary-light" />
+            <span className="font-mono text-xs uppercase tracking-wider text-primary-light font-bold">
+              BlockFrame Intelligence
+            </span>
+          </div>
+          <h3 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight mb-2">
+            Get Daily AI Trends in Your Inbox
+          </h3>
+          <p className="text-sm text-text-secondary leading-relaxed font-light">
+            Zero sponsored noise. Technical breakdowns of autonomous agents, automation workflows, and live benchmarks straight from our labs.
+          </p>
+        </div>
+
+        <div className="w-full md:w-auto shrink-0 md:min-w-[320px]">
+          {status === "done" ? (
+            <div className="rounded-lg border border-primary/40 bg-primary/10 p-3.5 text-sm text-primary-light">
+              ✓ {msg}
+            </div>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="email"
+                required
+                placeholder="you@company.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="blog-search-input flex-1 px-3.5 py-2.5 text-sm rounded-lg"
+              />
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="button-primary px-5 py-2.5 text-sm font-semibold shrink-0"
+              >
+                {status === "loading" ? "Subscribing…" : "Subscribe"}
+              </button>
+            </form>
+          )}
+          {status === "error" && (
+            <p className="text-xs text-red-400 mt-2">{msg}</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function BlogExplorer({ posts, categories }: Props) {
@@ -342,8 +423,11 @@ export default function BlogExplorer({ posts, categories }: Props) {
                 : "blog-list"
             }
           >
-            {visible.map((post) => (
-              <PostCard key={post.id} post={post} variant={view === "list" ? "compact" : "default"} />
+            {visible.map((post, idx) => (
+              <Fragment key={post.id}>
+                <PostCard post={post} variant={view === "list" ? "compact" : "default"} />
+                {idx === 3 && view === "grid" && <InlineNewsletterCard />}
+              </Fragment>
             ))}
           </div>
 

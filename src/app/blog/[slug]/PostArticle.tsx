@@ -96,7 +96,7 @@ export default function PostArticle({
       <PremiumBackground />
 
       <ReadingProgress />
-      <main id="main-content" className="relative z-10 w-full min-h-screen flex flex-col items-center pt-40 pb-24 px-6 md:px-12 pointer-events-none">
+      <main id="main-content" className="relative z-10 w-full min-h-screen flex flex-col items-center pt-28 sm:pt-32 md:pt-36 pb-20 px-4 sm:px-6 md:px-12 pointer-events-none">
         <div className="hero-radial-glow opacity-40 z-[-1]" />
 
         <div className="w-full max-w-7xl mx-auto pointer-events-auto px-4 md:px-0">
@@ -145,9 +145,9 @@ export default function PostArticle({
                 </ol>
               </nav>
 
-              <header className="mb-10">
+              <header className="mb-8 sm:mb-10">
                 <span className="category-pill bg-accent/15 text-accent-light mb-4">{post.category}</span>
-                <h1 className="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-6">
+                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight mb-4 sm:mb-6">
                   {post.title}
                 </h1>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-text-muted">

@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
 import Footer from "@/components/Footer";
 import FeaturedHero from "@/components/blog/FeaturedHero";
+import TrendingGrid from "@/components/blog/TrendingGrid";
 import BlogExplorer from "@/components/blog/BlogExplorer";
 import BlogSidebar from "@/components/blog/BlogSidebar";
 import {
@@ -87,7 +88,9 @@ export default async function BlogsPage({ searchParams }: Props) {
 
   // Videos live in their own tab; everything else flows through the index.
   const visible = allPosts.filter((p) => p.categorySlug !== "videos");
-  const [featured, ...rest] = visible;
+  const featured = visible[0];
+  const secondary = visible.slice(1, 3);
+  const rest = visible.slice(3);
   const totalPosts = visible.length;
 
   const popular = popularRaw
@@ -184,6 +187,7 @@ export default async function BlogsPage({ searchParams }: Props) {
               {/* Main column: hero + explorer + entry points */}
               <div className="min-w-0">
                 {featured && !hasFilterParams && <FeaturedHero post={featured} />}
+                {secondary.length > 0 && !hasFilterParams && <TrendingGrid posts={secondary} />}
 
                 <Suspense fallback={<div className="glass-card p-8 text-center text-text-muted">Loading articles…</div>}>
                   <BlogExplorer
