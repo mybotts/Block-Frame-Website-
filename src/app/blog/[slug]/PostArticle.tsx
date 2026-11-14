@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
@@ -39,6 +39,82 @@ function extractYouTubeId(url: string): string | null {
     if (m) return m[1];
   }
   return null;
+}
+
+function ArticleNewsletterCard() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [msg, setMsg] = useState("");
+
+  async function handleSubscribe(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setStatus("done");
+        setMsg(data.message || "You're on the list.");
+      } else {
+        setStatus("error");
+        setMsg(data.error || "Failed to subscribe.");
+      }
+    } catch {
+      setStatus("error");
+      setMsg("Network error. Try again.");
+    }
+  }
+
+  return (
+    <div className="rounded-xl border border-primary/30 bg-gradient-to-b from-primary/10 via-card-bg to-card-bg p-5 relative overflow-hidden">
+      <div className="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-primary/20 blur-xl pointer-events-none" />
+      <div className="relative z-10">
+        <div className="flex items-center gap-1.5 mb-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary-light animate-pulse" />
+          <span className="font-mono text-[10px] uppercase tracking-wider text-primary-light font-bold">
+            BlockFrame Wire
+          </span>
+        </div>
+        <h4 className="text-sm font-bold text-text-primary mb-1 leading-snug">
+          Get Daily AI Trends
+        </h4>
+        <p className="text-xs text-text-secondary leading-relaxed font-light mb-3">
+          Weekly breakdowns of autonomous agents and live benchmarks.
+        </p>
+        {status === "done" ? (
+          <div className="rounded border border-primary/40 bg-primary/10 p-2.5 text-xs text-primary-light">
+            ✓ {msg}
+          </div>
+        ) : (
+          <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
+            <input
+              type="email"
+              required
+              placeholder="you@company.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="blog-search-input text-xs px-3 py-2 rounded-lg"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="button-primary text-xs py-2 font-semibold"
+            >
+              {status === "loading" ? "Subscribing…" : "Subscribe Free"}
+            </button>
+            {status === "error" && (
+              <p className="text-[11px] text-red-400 mt-1">{msg}</p>
+            )}
+          </form>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default function PostArticle({
@@ -175,27 +251,34 @@ export default function PostArticle({
                 />
               </div>
 
-              {/* Body + optional table of contents */}
-              <div className={toc && toc.length >= 3 ? "xl:flex xl:gap-12" : ""}>
-                {toc && toc.length >= 3 && (
-                  <aside className="hidden xl:block xl:w-64 shrink-0" aria-label="Table of contents">
-                    <nav className="sticky top-40 max-h-[70vh] overflow-y-auto border border-card-border bg-card-bg rounded p-5">
-                      <p className="text-xs uppercase tracking-wider text-text-muted mb-4">On this page</p>
-                      <ul className="space-y-2 text-sm">
-                        {toc.map((entry, i) => (
-                          <li key={`${entry.id}-${i}`} className={entry.level === 3 ? "pl-4" : ""}>
-                            <a
-                              href={`#${entry.id}`}
-                              className="text-text-secondary hover:text-primary-light transition-colors line-clamp-2"
-                            >
-                              {entry.text}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </nav>
-                  </aside>
-                )}
+              {/* Body + Sticky article rail (TOC + Newsletter) */}
+              <div className="xl:flex xl:gap-12 items-start">
+                <aside className="hidden xl:block xl:w-72 shrink-0" aria-label="Article companion">
+                  <div className="sticky top-32 space-y-5">
+                    {toc && toc.length >= 2 && (
+                      <nav className="max-h-[50vh] overflow-y-auto border border-card-border bg-card-bg rounded-xl p-5">
+                        <p className="text-xs uppercase font-mono font-bold tracking-wider text-text-muted mb-3 flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary-light" />
+                          On this page
+                        </p>
+                        <ul className="space-y-2 text-xs">
+                          {toc.map((entry, i) => (
+                            <li key={`${entry.id}-${i}`} className={entry.level === 3 ? "pl-3 text-text-muted" : ""}>
+                              <a
+                                href={`#${entry.id}`}
+                                className="text-text-secondary hover:text-primary-light transition-colors line-clamp-2"
+                              >
+                                {entry.text}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </nav>
+                    )}
+
+                    <ArticleNewsletterCard />
+                  </div>
+                </aside>
 
                 <div className="prose max-w-none min-w-0 flex-1">
                   {post.blocks
@@ -204,6 +287,11 @@ export default function PostArticle({
                     .map((block) => (
                       <BlockRenderer key={block.id || block.order} block={block} />
                     ))}
+
+                  {/* Mobile Newsletter box at the end of article */}
+                  <div className="xl:hidden mt-10">
+                    <ArticleNewsletterCard />
+                  </div>
                 </div>
               </div>
 

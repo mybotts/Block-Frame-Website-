@@ -1,21 +1,12 @@
 "use client";
 
 // ============================================
-// BlogSidebar — the discovery rail for /blogs
-// and category pages.
-// Desktop (lg+): sticky aside. Mobile: hidden —
-// the BlogExplorer toolbar covers search + pills.
-//
-// Filter state lives in the URL. The server page
-// passes the CURRENT filter values in as props
-// (initialCategory/initialQuery/initialTag) so this
-// component prerenders fully without useSearchParams
-// (which bails out of static generation). Clicks
-// write params; BlogExplorer reads params from its
-// own props on navigation.
+// BlogSidebar — the focused discovery & subscription
+// rail for /blogs.
+// Desktop (lg+): sticky aside. Mobile: hidden.
 // ============================================
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ExplorerCategory, ExplorerTag } from "./BlogExplorer";
@@ -39,203 +30,25 @@ interface Props {
   popular: SidebarPost[];
   months: SidebarMonth[];
   totalPosts: number;
-  /** Current filter values, passed from the server so SSR matches client state. */
   initialCategory?: string;
   initialQuery?: string;
   initialTag?: string;
-  /** Base path for param pushes (/blogs or /blogs/category/<slug>). */
   basePath?: string;
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) {
   return (
-    <section className="blog-side-section" aria-label={title}>
-      <h2 className="blog-side-heading">{title}</h2>
+    <section className={`rounded-xl border border-card-border bg-card-bg/70 p-5 backdrop-blur-sm ${className}`} aria-label={title}>
+      <h2 className="font-mono text-xs font-bold uppercase tracking-wider text-text-muted mb-3 flex items-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-primary-light" />
+        {title}
+      </h2>
       {children}
     </section>
   );
 }
 
-export default function BlogSidebar({
-  categories,
-  tags,
-  popular,
-  months,
-  totalPosts,
-  initialCategory = "",
-  initialQuery = "",
-  initialTag = "",
-  basePath = "/blogs",
-}: Props) {
-  const router = useRouter();
-
-  const category = initialCategory;
-  const tag = initialTag;
-  const [queryDraft, setQueryDraft] = useState(initialQuery);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // "/" focuses search.
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      const target = e.target as HTMLElement;
-      if (e.key === "/" && target.tagName !== "INPUT" && target.tagName !== "TEXTAREA") {
-        e.preventDefault();
-        inputRef.current?.focus();
-      }
-    }
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, []);
-
-  function pushParams(mutate: (p: URLSearchParams) => void) {
-    const params = new URLSearchParams();
-    if (initialQuery) params.set("q", initialQuery);
-    if (initialCategory) params.set("category", initialCategory);
-    if (initialTag) params.set("tag", initialTag);
-    mutate(params);
-    const qs = params.toString();
-    router.replace(qs ? `${basePath}?${qs}` : basePath, { scroll: false });
-  }
-
-  return (
-    <aside className="blog-sidebar" aria-label="Blog discovery">
-      <Section title="Search">
-        <form
-          role="search"
-          onSubmit={(e) => {
-            e.preventDefault();
-            pushParams((p) => {
-              const value = (document.getElementById("blog-side-search") as HTMLInputElement | null)?.value ?? queryDraft;
-              setQueryDraft(value);
-              if (value.trim()) p.set("q", value.trim());
-              else p.delete("q");
-            });
-          }}
-        >
-          <input
-            id="blog-side-search"
-            ref={inputRef}
-            type="search"
-            className="blog-search-input"
-            placeholder="Search articles…  ( / )"
-            aria-label="Search articles"
-            defaultValue={initialQuery}
-          />
-        </form>
-      </Section>
-
-      <Section title="Categories">
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            className={`blog-pill ${category === "" ? "is-active" : ""}`}
-            onClick={() => pushParams((p) => p.delete("category"))}
-          >
-            All <span className="blog-pill-count">{totalPosts}</span>
-          </button>
-          {categories.map((cat) => (
-            <button
-              key={cat.slug}
-              type="button"
-              className={`blog-pill ${category === cat.slug ? "is-active" : ""}`}
-              onClick={() =>
-                pushParams((p) => {
-                  if (category === cat.slug) p.delete("category");
-                  else p.set("category", cat.slug);
-                })
-              }
-              aria-pressed={category === cat.slug}
-            >
-              {cat.name} <span className="blog-pill-count">{cat.count}</span>
-            </button>
-          ))}
-        </div>
-        <div className="mt-4 flex flex-wrap gap-1.5 text-xs text-text-muted">
-          Prefer full pages?{" "}
-          {categories.map((cat, i) => (
-            <span key={cat.slug}>
-              <Link href={`/blogs/category/${cat.slug}`} className="hover:text-primary-light transition-colors">
-                {cat.name}
-              </Link>
-              {i < categories.length - 1 ? ", " : ""}
-            </span>
-          ))}
-        </div>
-      </Section>
-
-      {tags.length > 0 && (
-        <Section title="Tags">
-          <div className="flex flex-wrap gap-2">
-            {tags.map((t) => (
-              <button
-                key={t.tag}
-                type="button"
-                className={`blog-tag ${tag === t.tag ? "is-active" : ""}`}
-                onClick={() =>
-                  pushParams((p) => {
-                    if (tag === t.tag) p.delete("tag");
-                    else p.set("tag", t.tag);
-                  })
-                }
-                aria-pressed={tag === t.tag}
-              >
-                #{t.tag} <span className="blog-pill-count">{t.count}</span>
-              </button>
-            ))}
-          </div>
-        </Section>
-      )}
-
-      {popular.length > 0 && (
-        <Section title="Popular this month">
-          <ol className="blog-popular-list">
-            {popular.map((p, i) => (
-              <li key={p.id} className="flex gap-3">
-                <span className="blog-popular-rank" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                <Link href={p.href} className="group min-w-0">
-                  <span className="block text-sm font-medium leading-snug text-text-secondary group-hover:text-primary-light transition-colors line-clamp-2">
-                    {p.title}
-                  </span>
-                  <span className="text-xs text-text-muted">{p.minutes} min read</span>
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </Section>
-      )}
-
-      {months.length > 1 && (
-        <Section title="Archive">
-          <ul className="blog-archive-list">
-            {months.map((m) => (
-              <li key={m.key}>
-                <span>{m.label}</span>
-                <span className="blog-archive-count">{m.count}</span>
-              </li>
-            ))}
-          </ul>
-        </Section>
-      )}
-
-      <Section title="Newsletter">
-        <NewsletterForm />
-      </Section>
-
-      <Section title="About this blog">
-        <p className="text-sm text-text-secondary leading-relaxed mb-3 italic">
-          Practical guides and news on AI systems and automation, published straight from our Notion workspace by the team building them daily.
-        </p>
-        <div className="flex flex-col gap-1.5 text-sm">
-          <a href="/rss.xml" className="blog-subscribe-link">RSS feed</a>
-          <a href="/feed.json" className="blog-subscribe-link">JSON Feed</a>
-          <a href="/llms.txt" className="blog-subscribe-link">llms.txt manifest</a>
-        </div>
-      </Section>
-    </aside>
-  );
-}
-
-function NewsletterForm() {
+function SidebarNewsletter() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -264,38 +77,148 @@ function NewsletterForm() {
     }
   }
 
-  if (state === "done") {
-    return (
-      <p className="text-sm text-text-primary leading-relaxed border border-card-border bg-surface-light p-4" data-testid="newsletter-success">
-        {message}
-      </p>
-    );
+  return (
+    <div className="relative rounded-xl border border-primary/40 bg-gradient-to-b from-primary/10 via-card-bg to-card-bg p-5 overflow-hidden shadow-[0_0_25px_rgba(0,179,191,0.08)]">
+      <div className="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-primary/20 blur-xl pointer-events-none" />
+
+      <div className="relative z-10">
+        <div className="flex items-center gap-1.5 mb-2">
+          <span className="inline-block w-2 h-2 rounded-full bg-primary-light animate-pulse" />
+          <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-primary-light">
+            BlockFrame Dispatch
+          </span>
+        </div>
+
+        <h3 className="text-lg font-bold text-text-primary tracking-tight mb-1.5 leading-snug">
+          Get Daily AI Trends
+        </h3>
+
+        <p className="text-xs text-text-secondary leading-relaxed font-light mb-4">
+          Zero sponsored noise. Technical breakdowns of autonomous agents, automation workflows, and live benchmarks straight from our labs.
+        </p>
+
+        {state === "done" ? (
+          <div className="rounded-lg border border-primary/40 bg-primary/10 p-3 text-xs text-primary-light">
+            ✓ {message}
+          </div>
+        ) : (
+          <form onSubmit={submit} className="flex flex-col gap-2">
+            <input
+              type="email"
+              required
+              className="blog-search-input text-xs px-3 py-2 rounded-lg"
+              placeholder="you@company.com"
+              aria-label="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="button-primary w-full py-2 text-xs font-semibold"
+              disabled={state === "sending"}
+            >
+              {state === "sending" ? "Subscribing…" : "Subscribe Free"}
+            </button>
+            {state === "error" && (
+              <p className="text-[11px] text-red-400 mt-1">{message}</p>
+            )}
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function BlogSidebar({
+  categories,
+  popular,
+  initialCategory = "",
+  initialQuery = "",
+  initialTag = "",
+  basePath = "/blogs",
+}: Props) {
+  const router = useRouter();
+  const category = initialCategory;
+
+  function pushCategory(slug: string) {
+    const params = new URLSearchParams();
+    if (initialQuery) params.set("q", initialQuery);
+    if (initialTag) params.set("tag", initialTag);
+    if (slug) params.set("category", slug);
+    const qs = params.toString();
+    router.replace(qs ? `${basePath}?${qs}` : basePath, { scroll: false });
   }
 
   return (
-    <form onSubmit={submit} noValidate>
-      <p className="text-xs text-text-muted mb-2 leading-relaxed">
-        One email when a new guide or deep dive lands. No noise.
-      </p>
-      <div className="flex flex-col gap-2">
-        <input
-          type="email"
-          required
-          className="blog-search-input"
-          placeholder="you@company.com"
-          aria-label="Email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {/* Honeypot — real users never see or fill this */}
-        <input type="text" name="_hp" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
-        <button type="submit" className="button-primary px-4 py-2.5 text-sm" disabled={state === "sending"}>
-          {state === "sending" ? "Subscribing…" : "Subscribe"}
-        </button>
-      </div>
-      {state === "error" && (
-        <p className="mt-2 text-xs text-red-400" role="alert">{message}</p>
+    <aside className="blog-sidebar sticky top-28 flex flex-col gap-5 w-full lg:w-[320px] shrink-0" aria-label="Blog discovery">
+      {/* 1. High-Converting Email Subscription Card (TOP) */}
+      <SidebarNewsletter />
+
+      {/* 2. Popular Deep Dives */}
+      {popular && popular.length > 0 && (
+        <Section title="Trending Deep Dives">
+          <ol className="space-y-3">
+            {popular.slice(0, 4).map((p, i) => (
+              <li key={p.id} className="flex items-start gap-2.5">
+                <span className="font-mono text-xs font-bold text-primary-light/80 shrink-0 pt-0.5">
+                  #{String(i + 1).padStart(2, "0")}
+                </span>
+                <Link href={p.href} className="group min-w-0">
+                  <span className="block text-xs sm:text-sm font-medium leading-snug text-text-secondary group-hover:text-primary-light transition-colors line-clamp-2">
+                    {p.title}
+                  </span>
+                  <span className="text-[11px] text-text-muted">{p.minutes} min read</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </Section>
       )}
-    </form>
+
+      {/* 3. Topics / Categories */}
+      <Section title="Topics">
+        <div className="flex flex-wrap gap-1.5">
+          <button
+            type="button"
+            className={`blog-pill text-xs py-1 px-2.5 ${category === "" ? "is-active" : ""}`}
+            onClick={() => pushCategory("")}
+          >
+            All
+          </button>
+          {categories.map((cat) => (
+            <button
+              key={cat.slug}
+              type="button"
+              className={`blog-pill text-xs py-1 px-2.5 ${category === cat.slug ? "is-active" : ""}`}
+              onClick={() => pushCategory(category === cat.slug ? "" : cat.slug)}
+              aria-pressed={category === cat.slug}
+            >
+              {cat.name} <span className="blog-pill-count">{cat.count}</span>
+            </button>
+          ))}
+        </div>
+      </Section>
+
+      {/* 4. Developer & Agent Console */}
+      <Section title="Agent & API Access">
+        <p className="text-xs text-text-secondary leading-relaxed mb-3 font-light">
+          Reading programmatically? Full-text markdown mirrors, feeds, and schema:
+        </p>
+        <div className="flex flex-col gap-1.5 text-xs">
+          <a href="/llms.txt" className="blog-subscribe-link py-1 hover:text-primary-light flex items-center justify-between">
+            <span>llms.txt manifest</span>
+            <span className="text-[10px] font-mono text-text-muted">LLM</span>
+          </a>
+          <a href="/rss.xml" className="blog-subscribe-link py-1 hover:text-primary-light flex items-center justify-between">
+            <span>RSS Feed</span>
+            <span className="text-[10px] font-mono text-text-muted">XML</span>
+          </a>
+          <a href="/feed.json" className="blog-subscribe-link py-1 hover:text-primary-light flex items-center justify-between">
+            <span>JSON Feed</span>
+            <span className="text-[10px] font-mono text-text-muted">API</span>
+          </a>
+        </div>
+      </Section>
+    </aside>
   );
 }

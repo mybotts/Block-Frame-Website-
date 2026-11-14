@@ -1,11 +1,17 @@
-import { Metadata } from "next";
+// ============================================
+// /blogs — The BlockFrame Intelligence Hub.
+// Server Component: reads posts directly from Notion,
+// builds metadata and canonical tags, pre-populates
+// categories and tags, and renders the editorial cover
+// + stream + sticky discovery rail.
+// ============================================
+
 import { Suspense } from "react";
-import Link from "next/link";
+import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import PremiumBackground from "@/components/PremiumBackground";
 import Footer from "@/components/Footer";
-import FeaturedHero from "@/components/blog/FeaturedHero";
-import TrendingGrid from "@/components/blog/TrendingGrid";
+import EditorialCover from "@/components/blog/EditorialCover";
 import BlogExplorer from "@/components/blog/BlogExplorer";
 import BlogSidebar from "@/components/blog/BlogSidebar";
 import {
@@ -15,64 +21,48 @@ import {
   getPopularPosts,
   getArchiveMonths,
 } from "@/lib/blogData";
+import { postPath } from "@/lib/slug";
 import { readingTimeMinutes } from "@/lib/postView";
-import { postPath, CONTENT_TEAM_NAME } from "@/lib/slug";
-
-const BASE_URL = "https://www.blockframe.cloud";
 
 export const revalidate = 300;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const posts = await getApprovedPosts();
-  return {
-    title: "Blogs",
-    description:
-      "Practical guides and news on AI systems, automation, and web engineering. Written by the team building these systems daily.",
-    alternates: {
-      canonical: `${BASE_URL}/blogs`,
-    },
-    openGraph: {
-      title: "Blogs | BlockFrame Labs",
-      description:
-        "Practical guides and news on AI systems, automation, and web engineering. Written by the team building these systems daily.",
-      url: `${BASE_URL}/blogs`,
-      siteName: "BlockFrame Labs",
-      images: [
-        {
-          url: `${BASE_URL}/images/og-preview.png`,
-          width: 1200,
-          height: 630,
-          alt: "BlockFrame Labs Blog : AI Systems, Automation & Web Engineering",
-        },
-      ],
-      locale: "en_US",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Blogs | BlockFrame Labs",
-      description:
-        "Practical guides and news on AI systems, automation, and web engineering.",
-      images: [`${BASE_URL}/images/og-preview.png`],
-    },
-    keywords: [
-      "AI automation blog",
-      "AI systems guide",
-      "web engineering",
-      "AI agents",
-      "Notion CMS automation",
-      "content automation",
-    ],
-    robots: posts.length === 0 ? { index: false } : { index: true, follow: true },
-  };
-}
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.blockframe.cloud";
 
-type Props = {
-  // Next 15+/16: searchParams is a Promise in server components.
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+export const metadata: Metadata = {
+  title: "BlockFrame Intelligence | AI Agents, Systems & Automation",
+  description:
+    "Daily technical dispatches on autonomous agents, enterprise automation, and systems architecture. Written by engineers building them daily.",
+  alternates: {
+    canonical: `${SITE_URL}/blogs`,
+    types: {
+      "application/rss+xml": `${SITE_URL}/rss.xml`,
+      "application/feed+json": `${SITE_URL}/feed.json`,
+    },
+  },
+  openGraph: {
+    title: "BlockFrame Intelligence | AI Agents, Systems & Automation",
+    description:
+      "Daily technical dispatches on autonomous agents, enterprise automation, and systems architecture.",
+    url: `${SITE_URL}/blogs`,
+    type: "website",
+    images: [{ url: `${SITE_URL}/images/og-preview.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BlockFrame Intelligence | AI Agents & Systems",
+    description:
+      "Daily technical dispatches on autonomous agents, enterprise automation, and systems architecture.",
+    images: [`${SITE_URL}/images/og-preview.png`],
+  },
 };
 
+interface Props {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
 export default async function BlogsPage({ searchParams }: Props) {
+  const sp = await searchParams;
+
   const [allPosts, categories, tags, popularRaw, months] = await Promise.all([
     getApprovedPosts(),
     getCategorySummary(),
@@ -81,21 +71,15 @@ export default async function BlogsPage({ searchParams }: Props) {
     getArchiveMonths(),
   ]);
 
-  const sp = await searchParams;
-  // When a filter param is present we skip the hero and hand the island every
-  // post, so filtered views never silently hide the featured article.
-  const hasFilterParams = Boolean(sp.category || sp.q || sp.sort || sp.tag);
-
   // Videos live in their own tab; everything else flows through the index.
   const visible = allPosts.filter((p) => p.categorySlug !== "videos");
   const featured = visible[0];
-  const secondary = visible.slice(1, 3);
-  const rest = visible.slice(3);
+  const briefings = visible.slice(1, 4);
+  const rest = visible.slice(4);
   const totalPosts = visible.length;
 
   const popular = popularRaw
-    .filter((p) => p.id !== featured?.id)
-    .slice(0, 5)
+    .filter((p) => p.categorySlug !== "videos")
     .map((p) => ({
       id: p.id,
       title: p.title,
@@ -103,148 +87,95 @@ export default async function BlogsPage({ searchParams }: Props) {
       minutes: readingTimeMinutes(p),
     }));
 
-  const blogSchema = {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "@id": `${BASE_URL}/blogs#blog`,
-    name: "BlockFrame Labs Blog",
-    description:
-      "Practical guides and news on AI systems, automation, and web engineering. Written by the team building these systems daily.",
-    url: `${BASE_URL}/blogs`,
-    publisher: {
-      "@type": "Organization",
-      name: "BlockFrame Labs",
-      url: BASE_URL,
-      logo: {
-        "@type": "ImageObject",
-        url: `${BASE_URL}/images/logo.png`,
-      },
-    },
-    author: {
-      "@type": "Organization",
-      name: CONTENT_TEAM_NAME,
-    },
-    blogPosts: {
-      "@type": "ItemList",
-      itemListElement: visible.slice(0, 50).map((p, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        url: `${BASE_URL}${postPath(p.title, p.id)}`,
-        name: p.title,
-      })),
-    },
-  };
+  const hasFilterParams = Boolean(
+    (typeof sp.q === "string" && sp.q.trim()) ||
+    (typeof sp.category === "string" && sp.category.trim()) ||
+    (typeof sp.tag === "string" && sp.tag.trim())
+  );
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
-      />
       <Navigation />
       <PremiumBackground />
 
-      <main id="main-content" className="relative z-10 w-full min-h-screen pt-28 sm:pt-32 md:pt-36 pb-20 px-4 sm:px-6 md:px-12">
-        <div className="hero-radial-glow opacity-40 z-[-1]" />
+      <main id="main-content" className="relative z-10 w-full min-h-screen pt-28 sm:pt-32 md:pt-36 pb-24 px-4 sm:px-6 md:px-12">
+        <div className="hero-radial-glow opacity-30 z-[-1]" />
 
         <div className="w-full max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="mb-8 sm:mb-12 text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-text-primary leading-tight mb-3">
-              Blogs
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-text-secondary font-light max-w-2xl mx-auto mb-2">
-              Practical guides and news on AI systems, automation, and web engineering. Written by the team building these systems daily.
-            </p>
-            <p className="text-xs sm:text-sm text-text-muted">{CONTENT_TEAM_NAME}</p>
-          </div>
+          {/* Masthead */}
+          <header className="mb-10 sm:mb-12">
+            <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-card-border/60">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-wider text-primary-light font-bold flex items-center gap-2 mb-1.5">
+                  <span className="w-2 h-2 rounded-full bg-primary-light animate-pulse" />
+                  Live Wire • Daily Technical Dispatches
+                </span>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight">
+                  BlockFrame Intelligence
+                </h1>
+              </div>
 
-          {/* Proof strip : live counter + cadence claim */}
-          <div className="blog-proof-strip mb-8 sm:mb-12" role="status" aria-label="Publishing cadence">
-            <div className="blog-proof-item">
-              <span className="blog-proof-number">{totalPosts}</span>
-              <span className="blog-proof-label">live articles</span>
+              <div className="flex items-center gap-3 text-xs font-mono text-text-muted">
+                <span className="px-3 py-1.5 rounded-full border border-card-border bg-card-bg/60">
+                  {totalPosts} Dispatches
+                </span>
+                <a
+                  href="/rss.xml"
+                  className="px-3 py-1.5 rounded-full border border-card-border bg-card-bg/60 hover:border-primary-light hover:text-primary-light transition-colors"
+                >
+                  RSS
+                </a>
+                <a
+                  href="/llms.txt"
+                  className="px-3 py-1.5 rounded-full border border-card-border bg-card-bg/60 hover:border-primary-light hover:text-primary-light transition-colors hidden sm:inline"
+                >
+                  llms.txt
+                </a>
+              </div>
             </div>
-            <span className="blog-proof-divider" aria-hidden="true" />
-            <div className="blog-proof-item">
-              <span className="blog-proof-number">30 in 30</span>
-              <span className="blog-proof-label">days, zero manual edits</span>
-            </div>
-            <span className="blog-proof-divider" aria-hidden="true" />
-            <div className="blog-proof-item">
-              <span className="blog-proof-number">Notion</span>
-              <span className="blog-proof-label">straight to published</span>
-            </div>
-          </div>
+          </header>
 
           {visible.length === 0 ? (
             <div className="glass-card p-12 text-center">
-              <h2 className="text-lg font-semibold text-text-primary mb-2">No blog posts yet</h2>
-              <p className="text-text-secondary">New blog posts are being reviewed and will appear here once approved.</p>
+              <h2 className="text-lg font-semibold text-text-primary mb-2">No dispatches yet</h2>
+              <p className="text-text-secondary">New articles are currently being processed and will appear shortly.</p>
             </div>
           ) : (
-            <div className="blog-layout">
-              {/* Main column: hero + explorer + entry points */}
-              <div className="min-w-0">
-                {featured && !hasFilterParams && <FeaturedHero post={featured} />}
-                {secondary.length > 0 && !hasFilterParams && <TrendingGrid posts={secondary} />}
+            <>
+              {/* Asymmetric Editorial Cover: Lead Dispatch (8 cols) + Top 3 Briefings (4 cols) */}
+              {featured && !hasFilterParams && (
+                <EditorialCover featured={featured} briefings={briefings} />
+              )}
 
-                <Suspense fallback={<div className="glass-card p-8 text-center text-text-muted">Loading articles…</div>}>
-                  <BlogExplorer
-                    posts={hasFilterParams ? visible : rest}
-                    categories={categories}
-                    tags={tags}
-                  />
-                </Suspense>
+              {/* Main Section: Explorer Grid (8 cols) + Sticky Discovery Rail (4 cols) */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="lg:col-span-8 min-w-0">
+                  <Suspense fallback={<div className="glass-card p-8 text-center text-text-muted">Loading articles…</div>}>
+                    <BlogExplorer
+                      posts={hasFilterParams ? visible : rest}
+                      categories={categories}
+                      tags={tags}
+                    />
+                  </Suspense>
+                </div>
 
-                {/* Deep links: AI-agent surface + category directory */}
-                <div className="mt-14 grid gap-6 lg:grid-cols-2">
-                  <div className="glass-card p-6">
-                    <h2 className="blog-side-heading mb-3">For AI agents and LLM readers</h2>
-                    <p className="text-sm text-text-secondary leading-relaxed italic mb-4">
-                      Reading this blog programmatically? Every article ships a full-text markdown mirror, and the whole blog is one manifest.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <a href="/llms.txt" className="button-secondary px-4 py-2 text-sm">llms.txt manifest</a>
-                      <a href="/rss.xml" className="button-secondary px-4 py-2 text-sm">RSS feed</a>
-                      <Link href="/api/posts" className="button-secondary px-4 py-2 text-sm">JSON API</Link>
-                    </div>
-                  </div>
-                  <div className="glass-card p-6">
-                    <h2 className="blog-side-heading mb-3">Browse by category</h2>
-                    <div className="flex flex-col gap-1.5">
-                      {categories.map((cat) => (
-                        <Link
-                          key={cat.slug}
-                          href={`/blogs/category/${cat.slug}`}
-                          className="group flex items-center justify-between text-sm text-text-secondary hover:text-primary-light transition-colors py-1"
-                        >
-                          <span>{cat.name}</span>
-                          <span className="text-xs text-text-muted group-hover:text-primary-light transition-colors">
-                            {cat.count} article{cat.count === 1 ? "" : "s"} →
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+                <div className="lg:col-span-4 hidden lg:block">
+                  <Suspense fallback={null}>
+                    <BlogSidebar
+                      categories={categories}
+                      tags={tags}
+                      popular={popular}
+                      months={months}
+                      totalPosts={totalPosts}
+                      initialCategory={typeof sp.category === "string" ? sp.category : ""}
+                      initialQuery={typeof sp.q === "string" ? sp.q : ""}
+                      initialTag={typeof sp.tag === "string" ? sp.tag : ""}
+                      basePath="/blogs"
+                    />
+                  </Suspense>
                 </div>
               </div>
-
-              {/* Discovery rail */}
-              <Suspense fallback={null}>
-                <BlogSidebar
-                  categories={categories}
-                  tags={tags}
-                  popular={popular}
-                  months={months}
-                  totalPosts={totalPosts}
-                  initialCategory={typeof sp.category === "string" ? sp.category : ""}
-                  initialQuery={typeof sp.q === "string" ? sp.q : ""}
-                  initialTag={typeof sp.tag === "string" ? sp.tag : ""}
-                  basePath="/blogs"
-                />
-              </Suspense>
-            </div>
+            </>
           )}
         </div>
       </main>
