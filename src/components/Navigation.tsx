@@ -59,7 +59,18 @@ export default function Navigation() {
       {/* Skip to content link */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-text-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-background"
+        className="sr-only"
+        style={{
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          padding: 0,
+          margin: "-1px",
+          overflow: "hidden",
+          clip: "rect(0, 0, 0, 0)",
+          whiteSpace: "nowrap",
+          border: 0,
+        }}
       >
         Skip to main content
       </a>
@@ -128,13 +139,14 @@ export default function Navigation() {
       {mobileMenuOpen && (
         <>
           <button
-            className="fixed inset-0 z-40 bg-overlay md:hidden"
+            className="fixed inset-0 z-40 bg-black/80 backdrop-blur-md md:hidden"
             onClick={closeMobileMenu}
             aria-label="Close menu backdrop"
             tabIndex={-1}
           />
           <aside
-            className="fixed inset-y-0 right-0 z-50 flex w-80 max-w-[85vw] flex-col border-l border-border bg-background p-6 shadow-2xl md:hidden"
+            className="fixed inset-y-0 right-0 z-50 flex w-80 max-w-[85vw] flex-col border-l border-card-border bg-[#0a0d12] p-6 shadow-2xl md:hidden"
+            style={{ backgroundColor: "#0a0d12" }}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"

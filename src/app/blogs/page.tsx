@@ -116,9 +116,6 @@ export default async function BlogsPage({ searchParams }: Props) {
               </div>
 
               <div className="flex items-center gap-3 text-xs font-mono text-text-muted">
-                <span className="px-3 py-1.5 rounded-full border border-card-border bg-card-bg/60">
-                  {totalPosts} Dispatches
-                </span>
                 <a
                   href="/rss.xml"
                   className="px-3 py-1.5 rounded-full border border-card-border bg-card-bg/60 hover:border-primary-light hover:text-primary-light transition-colors"
