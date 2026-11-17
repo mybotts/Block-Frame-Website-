@@ -145,6 +145,13 @@ export default function RootLayout({
             __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-26F8JQCTL7');`,
           }}
         />
+
+        {/* Umami Analytics (Self-Hosted Private Analytics) */}
+        <script
+          defer
+          src="https://analytics.blockframe.cloud/script.js"
+          data-website-id="50e20ba0-977a-49f9-bb0e-bacd3c81122a"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
