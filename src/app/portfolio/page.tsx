@@ -54,7 +54,7 @@ export default function PortfolioPage() {
     email: "contactsergeo@gmail.com",
     sameAs: [
       "https://x.com/sergeo_n",
-      "https://cert.efset.org/en/SdicSB",
+      "https://cert.efset.org/en/MsxK2B",
     ],
     knowsAbout: [
       "Video Editing & Motion Graphics",
@@ -67,10 +67,10 @@ export default function PortfolioPage() {
     hasCredential: [
       {
         "@type": "EducationalOccupationalCredential",
-        name: "EF SET English Certificate 73/100 (CEFR C2 Proficient)",
+        name: "EF SET English Certificate 92/100 (CEFR C2 Proficient)",
         credentialCategory: "certificate",
         educationalLevel: "CEFR C2 Proficient",
-        url: "https://cert.efset.org/en/SdicSB",
+        url: "https://cert.efset.org/en/MsxK2B",
         recognizedBy: {
           "@type": "Organization",
           name: "EF Standard English Test (EF SET)",

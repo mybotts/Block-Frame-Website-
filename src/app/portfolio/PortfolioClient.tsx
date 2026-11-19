@@ -477,7 +477,7 @@ export default function PortfolioClient() {
               </div>
               <div className="glass-card p-5 border border-card-border">
                 <span className="font-mono text-3xl font-bold text-primary-light block mb-1">CEFR C2</span>
-                <span className="text-xs text-text-muted leading-tight block">Mastery English (73/100 EF SET)</span>
+                <span className="text-xs text-text-muted leading-tight block">Mastery English (92/100 EF SET)</span>
               </div>
             </div>
 
@@ -1831,9 +1831,9 @@ export default function PortfolioClient() {
                 className="glass-card p-5 border border-card-border rounded-xl flex flex-col justify-between cursor-pointer group hover:border-white/20 hover:bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition"
                 onClick={() => setActiveLightbox({
                   src: "/images/cert-efset-c2.webp",
-                  title: "EF SET Certificate · C2 Proficient (73/100)",
-                  subtitle: "CEFR C2 Mastery Tier · Issued Nov 10, 2026 · Listening 78/100, Reading 68/100",
-                  verifyHref: "https://cert.efset.org/en/SdicSB",
+                  title: "EF SET Certificate · C2 Proficient (92/100)",
+                  subtitle: "CEFR C2 Mastery Tier · Issued Nov 19, 2026 · Listening 100/100, Reading 84/100",
+                  verifyHref: "https://cert.efset.org/en/MsxK2B",
                   pdfHref: "/documents/ef-set-certificate-sergeo-ndonwi.pdf"
                 })}
               >
@@ -1851,26 +1851,26 @@ export default function PortfolioClient() {
                       EF SET &middot; 2026
                     </div>
                     <span className="font-mono text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded px-1.5 py-0.5">
-                      73/100 &middot; C2 Proficient
+                      92/100 &middot; C2 Proficient
                     </span>
                   </div>
                   <h3 className="text-sm font-bold text-text-primary mb-1">
                     C2 English Proficiency Certification
                   </h3>
                   <p className="text-xs text-text-secondary leading-relaxed">
-                    Certified C2 Proficient (mastery tier): Listening 78/100 (C2 Proficient), Reading 68/100 (C1 Advanced). Effortless native-level fluency in technical writing, async coordination, and client communication.
+                    Certified C2 Proficient (top mastery tier): Listening 100/100 (C2 Proficient - Perfect Score), Reading 84/100 (C2 Proficient). Effortless native-level fluency in technical writing, async coordination, and client communication.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-card-border flex items-center justify-between text-[11px] font-mono text-text-muted">
                   <span className="text-emerald-400 font-semibold">Verified C2 Credential</span>
                   <div className="flex items-center gap-2">
                     <a
-                      href="https://cert.efset.org/en/SdicSB"
+                      href="https://cert.efset.org/en/MsxK2B"
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => {
                         e.stopPropagation();
-                        trackEvent("credential_verify_click", { title: "EF SET C2 English Certificate", url: "https://cert.efset.org/en/SdicSB" });
+                        trackEvent("credential_verify_click", { title: "EF SET C2 English Certificate", url: "https://cert.efset.org/en/MsxK2B" });
                       }}
                       className="text-primary-light hover:underline"
                     >
